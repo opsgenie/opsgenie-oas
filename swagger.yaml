@@ -36,7 +36,7 @@ paths:
   - $ref: ./paths/heartbeat.yaml  # Will be implemented
   - $ref: ./paths/policy.yaml # Will be implemented
   - $ref: ./paths/maintenance.yaml  # Will be implemented
-  - $ref: ./paths/account.yaml  # Will be implemented
+  - $ref: ./paths/account.yaml
   - $ref: ./paths/user.yaml # Will be implemented
   - $ref: ./paths/contact.yaml  # Will be implemented
   - $ref: ./paths/notificationRule.yaml # Will be implemented
@@ -61,7 +61,6 @@ parameters:
   - $ref: ./parameters/heartbeat.yaml  # Will be implemented
   - $ref: ./parameters/policy.yaml # Will be implemented
   - $ref: ./parameters/maintenance.yaml  # Will be implemented
-  - $ref: ./parameters/account.yaml  # Will be implemented
   - $ref: ./parameters/user.yaml # Will be implemented
   - $ref: ./parameters/contact.yaml  # Will be implemented
   - $ref: ./parameters/notificationRule.yaml # Will be implemented
@@ -86,7 +85,6 @@ responses:
   - $ref: ./responses/heartbeat.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
   - $ref: ./responses/maintenance.yaml  # Will be implemented
-  - $ref: ./responses/account.yaml  # Will be implemented
   - $ref: ./responses/user.yaml # Will be implemented
   - $ref: ./responses/contact.yaml  # Will be implemented
   - $ref: ./responses/notificationRule.yaml # Will be implemented
@@ -111,7 +109,7 @@ definitions:
   - $ref: ./definitions/heartbeat.yaml  # Will be implemented
   - $ref: ./definitions/policy.yaml # Will be implemented
   - $ref: ./definitions/maintenance.yaml  # Will be implemented
-  - $ref: ./definitions/account.yaml  # Will be implemented
+  - $ref: ./definitions/account.yaml
   - $ref: ./definitions/user.yaml # Will be implemented
   - $ref: ./definitions/contact.yaml  # Will be implemented
   - $ref: ./definitions/notificationRule.yaml # Will be implemented
