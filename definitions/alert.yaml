@@ -1,0 +1,627 @@
+##################
+#     REQUEST    #
+##################
+AlertActionRequest:
+  type: object
+  properties:
+    user:
+      type: string
+      description: Display name of the request owner
+    note:
+      type: string
+      description: Additional note that will be added while creating the alert
+    source:
+      type: string
+      description: Source field of the alert. Default value is IP address of the incoming request
+
+CreateAlertRequest:
+  type: object
+  allOf:
+  - $ref: '#/definitions/AlertActionRequest'
+  - required:
+      - message
+    properties:
+      message:
+        type: string
+        description: Message of the alert
+      alias:
+        type: string
+        description: Client-defined identifier of the alert, that is also the key element of alert deduplication.
+      description:
+        type: string
+        description: Description field of the alert that is generally used to provide a detailed information about the alert.
+      teams:
+        type: array
+        description: Teams that the alert will be routed to send notifications
+        items:
+          $ref: '#/definitions/TeamRecipient'
+      visibleTo:
+        type: array
+        description: Teams and users that the alert will become visible to without sending any notification
+        items:
+          $ref: '#/definitions/Recipient'
+      actions:
+        type: array
+        description: Custom actions that will be available for the alert
+        items:
+          type: string
+      tags:
+        type: array
+        description: Tags of the alert
+        items:
+          type: string
+      details:
+        type: object
+        description: Map of key-value pairs to use as custom properties of the alert
+        additionalProperties:
+          type: string
+      entity:
+        type: string
+        description: Entity field of the alert that is generally used to specify which domain alert is related to
+      priority :
+        type: string
+        description: Priority level of the alert
+        enum:
+          - P1
+          - P2
+          - P3
+          - P4
+          - P5
+
+AcknowledgeAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+
+UnAcknowledgeAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+
+CloseAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+
+SnoozeAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+    - required:
+        - endTime
+      properties:
+        endTime:
+          type: string
+          format: date-time
+          description: Date and time that snooze will lose effect
+
+EscalateAlertToNextRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+    - required:
+        - escalation
+      properties:
+        escalation:
+          $ref: '#/definitions/EscalationRecipient'
+
+AssignAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+    - required:
+        - owner
+      properties:
+        owner:
+          $ref: '#/definitions/UserRecipient'
+
+AddTeamToAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+    - required:
+        - team
+      properties:
+        team:
+          $ref: '#/definitions/TeamRecipient'
+
+ExecuteCustomAlertActionRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+
+AddTagsToAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+    - required:
+        - tags
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+
+AddDetailsToAlertRequest:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+    - required:
+        - details
+      properties:
+        details:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs to add as custom property into alert. You can refer here for example values
+
+AddNoteToAlertRequest:
+  type: object
+  required:
+    - note
+  allOf:
+    - $ref: '#/definitions/AlertActionRequest'
+
+CreateSavedSearchRequest:
+  type: object
+  required:
+    - name
+    - query
+    - owner
+  properties:
+    name:
+      type: string
+      maxLength: 100
+    description:
+      type: string
+      maxLength: 15000
+    query:
+      type: string
+      maxLength: 1000
+    owner:
+      $ref: '#/definitions/UserRecipient'
+    teams:
+      type: array
+      maxItems: 20
+      description: Teams that the alert will be routed to send notifications
+      items:
+        $ref: '#/definitions/TeamRecipient'
+
+##################
+#    RESPONSE    #
+##################
+GetRequestStatusResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/AlertRequestStatus'
+
+ListAlertsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/BaseAlert'
+
+GetAlertResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Alert'
+
+ListAlertRecipientsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/AlertRecipient'
+
+ListAlertLogsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/AlertLog'
+        paging:
+          $ref: '#/definitions/Paging'
+
+ListAlertNotesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/AlertNote'
+        paging:
+          $ref: '#/definitions/Paging'
+
+ListSavedSearchesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/SavedSearchMeta'
+
+CreateSavedSearchResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/SavedSearchMeta'
+
+GetSavedSearchResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/SavedSearch'
+
+ListAlertAttachmentsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/AlertAttachmentMeta'
+
+GetAlertAttachmentResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/AlertAttachment'
+
+##################
+#      MODEL     #
+##################
+AlertRequestStatus:
+  type: object
+  properties:
+    action:
+      type: string
+    processedAt:
+      type: string
+      format: date-time
+    integrationId:
+      type: string
+    isSuccess:
+      type: boolean
+    status:
+      type: string
+    alertId:
+      type: string
+    alias:
+      type: string
+
+BaseAlert:
+  type: object
+  required:
+    - id
+  properties:
+    id:
+      type: string
+    tinyId:
+      type: string
+    alias:
+      type: string
+    message:
+      type: string
+    status:
+      type: string
+    acknowledged:
+      type: boolean
+    isSeen:
+      type: boolean
+    tags:
+      type: array
+      items:
+        type: string
+    snoozed:
+      type: boolean
+    snoozedUntil:
+      type: string
+      format: date-time
+    count:
+      type: integer
+      format: int32
+    lastOccurredAt:
+      type: string
+      format: date-time
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+    source:
+      type: string
+    owner:
+      type: string
+    priority:
+      type: string
+    teams:
+      type: array
+      items:
+        $ref: '#/definitions/TeamMeta'
+    integration:
+      $ref: '#/definitions/AlertIntegration'
+    report:
+      $ref: '#/definitions/AlertReport'
+
+TeamMeta:
+  type: object
+  required:
+    - id
+  properties:
+    id:
+      type: string
+
+AlertIntegration:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    type:
+      type: string
+
+AlertReport:
+  type: object
+  properties:
+    ackTime:
+      type: integer
+      format: int64
+    closeTime:
+      type: integer
+      format: int64
+    acknowledgedBy:
+      type: string
+    closedBy:
+      type: string
+
+Recipient:
+  type: object
+  discriminator: type
+  required:
+    - type
+  properties:
+    type:
+      type: string
+      enum:
+        - all
+        - none
+        - user
+        - escalation
+        - schedule
+        - team
+        - group
+    id:
+      type: string
+
+TeamRecipient:
+  x-discriminator-value: team
+  description: Team recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: team
+
+GroupRecipient:
+  x-discriminator-value: group
+  description: Group recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: group
+
+ScheduleRecipient:
+  x-discriminator-value: schedule
+  description: Schedule recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: schedule
+
+EscalationRecipient:
+  x-discriminator-value: escalation
+  description: Escalation recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: escalation
+
+UserRecipient:
+  x-discriminator-value: user
+  description: User recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      username:
+        type: string
+      type:
+        default: user
+
+NoRecipient:
+  x-discriminator-value: none
+  description: No recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+
+AllRecipient:
+  x-discriminator-value: all
+  description: All recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+
+Alert:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseAlert'
+    - properties:
+        actions:
+          type: array
+          items:
+            type: string
+        entity:
+          type: string
+        description:
+          type: string
+        details:
+          type: object
+          additionalProperties:
+            type: string
+
+AlertRecipient:
+  type: object
+  properties:
+    user:
+      $ref: '#/definitions/UserMeta'
+    state:
+      type: string
+    method:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+
+UserMeta:
+  type: object
+  properties:
+    id:
+      type: string
+    username:
+      type: string
+
+AlertLog:
+  type: object
+  properties:
+    log:
+      type: string
+    type:
+      type: string
+    owner:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    offset:
+      type: string
+
+Paging:
+  type: object
+  properties:
+    first:
+      type: string
+    next:
+      type: string
+
+AlertNote:
+  type: object
+  properties:
+    note:
+      type: string
+    owner:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    offset:
+      type: string
+
+SavedSearchMeta:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+
+SavedSearchEntity:
+  type: object
+  properties:
+    id:
+      type: string
+
+SavedSearch:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+    owner:
+      $ref: '#/definitions/SavedSearchEntity'
+    teams:
+      type: array
+      items:
+        $ref: '#/definitions/SavedSearchEntity'
+    description:
+      type: string
+    query:
+      type: string
+
+AlertAttachmentMeta:
+  type: object
+  properties:
+    name:
+      type: string
+    id:
+      type: string
+
+AlertAttachment:
+  type: object
+  properties:
+    name:
+      type: string
+    url:
+      type: string

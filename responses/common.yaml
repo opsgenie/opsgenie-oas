@@ -1,0 +1,82 @@
+Forbidden:
+  description: apiKey is valid but the apiKey cannot do this operation because of permissions
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
+GeneralError:
+  description: Unexpected error
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+
+Accepted:
+  description: Returns request id for this async operation.
+  schema:
+    $ref: '#/definitions/SuccessResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+    X-RateLimit-State:
+      description: Status of rate limit
+      type: string
+    X-RateLimit-Reason:
+      description: Source of the rete limit
+      type: string
+    X-RateLimit-Period-In-Sec:
+      description: Time of throttle in seconds
+      type: string
+
+Unauthorized:
+  description: apiKey is invalid or integration is disabled
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
+UnprocessableEntity:
+  description: Semantic errors in request body
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
+Ok:
+  description: Returns request id for this async operation.
+  schema:
+    $ref: '#/definitions/SuccessResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+    X-RateLimit-State:
+      description: Status of rate limit
+      type: string
+    X-RateLimit-Reason:
+      description: Source of the rete limit
+      type: string
+    X-RateLimit-Period-In-Sec:
+      description: Time of throttle in seconds
+      type: string

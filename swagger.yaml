@@ -1,0 +1,127 @@
+swagger: '2.0'
+
+################################################################################
+#                               API Information                                #
+################################################################################
+info:
+  title: OpsGenie REST API
+  description: OpsGenie RESTful API specifications
+  version: "2.0.0"
+# the domain of the service
+host: api.opsgenie.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+################################################################################
+#                                  Security                                    #
+################################################################################
+securityDefinitions:
+  GenieKey:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - GenieKey: []
+
+################################################################################
+#                                    PATHS                                     #
+################################################################################
+paths:
+  - $ref: ./paths/alert.yaml
+  - $ref: ./paths/integration.yaml  # Will be implemented
+  - $ref: ./paths/heartbeat.yaml  # Will be implemented
+  - $ref: ./paths/policy.yaml # Will be implemented
+  - $ref: ./paths/maintenance.yaml  # Will be implemented
+  - $ref: ./paths/account.yaml  # Will be implemented
+  - $ref: ./paths/user.yaml # Will be implemented
+  - $ref: ./paths/contact.yaml  # Will be implemented
+  - $ref: ./paths/notificationRule.yaml # Will be implemented
+  - $ref: ./paths/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./paths/team.yaml # Will be implemented
+  - $ref: ./paths/teamMember.yaml # Will be implemented
+  - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./paths/schedule.yaml # Will be implemented
+  - $ref: ./paths/scheduleRotation.yaml # Will be implemented
+  - $ref: ./paths/scheduleOverride.yaml # Will be implemented
+  - $ref: ./paths/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./paths/escalation.yaml # Will be implemented
+  - $ref: ./paths/forwardingRule.yaml # Will be implemented
+
+################################################################################
+#                                  PARAMETERS                                  #
+################################################################################
+parameters:
+  - $ref: ./parameters/common.yaml
+  - $ref: ./parameters/alert.yaml
+  - $ref: ./parameters/integration.yaml  # Will be implemented
+  - $ref: ./parameters/heartbeat.yaml  # Will be implemented
+  - $ref: ./parameters/policy.yaml # Will be implemented
+  - $ref: ./parameters/maintenance.yaml  # Will be implemented
+  - $ref: ./parameters/account.yaml  # Will be implemented
+  - $ref: ./parameters/user.yaml # Will be implemented
+  - $ref: ./parameters/contact.yaml  # Will be implemented
+  - $ref: ./parameters/notificationRule.yaml # Will be implemented
+  - $ref: ./parameters/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./parameters/team.yaml # Will be implemented
+  - $ref: ./parameters/teamMember.yaml # Will be implemented
+  - $ref: ./parameters/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./parameters/schedule.yaml # Will be implemented
+  - $ref: ./parameters/scheduleRotation.yaml # Will be implemented
+  - $ref: ./parameters/scheduleOverride.yaml # Will be implemented
+  - $ref: ./parameters/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./parameters/escalation.yaml # Will be implemented
+  - $ref: ./parameters/forwardingRule.yaml # Will be implemented
+
+################################################################################
+#                                 RESPONSES                                    #
+################################################################################
+responses:
+  - $ref: ./responses/common.yaml
+  - $ref: ./responses/alert.yaml
+  - $ref: ./responses/integration.yaml  # Will be implemented
+  - $ref: ./responses/heartbeat.yaml  # Will be implemented
+  - $ref: ./responses/policy.yaml # Will be implemented
+  - $ref: ./responses/maintenance.yaml  # Will be implemented
+  - $ref: ./responses/account.yaml  # Will be implemented
+  - $ref: ./responses/user.yaml # Will be implemented
+  - $ref: ./responses/contact.yaml  # Will be implemented
+  - $ref: ./responses/notificationRule.yaml # Will be implemented
+  - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./responses/team.yaml # Will be implemented
+  - $ref: ./responses/teamMember.yaml # Will be implemented
+  - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./responses/schedule.yaml # Will be implemented
+  - $ref: ./responses/scheduleRotation.yaml # Will be implemented
+  - $ref: ./responses/scheduleOverride.yaml # Will be implemented
+  - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./responses/escalation.yaml # Will be implemented
+  - $ref: ./responses/forwardingRule.yaml # Will be implemented
+
+################################################################################
+#                                DEFINITIONS                                   #
+################################################################################
+definitions:
+  - $ref: ./definitions/common.yaml
+  - $ref: ./definitions/alert.yaml
+  - $ref: ./definitions/integration.yaml  # Will be implemented
+  - $ref: ./definitions/heartbeat.yaml  # Will be implemented
+  - $ref: ./definitions/policy.yaml # Will be implemented
+  - $ref: ./definitions/maintenance.yaml  # Will be implemented
+  - $ref: ./definitions/account.yaml  # Will be implemented
+  - $ref: ./definitions/user.yaml # Will be implemented
+  - $ref: ./definitions/contact.yaml  # Will be implemented
+  - $ref: ./definitions/notificationRule.yaml # Will be implemented
+  - $ref: ./definitions/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./definitions/team.yaml # Will be implemented
+  - $ref: ./definitions/teamMember.yaml # Will be implemented
+  - $ref: ./definitions/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./definitions/schedule.yaml # Will be implemented
+  - $ref: ./definitions/scheduleRotation.yaml # Will be implemented
+  - $ref: ./definitions/scheduleOverride.yaml # Will be implemented
+  - $ref: ./definitions/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./definitions/escalation.yaml # Will be implemented
+  - $ref: ./definitions/forwardingRule.yaml # Will be implemented

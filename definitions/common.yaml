@@ -1,0 +1,55 @@
+##################
+#    RESPONSE    #
+##################
+BaseResponse:
+  type: object
+  required:
+    - requestId
+    - took
+  properties:
+    requestId:
+      type: string
+    took:
+      type: number
+      format: float
+      default: 0.0
+
+ErrorResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
+        responseHeaders:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+
+SuccessResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        result:
+          type: string
+        data:
+          type: object
+          allOf:
+            - $ref: '#/definitions/SuccessData'
+
+##################
+#      MODEL     #
+##################
+SuccessData:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string

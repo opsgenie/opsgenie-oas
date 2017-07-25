@@ -1,0 +1,984 @@
+/v2/alerts/requests/{requestId}:
+  get:
+    tags:
+      - alert
+    summary: Get Request Status of Alert
+    description: Used to track the status and alert details (if any) of the request whose identifier is given
+    operationId: getRequestStatus
+    # x-collapse-params: GetRequestStatusRequest
+    parameters:
+      - name: requestId
+        in: path
+        description: Universally unique identifier of the questioned request
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Request status information for given id
+        schema:
+          $ref: '#/definitions/GetRequestStatusResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        description: Request can not be found for given identifier
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts:
+  get:
+    tags:
+      - alert
+    summary: List Alerts
+    description: Returns list of alerts
+    operationId: listAlerts
+    # x-collapse-params: ListAlertsRequest
+    parameters:
+      - name: query
+        in: query
+        description: Search query to apply while filtering the alerts
+        required: false
+        type: string
+      - name: searchIdentifier
+        in: query
+        description: Identifier of the saved search query to apply while filtering the alerts
+        required: false
+        type: string
+      - name: searchIdentifierType
+        in: query
+        description: Identifier type of the saved search query. Possible values are 'id', or 'name'
+        required: false
+        type: string
+        enum:
+          - id
+          - name
+        default: id
+      - name: offset
+        in: query
+        description: Start index of the result set (to apply pagination). Minimum value (and also default value) is 0
+        required: false
+        type: integer
+        format: int32
+        minimum: 0
+      - name: limit
+        in: query
+        description: Maximum number of items to provide in the result. Must be a positive integer value. Default value is 20 and maximum value is 100
+        required: false
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+      - name: sort
+        in: query
+        description: Name of the field that result set will be sorted by
+        required: false
+        type: string
+        enum:
+          - createdAt
+          - updatedAt
+          - tinyId
+          - alias
+          - message
+          - status
+          - acknowledged
+          - isSeen
+          - snoozed
+          - snoozedUntil
+          - count
+          - lastOccurredAt
+          - source
+          - owner
+          - integration.name
+          - integration.type
+          - report.ackTime
+          - report.closeTime
+          - report.acknowledgedBy
+          - report.closedBy
+        default: createdAt
+      - name: order
+        in: query
+        description: Sorting order of the result set
+        required: false
+        type: string
+        enum:
+          - asc
+          - desc
+        default: desc
+    responses:
+      '200':
+        description: Alert information for given identifier
+        schema:
+          $ref: '#/definitions/ListAlertsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - alert
+    summary: Create Alert
+    description: Creates a new alert
+    operationId: createAlert
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of created alert
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAlertRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}:
+  get:
+    tags:
+      - alert
+    summary: Get Alert
+    description: Returns alert with given id, tiny id or alias
+    operationId: getAlert
+    # x-collapse-params: GetAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+    responses:
+      '200':
+        description: Alert information for given identifier
+        schema:
+          $ref: '#/definitions/GetAlertResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/AlertNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - alert
+    summary: Delete Alert
+    description: Deletes an alert using alert id, tiny id or alias
+    operationId: deleteAlert
+    # x-collapse-params: DeleteAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertUserParam'
+      - $ref: '#/parameters/AlertSourceParam'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/acknowledge:
+  post:
+    tags:
+      - alert
+    summary: Acknowledge Alert
+    description: Acknowledges alert with given identifier
+    operationId: acknowledgeAlert
+    # x-collapse-params: AcknowledgeAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of acknowledging alert action
+        required: false
+        schema:
+            $ref: '#/definitions/AcknowledgeAlertRequest'
+    responses:
+        '202':
+          $ref: '#/responses/Accepted'
+        default:
+          $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/unacknowledge:
+  post:
+    tags:
+      - alert
+    summary: UnAcknowledge Alert
+    description: UnAcknowledge alert with given identifier
+    operationId: unAcknowledgeAlert
+    # x-collapse-params: UnAcknowledgeAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of unacknowledging alert action
+        required: false
+        schema:
+          $ref: '#/definitions/UnAcknowledgeAlertRequest'
+    responses:
+        '202':
+          $ref: '#/responses/Accepted'
+        default:
+          $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/close:
+  post:
+    tags:
+      - alert
+    summary: Close Alert
+    description: Closes alert with given identifier
+    operationId: closeAlert
+    # x-collapse-params: CloseAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of closing alert action
+        required: false
+        schema:
+          $ref: '#/definitions/CloseAlertRequest'
+    responses:
+        '202':
+          $ref: '#/responses/Accepted'
+        default:
+          $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/snooze:
+  post:
+    tags:
+      - alert
+    summary: Snooze Alert
+    description: Snooze alert with given identifier
+    operationId: snoozeAlert
+    # x-collapse-params: SnoozeAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of snoozing alert action
+        required: true
+        schema:
+          $ref: '#/definitions/SnoozeAlertRequest'
+    responses:
+        '202':
+          $ref: '#/responses/Accepted'
+        '422':
+          $ref: '#/responses/UnprocessableEntity'
+        default:
+          $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/escalate:
+  post:
+    tags:
+      - alert
+    summary: Escalate Alert
+    description: Escalate alert with given identifier
+    operationId: escalateAlert
+    # x-collapse-params: EscalateAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of escalating alert action
+        required: true
+        schema:
+          $ref: '#/definitions/EscalateAlertToNextRequest'
+    responses:
+        '202':
+          $ref: '#/responses/Accepted'
+        default:
+          $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/assign:
+  post:
+    tags:
+      - alert
+    summary: Assign Alert
+    description: Assign alert with given identifier
+    operationId: assignAlert
+    # x-collapse-params: AssignAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of assigning alert action
+        required: true
+        schema:
+          $ref: '#/definitions/AssignAlertRequest'
+    responses:
+        '202':
+          $ref: '#/responses/Accepted'
+        default:
+          $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/teams:
+  post:
+    tags:
+      - alert
+    summary: Add Team
+    description: Add team to alert with given identifier
+    operationId: addTeam
+    # x-collapse-params: AddTeamToAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of adding team to alert action
+        required: true
+        schema:
+          $ref: '#/definitions/AddTeamToAlertRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/actions/{actionName}:
+  post:
+    tags:
+      - alert
+    summary: Custom Alert Action
+    description: Custom actions for the alert
+    operationId: executeCustomAlertAction
+    # x-collapse-params: ExecuteCustomAlertActionRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: actionName
+        in: path
+        description: Name of the action to execute
+        required: true
+        type: string
+      - name: body
+        in: body
+        description: Request payload of executing custom alert action
+        required: false
+        schema:
+          $ref: '#/definitions/ExecuteCustomAlertActionRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/recipients:
+  get:
+    tags:
+      - alert
+    summary: List Alert Recipients
+    description: List alert recipients for the given alert identifier
+    operationId: listRecipients
+    # x-collapse-params: ListAlertRecipientsRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+    responses:
+      '200':
+        description: Returns alert recipients for the given alert identifier
+        schema:
+          $ref: '#/definitions/ListAlertRecipientsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/logs:
+  get:
+    tags:
+      - alert
+    summary: List Alert Logs
+    description: List alert logs for the given alert identifier
+    operationId: listLogs
+    # x-collapse-params: ListAlertLogsRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/OffsetParam'
+      - $ref: '#/parameters/PageDirectionParam'
+      - $ref: '#/parameters/AlertLimitParam'
+      - $ref: '#/parameters/OrderParam'
+    responses:
+      '200':
+        description: Returns alert logs for the given alert identifier
+        schema:
+          $ref: '#/definitions/ListAlertLogsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/attachments:
+  get:
+    tags:
+      - alert
+    summary: List Alert Attachments
+    description: List alert attachment names and urls for related alert
+    operationId: listAttachments
+    # x-collapse-params: ListAlertAttachmentsRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/AlertIdentifierType'
+    responses:
+      '200':
+        description: Returns name and url for given identifier
+        schema:
+          $ref: '#/definitions/ListAlertAttachmentsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/AlertNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - alert
+    summary: Add Alert Attachment
+    description: Add Alert Attachment to related alert
+    operationId: addAttachment
+    # x-collapse-params: AddAttachmentToAlertRequest
+    consumes:
+      - multipart/form-data
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/AlertIdentifierType'
+      - name: file
+        in: formData
+        required: true
+        description: Attachment file to be uploaded
+        type: file
+      - name: user
+        in: formData
+        description: Display name of the request owner
+        required: false
+        type: string
+      - name: indexFile
+        in: formData
+        description: Name of html file which will be shown when attachment clicked on UI
+        required: false
+        type: string
+    responses:
+      '201':
+        description: Returns attachment id
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        description: Corrupted file
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+
+/v2/alerts/{identifier}/attachments/{attachmentId}:
+  get:
+    tags:
+      - alert
+    summary: Get Alert Attachment
+    description: Get alert attachment name and url for the given identifier
+    operationId: getAttachment
+    # x-collapse-params: GetAlertAttachmentRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/AlertIdentifierType'
+      - name: attachmentId
+        in: path
+        description: Identifier of alert attachment
+        required: true
+        type: integer
+        format: int64
+    responses:
+      '200':
+        description: Returns name and url for given identifier
+        schema:
+          $ref: '#/definitions/GetAlertAttachmentResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/AlertNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - alert
+    summary: Remove Alert Attachment
+    description: Remove alert attachment for the given identifier
+    operationId: removeAttachment
+    # x-collapse-params: RemoveAttachmentFromAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/AlertIdentifierType'
+      - name: attachmentId
+        in: path
+        description: Identifier of alert attachment
+        required: true
+        type: integer
+        format: int64
+      - $ref: '#/parameters/AlertUserParam'
+    responses:
+      '200':
+        description: Returns deleted messsage for this async operation.
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/AlertNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/tags:
+  post:
+    tags:
+      - alert
+    summary: Add Tags
+    description: Add tags to the alert with given identifier
+    operationId: addTags
+    # x-collapse-params: AddTagsToAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of creating alert tags action
+        required: true
+        schema:
+          $ref: '#/definitions/AddTagsToAlertRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - alert
+    summary: Remove Tags
+    description: Remove tags of the alert with given identifier
+    operationId: removeTags
+    # x-collapse-params: RemoveTagsFromAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertUserParam'
+      - $ref: '#/parameters/AlertNoteParam'
+      - $ref: '#/parameters/AlertSourceParam'
+      - name: tags
+        in: query
+        description: Tags field of the given alert as comma seperated values (e.g. 'tag1, tag2')
+        required: true
+        type: array
+        items:
+          type: string
+        collectionFormat: csv
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/details:
+  post:
+    tags:
+      - alert
+    summary: Add Details
+    description: Add details to the alert with given identifier
+    operationId: addDetails
+    # x-collapse-params: AddDetailsToAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of adding alert details action
+        required: true
+        schema:
+          $ref: '#/definitions/AddDetailsToAlertRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - alert
+    summary: Remove Details
+    description: Remove details of the alert with given identifier
+    operationId: removeDetails
+    # x-collapse-params: RemoveDetailsFromAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertUserParam'
+      - $ref: '#/parameters/AlertNoteParam'
+      - $ref: '#/parameters/AlertSourceParam'
+      - name: keys
+        in: query
+        description: Comma separated list of keys to remove from the custom properties of the alert (e.g. 'key1,key2')
+        required: true
+        type: array
+        items:
+          type: string
+        collectionFormat: csv
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/{identifier}/notes:
+  get:
+    tags:
+      - alert
+    summary: List Alert Notes
+    description: List alert notes for the given alert identifier
+    operationId: listNotes
+    # x-collapse-params: ListAlertNotesRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/OffsetParam'
+      - $ref: '#/parameters/PageDirectionParam'
+      - $ref: '#/parameters/AlertLimitParam'
+      - $ref: '#/parameters/OrderParam'
+    responses:
+      '200':
+        description: Returns alert notes for the given alert identifier
+        schema:
+          $ref: '#/definitions/ListAlertNotesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - alert
+    summary: Add Note
+    description: Adds note to alert with given identifier
+    operationId: addNote
+    # x-collapse-params: AddNoteToAlertRequest
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload of adding note to alert action
+        required: true
+        schema:
+          $ref: '#/definitions/AddNoteToAlertRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/saved-searches:
+  get:
+    tags:
+      - alert
+    summary: Lists Saved Searches
+    description: List all saved searches
+    operationId: listSavedSearches
+    # x-collapse-params: ListSavedSearchesRequest
+    responses:
+      '200':
+        description: Returns saved search list
+        schema:
+          $ref: '#/definitions/ListSavedSearchesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - alert
+    summary: Create Saved Search
+    description: Create saved search with given fields
+    operationId: createSavedSearches
+    # x-collapse-params: CreateSavedSearchRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of creating saved search
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSavedSearchRequest'
+    responses:
+      200:
+        description: Returns saved search meta information
+        schema:
+          $ref: '#/definitions/CreateSavedSearchResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/alerts/saved-searches/{identifier}:
+  get:
+    tags:
+      - alert
+    summary: Get Saved Search
+    description: Get saved search for the given search identifier
+    operationId: getSavedSearch
+    # x-collapse-params: GetSavedSearchRequest
+    parameters:
+      - $ref: '#/parameters/SearchIdentifier'
+      - $ref: '#/parameters/SearchIdentifierType'
+    responses:
+      '200':
+        description: Returns saved search for given identifier
+        schema:
+          $ref: '#/definitions/GetSavedSearchResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        description: Saved search can not be found for given identifier
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - alert
+    summary: Delete Saved Search
+    description: Deletes saved search using given search identifier
+    operationId: deleteSavedSearch
+    # x-collapse-params: DeleteSavedSearchRequest
+    parameters:
+      - $ref: '#/parameters/SearchIdentifier'
+      - $ref: '#/parameters/SearchIdentifierType'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      default:
+        $ref: '#/responses/GeneralError'

@@ -1,0 +1,43 @@
+{
+  "_from": "multi-file-swagger",
+  "_id": "multi-file-swagger@2.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-lYC37LwvRufgGWeZ971sFP3Pl0g=",
+  "_location": "/multi-file-swagger",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "multi-file-swagger",
+    "name": "multi-file-swagger",
+    "escapedName": "multi-file-swagger",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/multi-file-swagger/-/multi-file-swagger-2.0.0.tgz",
+  "_shasum": "9580b7ecbc2f46e7e0196799f7bd6c14fdcf9748",
+  "_spec": "multi-file-swagger",
+  "_where": "/Users/hisener/Projects",
+  "bin": {
+    "multi-file-swagger": "resolve.js"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "commander": "^2.9.0",
+    "json-refs": "^2.1.6",
+    "yaml-js": "^0.1.4"
+  },
+  "deprecated": false,
+  "description": "Multi-file Swagger example",
+  "license": "MIT",
+  "main": "resolve.js",
+  "name": "multi-file-swagger",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "version": "2.0.0"
+}

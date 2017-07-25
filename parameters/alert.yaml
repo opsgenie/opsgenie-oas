@@ -1,0 +1,108 @@
+Identifier:
+  name: identifier
+  in: path
+  description: Identifier of alert which could be alert id, tiny id or alert alias
+  required: true
+  type: string
+
+IdentifierType:
+  name: identifierType
+  in: query
+  description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id', 'alias' or 'tiny'
+  required: false
+  type: string
+  enum:
+    - id
+    - alias
+    - tiny
+  default: id
+
+AlertSourceParam:
+  name: source
+  in: query
+  description: Display name of the request source
+  required: false
+  type: string
+
+AlertUserParam:
+  name: user
+  in: query
+  description: Display name of the request owner
+  required: false
+  type: string
+
+AlertNoteParam:
+  name: note
+  in: query
+  description: Additional alert note to add
+  required: false
+  type: string
+
+OffsetParam:
+  name: offset
+  in: query
+  description: Starting value of the offset property
+  required: false
+  type: string
+
+PageDirectionParam:
+  name: direction
+  in: query
+  description: Page direction to apply for the given offset with 'next' and 'prev'
+  required: false
+  type: string
+  enum:
+    - next
+    - prev
+  default: next
+
+AlertLimitParam:
+  name: limit
+  in: query
+  description: Maximum number of items to provide in the result. Must be a positive integer value. Default value is 20 and maximum value is 100
+  required: false
+  type: integer
+  format: int32
+  minimum: 1
+  maximum: 100
+
+OrderParam:
+  name: order
+  in: query
+  description: Sorting order of the result set
+  required: false
+  type: string
+  enum:
+    - asc
+    - desc
+  default: desc
+
+SearchIdentifier:
+  name: identifier
+  in: path
+  description: Identifier of the saved search which could be 'id' or 'name'
+  required: true
+  type: string
+
+SearchIdentifierType:
+  name: identifierType
+  in: query
+  description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id', or 'name'
+  required: false
+  type: string
+  enum:
+    - id
+    - name
+  default: id
+
+AlertIdentifierType:
+  name: alertIdentifierType
+  in: query
+  description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id', 'alias' or 'tiny'
+  required: false
+  type: string
+  enum:
+    - id
+    - alias
+    - tiny
+  default: id
