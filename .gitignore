@@ -1,0 +1,13 @@
+# idea conf files
+.idea/
+*.iml
+
+# building
+target/
+
+# node libraries
+package-lock.json
+node_modules/
+
+# misc
+swagger.json
