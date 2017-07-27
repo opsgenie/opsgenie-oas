@@ -2,7 +2,7 @@
 
 ### Generate a single json from separated yaml's.
 
-Pre-requisites
+Prerequisites
 - Node.js with npm (https://nodejs.org/en/download/)
 
 You need to install the node dependencies once.

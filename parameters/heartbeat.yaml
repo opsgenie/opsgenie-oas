@@ -1,0 +1,6 @@
+HeartbeatName:
+  name: heartbeatName
+  in: path
+  description: Name of the heartbeat
+  required: true
+  type: string

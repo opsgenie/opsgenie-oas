@@ -1,0 +1,217 @@
+/v2/heartbeats/{heartbeatName}/ping:
+  get:
+    tags:
+      - heartbeat
+    summary: Ping Heartbeat
+    description: Ping Heartbeat for given heartbeat name
+    operationId: ping
+    parameters:
+      - $ref: '#/parameters/HeartbeatName'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/heartbeats:
+  post:
+    tags:
+      - heartbeat
+    summary: Add Heartbeat
+    description: Add Heartbeat request is used to define heartbeats
+    operationId: add
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of added heartbeat
+        required: true
+        schema:
+          $ref: '#/definitions/AddHeartbeatRequest'
+    responses:
+      '201':
+        description: Heartbeat information for given heartbeat name
+        schema:
+          $ref: '#/definitions/HeartbeatResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/heartbeats/{heartbeatName}:
+  get:
+    tags:
+      - heartbeat
+    summary: Get Heartbeat
+    description: Get Heartbeat Data
+    operationId: get
+    parameters:
+      - $ref: '#/parameters/HeartbeatName'
+    responses:
+      '200':
+        description: Heartbeat information for given heartbeat name
+        schema:
+          $ref: '#/definitions/HeartbeatResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/HeartbeatNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+  patch:
+    tags:
+      - heartbeat
+    summary: Update Heartbeat
+    description: Update Heartbeat request is used to change configuration of existing heartbeats
+    operationId: update
+    parameters:
+      - $ref: '#/parameters/HeartbeatName'
+      - name: body
+        in: body
+        description: Request payload of updated heartbeat
+        required: true
+        schema:
+          $ref: '#/definitions/HeartbeatRequest'
+    responses:
+      '200':
+        description: Heartbeat meta information for given heartbeat name
+        schema:
+          $ref: '#/definitions/HeartbeatMetaResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+  delete:
+    tags:
+      - heartbeat
+    summary: Delete Heartbeat
+    description: Delete heartbeat request is used to delete monitored heartbeat
+    operationId: delete
+    parameters:
+      - $ref: '#/parameters/HeartbeatName'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/heartbeats/{heartbeatName}/enable:
+  post:
+    tags:
+      - heartbeat
+    summary: Enable Heartbeat
+    description: Enable heartbeat request is used to enable monitored heartbeat
+    operationId: enable
+    parameters:
+      - $ref: '#/parameters/HeartbeatName'
+    responses:
+      '200':
+        description: Heartbeat meta information for given heartbeat name
+        schema:
+          $ref: '#/definitions/HeartbeatMetaResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/heartbeats/{heartbeatName}/disable:
+  post:
+    tags:
+      - heartbeat
+    summary: Disable Heartbeat
+    description: Disable heartbeat request is used to disable monitored heartbeat
+    operationId: disable
+    parameters:
+      - $ref: '#/parameters/HeartbeatName'
+    responses:
+      '200':
+        description: Heartbeat meta information for given heartbeat name
+        schema:
+          $ref: '#/definitions/HeartbeatMetaResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'

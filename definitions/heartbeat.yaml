@@ -1,0 +1,99 @@
+##################
+#     REQUEST    #
+##################
+HeartbeatRequest:
+  type: object
+  properties:
+    description:
+      type: string
+      description: An optional description of the heartbeat
+      maxLength: 10000
+    interval:
+      type: integer
+      format: int64
+      description: Specifies how often a heartbeat message should be expected
+      minimum: 1
+    intervalUnit:
+      type: string
+      description: Interval specified as minutes, hours or days
+    enabled:
+      type: boolean
+      description: Enable/disable heartbeat monitoring
+
+AddHeartbeatRequest:
+  type: object
+  allOf:
+  - required:
+      - name
+      - interval
+      - intervalUnit
+      - enabled
+    properties:
+      name:
+        type: string
+        description: Name of the heartbeat
+        maxLength: 200
+      description:
+        type: string
+        description: An optional description of the heartbeat
+        maxLength: 10000
+      interval:
+        type: integer
+        format: int64
+        description: Specifies how often a heartbeat message should be expected
+        minimum: 1
+      intervalUnit:
+        type: string
+        description: Interval specified as minutes, hours or days
+      enabled:
+        type: boolean
+        description: Enable/disable heartbeat monitoring
+
+##################
+#    RESPONSE    #
+##################
+HeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Heartbeat'
+
+HeartbeatMetaResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/HeartbeatMeta'
+
+##################
+#      MODEL     #
+##################
+Heartbeat:
+  type: object
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+    interval:
+      type: integer
+      format: int64
+    enabled:
+      type: boolean
+    intervalUnit:
+      type: string
+    expired:
+      type: boolean
+
+HeartbeatMeta:
+  type: object
+  properties:
+    name:
+      type: string
+    enabled:
+      type: boolean
+    expired:
+      type: boolean
