@@ -182,8 +182,8 @@
     operationId: getAlert
     # x-collapse-params: GetAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
     responses:
       '200':
         description: Alert information for given identifier
@@ -218,8 +218,8 @@
     operationId: deleteAlert
     # x-collapse-params: DeleteAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - $ref: '#/parameters/AlertUserParam'
       - $ref: '#/parameters/AlertSourceParam'
     responses:
@@ -237,8 +237,8 @@
     operationId: acknowledgeAlert
     # x-collapse-params: AcknowledgeAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of acknowledging alert action
@@ -260,8 +260,8 @@
     operationId: unAcknowledgeAlert
     # x-collapse-params: UnAcknowledgeAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of unacknowledging alert action
@@ -283,8 +283,8 @@
     operationId: closeAlert
     # x-collapse-params: CloseAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of closing alert action
@@ -306,8 +306,8 @@
     operationId: snoozeAlert
     # x-collapse-params: SnoozeAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of snoozing alert action
@@ -331,8 +331,8 @@
     operationId: escalateAlert
     # x-collapse-params: EscalateAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of escalating alert action
@@ -354,8 +354,8 @@
     operationId: assignAlert
     # x-collapse-params: AssignAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of assigning alert action
@@ -377,8 +377,8 @@
     operationId: addTeam
     # x-collapse-params: AddTeamToAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of adding team to alert action
@@ -400,8 +400,8 @@
     operationId: executeCustomAlertAction
     # x-collapse-params: ExecuteCustomAlertActionRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: actionName
         in: path
         description: Name of the action to execute
@@ -428,8 +428,8 @@
     operationId: listRecipients
     # x-collapse-params: ListAlertRecipientsRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
     responses:
       '200':
         description: Returns alert recipients for the given alert identifier
@@ -463,8 +463,8 @@
     operationId: listLogs
     # x-collapse-params: ListAlertLogsRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - $ref: '#/parameters/OffsetParam'
       - $ref: '#/parameters/PageDirectionParam'
       - $ref: '#/parameters/AlertLimitParam'
@@ -502,8 +502,8 @@
     operationId: listAttachments
     # x-collapse-params: ListAlertAttachmentsRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/AlertIdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType2'
     responses:
       '200':
         description: Returns name and url for given identifier
@@ -542,8 +542,8 @@
     consumes:
       - multipart/form-data
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/AlertIdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType2'
       - name: file
         in: formData
         required: true
@@ -603,8 +603,8 @@
     operationId: getAttachment
     # x-collapse-params: GetAlertAttachmentRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/AlertIdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType2'
       - name: attachmentId
         in: path
         description: Identifier of alert attachment
@@ -647,8 +647,8 @@
     operationId: removeAttachment
     # x-collapse-params: RemoveAttachmentFromAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/AlertIdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType2'
       - name: attachmentId
         in: path
         description: Identifier of alert attachment
@@ -693,8 +693,8 @@
     operationId: addTags
     # x-collapse-params: AddTagsToAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of creating alert tags action
@@ -715,8 +715,8 @@
     operationId: removeTags
     # x-collapse-params: RemoveTagsFromAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - $ref: '#/parameters/AlertUserParam'
       - $ref: '#/parameters/AlertNoteParam'
       - $ref: '#/parameters/AlertSourceParam'
@@ -745,8 +745,8 @@
     operationId: addDetails
     # x-collapse-params: AddDetailsToAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of adding alert details action
@@ -767,8 +767,8 @@
     operationId: removeDetails
     # x-collapse-params: RemoveDetailsFromAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - $ref: '#/parameters/AlertUserParam'
       - $ref: '#/parameters/AlertNoteParam'
       - $ref: '#/parameters/AlertSourceParam'
@@ -797,8 +797,8 @@
     operationId: listNotes
     # x-collapse-params: ListAlertNotesRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - $ref: '#/parameters/OffsetParam'
       - $ref: '#/parameters/PageDirectionParam'
       - $ref: '#/parameters/AlertLimitParam'
@@ -835,8 +835,8 @@
     operationId: addNote
     # x-collapse-params: AddNoteToAlertRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
       - name: body
         in: body
         description: Request payload of adding note to alert action

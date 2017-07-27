@@ -1,11 +1,11 @@
-Identifier:
+AlertIdentifier:
   name: identifier
   in: path
   description: Identifier of alert which could be alert id, tiny id or alert alias
   required: true
   type: string
 
-IdentifierType:
+AlertIdentifierType:
   name: identifierType
   in: query
   description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id', 'alias' or 'tiny'
@@ -95,7 +95,7 @@ SearchIdentifierType:
     - name
   default: id
 
-AlertIdentifierType:
+AlertIdentifierType2:
   name: alertIdentifierType
   in: query
   description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id', 'alias' or 'tiny'

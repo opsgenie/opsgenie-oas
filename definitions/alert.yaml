@@ -365,13 +365,13 @@ BaseAlert:
     teams:
       type: array
       items:
-        $ref: '#/definitions/TeamMeta'
+        $ref: '#/definitions/AlertTeamMeta'
     integration:
       $ref: '#/definitions/AlertIntegration'
     report:
       $ref: '#/definitions/AlertReport'
 
-TeamMeta:
+AlertTeamMeta:
   type: object
   required:
     - id
@@ -516,7 +516,7 @@ AlertRecipient:
   type: object
   properties:
     user:
-      $ref: '#/definitions/UserMeta'
+      $ref: '#/definitions/AlertUserMeta'
     state:
       type: string
     method:
@@ -528,7 +528,7 @@ AlertRecipient:
       type: string
       format: date-time
 
-UserMeta:
+AlertUserMeta:
   type: object
   properties:
     id:
