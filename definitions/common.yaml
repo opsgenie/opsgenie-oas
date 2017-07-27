@@ -53,3 +53,94 @@ SuccessData:
       type: string
     name:
       type: string
+
+Recipient:
+  type: object
+  discriminator: type
+  required:
+    - type
+  properties:
+    type:
+      type: string
+      enum:
+        - all
+        - none
+        - user
+        - escalation
+        - schedule
+        - team
+        - group
+    id:
+      type: string
+
+TeamRecipient:
+  x-discriminator-value: team
+  description: Team recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: team
+
+GroupRecipient:
+  x-discriminator-value: group
+  description: Group recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: group
+
+ScheduleRecipient:
+  x-discriminator-value: schedule
+  description: Schedule recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: schedule
+
+EscalationRecipient:
+  x-discriminator-value: escalation
+  description: Escalation recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      name:
+        type: string
+      type:
+        default: escalation
+
+UserRecipient:
+  x-discriminator-value: user
+  description: User recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+  - type: object
+    properties:
+      username:
+        type: string
+      type:
+        default: user
+
+NoRecipient:
+  x-discriminator-value: none
+  description: No recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
+
+AllRecipient:
+  x-discriminator-value: all
+  description: All recipient
+  allOf:
+  - $ref: '#/definitions/Recipient'
