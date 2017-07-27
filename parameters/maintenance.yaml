@@ -1,0 +1,17 @@
+MaintenanceIdentifier:
+  name: id
+  in: path
+  description: Identifier of the maintenance to be searched
+  required: true
+  type: string
+
+MaintenanceListType:
+  name: type
+  in: query
+  description: Type of the maintenance list to be searched
+  required: false
+  type: string
+  enum:
+    - all
+    - past
+    - non-expired

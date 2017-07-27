@@ -1,0 +1,120 @@
+/v1/maintenance:
+  post:
+    tags:
+      - maintenance
+    summary: Create maintenance
+    description: Creates maintenance
+    operationId: createMaintenance
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of the maintenance object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateMaintenanceRequest'
+    responses:
+      '201':
+        description: Maintenance meta data
+        schema:
+          $ref: '#/definitions/MaintenanceMetaResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+  get:
+    tags:
+      - maintenance
+    summary: List maintenances
+    description: List maintenances by list type
+    operationId: listMaintenance
+    parameters:
+      - $ref: '#/parameters/MaintenanceListType'
+    responses:
+      '200':
+        description: List of maintenance data searched by list type
+        schema:
+          $ref: '#/definitions/MaintenanceListResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/maintenance/{id}:
+  get:
+    tags:
+      - maintenance
+    summary: Get maintenance by id
+    description: Get maintenance by id
+    operationId: getMaintenance
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+    responses:
+      '200':
+        description: Maintenance data searched by id
+        schema:
+          $ref: '#/definitions/MaintenanceResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+  put:
+    tags:
+      - maintenance
+    summary: Update maintenance
+    description: Update maintenance
+    operationId: updateMaintenance
+    x-collapse-params: UpdateMaintenanceRequest
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+      - name: body
+        in: body
+        description: Request payload of the maintenance object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateMaintenanceRequest'
+    responses:
+      '200':
+        description: Maintenance meta data
+        schema:
+          $ref: '#/definitions/MaintenanceMetaResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+  delete:
+    tags:
+      - maintenance
+    summary: Delete maintenance by id
+    description: Delete maintenance by id
+    operationId: deleteMaintenance
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+    responses:
+      '200':
+          description: Returns success message
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+/v1/maintenance/{id}/cancel:
+  post:
+    tags:
+      - maintenance
+    summary: Cancel maintenance by id
+    description: Cance maintenance by id
+    operationId: cancelMaintenance
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+    responses:
+      '200':
+          description: Returns success message
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
