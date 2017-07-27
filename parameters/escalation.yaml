@@ -1,0 +1,17 @@
+Identifier:
+  name: identifier
+  in: path
+  description: Identifier of escalation which could be escalation id or name
+  required: true
+  type: string
+
+IdentifierType:
+  name: identifierType
+  in: query
+  description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id' or 'name'
+  required: false
+  type: string
+  enum:
+    - id
+    - name
+  default: id
