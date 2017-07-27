@@ -1,4 +1,68 @@
 ##################
+#     REQUEST    #
+##################
+CreateEscalationRequest:
+  type: object
+  required:
+    - name
+    - rules
+  properties:
+    name:
+      type: string
+      description: Name of the escalation
+    description:
+      type: string
+      description: Description of the escalation
+    rules:
+      type: array
+      description: List of escalation rules.
+      items:
+        $ref: '#/definitions/EscalationRule'
+    ownerTeam:
+      description: Owner team of escalation.
+      $ref: '#/definitions/TeamMeta'
+
+UpdateEscalationRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the escalation
+    description:
+      type: string
+      description: Description of the escalation
+    rules:
+      type: array
+      description: List of escalation rules.
+      items:
+        $ref: '#/definitions/EscalationRule'
+    ownerTeam:
+      description: Owner team of escalation.
+      $ref: '#/definitions/TeamMeta'
+
+
+##################
+#    RESPONSE    #
+##################
+GetEscalationResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Escalation'
+
+ListEscalationsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Escalation'
+
+##################
 #      MODEL     #
 ##################
 Escalation:
