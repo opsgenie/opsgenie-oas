@@ -1,0 +1,163 @@
+/v2/users/{userIdentifier}/contacts:
+  post:
+    tags:
+      - contact
+    summary: Create Contact
+    description: Creates a new contact
+    operationId: createContact
+    parameters:
+      - $ref: '#/parameters/userIdentifier'
+      - name: body
+        in: body
+        description: Request payload of creating contact action
+        schema:
+          $ref: '#/definitions/CreateContactRequest'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+        tags:
+          - contact
+        summary: List Contacts
+        description: Returns list of contacts
+        operationId: listContacts
+        parameters:
+          - $ref: '#/parameters/userIdentifier'
+        responses:
+          '200':
+            description: Contact information for given identifier
+            schema:
+              $ref: '#/definitions/ListContactsResponse'
+            headers:
+              X-Request-ID:
+                description: Id of given request
+                type: string
+              X-Response-Time:
+                description: Process time of given request
+                type: string
+              X-RateLimit-State:
+                description: Status of rate limit
+                type: string
+              X-RateLimit-Reason:
+                description: Source of the rete limit
+                type: string
+              X-RateLimit-Period-In-Sec:
+                description: Time of throttle in seconds
+                type: string
+          default:
+            $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/contacts/{contactId}:
+  patch:
+    tags:
+      - contact
+    summary: Update Contact
+    description: Update contact of the user
+    operationId: updateContact
+    parameters:
+      - $ref: '#/parameters/userIdentifier'
+      - $ref: '#/parameters/contactId'
+      - name: body
+        in: body
+        description: Request payload of updating contact action
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateContactRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+          $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - contact
+    summary: Get Contact
+    description: Returns contact with given id
+    operationId: getContact
+    parameters:
+      - $ref: '#/parameters/userIdentifier'
+      - $ref: '#/parameters/contactId'
+    responses:
+      '200':
+        description: Contact information for given identifier
+        schema:
+          $ref: '#/definitions/GetContactResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rete limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/ContactNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - contact
+    summary: Delete Contact
+    description: Deletes a contact using contact id
+    operationId: deleteContact
+    parameters:
+      - $ref: '#/parameters/userIdentifier'
+      - $ref: '#/parameters/contactId'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/contacts/{contactId}/enable:
+  post:
+    tags:
+      - contact
+    summary: Enable Contact
+    description: Enables the contact of the user in OpsGenie
+    operationId: enableContact
+    parameters:
+      - $ref: '#/parameters/userIdentifier'
+      - $ref: '#/parameters/contactId'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/contacts/{contactId}/disable:
+  post:
+    tags:
+      - contact
+    summary: Disable Contact
+    description: Disables the contact of the user in OpsGenie
+    operationId: disableContact
+    parameters:
+      - $ref: '#/parameters/userIdentifier'
+      - $ref: '#/parameters/contactId'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+          $ref: '#/responses/GeneralError'

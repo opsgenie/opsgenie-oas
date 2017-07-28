@@ -38,7 +38,7 @@ paths:
   - $ref: ./paths/maintenance.yaml  # Will be implemented
   - $ref: ./paths/account.yaml
   - $ref: ./paths/user.yaml # Will be implemented
-  - $ref: ./paths/contact.yaml  # Will be implemented
+  - $ref: ./paths/contact.yaml
   - $ref: ./paths/notificationRule.yaml # Will be implemented
   - $ref: ./paths/notificationRuleStep.yaml # Will be implemented
   - $ref: ./paths/team.yaml # Will be implemented
@@ -62,7 +62,7 @@ parameters:
   - $ref: ./parameters/policy.yaml # Will be implemented
   - $ref: ./parameters/maintenance.yaml  # Will be implemented
   - $ref: ./parameters/user.yaml # Will be implemented
-  - $ref: ./parameters/contact.yaml  # Will be implemented
+  - $ref: ./parameters/contact.yaml
   - $ref: ./parameters/notificationRule.yaml # Will be implemented
   - $ref: ./parameters/notificationRuleStep.yaml # Will be implemented
   - $ref: ./parameters/team.yaml # Will be implemented
@@ -86,7 +86,7 @@ responses:
   - $ref: ./responses/policy.yaml # Will be implemented
   - $ref: ./responses/maintenance.yaml  # Will be implemented
   - $ref: ./responses/user.yaml # Will be implemented
-  - $ref: ./responses/contact.yaml  # Will be implemented
+  - $ref: ./responses/contact.yaml
   - $ref: ./responses/notificationRule.yaml # Will be implemented
   - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
   - $ref: ./responses/team.yaml # Will be implemented
@@ -111,7 +111,7 @@ definitions:
   - $ref: ./definitions/maintenance.yaml  # Will be implemented
   - $ref: ./definitions/account.yaml
   - $ref: ./definitions/user.yaml # Will be implemented
-  - $ref: ./definitions/contact.yaml  # Will be implemented
+  - $ref: ./definitions/contact.yaml
   - $ref: ./definitions/notificationRule.yaml # Will be implemented
   - $ref: ./definitions/notificationRuleStep.yaml # Will be implemented
   - $ref: ./definitions/team.yaml
