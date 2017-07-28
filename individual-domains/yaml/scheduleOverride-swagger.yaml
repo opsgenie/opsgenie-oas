@@ -1,0 +1,55 @@
+swagger: '2.0'
+
+################################################################################
+#                               API Information                                #
+################################################################################
+info:
+  title: OpsGenie REST API
+  description: OpsGenie RESTful API specifications
+  version: "2.0.0"
+# the domain of the service
+host: api.opsgenie.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+################################################################################
+#                                  Security                                    #
+################################################################################
+securityDefinitions:
+  GenieKey:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - GenieKey: []
+
+################################################################################
+#                                    PATHS                                     #
+################################################################################
+paths:
+  - $ref: ./paths/scheduleOverride.yaml  # Will be implemented
+
+################################################################################
+#                                  PARAMETERS                                  #
+################################################################################
+parameters:
+  - $ref: ./parameters/common.yaml
+  - $ref: ./parameters/scheduleOverride.yaml  # Will be implemented
+
+################################################################################
+#                                 RESPONSES                                    #
+################################################################################
+responses:
+  - $ref: ./responses/common.yaml
+  - $ref: ./responses/scheduleOverride.yaml  # Will be implemented
+
+################################################################################
+#                                DEFINITIONS                                   #
+################################################################################
+definitions:
+  - $ref: ./definitions/common.yaml
+  - $ref: ./definitions/scheduleOverride.yaml  # Will be implemented
