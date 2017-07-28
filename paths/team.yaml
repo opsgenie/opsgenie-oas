@@ -1,0 +1,205 @@
+/v2/teams:
+  post:
+    tags:
+      - team
+    summary: Create Team
+    description: Creates a new team
+    operationId: createTeam
+    # x-collapse-params: CreateTeamRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of created team
+        required: true
+        schema:
+          $ref: '#/definitions/CreateTeamRequest'
+    responses:
+      '201':
+        description: Contact information for created contact
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - team
+    summary: List Teams
+    description: Return list of teams
+    operationId: listTeams
+    # x-collapse-params: ListTeamsRequest
+    parameters:
+      - name: expand
+        in: query
+        description: Returns more detailed response with expanding it. Possible value is 'member' which is also returned with expandable field of response
+        required: false
+        type: string
+    responses:
+      '200':
+        description: Team information for given identifier
+        schema:
+          $ref: '#/definitions/ListTeamsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rete limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/teams/{identifier}:
+  get:
+    tags:
+      - team
+    summary: Get Team
+    description: Returns team with given 'id' or 'name'
+    operationId: getTeam
+    # x-collapse-params: GetTeamRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType'
+    responses:
+      '200':
+        description: Team information for given identifier
+        schema:
+          $ref: '#/definitions/GetTeamResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rete limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/TeamNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - team
+    summary: Delete Team
+    description: Delete team with given id or name
+    operationId: deleteTeam
+    # x-collapse-params: DeleteTeamRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/TeamNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/teams/{identifier}/:
+  patch:
+    tags:
+      - team
+    summary: Update Team (Partial)
+    description: Update team with given id
+    operationId: updateTeam
+    # x-collapse-params: UpdateTeamRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - name: body
+        in: body
+        description: Request payload of update team action
+        schema:
+          $ref: '#/definitions/UpdateTeamRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/TeamNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/teams/{identifier}/logs:
+  get:
+    tags:
+      - team
+    summary: List Team Logs
+    description: Return logs of a team given with identifier
+    operationId: listTeamLogs
+    # x-collapse-params: ListTeamLogsRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType'
+      - $ref: '#/parameters/TeamLimitParam'
+      - $ref: '#/parameters/OrderParam'
+      - $ref: '#/parameters/TeamOffsetParam'
+    responses:
+      '200':
+        description: List of team log informations
+        schema:
+          $ref: '#/definitions/ListTeamLogsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rete limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/TeamNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
