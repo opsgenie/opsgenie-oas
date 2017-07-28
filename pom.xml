@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.opsgenie.oas</groupId>
     <artifactId>swagger-spec</artifactId>
@@ -10,20 +10,20 @@
 
     <build>
         <plugins>
-        <!-- activate the plugin -->
+            <!-- activate the plugin -->
             <plugin>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
                 <version>${swagger-codegen-maven-plugin-version}</version>
                 <executions>
                     <execution>
-                        <id>java-sdk</id>
+                        <id>${domainName}-java-sdk</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <!-- specify the swagger yaml/json -->
-                            <inputSpec>swagger.json</inputSpec>
+                            <inputSpec>./individual-domains/json/${domainName}-swagger.json</inputSpec>
                             <!-- target to generate java client code -->
                             <language>java</language>
 
@@ -32,7 +32,7 @@
                             <!-- target output path -->
                             <output>${project.build.directory}/generated-sources/java</output>
                             <!-- package for generated models -->
-                            <modelPackage>com.opsgenie.client.model</modelPackage>
+                            <modelPackage>com.ifountain.opsgenie.client.swagger.model.${domainName}</modelPackage>
                             <!-- package for generated api classes -->
                             <apiPackage>com.opsgenie.client.api</apiPackage>
                             <!-- package for invoker Objects -->
@@ -138,5 +138,6 @@
         <jodatime-version>2.7</jodatime-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.8.1</junit-version>
+        <domainName>domain</domainName>
     </properties>
 </project>
