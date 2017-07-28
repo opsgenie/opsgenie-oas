@@ -1,0 +1,127 @@
+/v2/forwarding-rules:
+  get:
+    tags:
+      - forwarding-rule
+    summary: List Forwarding Rules
+    description: Returns list of forwarding rules
+    operationId: listForwardingRules
+    responses:
+      '200':
+        description: List of forwarding rules
+        schema:
+          $ref: '#/definitions/ListForwardingRulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - forwarding-rule
+    summary: Create Forwarding Rule
+    description: Creates a new forwarding rule
+    operationId: createForwardingRule
+    parameters:
+      - name: body
+        in: body
+        description: Request payload to create forwarding rule
+        required: true
+        schema:
+          $ref: '#/definitions/CreateForwardingRuleRequest'
+    responses:
+      '201':
+        description: List of forwarding rules
+        schema:
+          $ref: '#/definitions/CreateForwardingRuleResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/forwarding-rules/{identifier}:
+  get:
+    tags:
+      - forwarding-rule
+    summary: Get Forwarding Rule
+    description: Returns forwarding with given id or alias
+    operationId: getForwardingRule
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+    responses:
+      '200':
+        description: Forwarding rule object that is retrieved
+        schema:
+          $ref: '#/definitions/GetForwardingRuleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/ForwardingRuleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - forwarding-rule
+    summary: Delete Forwarding Rule
+    description: Deletes a forwarding rule using forwarding rule id or alias
+    operationId: deleteForwardingRule
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  put:
+    tags:
+      - forwarding-rule
+    summary: Update Forwarding Rule
+    description: Updates the forwarding rule using forwarding rule id or alias
+    operationId: updateForwardingRule
+    parameters:
+      - $ref: '#/parameters/Identifier'
+      - $ref: '#/parameters/IdentifierType'
+      - name: body
+        in: body
+        description: Request payload to update forwarding rule
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateForwardingRuleRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
