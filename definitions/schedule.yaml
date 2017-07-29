@@ -1,0 +1,226 @@
+##################
+#     REQUEST    #
+##################
+CreateScheduleRequest:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+    timezone:
+      type: string
+    enabled:
+      type: boolean
+    ownerTeam:
+      $ref: '#/definitions/TeamMeta'
+    rotations:
+      type: array
+      items:
+        $ref: '#/definitions/CreateScheduleRotationRequest'
+      minItems: 1
+
+UpdateScheduleRequest:
+  type: object
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+    timezone:
+      type: string
+    enabled:
+      type: boolean
+    ownerTeam:
+      $ref: '#/definitions/TeamMeta'
+    rotations:
+      type: array
+      items:
+        $ref: '#/definitions/CreateScheduleRotationRequest'
+
+##################
+#    RESPONSE    #
+##################
+GetScheduleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Schedule'
+
+ListSchedulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponseWithExpandable'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Schedule'
+
+CreateScheduleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ScheduleMeta'
+
+GetScheduleTimelineResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponseWithExpandable'
+    - properties:
+        data:
+          $ref: '#/definitions/ScheduleTimeline'
+
+UpdateScheduleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ScheduleMeta'
+
+##################
+#      MODEL     #
+##################
+Schedule:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    description:
+      type: string
+    timezone:
+      type: string
+    enabled:
+      type: boolean
+    ownerTeam:
+      $ref: '#/definitions/TeamMeta'
+    rotations:
+      type: array
+      items:
+        $ref: '#/definitions/ScheduleRotation'
+
+ScheduleRotation:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    startDate:
+      type: string
+      format: date-time
+    endDate:
+      type: string
+      format: date-time
+    type:
+      type: string
+      enum:
+        - daily
+        - weekly
+        - hourly
+    length:
+      type: integer
+      format: int32
+    participants:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+
+ScheduleMeta:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    enabled:
+      type: boolean
+
+ScheduleTimeline:
+  type: object
+  properties:
+    _parent:
+      $ref: '#/definitions/ScheduleMeta'
+    startDate:
+      type: string
+      format: date-time
+    endDate:
+      type: string
+      format: date-time
+    finalTimeline:
+      $ref: '#/definitions/Timeline'
+    baseTimeline:
+      $ref: '#/definitions/Timeline'
+    overrideTimeline:
+      $ref: '#/definitions/Timeline'
+    forwardingTimeline:
+      $ref: '#/definitions/Timeline'
+
+Timeline:
+  type: object
+  properties:
+    rotations:
+      type: array
+      items:
+        $ref: '#/definitions/TimelineRotation'
+
+TimelineRotation:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    order:
+      type: number
+      format: float
+    periods:
+      type: array
+      items:
+        $ref: '#/definitions/TimelinePeriod'
+
+TimelinePeriod:
+  type: object
+  properties:
+    startDate:
+      type: string
+      format: date-time
+    endDate:
+      type: string
+      format: date-time
+    type:
+      type: string
+    fromUser:
+      description: Only used by 'forwarding' period types
+      type: string
+    recipient:
+      $ref: '#/definitions/TimelineRecipient'
+    flattenedRecipients:
+      description: Only used by 'historical' period types
+      type: array
+      items:
+        $ref: '#/definitions/TimelineRecipient'
+
+TimelineRecipient:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    type:
+      type: string
+    forwardedFrom:
+      description: Only used by 'historical' period types
+      type: string

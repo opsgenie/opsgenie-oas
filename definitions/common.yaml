@@ -14,6 +14,18 @@ BaseResponse:
       format: float
       default: 0.0
 
+BaseResponseWithExpandable:
+  type: object
+  required:
+    - expandable
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        expandable:
+          type: array
+          items:
+            type: string
+
 ErrorResponse:
   type: object
   allOf:
@@ -144,3 +156,97 @@ AllRecipient:
   description: All recipient
   allOf:
   - $ref: '#/definitions/Recipient'
+
+TimeRestrictionInterval:
+  type: object
+  discriminator: type
+  required:
+    - type
+  properties:
+    type:
+      type: string
+      enum:
+        - weekday-and-time-of-day
+        - time-of-day
+
+WeekdayTimeRestrictionInterval:
+  type: object
+  x-discriminator-value: weekday-and-time-of-day
+  description: Weekday time restriction interval
+  allOf:
+    - $ref: '#/definitions/TimeRestrictionInterval'
+    - type: object
+      properties:
+        restrictions:
+          type: array
+          items:
+            $ref: '#/definitions/WeekdayTimeRestriction'
+          minItems: 1
+          maxItems: 15
+        type:
+          default: weekday-and-time-of-day
+
+TimeOfDayRestrictionInterval:
+  type: object
+  x-discriminator-value: time-of-day
+  description: Time of day restriction interval
+  allOf:
+    - $ref: '#/definitions/TimeRestrictionInterval'
+    - type: object
+      properties:
+        restriction:
+          $ref: '#/definitions/TimeOfDayRestriction'
+        type:
+          default: time-of-day
+
+WeekdayTimeRestriction:
+  type: object
+  properties:
+    startDay:
+      type: string
+      enum:
+        - monday
+        - tuesday
+        - wednesday
+        - thursday
+        - friday
+        - saturday
+        - sunday
+    startHour:
+      type: integer
+      format: int32
+    startMin:
+      type: integer
+      format: int32
+    endDay:
+      type: string
+      enum:
+        - monday
+        - tuesday
+        - wednesday
+        - thursday
+        - friday
+        - saturday
+        - sunday
+    endHour:
+      type: integer
+      format: int32
+    endMin:
+      type: integer
+      format: int32
+
+TimeOfDayRestriction:
+  type: object
+  properties:
+    startHour:
+      type: integer
+      format: int32
+    startMin:
+      type: integer
+      format: int32
+    endHour:
+      type: integer
+      format: int32
+    endMin:
+      type: integer
+      format: int32

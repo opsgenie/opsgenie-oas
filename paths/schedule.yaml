@@ -1,0 +1,293 @@
+/v2/schedules:
+  get:
+    tags:
+      - schedule
+    summary: List Schedules
+    description: Returns list of schedule
+    operationId: listSchedules
+    # x-collapse-params: ListSchedulesRequest
+    parameters:
+      - name: expand
+        in: query
+        description: Returns more detailed response with expanding it. Possible value is 'rotation' which is also returned with expandable field of response
+        required: false
+        type: string
+    responses:
+      '200':
+        description: List of schedule informations
+        schema:
+          $ref: '#/definitions/ListSchedulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - schedule
+    summary: Create Schedule
+    description: Creates a new schedule
+    operationId: createSchedule
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of created schedule
+        required: true
+        schema:
+          $ref: '#/definitions/CreateScheduleRequest'
+    responses:
+      '201':
+        description: Schedule meta information for created schedule
+        schema:
+          $ref: '#/definitions/CreateScheduleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/{identifier}:
+  get:
+    tags:
+      - schedule
+    summary: Get Schedule
+    description: Returns schedule with given id or name
+    operationId: getSchedule
+    # x-collapse-params: GetScheduleRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType'
+    responses:
+      '200':
+        description: Schedule information for given identifier
+        schema:
+          $ref: '#/definitions/GetScheduleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/ScheduleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - schedule
+    summary: Update Schedule (Partial)
+    description: Update schedule with given id or name
+    operationId: updateSchedule
+    # x-collapse-params: UpdateScheduleRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType'
+      - name: body
+        in: body
+        description: Request payload of update schedule action
+        required: false
+        schema:
+          $ref: '#/definitions/UpdateScheduleRequest'
+    responses:
+      '200':
+        description: Schedule information for given identifier
+        schema:
+          $ref: '#/definitions/UpdateScheduleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/ScheduleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - schedule
+    summary: Delete Schedule
+    description: Delete schedule with given identifier
+    operationId: deleteSchedule
+    # x-collapse-params: DeleteScheduleRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/ScheduleNotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/{identifier}/timeline:
+  get:
+    tags:
+      - schedule
+    summary: Get Schedule Timeline
+    description: Returns schedule timeline with given id or name
+    operationId: getScheduleTimeline
+    # x-collapse-params: GetScheduleTimelineRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType'
+      - name: expand
+        in: query
+        description: Returns more detailed response with expanding it. Possible values are 'base', 'forwarding', and 'override' which is also returned with expandable field of response
+        required: false
+        type: string
+      - name: interval
+        in: query
+        description: Length of time as integer in intervalUnits to retrieve the timeline. Default value is 1
+        required: false
+        type: integer
+        format: int32
+        default: 1
+      - name: intervalUnit
+        in: query
+        description: Unit of the time to retrieve the timeline. Available values are 'days', 'weeks' and 'months'. Default value is 'weeks'
+        required: false
+        type: string
+        enum:
+          - days
+          - weeks
+          - months
+      - name: date
+        in: query
+        description: Time to return future date on-call participants. Default date is the moment of the time that request is received
+        required: false
+        type: string
+        format: date-time
+    responses:
+      '200':
+        description: Schedule timeline information for given schedule identifier
+        schema:
+          $ref: '#/definitions/GetScheduleTimelineResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/ScheduleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/{identifier}.ics:
+  get:
+    tags:
+      - schedule
+    summary: Export Schedule
+    description: Returns an .ics file as byte array
+    operationId: exportSchedule
+    # x-collapse-params: ExportScheduleRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType'
+    produces:
+      - text/calendar
+    responses:
+      '200':
+        description: ICS file with exported schedule information for given identifier
+        schema:
+          type: string
+          format: byte
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/ScheduleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'

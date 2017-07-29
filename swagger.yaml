@@ -44,7 +44,7 @@ paths:
   - $ref: ./paths/team.yaml # Will be implemented
   - $ref: ./paths/teamMember.yaml # Will be implemented
   - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./paths/schedule.yaml # Will be implemented
+  - $ref: ./paths/schedule.yaml
   - $ref: ./paths/scheduleRotation.yaml # Will be implemented
   - $ref: ./paths/scheduleOverride.yaml # Will be implemented
   - $ref: ./paths/whoIsOnCall.yaml  # Will be implemented
@@ -68,7 +68,7 @@ parameters:
   - $ref: ./parameters/team.yaml # Will be implemented
   - $ref: ./parameters/teamMember.yaml # Will be implemented
   - $ref: ./parameters/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./parameters/schedule.yaml # Will be implemented
+  - $ref: ./parameters/schedule.yaml
   - $ref: ./parameters/scheduleRotation.yaml # Will be implemented
   - $ref: ./parameters/scheduleOverride.yaml # Will be implemented
   - $ref: ./parameters/whoIsOnCall.yaml  # Will be implemented
@@ -92,7 +92,7 @@ responses:
   - $ref: ./responses/team.yaml # Will be implemented
   - $ref: ./responses/teamMember.yaml # Will be implemented
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./responses/schedule.yaml # Will be implemented
+  - $ref: ./responses/schedule.yaml
   - $ref: ./responses/scheduleRotation.yaml # Will be implemented
   - $ref: ./responses/scheduleOverride.yaml # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
@@ -114,11 +114,11 @@ definitions:
   - $ref: ./definitions/contact.yaml  # Will be implemented
   - $ref: ./definitions/notificationRule.yaml # Will be implemented
   - $ref: ./definitions/notificationRuleStep.yaml # Will be implemented
-  - $ref: ./definitions/team.yaml # Will be implemented
+  - $ref: ./definitions/team.yaml
   - $ref: ./definitions/teamMember.yaml # Will be implemented
   - $ref: ./definitions/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./definitions/schedule.yaml # Will be implemented
-  - $ref: ./definitions/scheduleRotation.yaml # Will be implemented
+  - $ref: ./definitions/schedule.yaml
+  - $ref: ./definitions/scheduleRotation.yaml
   - $ref: ./definitions/scheduleOverride.yaml # Will be implemented
   - $ref: ./definitions/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./definitions/escalation.yaml # Will be implemented

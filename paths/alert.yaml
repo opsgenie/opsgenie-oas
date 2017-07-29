@@ -130,7 +130,7 @@
         default: desc
     responses:
       '200':
-        description: Alert information for given identifier
+        description: List of alert informations
         schema:
           $ref: '#/definitions/ListAlertsResponse'
         headers:
