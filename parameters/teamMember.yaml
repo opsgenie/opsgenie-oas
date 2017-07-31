@@ -1,0 +1,6 @@
+MemberIdentifier:
+  name: memberIdentifier
+  in: path
+  description: User id or username of member for removal
+  required: true
+  type: string
