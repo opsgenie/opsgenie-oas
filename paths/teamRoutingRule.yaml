@@ -1,0 +1,199 @@
+/v2/teams/{identifier}/routing-rules:
+  post:
+    tags:
+      - team-routing-rule
+    summary: Create Team Routing Rule
+    description: Creates a new Team Routing Rule
+    operationId: createTeamRoutingRule
+    # x-collapse-params: CreateTeamRoutingRuleRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - name: body
+        in: body
+        description: Request payload of createTeamRoutingRule
+        required: true
+        schema:
+          $ref: '#/definitions/CreateTeamRoutingRuleRequest'
+    responses:
+      '201':
+        description: Information for created Team Routing Rule
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - team-routing-rule
+    summary: List Team Routing Rules
+    description: Returns list of Team Routing Rules
+    operationId: listTeamRoutingRules
+    # x-collapse-params: ListTeamRoutingRulesRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+    responses:
+      '200':
+        description: List of Team Routing Rule informations
+        schema:
+          $ref: '#/definitions/ListTeamRoutingRulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/teams/{identifier}/routing-rules/{id}:
+  get:
+    tags:
+      - team-routing-rule
+    summary: Get Team Routing Rule
+    description: Returns Team Routing Rule with given id
+    operationId: getTeamRoutingRule
+    # x-collapse-params: GetTeamRoutingRuleRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - $ref: '#/parameters/TeamRoutingRuleId'
+    responses:
+      '200':
+        description: Team Routing Rule information for given identifier
+        schema:
+          $ref: '#/definitions/GetTeamRoutingRuleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - team-routing-rule
+    summary: Update Team Routing Rule
+    description: Update routing rule of the team
+    operationId: updateTeamRoutingRule
+    # x-collapse-params: UpdateTeamRoutingRuleRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - $ref: '#/parameters/TeamRoutingRuleId'
+      - name: body
+        in: body
+        description: Request payload of update Team Routing Rule action
+        required: false
+        schema:
+          $ref: '#/definitions/UpdateTeamRoutingRuleRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - team-routing-rule
+    summary: Delete Team Routing Rule
+    description: Delete Team Routing Rule with given id
+    operationId: deleteTeamRoutingRule
+    # x-collapse-params: DeleteTeamRoutingRuleRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - $ref: '#/parameters/TeamRoutingRuleId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/teams/{identifier}/routing-rules/{id}/change-order:
+  tags:
+    - team-routing-rule
+  summary: Change Team Routing Rule Order
+  description: Change the order of Team Routing Rule with given id
+  operationId: changeTeamRoutingRuleOrder
+  # x-collapse-params: ChangeTeamRoutingRuleOrderRequest
+  parameters:
+    - $ref: '#/parameters/TeamIdentifier'
+    - $ref: '#/parameters/TeamIdentifierType2'
+    - $ref: '#/parameters/TeamRoutingRuleId'
+    - name: body
+      in: body
+      description: Request payload of Change Team Routing Rule Order action
+      required: true
+      schema:
+        $ref: '#/definitions/ChangeTeamRoutingRuleOrderRequest'
+  responses:
+    '200':
+      $ref: '#/responses/Ok'
+    '401':
+      $ref: '#/responses/Unauthorized'
+    '403':
+      $ref: '#/responses/Forbidden'
+    '404':
+      $ref: '#/responses/NotFound'
+    default:
+      $ref: '#/responses/GeneralError'

@@ -18,14 +18,6 @@ CreateTeamRequest:
         $ref: '#/definitions/TeamMember'
       description: The users which will be added to team, and optionally their roles.
 
-GetTeamResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/Team'
-
 UpdateTeamRequest:
   type: object
   properties:
@@ -43,6 +35,14 @@ UpdateTeamRequest:
 ##################
 #     RESPONSE   #
 ##################
+GetTeamResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Team'
+
 ListTeamsResponse:
   type: object
   allOf:

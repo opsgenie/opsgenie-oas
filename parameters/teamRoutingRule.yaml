@@ -1,0 +1,7 @@
+TeamRoutingRuleId:
+  name: id
+  in: path
+  description: Id of the team routing rule
+  required: true
+  type: string
+

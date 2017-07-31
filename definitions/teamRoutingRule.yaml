@@ -1,0 +1,134 @@
+##################
+#     REQUEST    #
+##################
+CreateTeamRoutingRuleRequest:
+  type: object
+  required:
+    - notify
+  properties:
+    name:
+      type: string
+      required: false
+      description: Name of the team routing rule
+    order:
+      type: integer
+      format: int32
+      required: false
+      description: Order of team routing rule within the rules. order value is actually the index of the team routing rule.
+    timezone:
+      type: string
+      required: false
+      description: Timezone of team routing rule. If timezone field is not given, account timezone is used as default.
+    criteria:
+      $ref: '#/definitions/Criteria'
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    notify:
+      $ref: '#/definitions/Notify'
+
+UpdateTeamRoutingRuleRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      required: false
+      description: Name of the team routing rule
+    timezone:
+      type: string
+      required: false
+      description: Timezone of team routing rule. If timezone field is not given, account timezone is used as default.
+    criteria:
+      $ref: '#/definitions/Criteria'
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    notify:
+      $ref: '#/definitions/Notify'
+
+ChangeTeamRoutingRuleOrderRequest:
+  type: object
+  properties:
+    order:
+      type: integer
+      format: int32
+      required: false
+      description: Order of team routing rule within the rules. order value is actually the index of the team routing rule.
+
+##################
+#    RESPONSE    #
+##################
+GetTeamRoutingRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+      data:
+        $ref: '#/definitions/TeamRoutingRule'
+
+ListTeamRoutingRulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+      data:
+        type: array
+        items:
+          $ref: TeamRoutingRule
+
+##################
+#      MODEL     #
+##################
+Criteria:
+  name: criteria
+  type: object
+  required: false
+  properties:
+    type:
+      type: string
+      required: true
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+    conditions:
+      type: array
+      items:
+        $ref: '#/definitions/Condition'
+
+Notify:
+  name: notify
+  type: object
+  required:
+    - type
+  description: Target entity of schedule, escalation, or the reserved word none which will be notified in routing rule.
+  properties:
+    type:
+      type: string
+      enum:
+        - schedule
+        - escalation
+        - none
+    id:
+      type: string
+    name:
+      type: string
+
+TeamRoutingRule:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    isDefault:
+      type: boolean
+    order:
+      type: integer
+      format: int32
+    criteria:
+      $ref: '#/definitions/Criteria'
+    timezone:
+      type: string
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    notify:
+      $ref: '#/definitions/Notify'
