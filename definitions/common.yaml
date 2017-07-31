@@ -51,9 +51,7 @@ SuccessResponse:
         result:
           type: string
         data:
-          type: object
-          allOf:
-            - $ref: '#/definitions/SuccessData'
+          $ref: '#/definitions/SuccessData'
 
 ##################
 #      MODEL     #
