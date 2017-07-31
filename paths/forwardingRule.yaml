@@ -35,16 +35,17 @@
     summary: Create Forwarding Rule
     description: Creates a new forwarding rule
     operationId: createForwardingRule
+    # x-collapse-params: CreateForwardingRule
     parameters:
       - name: body
         in: body
-        description: Request payload to create forwarding rule
+        description: Request payload to created forwarding rule
         required: true
         schema:
           $ref: '#/definitions/CreateForwardingRuleRequest'
     responses:
       '201':
-        description: List of forwarding rules
+        description: Forwarding rule meta information for created forwarding rule
         schema:
           $ref: '#/definitions/CreateForwardingRuleResponse'
       '401':
@@ -57,14 +58,15 @@
     tags:
       - forwarding-rule
     summary: Get Forwarding Rule
-    description: Returns forwarding with given id or alias
+    description: Returns forwarding rule with given id or alias
     operationId: getForwardingRule
+    # x-collapse-params: GetForwardingRuleRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/ForwardingRuleIdentifier'
+      - $ref: '#/parameters/ForwardingRuleIdentifierType'
     responses:
       '200':
-        description: Forwarding rule object that is retrieved
+        description: Forwarding rule with given identifier
         schema:
           $ref: '#/definitions/GetForwardingRuleResponse'
         headers:
@@ -83,6 +85,8 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
       '404':
         $ref: '#/responses/ForwardingRuleNotFound'
       default:
@@ -92,14 +96,19 @@
     tags:
       - forwarding-rule
     summary: Delete Forwarding Rule
-    description: Deletes a forwarding rule using forwarding rule id or alias
+    description: Deletes forwarding rule with given identifier
     operationId: deleteForwardingRule
+    # x-collapse-params: DeleteForwardingRuleRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/ForwardingRuleIdentifier'
+      - $ref: '#/parameters/ForwardingRuleIdentifierType'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ForwardingRuleNotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -107,14 +116,15 @@
     tags:
       - forwarding-rule
     summary: Update Forwarding Rule
-    description: Updates the forwarding rule using forwarding rule id or alias
+    description: Update forwarding rule with given rule id or alias
     operationId: updateForwardingRule
+    # x-collapse-params: UpdateForwardingRuleRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/ForwardingRuleIdentifier'
+      - $ref: '#/parameters/ForwardingRuleIdentifierType'
       - name: body
         in: body
-        description: Request payload to update forwarding rule
+        description: Request payload of update forwarding rule action
         required: true
         schema:
           $ref: '#/definitions/UpdateForwardingRuleRequest'
@@ -123,5 +133,7 @@
         $ref: '#/responses/Accepted'
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ForwardingRuleNotFound'
       default:
         $ref: '#/responses/GeneralError'

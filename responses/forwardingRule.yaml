@@ -9,24 +9,3 @@ ForwardingRuleNotFound:
     X-Response-Time:
       description: Process time of given request
       type: string
-
-Accepted:
-  description: Returns the operation result.
-  schema:
-    $ref: '#/definitions/SuccessResponse'
-  headers:
-    X-Request-ID:
-      description: Id of given request
-      type: string
-    X-Response-Time:
-      description: Process time of given request
-      type: string
-    X-RateLimit-State:
-      description: Status of rate limit
-      type: string
-    X-RateLimit-Reason:
-      description: Source of the rete limit
-      type: string
-    X-RateLimit-Period-In-Sec:
-      description: Time of throttle in seconds
-      type: string

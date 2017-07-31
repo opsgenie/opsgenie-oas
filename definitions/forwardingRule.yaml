@@ -1,7 +1,6 @@
 ##################
 #     REQUEST    #
 ##################
-
 CreateForwardingRuleRequest:
   type: object
   required:
@@ -11,11 +10,9 @@ CreateForwardingRuleRequest:
     - endDate
   properties:
     fromUser:
-      type: object
       description: The user whose notifications will be forwarded.
       $ref: '#/definitions/UserMeta'
     toUser:
-      type: object
       description: The user who will receive the forwarded notifications.
       $ref: '#/definitions/UserMeta'
     startDate:
@@ -39,11 +36,9 @@ UpdateForwardingRuleRequest:
     - endDate
   properties:
     fromUser:
-      type: object
       description: The user whose notifications will be forwarded.
       $ref: '#/definitions/UserMeta'
     toUser:
-      type: object
       description: The user who will receive the forwarded notifications.
       $ref: '#/definitions/UserMeta'
     startDate:
@@ -58,15 +53,6 @@ UpdateForwardingRuleRequest:
 ##################
 #    RESPONSE    #
 ##################
-
-GetForwardingRuleResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/ForwardingRule'
-
 ListForwardingRulesResponse:
   type: object
   allOf:
@@ -83,20 +69,25 @@ CreateForwardingRuleResponse:
     - $ref: '#/definitions/BaseResponse'
     - properties:
         data:
-          $ref: '#/definitions/ForwardingMeta'
+          $ref: '#/definitions/ForwardingRuleMeta'
+
+GetForwardingRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ForwardingRule'
 
 ##################
 #      MODEL     #
 ##################
-
 ForwardingRule:
   type: object
   properties:
     fromUser:
-      type: object
       $ref: '#/definitions/UserMeta'
     toUser:
-      type: object
       $ref: '#/definitions/UserMeta'
     startDate:
       type: string
@@ -109,15 +100,7 @@ ForwardingRule:
     id:
       type: string
 
-UserMeta:
-  type: object
-  properties:
-    id:
-      type: string
-    username:
-      type: string
-
-ForwardingMeta:
+ForwardingRuleMeta:
   type: object
   properties:
     id:
