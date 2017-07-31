@@ -1,5 +1,5 @@
 HeartbeatName:
-  name: heartbeatName
+  name: name
   in: path
   description: Name of the heartbeat
   required: true

@@ -1,26 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-HeartbeatRequest:
-  type: object
-  properties:
-    description:
-      type: string
-      description: An optional description of the heartbeat
-      maxLength: 10000
-    interval:
-      type: integer
-      format: int64
-      description: Specifies how often a heartbeat message should be expected
-      minimum: 1
-    intervalUnit:
-      type: string
-      description: Interval specified as minutes, hours or days
-    enabled:
-      type: boolean
-      description: Enable/disable heartbeat monitoring
-
-AddHeartbeatRequest:
+CreateHeartbeatRequest:
   type: object
   allOf:
   - required:
@@ -39,20 +20,43 @@ AddHeartbeatRequest:
         maxLength: 10000
       interval:
         type: integer
-        format: int64
+        format: int32
         description: Specifies how often a heartbeat message should be expected
         minimum: 1
       intervalUnit:
         type: string
-        description: Interval specified as minutes, hours or days
+        description: Interval specified as 'minutes', 'hours' or 'days'
+        enum:
+          - hours
+          - minutes
+          - days
       enabled:
         type: boolean
         description: Enable/disable heartbeat monitoring
 
+UpdateHeartbeatRequest:
+  type: object
+  properties:
+    description:
+      type: string
+      description: An optional description of the heartbeat
+      maxLength: 10000
+    interval:
+      type: integer
+      format: int32
+      description: Specifies how often a heartbeat message should be expected
+      minimum: 1
+    intervalUnit:
+      type: string
+      description: Interval specified as minutes, hours or days
+    enabled:
+      type: boolean
+      description: Enable/disable heartbeat monitoring
+
 ##################
 #    RESPONSE    #
 ##################
-HeartbeatResponse:
+CreateHeartbeatResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -60,7 +64,31 @@ HeartbeatResponse:
         data:
           $ref: '#/definitions/Heartbeat'
 
-HeartbeatMetaResponse:
+GetHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Heartbeat'
+
+UpdateHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/HeartbeatMeta'
+
+EnableHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/HeartbeatMeta'
+
+DisableHeartbeatResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -80,13 +108,16 @@ Heartbeat:
       type: string
     interval:
       type: integer
-      format: int64
+      format: int32
     enabled:
       type: boolean
     intervalUnit:
       type: string
     expired:
       type: boolean
+    lastPingTime:
+      type: string
+      format: date-time
 
 HeartbeatMeta:
   type: object
