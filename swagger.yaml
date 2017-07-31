@@ -33,7 +33,7 @@ security:
 paths:
   - $ref: ./paths/alert.yaml
   - $ref: ./paths/integration.yaml  # Will be implemented
-  - $ref: ./paths/heartbeat.yaml  # Will be implemented
+  - $ref: ./paths/heartbeat.yaml
   - $ref: ./paths/policy.yaml # Will be implemented
   - $ref: ./paths/maintenance.yaml  # Will be implemented
   - $ref: ./paths/account.yaml
@@ -58,7 +58,7 @@ parameters:
   - $ref: ./parameters/common.yaml
   - $ref: ./parameters/alert.yaml
   - $ref: ./parameters/integration.yaml  # Will be implemented
-  - $ref: ./parameters/heartbeat.yaml  # Will be implemented
+  - $ref: ./parameters/heartbeat.yaml
   - $ref: ./parameters/policy.yaml # Will be implemented
   - $ref: ./parameters/maintenance.yaml  # Will be implemented
   - $ref: ./parameters/user.yaml # Will be implemented
@@ -82,7 +82,7 @@ responses:
   - $ref: ./responses/common.yaml
   - $ref: ./responses/alert.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
-  - $ref: ./responses/heartbeat.yaml  # Will be implemented
+  - $ref: ./responses/heartbeat.yaml
   - $ref: ./responses/policy.yaml # Will be implemented
   - $ref: ./responses/maintenance.yaml  # Will be implemented
   - $ref: ./responses/user.yaml # Will be implemented
@@ -106,7 +106,7 @@ definitions:
   - $ref: ./definitions/common.yaml
   - $ref: ./definitions/alert.yaml
   - $ref: ./definitions/integration.yaml  # Will be implemented
-  - $ref: ./definitions/heartbeat.yaml  # Will be implemented
+  - $ref: ./definitions/heartbeat.yaml
   - $ref: ./definitions/policy.yaml # Will be implemented
   - $ref: ./definitions/maintenance.yaml  # Will be implemented
   - $ref: ./definitions/account.yaml

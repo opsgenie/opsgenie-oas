@@ -1,0 +1,138 @@
+##################
+#     REQUEST    #
+##################
+CreateHeartbeatRequest:
+  type: object
+  allOf:
+  - required:
+      - name
+      - interval
+      - intervalUnit
+      - enabled
+    properties:
+      name:
+        type: string
+        description: Name of the heartbeat
+        maxLength: 200
+      description:
+        type: string
+        description: An optional description of the heartbeat
+        maxLength: 10000
+      interval:
+        type: integer
+        format: int32
+        description: Specifies how often a heartbeat message should be expected
+        minimum: 1
+      intervalUnit:
+        type: string
+        description: Interval specified as 'minutes', 'hours' or 'days'
+        enum:
+          - minutes
+          - hours
+          - days
+      enabled:
+        type: boolean
+        description: Enable/disable heartbeat monitoring
+
+UpdateHeartbeatRequest:
+  type: object
+  properties:
+    description:
+      type: string
+      description: An optional description of the heartbeat
+      maxLength: 10000
+    interval:
+      type: integer
+      format: int32
+      description: Specifies how often a heartbeat message should be expected
+      minimum: 1
+    intervalUnit:
+      type: string
+      description: Interval specified as 'minutes', 'hours' or 'days'
+      enum:
+        - minutes
+        - hours
+        - days
+    enabled:
+      type: boolean
+      description: Enable/disable heartbeat monitoring
+
+##################
+#    RESPONSE    #
+##################
+CreateHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Heartbeat'
+
+GetHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Heartbeat'
+
+UpdateHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/HeartbeatMeta'
+
+EnableHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/HeartbeatMeta'
+
+DisableHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/HeartbeatMeta'
+
+##################
+#      MODEL     #
+##################
+Heartbeat:
+  type: object
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+    interval:
+      type: integer
+      format: int32
+    enabled:
+      type: boolean
+    intervalUnit:
+      type: string
+      enum:
+        - minutes
+        - hours
+        - days
+    expired:
+      type: boolean
+    lastPingTime:
+      type: string
+      format: date-time
+
+HeartbeatMeta:
+  type: object
+  properties:
+    name:
+      type: string
+    enabled:
+      type: boolean
+    expired:
+      type: boolean
