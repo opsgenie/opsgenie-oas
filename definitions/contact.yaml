@@ -17,10 +17,12 @@ CreateContactRequest:
         - mobile
     to:
       type: string
-      description: Address of given method
+      description: Address of contact method
 
 UpdateContactRequest:
   type: object
+  required:
+    - to
   properties:
     to:
       type: string
@@ -29,48 +31,6 @@ UpdateContactRequest:
 ##################
 #    RESPONSE    #
 ##################
-BaseResponse:
-  type: object
-  required:
-    - requestId
-    - took
-  properties:
-    requestId:
-      type: string
-    took:
-      type: number
-      format: float
-      default: 0.0
-
-SuccessResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        result:
-          type: string
-        data:
-          type: object
-          allOf:
-            - $ref: '#/definitions/SuccessData'
-
-ErrorResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        message:
-          type: string
-        code:
-          type: integer
-          format: int32
-        responseHeaders:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-
 ListContactsResponse:
   type: object
   allOf:
@@ -79,7 +39,7 @@ ListContactsResponse:
         data:
           type: array
           items:
-            $ref: '#/definitions/OrderedContact'
+            $ref: '#/definitions/ContactWithApplyOrder'
 
 GetContactResponse:
   type: object
@@ -92,15 +52,7 @@ GetContactResponse:
 ##################
 #      MODEL     #
 ##################
-SuccessData:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-
-OrderedContact:
+ContactWithApplyOrder:
   type: object
   properties:
     id:
@@ -110,14 +62,18 @@ OrderedContact:
     to:
       type: string
     status:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        disabledReason:
-          type: string
+      $ref: '#/definitions/ContactStatus'
     applyOrder:
       type: integer
+      format: int32
+
+ContactStatus:
+  type: object
+  properties:
+    enabled:
+      type: boolean
+    disabledReason:
+      type: string
 
 Contact:
   type: object
@@ -129,9 +85,4 @@ Contact:
     to:
       type: string
     status:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        disabledReason:
-          type: string
+      $ref: '#/definitions/ContactStatus'

@@ -1,11 +1,11 @@
-userIdentifier:
+UserIdentifier:
     name: userIdentifier
     in: path
-    description: Identifier of the user that contact will belong to. Should be either id or username of the user
+    description: Identifier of the user that contact will belong to. Should be either 'id' or 'username' of the user
     required: true
     type: string
 
-contactId:
+ContactId:
   name: contactId
   in: path
   description: Id of the contact
