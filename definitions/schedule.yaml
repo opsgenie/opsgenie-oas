@@ -118,35 +118,6 @@ Schedule:
       items:
         $ref: '#/definitions/ScheduleRotation'
 
-ScheduleRotation:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-    startDate:
-      type: string
-      format: date-time
-    endDate:
-      type: string
-      format: date-time
-    type:
-      type: string
-      enum:
-        - daily
-        - weekly
-        - hourly
-    length:
-      type: integer
-      format: int32
-    participants:
-      type: array
-      items:
-        $ref: '#/definitions/Recipient'
-    timeRestriction:
-      $ref: '#/definitions/TimeRestrictionInterval'
-
 ScheduleMeta:
   type: object
   properties:

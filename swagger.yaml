@@ -45,7 +45,7 @@ paths:
   - $ref: ./paths/teamMember.yaml
   - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./paths/schedule.yaml
-  - $ref: ./paths/scheduleRotation.yaml # Will be implemented
+  - $ref: ./paths/scheduleRotation.yaml
   - $ref: ./paths/scheduleOverride.yaml # Will be implemented
   - $ref: ./paths/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./paths/escalation.yaml
@@ -85,7 +85,6 @@ responses:
   - $ref: ./responses/notificationRule.yaml # Will be implemented
   - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./responses/scheduleRotation.yaml # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
 
 ################################################################################
