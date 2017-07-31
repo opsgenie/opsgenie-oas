@@ -1,0 +1,380 @@
+/v1/policies:
+  get:
+    tags:
+      - policy
+    summary: List alert policies
+    description: Used to list alert policies
+    operationId: listAlertPolicies
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#listPolicies
+    responses:
+      '200':
+        description: List of policies
+        schema:
+          $ref: '#/definitions/ListAlertPoliciesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - policy
+    summary: Create alert policy
+    description: Creates a new alert policy
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#createPolicy
+    operationId: createAlertPolicy
+    parameters:
+      - name: body
+        in: body
+        description: Payload of created alert policy
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAlertPolicyPayload'
+    responses:
+      '201':
+        description: Policy meta information for created policy
+        schema:
+          $ref: '#/definitions/CreateAlertPolicyResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/policies/{policyId}:
+  get:
+    tags:
+      - policy
+    summary: Get policy with given id
+    description: Used to get details of a single policy with id
+    operationId: getAlertPolicy
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#getPolicy
+    parameters:
+      - name: policyId
+        in: path
+        description: Id of the requested policy
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Alert policy with given id
+        schema:
+          $ref: '#/definitions/GetAlertPolicyResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        description: Alert policy can not be found for given identifier
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  put:
+    tags:
+      - policy
+    summary: Update the policy with given id
+    description: Used to update a policy
+    operationId: updateAlertPolicy
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#updatePolicy
+    parameters:
+      - name: body
+        in: body
+        description: Payload of created alert policy
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateAlertPolicyPayload'
+      - name: policyId
+        in: path
+        description: Id of the requested policy
+        required: true
+        type: string
+    responses:
+      '200':
+        description: List of policies
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        description: Alert policy can not be found for given identifier
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - policy
+    summary: Delete the policy with given id
+    description: Used to delete a policy
+    operationId: deleteAlertPolicy
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#deletePolicy
+    parameters:
+      - name: policyId
+        in: path
+        description: Id of the requested policy
+        required: true
+        type: string
+    responses:
+      '200':
+        description: List of policies
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '403':
+        $ref: '#/responses/Forbidden'
+      default:
+        $ref: '#/responses/GeneralError'
+
+
+/v1/policies/{policyId}/enable:
+  post:
+    tags:
+      - policy
+    summary: Enable policy
+    operationId: enablePolicy
+    description: Enable the alert policy with given id
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#enablePolicy
+    parameters:
+      - name: policyId
+        in: path
+        description: Id of the requested policy
+        required: true
+        type: string
+    responses:
+      '200':
+        description: List of alert informations
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+
+/v1/policies/{policyId}/disable:
+  post:
+    tags:
+      - policy
+    summary: Disable Policy
+    operationId: disablePolicy
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#disablePolicy
+    description: Disable the alert policy with given id
+    parameters:
+      - name: policyId
+        in: path
+        description: Id of the requested policy
+        required: true
+        type: string
+    responses:
+      '200':
+        description: List of alert informations
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        description: Alert policy can not be found for given identifier
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+/v1/policies/{policyId}/change-order:
+  post:
+    tags:
+      - policy
+    summary: Change policy order
+    description: Change execution order of the alert policy with given id
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/policy-api#changePolicyOrder
+    operationId: changePolicyOrder
+    parameters:
+      - name: body
+        in: body
+        description: Change order payload
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeAlertPolicyOrderPayload'
+      - name: policyId
+        in: path
+        description: Id of the requested policy
+        required: true
+        type: string
+    responses:
+      '200':
+        description: List of alert informations
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        description: Alert policy can not be found for given identifier
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
