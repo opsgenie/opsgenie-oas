@@ -27,8 +27,8 @@ CreateHeartbeatRequest:
         type: string
         description: Interval specified as 'minutes', 'hours' or 'days'
         enum:
-          - hours
           - minutes
+          - hours
           - days
       enabled:
         type: boolean
@@ -48,7 +48,11 @@ UpdateHeartbeatRequest:
       minimum: 1
     intervalUnit:
       type: string
-      description: Interval specified as minutes, hours or days
+      description: Interval specified as 'minutes', 'hours' or 'days'
+      enum:
+        - minutes
+        - hours
+        - days
     enabled:
       type: boolean
       description: Enable/disable heartbeat monitoring
@@ -113,6 +117,10 @@ Heartbeat:
       type: boolean
     intervalUnit:
       type: string
+      enum:
+        - minutes
+        - hours
+        - days
     expired:
       type: boolean
     lastPingTime:
