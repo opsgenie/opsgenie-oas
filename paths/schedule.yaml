@@ -162,6 +162,8 @@
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -182,8 +184,6 @@
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 

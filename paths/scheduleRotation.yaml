@@ -1,0 +1,180 @@
+/v2/schedules/{identifier}/rotations:
+  post:
+    tags:
+      - schedule-rotation
+    summary: Create Schedule Rotation
+    description: Creates a new schedule rotation
+    operationId: createScheduleRotation
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+      - name: body
+        in: body
+        description: Request payload of created schedule rotation
+        required: true
+        schema:
+          $ref: '#/definitions/CreateScheduleRotationRequest'
+    responses:
+      '201':
+        description: Schedule rotation meta information for created rotation
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - schedule-rotation
+    summary: List Schedule Rotations
+    description: Returns list of schedule rotations
+    operationId: listScheduleRotations
+    # x-collapse-params: ListScheduleRotationsRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+    responses:
+      '200':
+        description: List of schedule rotation informations
+        schema:
+          $ref: '#/definitions/ListScheduleRotationsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/{identifier}/rotations/{id}:
+  get:
+    tags:
+      - schedule-rotation
+    summary: Get Schedule Rotation
+    description: Returns schedule rotation with given id
+    operationId: getScheduleRotation
+    # x-collapse-params: GetScheduleRotationRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+      - $ref: '#/parameters/ScheduleRotationId'
+    responses:
+      '200':
+        description: Schedule rotation information for given identifier
+        schema:
+          $ref: '#/definitions/GetScheduleRotationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - schedule-rotation
+    summary: Update Schedule Rotation (Partial)
+    description: Update schedule rotation with given id
+    operationId: updateScheduleRotation
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+      - $ref: '#/parameters/ScheduleRotationId'
+    responses:
+      '200':
+        description: Schedule rotation information for given identifier
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - schedule-rotation
+    summary: Delete Schedule Rotation
+    description: Delete schedule rotation with given identifier
+    operationId: deleteScheduleRotation
+    # x-collapse-params: DeleteScheduleRotationRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+      - $ref: '#/parameters/ScheduleRotationId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'

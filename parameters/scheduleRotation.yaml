@@ -1,0 +1,6 @@
+ScheduleRotationId:
+  name: id
+  in: path
+  description: Identifier of schedule rotation
+  required: true
+  type: string
