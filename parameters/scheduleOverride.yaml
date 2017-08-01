@@ -1,0 +1,6 @@
+ScheduleOverrideAlias:
+  name: alias
+  in: path
+  description: Alias of the schedule override
+  required: true
+  type: string
