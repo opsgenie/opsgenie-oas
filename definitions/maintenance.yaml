@@ -1,35 +1,6 @@
-##################### ENUM ###################
-
-MaintenanceType:
-  type: string
-  enum: &MaintenanceType
-    - for-5-minutes
-    - for-30-minutes
-    - for-1-hour
-    - indefinitely
-    - schedule
-
-Status:
-  type: string
-  enum: &Status
-     - enabled
-     - disabled
-
-MaintenanceEntityType:
-  type: string
-  description: Type of the maintenance entity
-  enum: &MaintenanceEntityType
-    - policy
-    - integration
-
-MaintenanceStatus:
-  type: string
-  enum: &MaintenanceStatus
-    - cancelled
-    - past
-    - active
-    - planned
-
+##################
+#     REQUEST    #
+##################
 CreateMaintenanceRequest:
   type: object
   required:
@@ -41,6 +12,7 @@ CreateMaintenanceRequest:
       description: Description for the maintenance
     time:
       $ref: '#/definitions/MaintenanceTime'
+      description: Time configuration of maintenance
     rules:
       type: array
       minItems: 1
@@ -48,6 +20,65 @@ CreateMaintenanceRequest:
       items:
         $ref: '#/definitions/MaintenanceRule'
 
+UpdateMaintenanceRequest:
+  type: object
+  required:
+    - time
+    - rules
+  properties:
+    description:
+      type: string
+      description: Description for the maintenance
+    time:
+      $ref: '#/definitions/MaintenanceTime'
+      description: Time configuration of maintenance
+    rules:
+      type: array
+      minItems: 1
+      description: Rules of maintenance, which takes a list of rule objects and defines the maintenance rules over integrations and policies.
+      items:
+        $ref: '#/definitions/MaintenanceRule'
+
+##################
+#    RESPONSE    #
+##################
+CreateMaintenanceResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/MaintenanceMeta'
+
+ListMaintenanceResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/MaintenanceMeta'
+
+GetMaintenanceResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Maintenance'
+
+UpdateMaintenanceResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/MaintenanceMeta'
+
+##################
+#      MODEL     #
+##################
 MaintenanceTime:
   type: object
   required:
@@ -56,12 +87,12 @@ MaintenanceTime:
     type:
       type: string
       description: Type of the maintenance time
-      enum: *MaintenanceType
-#        - for-5-minutes
-#        - for-30-minutes
-#        - for-1-hour
-#        - indefinitely
-#        - schedule
+      enum:
+        - for-5-minutes
+        - for-30-minutes
+        - for-1-hour
+        - indefinitely
+        - schedule
     startDate:
       type: string
       format: date-time
@@ -71,6 +102,53 @@ MaintenanceTime:
       format: date-time
       description: End time of the time configuration of maintenance
 
+MaintenanceMeta:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Identifier of the maintenance meta data
+    status:
+      type: string
+      description: Status of the maintenance meta data
+      enum:
+        - cancelled
+        - past
+        - active
+        - planned
+    time:
+      $ref: '#/definitions/MaintenanceTime'
+      description: Time configuration of maintenance
+    description:
+      type: string
+      description: Description for maintenance meta data
+
+Maintenance:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Identifier of the maintenance meta data
+    status:
+      type: string
+      description: Status of the maintenance data
+      enum:
+        - cancelled
+        - past
+        - active
+        - planned
+    rules:
+      type: array
+      description: Rules of maintenance, which takes a list of rule objects and defines the maintenance rules over integrations and policies.
+      items:
+        $ref: '#/definitions/MaintenanceRule'
+    time:
+      $ref: '#/definitions/MaintenanceTime'
+      description: Time configuration of maintenance
+    description:
+      type: string
+      description: Description for maintenance data
+
 MaintenanceRule:
   type: object
   required:
@@ -79,9 +157,9 @@ MaintenanceRule:
     state:
       type: string
       description: Defines the state of the rule
-      enum: *Status
-#        - enabled
-#        - disabled
+      enum:
+        - enabled
+        - disabled
     entity:
       $ref: '#/definitions/MaintenanceEntity'
 
@@ -96,81 +174,6 @@ MaintenanceEntity:
       description: Identifier of the maintenance entity
     type:
       type: string
-      enum: *MaintenanceEntityType
-#        - policy
-#        - integration
-
-##############################################################################
-
-MaintenanceMetaResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/MaintenanceMeta'
-
-MaintenanceMeta:
-  type: object
-  properties:
-    id:
-      type: string
-      description: Identifier of the maintenance meta data
-    status:
-      type: string
-      description: Status of the maintenance meta data
-      enum: *MaintenanceStatus
-#        - cancelled
-#        - past
-#        - active
-#        - planned
-    time:
-      $ref: '#/definitions/MaintenanceTime'
-    description:
-      type: string
-      description: Description for maintenance meta data
-
-MaintenanceResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/Maintenance'
-
-Maintenance:
-  type: object
-  properties:
-    id:
-      type: string
-      description: Identifier of the maintenance meta data
-    status:
-      type: string
-      description: Status of the maintenance data
-      enum: *MaintenanceStatus
-#        - cancelled
-#        - past
-#        - active
-#        - planned
-    rules:
-      type: array
-      description: Rules of maintenance, which takes a list of rule objects and defines the maintenance rules over integrations and policies.
-      items:
-        $ref: '#/definitions/MaintenanceRule'
-    time:
-      $ref: '#/definitions/MaintenanceTime'
-    description:
-      type: string
-      description: Description for maintenance  data
-
-MaintenanceListResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          type: array
-          items:
-            $ref: '#/definitions/MaintenanceMeta'
-        paging:
-          $ref: '#/definitions/Paging'
+      enum:
+        - policy
+        - integration
