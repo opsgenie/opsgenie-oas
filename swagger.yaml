@@ -82,7 +82,6 @@ responses:
   - $ref: ./responses/common.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
-  - $ref: ./responses/maintenance.yaml
   - $ref: ./responses/user.yaml # Will be implemented
   - $ref: ./responses/notificationRule.yaml # Will be implemented
   - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
