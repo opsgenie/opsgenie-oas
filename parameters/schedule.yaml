@@ -15,3 +15,14 @@ ScheduleIdentifierType:
     - id
     - name
   default: id
+
+ScheduleIdentifierType2:
+  name: scheduleIdentifierType
+  in: query
+  description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id' or 'name'
+  required: false
+  type: string
+  enum:
+    - id
+    - name
+  default: id

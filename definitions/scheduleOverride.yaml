@@ -3,50 +3,56 @@
 ##################
 CreateScheduleOverrideRequest:
   type: object
-  allOf:
-  - required:
-      - alias
-      - user
-      - startDate
-      - endDate
-    properties:
-      alias:
-        type: string
-        description: A user defined identifier for the override
-      user:
-        $ref: '#/definitions/TimelineRecipient'
-      startDate:
-        type: string
-        format: date-time
-      endDate:
-        type: string
-        format: date-time
-      rotations:
-        type: array
-        minItems: 1
-        items:
-          $ref: '#/definitions/ScheduleOverrideRotation'
+  required:
+    - alias
+    - user
+    - startDate
+    - endDate
+  properties:
+    alias:
+      type: string
+      description: A user defined identifier for the override
+    user:
+      $ref: '#/definitions/Recipient'
+      description: The user object who will take on call responsibility or reserved word none
+    startDate:
+      type: string
+      format: date-time
+      description: Time for override starting
+    endDate:
+      type: string
+      format: date-time
+      description: Time for override ending
+    rotations:
+      type: array
+      items:
+        $ref: '#/definitions/ScheduleOverrideRotation'
+      description: Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden
+      minItems: 1
 
 UpdateScheduleOverrideRequest:
   type: object
-  allOf:
-  - required:
+  required:
       - user
       - startDate
       - endDate
-    properties:
-      user:
-        $ref: '#/definitions/TimelineRecipient'
-      startDate:
-        type: string
-        format: date-time
-      endDate:
-        type: string
-        format: date-time
-      rotations:
-        type: array
-        items:
-          $ref: '#/definitions/ScheduleOverrideRotation'
+  properties:
+    user:
+      $ref: '#/definitions/Recipient'
+      description: The user object who will take on call responsibility or reserved word none
+    startDate:
+      type: string
+      format: date-time
+      description: Time for override starting
+    endDate:
+      type: string
+      format: date-time
+      description: Time for override ending
+    rotations:
+      type: array
+      items:
+        $ref: '#/definitions/ScheduleOverrideRotation'
+        description: Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden
 
 ##################
 #    RESPONSE    #
@@ -96,7 +102,7 @@ ScheduleOverride:
     alias:
       type: string
     user:
-      $ref: '#/definitions/TimelineRecipient'
+      $ref: '#/definitions/Recipient'
     startDate:
       type: string
       format: date-time
