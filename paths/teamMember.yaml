@@ -1,16 +1,17 @@
-/v2/teams/{teamIdentifier}/members:
+/v2/teams/{identifier}/members:
   post:
     tags:
-      - teamMember
+      - team-member
     summary: Add Team Member
-    description: Adds a member to team given with teamIdentifier
+    description: Adds a member to team with given identifier
     operationId: addTeamMember
+    # x-collapse-params: AddTeamMemberRequest
     parameters:
-      - $ref: '#/parameters/TeamIdentifier2'
+      - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
       - name: body
         in: body
-        description: Payload of addTeamMember Request
+        description: Request payload of added team member
         required: true
         schema:
           $ref: '#/definitions/AddTeamMemberRequest'
@@ -26,15 +27,16 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/teams/{teamIdentifier}/members/{memberIdentifier}:
+/v2/teams/{identifier}/members/{memberIdentifier}:
   delete:
     tags:
-      - teamMember
+      - team-member
     summary: Delete Team Member
-    description: Deletes the member given with memberIdentifier
+    description: Deletes the member of team with given identifier
     operationId: deleteTeamMember
+    # x-collapse-params: DeleteTeamMemberRequest
     parameters:
-      - $ref: '#/parameters/TeamIdentifier2'
+      - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
       - $ref: '#/parameters/MemberIdentifier'
     responses:
@@ -45,7 +47,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/TeamMemberNotFound'
+        $ref: '#/responses/NotFound'
       '422':
         $ref: '#/responses/UnprocessableEntity'
       default:

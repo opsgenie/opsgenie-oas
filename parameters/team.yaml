@@ -16,13 +16,6 @@ TeamIdentifierType:
     - name
   default: id
 
-TeamIdentifier2:
-  name: teamIdentifier
-  in: path
-  description: Identifier of the team
-  required: true
-  type: string
-
 TeamIdentifierType2:
   name: teamIdentifierType
   in: query

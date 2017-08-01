@@ -1,3 +1,6 @@
+##################
+#     REQUEST    #
+##################
 AddTeamMemberRequest:
   type: object
   required:
@@ -5,6 +8,7 @@ AddTeamMemberRequest:
   properties:
     user:
       $ref: '#/definitions/UserMeta'
+      description: Member identifier of the team, consisting 'id' and/or 'username'
     role:
       type: string
       description: Member role of the user, consisting 'user' and 'admin'. Default value is 'user'
@@ -13,6 +17,9 @@ AddTeamMemberRequest:
         - admin
       default: user
 
+##################
+#      MODEL     #
+##################
 TeamMember:
   type: object
   properties:
