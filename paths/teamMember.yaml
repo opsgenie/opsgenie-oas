@@ -1,0 +1,54 @@
+/v2/teams/{identifier}/members:
+  post:
+    tags:
+      - team-member
+    summary: Add Team Member
+    description: Adds a member to team with given identifier
+    operationId: addTeamMember
+    # x-collapse-params: AddTeamMemberRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - name: body
+        in: body
+        description: Request payload of added team member
+        required: true
+        schema:
+          $ref: '#/definitions/AddTeamMemberRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/teams/{identifier}/members/{memberIdentifier}:
+  delete:
+    tags:
+      - team-member
+    summary: Delete Team Member
+    description: Deletes the member of team with given identifier
+    operationId: deleteTeamMember
+    # x-collapse-params: DeleteTeamMemberRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - $ref: '#/parameters/MemberIdentifier'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
