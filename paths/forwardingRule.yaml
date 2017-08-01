@@ -1,0 +1,139 @@
+/v2/forwarding-rules:
+  get:
+    tags:
+      - forwarding-rule
+    summary: List Forwarding Rules
+    description: Returns list of forwarding rules
+    operationId: listForwardingRules
+    responses:
+      '200':
+        description: List of forwarding rules
+        schema:
+          $ref: '#/definitions/ListForwardingRulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - forwarding-rule
+    summary: Create Forwarding Rule
+    description: Creates a new forwarding rule
+    operationId: createForwardingRule
+    # x-collapse-params: CreateForwardingRule
+    parameters:
+      - name: body
+        in: body
+        description: Request payload to created forwarding rule
+        required: true
+        schema:
+          $ref: '#/definitions/CreateForwardingRuleRequest'
+    responses:
+      '201':
+        description: Forwarding rule meta information for created forwarding rule
+        schema:
+          $ref: '#/definitions/CreateForwardingRuleResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/forwarding-rules/{identifier}:
+  get:
+    tags:
+      - forwarding-rule
+    summary: Get Forwarding Rule
+    description: Returns forwarding rule with given id or alias
+    operationId: getForwardingRule
+    # x-collapse-params: GetForwardingRuleRequest
+    parameters:
+      - $ref: '#/parameters/ForwardingRuleIdentifier'
+      - $ref: '#/parameters/ForwardingRuleIdentifierType'
+    responses:
+      '200':
+        description: Forwarding rule with given identifier
+        schema:
+          $ref: '#/definitions/GetForwardingRuleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ForwardingRuleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - forwarding-rule
+    summary: Delete Forwarding Rule
+    description: Deletes forwarding rule with given identifier
+    operationId: deleteForwardingRule
+    # x-collapse-params: DeleteForwardingRuleRequest
+    parameters:
+      - $ref: '#/parameters/ForwardingRuleIdentifier'
+      - $ref: '#/parameters/ForwardingRuleIdentifierType'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ForwardingRuleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  put:
+    tags:
+      - forwarding-rule
+    summary: Update Forwarding Rule
+    description: Update forwarding rule with given rule id or alias
+    operationId: updateForwardingRule
+    # x-collapse-params: UpdateForwardingRuleRequest
+    parameters:
+      - $ref: '#/parameters/ForwardingRuleIdentifier'
+      - $ref: '#/parameters/ForwardingRuleIdentifierType'
+      - name: body
+        in: body
+        description: Request payload of update forwarding rule action
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateForwardingRuleRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ForwardingRuleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'

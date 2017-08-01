@@ -1,0 +1,17 @@
+ForwardingRuleIdentifier:
+  name: identifier
+  in: path
+  description: Identifier of the forwarding rule which could be forwarding rule 'id' or 'alias'
+  required: true
+  type: string
+
+ForwardingRuleIdentifierType:
+  name: identifierType
+  in: query
+  description: Type of the identifier that is provided as an in-line parameter. Possible values are 'id' or 'alias'
+  required: false
+  type: string
+  enum:
+    - id
+    - alias
+  default: id

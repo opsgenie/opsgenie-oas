@@ -49,7 +49,7 @@ paths:
   - $ref: ./paths/scheduleOverride.yaml # Will be implemented
   - $ref: ./paths/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./paths/escalation.yaml # Will be implemented
-  - $ref: ./paths/forwardingRule.yaml # Will be implemented
+  - $ref: ./paths/forwardingRule.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -73,7 +73,7 @@ parameters:
   - $ref: ./parameters/scheduleOverride.yaml # Will be implemented
   - $ref: ./parameters/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./parameters/escalation.yaml # Will be implemented
-  - $ref: ./parameters/forwardingRule.yaml # Will be implemented
+  - $ref: ./parameters/forwardingRule.yaml
 
 ################################################################################
 #                                 RESPONSES                                    #
@@ -97,7 +97,7 @@ responses:
   - $ref: ./responses/scheduleOverride.yaml # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./responses/escalation.yaml # Will be implemented
-  - $ref: ./responses/forwardingRule.yaml # Will be implemented
+  - $ref: ./responses/forwardingRule.yaml
 
 ################################################################################
 #                                DEFINITIONS                                   #
@@ -110,7 +110,7 @@ definitions:
   - $ref: ./definitions/policy.yaml # Will be implemented
   - $ref: ./definitions/maintenance.yaml  # Will be implemented
   - $ref: ./definitions/account.yaml
-  - $ref: ./definitions/user.yaml # Will be implemented
+  - $ref: ./definitions/user.yaml
   - $ref: ./definitions/contact.yaml
   - $ref: ./definitions/notificationRule.yaml # Will be implemented
   - $ref: ./definitions/notificationRuleStep.yaml # Will be implemented
@@ -122,4 +122,4 @@ definitions:
   - $ref: ./definitions/scheduleOverride.yaml # Will be implemented
   - $ref: ./definitions/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./definitions/escalation.yaml # Will be implemented
-  - $ref: ./definitions/forwardingRule.yaml # Will be implemented
+  - $ref: ./definitions/forwardingRule.yaml

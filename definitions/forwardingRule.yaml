@@ -1,0 +1,109 @@
+##################
+#     REQUEST    #
+##################
+CreateForwardingRuleRequest:
+  type: object
+  required:
+    - fromUser
+    - toUser
+    - startDate
+    - endDate
+  properties:
+    fromUser:
+      description: The user whose notifications will be forwarded.
+      $ref: '#/definitions/UserMeta'
+    toUser:
+      description: The user who will receive the forwarded notifications.
+      $ref: '#/definitions/UserMeta'
+    startDate:
+      type: string
+      format: date-time
+      description: The date and time for forwarding will start
+    endDate:
+      type: string
+      format: date-time
+      description: The date and time for forwarding will end
+    alias:
+      type: string
+      description: A user defined identifier for the forwarding rule.
+
+UpdateForwardingRuleRequest:
+  type: object
+  required:
+    - fromUser
+    - toUser
+    - startDate
+    - endDate
+  properties:
+    fromUser:
+      description: The user whose notifications will be forwarded.
+      $ref: '#/definitions/UserMeta'
+    toUser:
+      description: The user who will receive the forwarded notifications.
+      $ref: '#/definitions/UserMeta'
+    startDate:
+      type: string
+      format: date-time
+      description: The date and time for forwarding will start
+    endDate:
+      type: string
+      format: date-time
+      description: The date and time for forwarding will end
+
+##################
+#    RESPONSE    #
+##################
+ListForwardingRulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/ForwardingRule'
+
+CreateForwardingRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ForwardingRuleMeta'
+
+GetForwardingRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ForwardingRule'
+
+##################
+#      MODEL     #
+##################
+ForwardingRule:
+  type: object
+  properties:
+    fromUser:
+      $ref: '#/definitions/UserMeta'
+    toUser:
+      $ref: '#/definitions/UserMeta'
+    startDate:
+      type: string
+      format: date-time
+    endDate:
+      type: string
+      format: date-time
+    alias:
+      type: string
+    id:
+      type: string
+
+ForwardingRuleMeta:
+  type: object
+  properties:
+    id:
+      type: string
+    alias:
+      type: string
