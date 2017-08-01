@@ -80,24 +80,17 @@ parameters:
 ################################################################################
 responses:
   - $ref: ./responses/common.yaml
-  - $ref: ./responses/alert.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
-  - $ref: ./responses/heartbeat.yaml
   - $ref: ./responses/policy.yaml # Will be implemented
   - $ref: ./responses/maintenance.yaml  # Will be implemented
   - $ref: ./responses/user.yaml # Will be implemented
-  - $ref: ./responses/contact.yaml
   - $ref: ./responses/notificationRule.yaml # Will be implemented
   - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
-  - $ref: ./responses/team.yaml
   - $ref: ./responses/teamMember.yaml # Will be implemented
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./responses/schedule.yaml
   - $ref: ./responses/scheduleRotation.yaml # Will be implemented
-  - $ref: ./responses/scheduleOverride.yaml # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./responses/escalation.yaml # Will be implemented
-  - $ref: ./responses/forwardingRule.yaml
 
 ################################################################################
 #                                DEFINITIONS                                   #

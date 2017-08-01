@@ -48,6 +48,18 @@ Unauthorized:
       description: Process time of given request
       type: string
 
+NotFound:
+  description: Entity cannot be found for the given identifier
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
 UnprocessableEntity:
   description: Semantic errors in request body
   schema:
