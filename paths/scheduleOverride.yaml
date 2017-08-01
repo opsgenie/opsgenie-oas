@@ -1,7 +1,7 @@
 /v2/schedules/{identifier}/overrides:
   post:
     tags:
-      - scheduleOverride
+      - schedule-override
     summary: Create Schedule Override
     description: Creates a schedule override for the specified user and schedule
     operationId: createScheduleOverride
@@ -42,13 +42,14 @@
         $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
+
   get:
     tags:
-      - scheduleOverride
+      - schedule-override
     summary: List Schedule Overrides
     description: Returns list of schedule overrides
     operationId: listScheduleOverride
-    # x-collapse-params: ListScheduleOverrideRequest
+    # x-collapse-params: ListScheduleOverridesRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -83,7 +84,7 @@
 /v2/schedules/{identifier}/overrides/{alias}:
   get:
     tags:
-      - scheduleOverride
+      - schedule-override
     summary: Get Schedule Override
     description: Gets schedule override details with given alias
     operationId: getScheduleOverride
@@ -94,7 +95,7 @@
       - $ref: '#/parameters/ScheduleIdentifierType2'
     responses:
       '200':
-        description: Schedule override information for created schedule override
+        description: Schedule override information for given identifier
         schema:
           $ref: '#/definitions/GetScheduleOverrideResponse'
         headers:
@@ -119,9 +120,10 @@
         $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
+
   put:
     tags:
-      - scheduleOverride
+      - schedule-override
     summary: Update Schedule Override
     description: Update schedule override with given alias
     operationId: updateScheduleOverride
@@ -163,9 +165,10 @@
         $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
+
   delete:
     tags:
-      - scheduleOverride
+      - schedule-override
     summary: Delete Schedule Override
     description: Delete schedule override with given alias
     operationId: deleteScheduleOverride
