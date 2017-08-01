@@ -1,0 +1,196 @@
+/v1/maintenance:
+  post:
+    tags:
+      - maintenance
+    summary: Create maintenance
+    description: Creates a new maintenance
+    operationId: createMaintenance
+    # x-collapse-params: CreateMaintenanceRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of the maintenance object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateMaintenanceRequest'
+    responses:
+      '201':
+        description: Returns maintenance meta data
+        schema:
+          $ref: '#/definitions/CreateMaintenanceResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - maintenance
+    summary: List Maintenance
+    description: List maintenance by type
+    operationId: listMaintenance
+    # x-collapse-params: ListMaintenanceRequest
+    parameters:
+      - $ref: '#/parameters/MaintenanceListType'
+    responses:
+      '200':
+        description: List of maintenance data searched by list type
+        schema:
+          $ref: '#/definitions/ListMaintenanceResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/maintenance/{id}:
+  get:
+    tags:
+      - maintenance
+    summary: Get Maintenance
+    description: Returns maintenance with given id
+    operationId: getMaintenance
+    # x-collapse-params: GetMaintenanceRequest
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+    responses:
+      '200':
+        description: Maintenance information for given identifier
+        schema:
+          $ref: '#/definitions/GetMaintenanceResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  put:
+    tags:
+      - maintenance
+    summary: Update Maintenance
+    description: Update maintenance with given id
+    operationId: updateMaintenance
+    # x-collapse-params: UpdateMaintenanceRequest
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+      - name: body
+        in: body
+        description: Request payload of the maintenance object
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateMaintenanceRequest'
+    responses:
+      '200':
+        description: Maintenance information for given identifier
+        schema:
+          $ref: '#/definitions/UpdateMaintenanceResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - maintenance
+    summary: Delete Maintenance
+    description: Delete maintenance with given identifier
+    operationId: deleteMaintenance
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/maintenance/{id}/cancel:
+  post:
+    tags:
+      - maintenance
+    summary: Cancel Maintenance
+    description: Cance maintenance with given id
+    operationId: cancelMaintenance
+    # x-collapse-params: CancelMaintenanceRequest
+    parameters:
+      - $ref: '#/parameters/MaintenanceIdentifier'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
