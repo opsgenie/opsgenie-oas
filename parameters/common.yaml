@@ -1,0 +1,10 @@
+OrderParam:
+  name: order
+  in: query
+  description: Sorting order of the result set
+  required: false
+  type: string
+  enum:
+    - asc
+    - desc
+  default: desc

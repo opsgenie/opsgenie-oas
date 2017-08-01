@@ -1,0 +1,34 @@
+TeamIdentifier:
+  name: identifier
+  in: path
+  description: Identifier of the team
+  required: true
+  type: string
+
+TeamIdentifierType:
+  name: identifierType
+  in: query
+  description: Type of the identifier. Possible values are 'id' and 'name'. Default value is 'id'
+  required: false
+  type: string
+  enum:
+    - id
+    - name
+  default: id
+
+TeamLimitParam:
+  name: limit
+  in: query
+  description: Maximum number of items to provide in the result. Must be a positive integer value.
+  required: false
+  type: integer
+  format: int32
+  minimum: 1
+  maximum: 100
+
+TeamOffsetParam:
+  name: offset
+  in: query
+  description: Key which will be used in pagination
+  required: false
+  type: string

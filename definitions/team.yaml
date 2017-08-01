@@ -1,6 +1,117 @@
 ##################
-#      MODEL     #
+#     REQUEST    #
 ##################
+CreateTeamRequest:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      description: Name of the team
+    description:
+      type: string
+      description: The description of team
+    members:
+      type: array
+      items:
+        $ref: '#/definitions/TeamMember'
+      description: The users which will be added to team, and optionally their roles.
+
+GetTeamResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Team'
+
+UpdateTeamRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the team
+    description:
+      type: string
+      description: The description of team
+    members:
+      type: array
+      items:
+        $ref: '#/definitions/TeamMember'
+
+##################
+#     RESPONSE   #
+##################
+ListTeamsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponseWithExpandable'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Team'
+
+ListTeamLogsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/TeamLog'
+
+##################
+#     MODEL      #
+##################
+TeamMember:
+  type: object
+  properties:
+    user:
+      $ref: '#/definitions/UserMeta'
+    role:
+      type: string
+      description: Member role of the user, consisting 'user' and 'admin'. Default value is 'user'
+      enum:
+        - user
+        - admin
+      default: user
+
+Team:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    description:
+      type: string
+    members:
+      type: array
+      items:
+        $ref: '#/definitions/TeamMember'
+
+TeamLog:
+  type: object
+  properties:
+    offset:
+      type: string
+    logs:
+      type: array
+      items:
+        $ref: '#/definitions/TeamLogDetails'
+
+TeamLogDetails:
+  type: object
+  properties:
+    owner:
+      type: string
+    createdDate:
+      type: string
+      format: date-time
+    log:
+      type: string
+
 TeamMeta:
   type: object
   properties:
