@@ -8,14 +8,19 @@ CreateScheduleRequest:
   properties:
     name:
       type: string
+      description: Name of the schedule
     description:
       type: string
+      description: The description of schedule
     timezone:
       type: string
+      description: Timezone of schedule
     enabled:
       type: boolean
+      description: Enable/disable state of schedule
     ownerTeam:
       $ref: '#/definitions/TeamMeta'
+      description: Owner team of the schedule, consisting id and/or name of the owner team
     rotations:
       type: array
       items:
@@ -27,14 +32,19 @@ UpdateScheduleRequest:
   properties:
     name:
       type: string
+      description: Name of the schedule
     description:
       type: string
+      description: The description of schedule
     timezone:
       type: string
+      description: Timezone of schedule
     enabled:
       type: boolean
+      description: Enable/disable state of schedule
     ownerTeam:
       $ref: '#/definitions/TeamMeta'
+      description: Owner team of the schedule, consisting id and/or name of the owner team
     rotations:
       type: array
       items:
