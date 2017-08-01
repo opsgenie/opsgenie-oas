@@ -114,7 +114,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/ScheduleNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -158,7 +158,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/ScheduleNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -178,7 +178,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/ScheduleNotFound'
+        $ref: '#/responses/NotFound'
       '422':
         $ref: '#/responses/UnprocessableEntity'
       default:
@@ -246,7 +246,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/ScheduleNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -288,6 +288,6 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/ScheduleNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'

@@ -206,7 +206,7 @@
             description: Time of throttle in seconds
             type: string
       '404':
-        $ref: '#/responses/AlertNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -528,7 +528,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/AlertNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -635,7 +635,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/AlertNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -680,7 +680,7 @@
       '403':
         $ref: '#/responses/Forbidden'
       '404':
-        $ref: '#/responses/AlertNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
