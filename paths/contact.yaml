@@ -1,0 +1,200 @@
+/v2/users/{userIdentifier}/contacts:
+  post:
+    tags:
+      - contact
+    summary: Create Contact
+    description: Creates a new contact
+    operationId: createContact
+    # x-collapse-params: CreateContactRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - name: body
+        in: body
+        description: Request payload of creating contact action
+        schema:
+          $ref: '#/definitions/CreateContactRequest'
+    responses:
+      '201':
+        description: Contact information for created contact
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - contact
+    summary: List Contacts
+    description: Returns list of contacts
+    operationId: listContacts
+    # x-collapse-params: ListContactsRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        description: List of contact informations
+        schema:
+          $ref: '#/definitions/ListContactsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rete limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/contacts/{contactId}:
+  patch:
+    tags:
+      - contact
+    summary: Update Contact (Partial)
+    description: Update contact of the user
+    operationId: updateContact
+    # x-collapse-params: UpdateContactRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/ContactId'
+      - name: body
+        in: body
+        description: Request payload of update contact action
+        required: false
+        schema:
+          $ref: '#/definitions/UpdateContactRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/ContactNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - contact
+    summary: Get Contact
+    description: Returns contact with given id
+    operationId: getContact
+    # x-collapse-params: GetContactRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/ContactId'
+    responses:
+      '200':
+        description: Contact information for given identifier
+        schema:
+          $ref: '#/definitions/GetContactResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rete limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/ContactNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - contact
+    summary: Delete Contact
+    description: Delete contact using contact id
+    operationId: deleteContact
+    # x-collapse-params: DeleteContactRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/ContactId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '404':
+        $ref: '#/responses/ContactNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/contacts/{contactId}/enable:
+  post:
+    tags:
+      - contact
+    summary: Enable Contact
+    description: Enable the contact of the user
+    operationId: enableContact
+    # x-collapse-params: EnableContactRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/ContactId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ContactNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/contacts/{contactId}/disable:
+  post:
+    tags:
+      - contact
+    summary: Disable Contact
+    description: Disable the contact of the user
+    operationId: disableContact
+    # x-collapse-params: DisableContactRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/ContactId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/ContactNotFound'
+      default:
+        $ref: '#/responses/GeneralError'

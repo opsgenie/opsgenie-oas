@@ -1,0 +1,88 @@
+##################
+#     REQUEST    #
+##################
+CreateContactRequest:
+  type: object
+  required:
+    - method
+    - to
+  properties:
+    method:
+      type: string
+      description: Contact method of user
+      enum:
+        - email
+        - sms
+        - voice
+        - mobile
+    to:
+      type: string
+      description: Address of contact method
+
+UpdateContactRequest:
+  type: object
+  required:
+    - to
+  properties:
+    to:
+      type: string
+      description: Address of contact method
+
+##################
+#    RESPONSE    #
+##################
+ListContactsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/ContactWithApplyOrder'
+
+GetContactResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Contact'
+
+##################
+#      MODEL     #
+##################
+ContactWithApplyOrder:
+  type: object
+  properties:
+    id:
+      type: string
+    method:
+      type: string
+    to:
+      type: string
+    status:
+      $ref: '#/definitions/ContactStatus'
+    applyOrder:
+      type: integer
+      format: int32
+
+ContactStatus:
+  type: object
+  properties:
+    enabled:
+      type: boolean
+    disabledReason:
+      type: string
+
+Contact:
+  type: object
+  properties:
+    id:
+      type: string
+    method:
+      type: string
+    to:
+      type: string
+    status:
+      $ref: '#/definitions/ContactStatus'
