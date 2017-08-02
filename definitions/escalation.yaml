@@ -40,7 +40,6 @@ UpdateEscalationRequest:
       description: Owner team of escalation.
       $ref: '#/definitions/TeamMeta'
 
-
 ##################
 #    RESPONSE    #
 ##################
@@ -94,6 +93,7 @@ EscalationRule:
       enum:
         - if-not-acked
         - if-not-closed
+      default: if-not-acked
     notifyType:
       type: string
       enum:
@@ -103,6 +103,7 @@ EscalationRule:
         - users
         - admins
         - all
+      default: default
     delay:
       $ref: '#/definitions/Duration'
     recipient:
