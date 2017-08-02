@@ -1,7 +1,6 @@
 ##################
 #     REQUEST    #
 ##################
-
 CreateUserRequest:
   type: object
   required:
@@ -49,12 +48,8 @@ CreateUserRequest:
       description: Invitation email will not be sent if set to true. Default value is false
       type: boolean
 
-UpdateUserRequestPayload:
+UpdateUserRequest:
   type: object
-  required:
-    - username
-    - fullName
-    - role
   properties:
     username:
       type: string
@@ -96,34 +91,9 @@ UpdateUserRequestPayload:
       description: Invitation email will not be sent if set to true. Default value is false
       type: boolean
 
-CopyNotificationRulesRequest:
-  type: object
-  required:
-    - toUsers
-    - ruleTypes
-  properties:
-    toUsers:
-      type: array
-      items:
-        type: string
-    ruleTypes:
-      type: array
-      items:
-        type: string
-        enum:
-          - all
-          - new-alert
-          - acknowledged-alert
-          - closed-alert
-          - schedule-start
-          - renotified-alert
-          - assigned-alert
-          - add-note
-
 ##################
 #    RESPONSE    #
 ##################
-
 ListUsersResponse:
   type: object
   allOf:
@@ -133,26 +103,22 @@ ListUsersResponse:
           type: array
           items:
             $ref: '#/definitions/User'
-        expandable:
-          type: array
-          items:
-            type: string
+        totalCount:
+          type: integer
+          format: int64
         paging:
           $ref: '#/definitions/PageDetails'
 
 GetUserResponse:
   type: object
   allOf:
-    - $ref: '#/definitions/BaseResponse'
+    - $ref: '#/definitions/BaseResponseWithExpandable'
     - properties:
         data:
           $ref: '#/definitions/User'
-        expandable:
-          type: array
-          items:
-            type: string
 
 GetUserTeamsResponse:
+  type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
     - properties:
@@ -162,6 +128,7 @@ GetUserTeamsResponse:
             $ref: '#/definitions/TeamMeta'
 
 GetUserForwardingRulesResponse:
+  type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
     - properties:
@@ -171,6 +138,7 @@ GetUserForwardingRulesResponse:
             $ref: '#/definitions/ForwardingRule'
 
 GetUserEscalationsResponse:
+  type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
     - properties:
@@ -180,6 +148,7 @@ GetUserEscalationsResponse:
             $ref: '#/definitions/Escalation'
 
 GetUserSchedulesResponse:
+  type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
     - properties:
@@ -191,45 +160,14 @@ GetUserSchedulesResponse:
 ##################
 #      MODEL     #
 ##################
-
-UserRole:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-
-UserAddress:
-  type: object
-  properties:
-    country:
-      type: string
-    state:
-      type: string
-    city:
-      type: string
-    line:
-      type: string
-    zipCode:
-      type: string
-
-PageDetails:
-  type: object
-  properties:
-    prev:
-      type: string
-    next:
-      type: string
-    first:
-      type: string
-    last:
-      type: string
-
 User:
   type: object
   properties:
     id:
+      type: string
+    username:
+      type: string
+    fullName:
       type: string
     role:
       description: Role of user. It may be one of owner, admin, user or the name of a custom role you've created.
@@ -273,6 +211,28 @@ User:
       items:
         $ref: '#/definitions/UserContact'
 
+UserRole:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+
+UserAddress:
+  type: object
+  properties:
+    country:
+      type: string
+    state:
+      type: string
+    city:
+      type: string
+    line:
+      type: string
+    zipCode:
+      type: string
+
 UserContact:
   type: object
   properties:
@@ -287,37 +247,10 @@ UserContact:
         - sms
         - voice
         - mobile
-        - invalid
     disabledReason:
       type: string
     enabled:
       type: boolean
-
-TeamMeta:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-
-ForwardingRule:
-  type: object
-  properties:
-    fromUser:
-      $ref: '#/definitions/UserMeta'
-    toUser:
-      $ref: '#/definitions/UserMeta'
-    startDate:
-      type: string
-      format: date-time
-    endDate:
-      type: string
-      format: date-time
-    alias:
-      type: string
-    id:
-      type: string
 
 UserMeta:
   type: object
@@ -326,75 +259,3 @@ UserMeta:
       type: string
     username:
       type: string
-
-Escalation:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-    description:
-      type: string
-    ownerTeam:
-      $ref: '#/definitions/TeamMeta'
-    rules:
-      type: array
-      items:
-        $ref: '#/definitions/EscalationRule'
-
-EscalationRule:
-  type: object
-  required:
-    - condition
-    - notifyType
-    - delay
-    - recipient
-  properties:
-    condition:
-      type: string
-      enum:
-        - if-not-acked
-        - if-not-closed
-        - invalid
-    notifyType:
-      type: string
-      enum:
-        - default
-        - next
-        - previous
-        - users
-        - admins
-        - all
-        - invalid
-    delay:
-      $ref: '#/definitions/Duration'
-    recipient:
-      $ref: '#/definitions/EscalationRecipient'
-
-Duration:
-  type: object
-  properties:
-    timeAmount:
-      type: integer
-      format: int64
-    timeUnit:
-      type: string
-      enum:
-        - days
-        - hours
-        - minutes
-        - seconds
-        - miliseconds
-        - micros
-        - nanos
-
-ScheduleMeta:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-    enabled:
-      type: boolean

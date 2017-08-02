@@ -15,9 +15,31 @@
           $ref: '#/definitions/CreateUserRequest'
     responses:
       '201':
-        $ref: '#/responses/Ok'
+        description: User meta information for created user
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -27,13 +49,13 @@
     summary: List users
     description: List users with given parameters
     operationId: listUsers
-    x-collapse-params: ListUsersRequest
+    # x-collapse-params: ListUsersRequest
     parameters:
-      - $ref: '#/parameters/Limit'
-      - $ref: '#/parameters/Offset'
-      - $ref: '#/parameters/Sort'
-      - $ref: '#/parameters/Order'
-      - $ref: '#/parameters/Query'
+      - $ref: '#/parameters/UserLimitParam'
+      - $ref: '#/parameters/UserOffsetParam'
+      - $ref: '#/parameters/UserSortParam'
+      - $ref: '#/parameters/UserOrderParam'
+      - $ref: '#/parameters/UserQueryParam'
     responses:
       '200':
         description: List of users with given parameters
@@ -60,18 +82,24 @@
       default:
           $ref: '#/responses/GeneralError'
 
-
 /v2/users/{identifier}:
   get:
     tags:
       - user
-    summary: Get User object searched by id
+    summary: Get User
     description: Get user for the given identifier
     operationId: getUser
-    x-collapse-params: GetUserRequest
+    # x-collapse-params: GetUserRequest
     parameters:
-      - $ref: '#/parameters/UserId'
-      - $ref: '#/parameters/Expand'
+      - $ref: '#/parameters/UserIdentifier'
+      - name: expand
+        in: query
+        description: Comma separated list of strings to create a more detailed response. The only expandable field for user api is 'contact'
+        required: false
+        collectionFormat: csv
+        type: array
+        items:
+          type: string
     responses:
       '200':
         description: User information for the given identifier
@@ -95,29 +123,34 @@
             type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
   patch:
     tags:
       - user
-    summary: Update User
+    summary: Update User (Partial)
     description: Update user with the given identifier
     operationId: updateUser
-    x-collapse-params: UpdateUserRequest
+    # x-collapse-params: UpdateUserRequest
     parameters:
-      - $ref: '#/parameters/UserId'
+      - $ref: '#/parameters/UserIdentifier'
       - name: body
         in: body
         description: Request payload of the user object
-        required: true
         schema:
-          $ref: '#/definitions/UpdateUserRequestPayload'
+          $ref: '#/definitions/UpdateUserRequest'
     responses:
       '200':
         $ref: '#/responses/Ok'
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -127,37 +160,18 @@
     summary: Delete User
     description: Delete user with the given identifier
     operationId: deleteUser
+    # x-collapse-params: DeleteUserRequest
     parameters:
-      - $ref: '#/parameters/UserId'
+      - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         $ref: '#/responses/Ok'
       '401':
         $ref: '#/responses/Unauthorized'
-      default:
-        $ref: '#/responses/GeneralError'
-
-/v2/users/{identifier}/notification-rules/copy-to:
-  post:
-    tags:
-      - user
-    summary: Copy Notification Rules
-    description: Copy notification rules from the user with the given identifier
-    operationId: copyNotificationRulesFromUser
-    # x-collapse-params: CopyNotificationRulesRequest
-    parameters:
-      - $ref: '#/parameters/UserId'
-      - name: body
-        in: body
-        description: Request payload of the notification rules
-        required: true
-        schema:
-          $ref: '#/definitions/CopyNotificationRulesRequest'
-    responses:
-      '201':
-        $ref: '#/responses/Ok'
-      '401':
-        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -170,7 +184,7 @@
     operationId: getUserTeams
     # x-collapse-params: GetUserTeamsRequest
     parameters:
-      - $ref: '#/parameters/UserId'
+      - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of team information for the given user identifier
@@ -194,6 +208,8 @@
             type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -206,7 +222,7 @@
     operationId: getUserForwardingRules
     # x-collapse-params: GetUserForwardingRulesRequest
     parameters:
-      - $ref: '#/parameters/UserId'
+      - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of forwarding rules for the given user identifier
@@ -230,6 +246,8 @@
             type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -242,7 +260,7 @@
     operationId: getUserEscalations
     # x-collapse-params: GetUserEscalationsRequest
     parameters:
-      - $ref: '#/parameters/UserId'
+      - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of escalations for the given user identifier
@@ -266,6 +284,8 @@
             type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -278,10 +298,10 @@
     operationId: getUserSchedules
     # x-collapse-params: GetUserSchedulesRequest
     parameters:
-      - $ref: '#/parameters/UserId'
+      - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
-        description: List of escalation rule for the given user identifier
+        description: List of schedules for the given user identifier
         schema:
           $ref: '#/definitions/GetUserSchedulesResponse'
         headers:
@@ -302,5 +322,7 @@
             type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'

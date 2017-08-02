@@ -206,7 +206,6 @@
         type: array
         items:
           type: string
-
       - name: interval
         in: query
         description: Length of time as integer in intervalUnits to retrieve the timeline. Default value is 1

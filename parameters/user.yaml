@@ -1,53 +1,49 @@
-UserId:
+UserIdentifier:
   name: identifier
   in: path
   description: Identifier of the user to be searched
   required: true
   type: string
 
-Expand:
-  name: expand
-  in: query
-  description: Comma separated list of strings to create a more detailed response.
-  required: false
-  collectionFormat: csv
-  type: array
-  items:
-    type: string
-
-Order:
-  name: order
-  in: query
-  description: Direction of sorting. Should be one of asc or desc
-  required: false
-  type: string
-
-Sort:
-  name: sortField
-  in: query
-  description: Field to use in sorting. Should be one of username, fullName and insertedAt
-  required: false
-  type: string
-
-Limit:
+UserLimitParam:
   name: limit
   in: query
   description: Number of users to retrieve
   required: false
   type: integer
+  format: int32
   default: 100
 
-Offset:
+UserOffsetParam:
   name: offset
   in: query
   description: Number of users to skip from start
   required: false
   type: integer
+  format: int32
   default: 0
 
-Query:
+UserSortParam:
+  name: sortField
+  in: query
+  description: Field to use in sorting. Should be one of 'username', 'fullName' and 'insertedAt'
+  required: false
+  type: string
+
+UserOrderParam:
+  name: order
+  in: query
+  description: Direction of sorting. Should be one of 'asc' or 'desc'
+  required: false
+  type: string
+  enum:
+    - asc
+    - desc
+  default: asc
+
+UserQueryParam:
   name: query
   in: query
-  description: Field:value combinations with most of user fields to make more advanced searches. Possible fields are username, fullName blocked, verified, role, locale, timeZone, userAddress and createdAt
+  description: Field:value combinations with most of user fields to make more advanced searches. Possible fields are username, fullName, blocked, verified, role, locale, timeZone, userAddress and createdAt
   required: false
   type: string

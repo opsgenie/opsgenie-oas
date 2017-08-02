@@ -1,0 +1,45 @@
+##################
+#      MODEL     #
+##################
+Escalation:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    description:
+      type: string
+    ownerTeam:
+      $ref: '#/definitions/TeamMeta'
+    rules:
+      type: array
+      items:
+        $ref: '#/definitions/EscalationRule'
+
+EscalationRule:
+  type: object
+  required:
+    - condition
+    - notifyType
+    - delay
+    - recipient
+  properties:
+    condition:
+      type: string
+      enum:
+        - if-not-acked
+        - if-not-closed
+    notifyType:
+      type: string
+      enum:
+        - default
+        - next
+        - previous
+        - users
+        - admins
+        - all
+    delay:
+      $ref: '#/definitions/Duration'
+    recipient:
+      $ref: '#/definitions/Recipient'
