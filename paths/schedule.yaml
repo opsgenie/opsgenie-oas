@@ -11,7 +11,10 @@
         in: query
         description: Returns more detailed response with expanding it. Possible value is 'rotation' which is also returned with expandable field of response
         required: false
-        type: string
+        collectionFormat: csv
+        type: array
+        items:
+          type: string
     responses:
       '200':
         description: List of schedule informations
@@ -199,7 +202,11 @@
         in: query
         description: Returns more detailed response with expanding it. Possible values are 'base', 'forwarding', and 'override' which is also returned with expandable field of response
         required: false
-        type: string
+        collectionFormat: csv
+        type: array
+        items:
+          type: string
+
       - name: interval
         in: query
         description: Length of time as integer in intervalUnits to retrieve the timeline. Default value is 1
