@@ -46,12 +46,29 @@
                                 <dateLibrary>joda</dateLibrary>
                                 <library>okhttp-gson</library>
                                 <sortParamsByRequiredFlag>false</sortParamsByRequiredFlag>
-                                <useBeanValidation>true</useBeanValidation>
-                                <performBeanValidation>true</performBeanValidation>
+                                <useBeanValidation>false</useBeanValidation>
+                                <performBeanValidation>false</performBeanValidation>
                             </configOptions>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
