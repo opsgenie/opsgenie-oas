@@ -236,7 +236,7 @@ ListAlertLogsResponse:
           items:
             $ref: '#/definitions/AlertLog'
         paging:
-          $ref: '#/definitions/Paging'
+          $ref: '#/definitions/AlertPaging'
 
 ListAlertNotesResponse:
   type: object
@@ -248,7 +248,7 @@ ListAlertNotesResponse:
           items:
             $ref: '#/definitions/AlertNote'
         paging:
-          $ref: '#/definitions/Paging'
+          $ref: '#/definitions/AlertPaging'
 
 ListSavedSearchesResponse:
   type: object
@@ -460,7 +460,7 @@ AlertLog:
     offset:
       type: string
 
-Paging:
+AlertPaging:
   type: object
   properties:
     first:
