@@ -1,0 +1,12 @@
+WhoIsOnCallFlat:
+  name: flat
+  in: query
+  description: Retrieves user names of all on call participants if enabled
+  type: boolean
+
+WhoIsOnCallDate:
+  name: date
+  in: query
+  description: Starting date of the timeline
+  type: string
+  format: date-time

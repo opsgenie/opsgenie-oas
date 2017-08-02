@@ -1,0 +1,163 @@
+/v2/schedules/{identifier}/on-calls:
+  get:
+    tags:
+      - who-is-on-call
+    summary: Get On Calls
+    description: Gets current on-call participants of a specific schedule
+    operationId: getOnCalls
+    # x-collapse-params: GetOnCallsRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+      - $ref: '#/parameters/WhoIsOnCallFlat'
+      - $ref: '#/parameters/WhoIsOnCallDate'
+    responses:
+      '200':
+        description: On-call participants for given schedule
+        schema:
+          $ref: '#/definitions/GetOnCallsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/on-calls:
+  get:
+    tags:
+      - who-is-on-call
+    summary: List On Calls
+    description: Lists current on-call participants of all schedules
+    operationId: listOnCalls
+    # x-collapse-params: ListOnCallsRequest
+    parameters:
+      - $ref: '#/parameters/WhoIsOnCallFlat'
+      - $ref: '#/parameters/WhoIsOnCallDate'
+    responses:
+      '200':
+        description: List of on-call participants
+        schema:
+          $ref: '#/definitions/ListOnCallsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/{identifier}/next-on-calls:
+  get:
+    tags:
+      - who-is-on-call
+    summary: Get Next On Calls
+    description: Gets next on-call participants of a specific schedule
+    operationId: getNextOnCalls
+    # x-collapse-params: GetNextOnCallsRequest
+    parameters:
+      - $ref: '#/parameters/ScheduleIdentifier'
+      - $ref: '#/parameters/ScheduleIdentifierType2'
+      - $ref: '#/parameters/WhoIsOnCallFlat'
+      - $ref: '#/parameters/WhoIsOnCallDate'
+    responses:
+      '200':
+        description: Next on-call participants for given schedule
+        schema:
+          $ref: '#/definitions/GetNextOnCallsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/schedules/on-calls/{identifier}.ics:
+  get:
+    tags:
+      - who-is-on-call
+    summary: Export On-Call User
+    description: Exports personal on-call timeline of 3 months to a .ics file
+    operationId: exportOnCallUser
+    # x-collapse-params: ExportOnCallUserRequest
+    parameters:
+      - name: identifier
+        in: path
+        description: Identifier of the user. Should be either 'id' or 'username' of the user
+        required: true
+        type: string
+    produces:
+      - text/calendar
+    responses:
+      '200':
+        description: ICS file with personal on-call timeline for given user
+        schema:
+          type: string
+          format: byte
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
