@@ -5,9 +5,10 @@
     summary: List Escalations
     description: Returns list of escalations
     operationId: listEscalations
+    # x-collapse-params: ListEscalationsRequest
     responses:
       '200':
-        description: List of escalations
+        description: List of escalation informations
         schema:
           $ref: '#/definitions/ListEscalationsResponse'
         headers:
@@ -26,6 +27,10 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -35,6 +40,7 @@
     summary: Create Escalation
     description: Creates a new escalation
     operationId: createEscalation
+    # x-collapse-params: CreateEscalationRequest
     parameters:
       - name: body
         in: body
@@ -44,9 +50,31 @@
           $ref: '#/definitions/CreateEscalationRequest'
     responses:
       '201':
-        $ref: '#/responses/Accepted'
+        description: Escalation meta information for created escalation
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
       '401':
         $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -55,11 +83,12 @@
     tags:
       - escalation
     summary: Get Escalation
-    description: Returns escalation with given id or name
+    description: Returns escalation with given 'id' or 'name'
     operationId: getEscalation
+    # x-collapse-params: GetEscalationRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/EscalationIdentifier'
+      - $ref: '#/parameters/EscalationIdentifierType'
     responses:
       '200':
         description: Escalation object that is retrieved
@@ -81,8 +110,10 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
       '404':
-        $ref: '#/responses/EscalationNotFound'
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -90,36 +121,47 @@
     tags:
       - escalation
     summary: Delete Escalation
-    description: Deletes an escalation using escalation id or name
+    description: Deletes an escalation using escalation 'id' or 'name'
     operationId: deleteEscalation
+    # x-collapse-params: DeleteEscalationRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/EscalationIdentifier'
+      - $ref: '#/parameters/EscalationIdentifierType'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
   patch:
     tags:
       - escalation
-    summary: Update Escalation
-    description: Updates the escalation using escalation id or name
+    summary: Update Escalation (Partial)
+    description: Updates the escalation using escalation 'id' or 'name'
     operationId: updateEscalation
+    # x-collapse-params: UpdateEscalationRequest
     parameters:
-      - $ref: '#/parameters/Identifier'
-      - $ref: '#/parameters/IdentifierType'
+      - $ref: '#/parameters/EscalationIdentifier'
+      - $ref: '#/parameters/EscalationIdentifierType'
       - name: body
         in: body
-        description: Request payload to update escalation
-        required: true
+        description: Request payload of update escalation
         schema:
           $ref: '#/definitions/UpdateEscalationRequest'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
       '401':
         $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
