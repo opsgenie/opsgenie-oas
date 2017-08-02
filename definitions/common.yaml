@@ -72,9 +72,6 @@ SuccessData:
     name:
       type: string
 
-BaseRequest:
-  type: object
-
 Recipient:
   type: object
   discriminator: type
