@@ -16,6 +16,17 @@ TeamIdentifierType:
     - name
   default: id
 
+TeamIdentifierType2:
+  name: teamIdentifierType
+  in: query
+  description: Type of the identifier. Possible values are 'id' and 'name'. Default value is 'id'
+  required: false
+  type: string
+  enum:
+    - id
+    - name
+  default: id
+
 TeamLimitParam:
   name: limit
   in: query

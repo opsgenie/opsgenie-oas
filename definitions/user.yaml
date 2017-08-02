@@ -1,6 +1,257 @@
 ##################
+#     REQUEST    #
+##################
+CreateUserRequest:
+  type: object
+  required:
+    - username
+    - fullName
+    - role
+  properties:
+    username:
+      type: string
+      description: E-mail address of the user
+      maxLength: 100
+      format: email
+    fullName:
+      type: string
+      description: Name of the user
+      maxLength: 512
+    role:
+      description: Role of user. It may be one of owner, admin, user or the name of a custom role you've created.
+      $ref: '#/definitions/UserRole'
+    skypeUsername:
+      type: string
+      description: Skype username of the user
+    timeZone:
+      type: string
+      description: Timezone of the user. If not set, timezone of the customer will be used instead.
+    locale:
+      type: string
+      description: Location information of the user. If not set, locale of the customer will be used instead.
+    userAddress:
+      description: Address of the user
+      $ref: '#/definitions/UserAddress'
+    tags:
+      type: array
+      description: List of labels attached to the user. You can label users to differentiate them from the rest. For example, you can add ITManager tag to differentiate people with this role from others.
+      items:
+        type: string
+    details:
+      description: Set of user defined properties.
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    invitationDisabled:
+      description: Invitation email will not be sent if set to true. Default value is false
+      type: boolean
+
+UpdateUserRequest:
+  type: object
+  properties:
+    username:
+      type: string
+      description: E-mail address of the user
+      maxLength: 100
+      format: email
+    fullName:
+      type: string
+      description: Name of the user
+      maxLength: 512
+    role:
+      description: Role of user. It may be one of owner, admin, user or the name of a custom role you've created.
+      $ref: '#/definitions/UserRole'
+    skypeUsername:
+      type: string
+      description: Skype username of the user
+    timeZone:
+      type: string
+      description: Timezone of the user. If not set, timezone of the customer will be used instead.
+    locale:
+      type: string
+      description: Location information of the user. If not set, locale of the customer will be used instead.
+    userAddress:
+      description: Address of the user
+      $ref: '#/definitions/UserAddress'
+    tags:
+      type: array
+      description: List of labels attached to the user. You can label users to differentiate them from the rest. For example, you can add ITManager tag to differentiate people with this role from others.
+      items:
+        type: string
+    details:
+      description: Set of user defined properties.
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    invitationDisabled:
+      description: Invitation email will not be sent if set to true. Default value is false
+      type: boolean
+
+##################
+#    RESPONSE    #
+##################
+ListUsersResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/User'
+        totalCount:
+          type: integer
+          format: int64
+        paging:
+          $ref: '#/definitions/PageDetails'
+
+GetUserResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponseWithExpandable'
+    - properties:
+        data:
+          $ref: '#/definitions/User'
+
+GetUserTeamsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/TeamMeta'
+
+GetUserForwardingRulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/ForwardingRule'
+
+GetUserEscalationsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Escalation'
+
+GetUserSchedulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/ScheduleMeta'
+
+##################
 #      MODEL     #
 ##################
+User:
+  type: object
+  properties:
+    id:
+      type: string
+    username:
+      type: string
+    fullName:
+      type: string
+    role:
+      description: Role of user. It may be one of owner, admin, user or the name of a custom role you've created.
+      $ref: '#/definitions/UserRole'
+    skypeUsername:
+      type: string
+      description: Skype username of the user
+    timeZone:
+      type: string
+      description: Timezone of the user. If not set, timezone of the customer will be used instead.
+    locale:
+      type: string
+      description: Location information of the user. If not set, locale of the customer will be used instead.
+    userAddress:
+      description: Address of the user
+      $ref: '#/definitions/UserAddress'
+    tags:
+      type: array
+      description: List of labels attached to the user. You can label users to differentiate them from the rest. For example, you can add ITManager tag to differentiate people with this role from others.
+      items:
+        type: string
+    details:
+      description: Set of user defined properties.
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    blocked:
+      type: boolean
+    verified:
+      type: boolean
+    createdAt:
+      type: string
+      format: date-time
+    mutedUntil:
+      type: string
+      format: date-time
+    userContacts:
+      type: array
+      items:
+        $ref: '#/definitions/UserContact'
+
+UserRole:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+
+UserAddress:
+  type: object
+  properties:
+    country:
+      type: string
+    state:
+      type: string
+    city:
+      type: string
+    line:
+      type: string
+    zipCode:
+      type: string
+
+UserContact:
+  type: object
+  properties:
+    to:
+      type: string
+    id:
+      type: string
+    contactMethod:
+      type: string
+      enum:
+        - email
+        - sms
+        - voice
+        - mobile
+    disabledReason:
+      type: string
+    enabled:
+      type: boolean
+
 UserMeta:
   type: object
   properties:

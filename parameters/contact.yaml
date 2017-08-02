@@ -1,10 +1,3 @@
-UserIdentifier:
-    name: userIdentifier
-    in: path
-    description: Identifier of the user that contact will belong to. Should be either 'id' or 'username' of the user
-    required: true
-    type: string
-
 ContactId:
   name: contactId
   in: path

@@ -64,19 +64,6 @@ ListTeamLogsResponse:
 ##################
 #     MODEL      #
 ##################
-TeamMember:
-  type: object
-  properties:
-    user:
-      $ref: '#/definitions/UserMeta'
-    role:
-      type: string
-      description: Member role of the user, consisting 'user' and 'admin'. Default value is 'user'
-      enum:
-        - user
-        - admin
-      default: user
-
 Team:
   type: object
   properties:

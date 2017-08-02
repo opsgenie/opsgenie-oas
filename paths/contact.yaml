@@ -1,4 +1,4 @@
-/v2/users/{userIdentifier}/contacts:
+/v2/users/{identifier}/contacts:
   post:
     tags:
       - contact
@@ -74,7 +74,7 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/users/{userIdentifier}/contacts/{contactId}:
+/v2/users/{identifier}/contacts/{contactId}:
   patch:
     tags:
       - contact
@@ -157,7 +157,7 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/users/{userIdentifier}/contacts/{contactId}/enable:
+/v2/users/{identifier}/contacts/{contactId}/enable:
   post:
     tags:
       - contact
@@ -178,7 +178,7 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/users/{userIdentifier}/contacts/{contactId}/disable:
+/v2/users/{identifier}/contacts/{contactId}/disable:
   post:
     tags:
       - contact

@@ -72,6 +72,18 @@ SuccessData:
     name:
       type: string
 
+PageDetails:
+  type: object
+  properties:
+    prev:
+      type: string
+    next:
+      type: string
+    first:
+      type: string
+    last:
+      type: string
+
 Recipient:
   type: object
   discriminator: type
@@ -256,3 +268,23 @@ TimeOfDayRestriction:
     endMin:
       type: integer
       format: int32
+
+Duration:
+  type: object
+  required:
+    - timeAmount
+  properties:
+    timeAmount:
+      type: integer
+      format: int64
+    timeUnit:
+      type: string
+      enum:
+        - days
+        - hours
+        - minutes
+        - seconds
+        - miliseconds
+        - micros
+        - nanos
+      default: minutes

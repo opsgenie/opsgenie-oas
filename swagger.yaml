@@ -37,12 +37,12 @@ paths:
   - $ref: ./paths/policy.yaml # Will be implemented
   - $ref: ./paths/maintenance.yaml
   - $ref: ./paths/account.yaml
-  - $ref: ./paths/user.yaml # Will be implemented
+  - $ref: ./paths/user.yaml
   - $ref: ./paths/contact.yaml
   - $ref: ./paths/notificationRule.yaml # Will be implemented
   - $ref: ./paths/notificationRuleStep.yaml # Will be implemented
   - $ref: ./paths/team.yaml
-  - $ref: ./paths/teamMember.yaml # Will be implemented
+  - $ref: ./paths/teamMember.yaml
   - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./paths/schedule.yaml
   - $ref: ./paths/scheduleRotation.yaml # Will be implemented
@@ -61,12 +61,12 @@ parameters:
   - $ref: ./parameters/heartbeat.yaml
   - $ref: ./parameters/policy.yaml # Will be implemented
   - $ref: ./parameters/maintenance.yaml
-  - $ref: ./parameters/user.yaml # Will be implemented
+  - $ref: ./parameters/user.yaml
   - $ref: ./parameters/contact.yaml
   - $ref: ./parameters/notificationRule.yaml # Will be implemented
   - $ref: ./parameters/notificationRuleStep.yaml # Will be implemented
   - $ref: ./parameters/team.yaml
-  - $ref: ./parameters/teamMember.yaml # Will be implemented
+  - $ref: ./parameters/teamMember.yaml
   - $ref: ./parameters/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./parameters/schedule.yaml
   - $ref: ./parameters/scheduleRotation.yaml # Will be implemented
@@ -82,10 +82,8 @@ responses:
   - $ref: ./responses/common.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
-  - $ref: ./responses/user.yaml # Will be implemented
   - $ref: ./responses/notificationRule.yaml # Will be implemented
   - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
-  - $ref: ./responses/teamMember.yaml # Will be implemented
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./responses/scheduleRotation.yaml # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
@@ -107,11 +105,11 @@ definitions:
   - $ref: ./definitions/notificationRule.yaml # Will be implemented
   - $ref: ./definitions/notificationRuleStep.yaml # Will be implemented
   - $ref: ./definitions/team.yaml
-  - $ref: ./definitions/teamMember.yaml # Will be implemented
+  - $ref: ./definitions/teamMember.yaml
   - $ref: ./definitions/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./definitions/schedule.yaml
   - $ref: ./definitions/scheduleRotation.yaml
   - $ref: ./definitions/scheduleOverride.yaml # Will be implemented
   - $ref: ./definitions/whoIsOnCall.yaml  # Will be implemented
-  - $ref: ./definitions/escalation.yaml # Will be implemented
+  - $ref: ./definitions/escalation.yaml
   - $ref: ./definitions/forwardingRule.yaml

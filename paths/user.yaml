@@ -1,0 +1,328 @@
+/v2/users:
+  post:
+    tags:
+      - user
+    summary: Create User
+    description: Creates a user with the given payload
+    operationId: createUser
+    # x-collapse-params: CreateUserRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of the user object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUserRequest'
+    responses:
+      '201':
+        description: User meta information for created user
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - user
+    summary: List users
+    description: List users with given parameters
+    operationId: listUsers
+    # x-collapse-params: ListUsersRequest
+    parameters:
+      - $ref: '#/parameters/UserLimitParam'
+      - $ref: '#/parameters/UserOffsetParam'
+      - $ref: '#/parameters/UserSortParam'
+      - $ref: '#/parameters/UserOrderParam'
+      - $ref: '#/parameters/UserQueryParam'
+    responses:
+      '200':
+        description: List of users with given parameters
+        schema:
+          $ref: '#/definitions/ListUsersResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+          $ref: '#/responses/Unauthorized'
+      default:
+          $ref: '#/responses/GeneralError'
+
+/v2/users/{identifier}:
+  get:
+    tags:
+      - user
+    summary: Get User
+    description: Get user for the given identifier
+    operationId: getUser
+    # x-collapse-params: GetUserRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - name: expand
+        in: query
+        description: Comma separated list of strings to create a more detailed response. The only expandable field for user api is 'contact'
+        required: false
+        collectionFormat: csv
+        type: array
+        items:
+          type: string
+    responses:
+      '200':
+        description: User information for the given identifier
+        schema:
+          $ref: '#/definitions/GetUserResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - user
+    summary: Update User (Partial)
+    description: Update user with the given identifier
+    operationId: updateUser
+    # x-collapse-params: UpdateUserRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - name: body
+        in: body
+        description: Request payload of the user object
+        schema:
+          $ref: '#/definitions/UpdateUserRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - user
+    summary: Delete User
+    description: Delete user with the given identifier
+    operationId: deleteUser
+    # x-collapse-params: DeleteUserRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{identifier}/teams:
+  get:
+    tags:
+      - user
+    summary: Get User Teams
+    description: Get user teams for the given user identifier
+    operationId: getUserTeams
+    # x-collapse-params: GetUserTeamsRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        description: List of team information for the given user identifier
+        schema:
+          $ref: '#/definitions/GetUserTeamsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{identifier}/forwarding-rules:
+  get:
+    tags:
+      - user
+    summary: Get User Forwarding Rules
+    description: Get user forwarding rules for the given user identifier
+    operationId: getUserForwardingRules
+    # x-collapse-params: GetUserForwardingRulesRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        description: List of forwarding rules for the given user identifier
+        schema:
+          $ref: '#/definitions/GetUserForwardingRulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{identifier}/escalations:
+  get:
+    tags:
+      - user
+    summary: Get User Escalations
+    description: Get escalations of the user for the given identifier
+    operationId: getUserEscalations
+    # x-collapse-params: GetUserEscalationsRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        description: List of escalations for the given user identifier
+        schema:
+          $ref: '#/definitions/GetUserEscalationsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{identifier}/schedules:
+  get:
+    tags:
+      - user
+    summary: Get User Schedules
+    description: Get schedules of the user for the given identifier
+    operationId: getUserSchedules
+    # x-collapse-params: GetUserSchedulesRequest
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        description: List of schedules for the given user identifier
+        schema:
+          $ref: '#/definitions/GetUserSchedulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
