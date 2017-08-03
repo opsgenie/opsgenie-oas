@@ -1,0 +1,181 @@
+/v2/users/{userIdentifier}/notification-rules:
+  get:
+    tags:
+      - notification-rule
+    summary: List Notification Rules
+    description: Returns list of notification rules
+    operationId: listNotificationRules
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+    responses:
+      '200':
+        description: List of notification rules
+        schema:
+          $ref: '#/definitions/ListNotificationRulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - notification-rule
+    summary: Create Notification Rule
+    description: Creates a new notification rule
+    operationId: createNotificationRule
+    parameters:
+      - name: body
+        in: body
+        description: Request payload to create notification rule
+        required: true
+        schema:
+          $ref: '#/definitions/CreateNotificationRuleRequest'
+    responses:
+      '201':
+        $ref: '#/definitions/NotificationRuleMetaResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{id}:
+  get:
+    tags:
+      - notification-rule
+    summary: Get Notification Rule
+    description: Returns notification rule with given id
+    operationId: getNotificationRule
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/Identifier'
+    responses:
+      '200':
+        description: Notification rule object that is retrieved
+        schema:
+          $ref: '#/definitions/GetNotificationRuleResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/NotificationRuleNotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - notification-rule
+    summary: Delete Notification Rule
+    description: Deletes a notification rule using notification rule id
+    operationId: deleteNotificationRule
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/Identifier'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - notification-rule
+    summary: Update Notification Rule
+    description: Updates the notification rule using notification rule id
+    operationId: updateNotificationRule
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/Identifier'
+      - name: body
+        in: body
+        description: Request payload to update notification rule
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateNotificationRuleRequest'
+    responses:
+      '200':
+        $ref: '#/definitions/NotificationRuleMetaResponse'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{id}/enable:
+  post:
+    tags:
+      - notification-rule
+    summary: Enable Notification Rule
+    description: Enables a notification rule using notification rule id
+    operationId: enableNotificationRule
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/Identifier'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{id}/disable:
+  post:
+    tags:
+      - notification-rule
+    summary: Disable Notification Rule
+    description: Disables a notification rule using notification rule id
+    operationId: disableNotificationRule
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/Identifier'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{id}/change-order:
+  post:
+    tags:
+      - notification-rule
+    summary: Change order of Notification Rule
+    description: Changes order of a notification rule using notification rule id
+    operationId: changeNotificationRuleOrder
+    parameters:
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/Identifier'
+      - name: body
+        in: body
+        description: Request payload to change order of notification rule
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeOrderRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
