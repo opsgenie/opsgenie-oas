@@ -40,6 +40,40 @@ CreateScheduleRotationRequest:
       $ref: '#/definitions/TimeRestrictionInterval'
       description: Used to limit schedule rotation to certain day and time of the week, using multiple start and end times for each day of the week.
 
+UpdateScheduleRotationRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of rotation
+    startDate:
+      type: string
+      format: date-time
+      description: Defines a date time as an override start. Minutes may take 0 or 30 as value. Otherwise they will be converted to nearest 0 or 30 automatically
+    endDate:
+      type: string
+      format: date-time
+      description: Defines a date time as an override end. Minutes may take 0 or 30 as value. Otherwise they will be converted to nearest 0 or 30 automatically
+    type:
+      type: string
+      enum:
+        - daily
+        - weekly
+        - hourly
+      description: Type of rotation. May be one of 'daily', 'weekly' and 'hourly'
+    length:
+      type: integer
+      format: int32
+      description: Length of the rotation with default value 1
+    participants:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
+      description: List of escalations, teams, users or the reserved word none which will be used in schedule. Each of them can be used multiple times and will be rotated in the order they given.
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+      description: Used to limit schedule rotation to certain day and time of the week, using multiple start and end times for each day of the week.
+
 ##################
 #    RESPONSE    #
 ##################
@@ -61,21 +95,13 @@ ListScheduleRotationsResponse:
           items:
             $ref: '#/definitions/ScheduleRotation'
 
-UpdateScheduleRotationResponse:
-  type: object
-    allOf:
-      - $ref: '#/definitions/BaseResponse'
-      - properties:
-          data:
-            $ref: '#/definitions/ScheduleRotationWithParent'
-
 ##################
 #      MODEL     #
 ##################
 ScheduleRotationWithParent:
   type: object
   allOf:
-    - $ref: '#/definitions/ScheduleMeta'
+    - $ref: '#/definitions/ScheduleRotation'
     - properties:
         _parent:
           $ref: '#/definitions/ScheduleMeta'
