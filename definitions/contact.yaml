@@ -86,3 +86,19 @@ Contact:
       type: string
     status:
       $ref: '#/definitions/ContactStatus'
+
+ContactMeta:
+  type: object
+  required:
+    - method
+    - to
+  properties:
+    method:
+      type: string
+      enum:
+        - email
+        - sms
+        - voice
+        - mobile
+    to:
+      type: string

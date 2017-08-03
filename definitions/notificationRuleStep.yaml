@@ -1,11 +1,10 @@
 ##################
 #     REQUEST    #
 ##################
-CreateUserNotificationStepPayload:
+CreateNotificationRuleStepRequest:
   type: object
   required:
     - contact
-    - sendAfter
     - enabled
   properties:
     contact:
@@ -18,12 +17,8 @@ CreateUserNotificationStepPayload:
       type: boolean
       description: Specifies whether given step will be enabled or not when it is created.
 
-UpdateUserNotificationStepPayload:
+UpdateNotificationRuleStepRequest:
   type: object
-  required:
-    - contact
-    - sendAfter
-    - enabled
   properties:
     contact:
       $ref: '#/definitions/ContactMeta'
@@ -34,10 +29,11 @@ UpdateUserNotificationStepPayload:
     enabled:
       type: boolean
       description: Specifies whether given step will be enabled or not when it is updated.
+
 ##################
 #    RESPONSE    #
 ##################
-ListNotificationRuleStep:
+ListNotificationRuleStepsResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -58,36 +54,11 @@ GetNotificationRuleStepResponse:
 ##################
 #      MODEL     #
 ##################
-ContactMeta:
-  type: object
-  required:
-    - method
-    - to
-  properties:
-    method:
-      type: string
-      enum:
-        - email
-        - sms
-        - voice
-        - mobile
-        - invalid
-    to:
-      type: string
-
-NotificationRuleParent:
-  type: object
-  properties:
-    name:
-      type: string
-    id:
-      type: string
-
 NotificationRuleStep:
   type: object
   properties:
     _parent:
-      $ref: '#/definitions/NotificationRuleParent'
+      $ref: '#/definitions/NotificationRuleStepParent'
     id:
       type: string
     sendAfter:
@@ -96,3 +67,11 @@ NotificationRuleStep:
       $ref: '#/definitions/ContactMeta'
     enabled:
       type: boolean
+
+NotificationRuleStepParent:
+  type: object
+  properties:
+    name:
+      type: string
+    id:
+      type: string

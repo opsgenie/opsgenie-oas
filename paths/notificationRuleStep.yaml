@@ -1,18 +1,19 @@
-/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps:
+/v2/users/{identifier}/notification-rules/{ruleId}/steps:
   get:
     tags:
       - notification-rule-step
     summary: List Notification Rule Steps
     description: Returns list of notification rule steps
     operationId: listNotificationRuleSteps
+    # x-collapse-params: ListNotificationRuleStepsRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
     responses:
       '200':
         description: List of notification rule steps
         schema:
-          $ref: '#/definitions/ListNotificationRuleStep'
+          $ref: '#/definitions/ListNotificationRuleStepsResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -29,6 +30,8 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -38,15 +41,16 @@
     summary: Create Notification Rule Step
     description: Creates a new notification rule step
     operationId: createNotificationRuleStep
+    # x-collapse-params: CreateNotificationRuleStepRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
       - name: body
         in: body
         description: Request payload to create notification rule step
         required: true
         schema:
-          $ref: '#/definitions/CreateUserNotificationStepPayload'
+          $ref: '#/definitions/CreateNotificationRuleStepRequest'
     responses:
       '201':
         description: Notification rule step is created successfully
@@ -68,21 +72,26 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps/{id}:
+/v2/users/{identifier}/notification-rules/{ruleId}/steps/{id}:
   get:
     tags:
       - notification-rule-step
     summary: Get Notification Rule Step
-    description: Returns notification rule step with given user identifier, rule id
+    description: Returns notification rule step with given user identifier and rule id
     operationId: getNotificationRuleStep
+    # x-collapse-params: GetNotificationRuleStepRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
       - $ref: '#/parameters/NotificationRuleStepId'
     responses:
       '200':
@@ -105,6 +114,8 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '403':
+        $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
       default:
@@ -116,13 +127,18 @@
     summary: Delete Notification Rule Step
     description: Deletes a notification rule step using user identifier, rule id, notification rule step id
     operationId: deleteNotificationRuleStep
+    # x-collapse-params: DeleteNotificationRuleStepRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
       - $ref: '#/parameters/NotificationRuleStepId'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -130,68 +146,76 @@
     tags:
       - notification-rule-step
     summary: Update Notification Rule Step (Partial)
-    description: Update a notification rule step with given user identifier, rule id, notification rule step id
+    description: Update a notification rule step with given user identifier, rule id, and notification rule step id
     operationId: updateNotificationRuleStep
-    # x-collapse-params: UpdateScheduleRequest
+    # x-collapse-params: UpdateNotificationRuleStepRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
       - $ref: '#/parameters/NotificationRuleStepId'
       - name: body
         in: body
         description: Request payload of update schedule action
         required: false
         schema:
-          $ref: '#/definitions/UpdateUserNotificationStepPayload'
+          $ref: '#/definitions/UpdateNotificationRuleStepRequest'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
       '403':
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps/{id}/disable:
+/v2/users/{identifier}/notification-rules/{ruleId}/steps/{id}/disable:
   post:
     tags:
       - notification-rule-step
     summary: Disable Notification Rule Step
     description: Disables a new notification rule step
     operationId: disableNotificationRuleStep
+    # x-collapse-params: DisableNotificationRuleStepRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
       - $ref: '#/parameters/NotificationRuleStepId'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
       '403':
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps/{id}/enable:
+/v2/users/{identifier}/notification-rules/{ruleId}/steps/{id}/enable:
   post:
     tags:
       - notification-rule-step
     summary: Enable Notification Rule Step
     description: Enables a new notification rule step
     operationId: enableNotificationRuleStep
+    # x-collapse-params: EnableNotificationRuleStepRequest
     parameters:
-      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
-      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/UserIdentifier'
+      - $ref: '#/parameters/NotificationRuleIdentifier'
       - $ref: '#/parameters/NotificationRuleStepId'
     responses:
       '200':
-        $ref: '#/responses/Accepted'
+        $ref: '#/responses/Ok'
       '403':
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 

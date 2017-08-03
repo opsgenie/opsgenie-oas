@@ -36,6 +36,8 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
       '403':
         $ref: '#/responses/Forbidden'
       default:
