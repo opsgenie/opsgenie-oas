@@ -280,3 +280,110 @@ Duration:
         - micros
         - nanos
       default: minutes
+
+Filter:
+  type: object
+  description: Defines the conditions that will be checked before applying rules and type of the operations that will be applied on conditions
+  discriminator: type
+  required:
+    - type
+  properties:
+    type:
+      type: string
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+
+MatchAll:
+  x-discriminator-value: match-all
+  description: Match all filter
+  allOf:
+    - $ref: '#/definitions/Filter'
+    - type: object
+      properties:
+        type:
+          default: match-all
+
+MatchAllConditions:
+  x-discriminator-value: match-all-conditions
+  description: Match all conditions filter
+  required:
+    - conditions
+  allOf:
+    - $ref: '#/definitions/Filter'
+    - type: object
+      properties:
+        type:
+          default: match-all-conditions
+        conditions:
+          type: array
+          items:
+            $ref: '#/definitions/Condition'
+          minItems: 1
+
+MatchAnyConditions:
+  x-discriminator-value: match-any-conditions
+  description: Match any conditions filter
+  required:
+    - conditions
+  allOf:
+    - $ref: '#/definitions/Filter'
+    - type: object
+      properties:
+        type:
+          default: match-any-conditions
+        conditions:
+          type: array
+          items:
+            $ref: '#/definitions/Condition'
+          minItems: 1
+
+Condition:
+  type: object
+  required:
+    - field
+    - operation
+  properties:
+    field:
+      type: string
+      description: Specifies which alert field will be used in condition. Possible values are message, alias, description, source, entity, tags, actions, extra-properties, recipients or teams
+      enum:
+        - message
+        - alias
+        - description
+        - source
+        - entity
+        - tags
+        - actions
+        - extra-properties
+        - recipients
+        - teams
+    key:
+      type: string
+      description: If field is set as extra-properties, key could be used for key-value pair
+    not:
+      type: boolean
+      description: Indicates behaviour of the given operation. Default value is false
+    operation:
+      type: string
+      enum:
+        - matches
+        - contains
+        - starts-with
+        - ends-with
+        - equals
+        - contains-key
+        - contains-value
+        - greater-than
+        - less-than
+        - is-empty
+        - equals-ignore-whitespace
+      description: It is the operation that will be executed for the given field and key.
+    expectedValue:
+      type: string
+      description: User defined value that will be compared with alert field according to the operation. Default value is empty string
+    order:
+      type: integer
+      format: int64
+      description: Order of the condition in conditions list

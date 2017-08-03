@@ -46,8 +46,8 @@
                                 <dateLibrary>joda</dateLibrary>
                                 <library>jersey2</library>
                                 <sortParamsByRequiredFlag>false</sortParamsByRequiredFlag>
-                                <useBeanValidation>false</useBeanValidation>
-                                <performBeanValidation>false</performBeanValidation>
+                                <useBeanValidation>true</useBeanValidation>
+                                <performBeanValidation>true</performBeanValidation>
                             </configOptions>
                         </configuration>
                     </execution>

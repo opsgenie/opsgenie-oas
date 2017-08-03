@@ -1,7 +1,6 @@
 ##################
 #     REQUEST    #
 ##################
-
 CreateNotificationRuleRequest:
   type: object
   required:
@@ -13,10 +12,8 @@ CreateNotificationRuleRequest:
       type: string
       description: Name of the notification rule
     actionType:
-      description: Type of the action that notification rule will have
-      $ref: '#/definitions/ActionType'
+      $ref: '#/definitions/NotificationActionType'
     criteria:
-      description: Defines the conditions that will be checked before applying notification rule and type of the operations that will be applied on conditions
       $ref: '#/definitions/Filter'
     notificationTime:
       type: array
@@ -35,13 +32,13 @@ CreateNotificationRuleRequest:
       type: integer
       description: The order of the notification rule within the notification rules with the same action type
       format: int32
+      minimum: 0
     steps:
       description: List of steps that will be added to notification rule
       type: array
       items:
-        $ref: '#/definitions/CreateNotificationStepPayload'
+        $ref: '#/definitions/CreateNotificationRuleStepRequest'
     repeat:
-      description: The amount of time in minutes that notification steps will be repeatedly apply
       $ref: '#/definitions/NotificationRepeat'
     enabled:
       type: boolean
@@ -54,7 +51,6 @@ UpdateNotificationRuleRequest:
       type: string
       description: Name of the notification rule
     criteria:
-      description: Defines the conditions that will be checked before applying notification rule and type of the operations that will be applied on conditions
       $ref: '#/definitions/Filter'
     notificationTime:
       type: array
@@ -73,33 +69,22 @@ UpdateNotificationRuleRequest:
       description: List of steps that will be added to notification rule
       type: array
       items:
-        $ref: '#/definitions/CreateNotificationStepPayload'
+        $ref: '#/definitions/CreateNotificationRuleStepRequest'
     repeat:
       description: The amount of time in minutes that notification steps will be repeatedly apply
       $ref: '#/definitions/NotificationRepeat'
+    order:
+      type: integer
+      description: The order of the notification rule within the notification rules with the same action type
+      format: int32
+      minimum: 0
     enabled:
       type: boolean
       description: Defines if notification rule will be enabled or not when it is created
 
-ChangeOrderRequest:
-  type: object
-  properties:
-    order:
-      type: integer
-      format: int32
-
 ##################
 #    RESPONSE    #
 ##################
-
-GetNotificationRuleResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/NotificationRule'
-
 ListNotificationRulesResponse:
   type: object
   allOf:
@@ -110,7 +95,23 @@ ListNotificationRulesResponse:
           items:
             $ref: '#/definitions/NotificationRuleMeta'
 
-NotificationRuleMetaResponse:
+CreateNotificationRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NotificationRuleMeta'
+
+GetNotificationRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NotificationRule'
+
+UpdateNotificationRuleResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -121,8 +122,7 @@ NotificationRuleMetaResponse:
 ##################
 #      MODEL     #
 ##################
-
-NotificationRule:
+NotificationRuleMeta:
   type: object
   properties:
     id:
@@ -130,56 +130,16 @@ NotificationRule:
     name:
       type: string
     actionType:
-      $ref: '#/definitions/ActionType'
-    criteria:
-      $ref: '#/definitions/Filter'
-    notificationTime:
-      type: array
-      items:
-        $ref: '#/definitions/NotifyTime'
-    timeRestriction:
-      $ref: '#/definitions/TimeRestrictionInterval'
-    schedules:
-      type: array
-      items:
-        $ref: '#/definitions/ScheduleRecipient'
+      $ref: '#/definitions/NotificationActionType'
     order:
       type: integer
       format: int32
-    steps:
-      type: array
-      items:
-        $ref: '#/definitions/CreateNotificationStepPayload'
-    repeat:
-      $ref: '#/definitions/NotificationRepeat'
     enabled:
       type: boolean
 
-NotificationRuleMeta:
-  type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      actionType:
-        $ref: '#/definitions/ActionType'
-      order:
-        type: integer
-        format: int32
-      enabled:
-        type: boolean
-
-NotifyTime:
+NotificationActionType:
   type: string
-  enum:
-    - just-before
-    - 15-minutes-ago
-    - 1-hour-ago
-    - 1-day-ago
-
-ActionType:
-  type: string
+  description: Type of the action that notification rule will have
   enum:
     - create-alert
     - acknowledged-alert
@@ -191,240 +151,62 @@ ActionType:
     - schedule-end
     - incoming-call-routing
 
-Recipient:
+NotifyTime:
+  type: string
+  enum:
+    - just-before
+    - 15-minutes-ago
+    - 1-hour-ago
+    - 1-day-ago
+
+NotificationRule:
   type: object
-  discriminator: type
-  required:
-    - type
   properties:
-    type:
-      type: string
-      enum:
-        - schedule
     id:
       type: string
-
-ScheduleRecipient:
-  x-discriminator-value: schedule
-  description: Schedule recipient
-  allOf:
-  - $ref: '#/definitions/Recipient'
-  - type: object
-    properties:
-      name:
-        type: string
-      type:
-        default: schedule
-
-CreateNotificationStepPayload:
-  type: object
-  required:
-    - contact
-    - enabled
-  properties:
-    contact:
-      $ref: '#/definitions/ContactMeta'
-    sendAfter:
-      $ref: '#/definitions/Duration'
+    name:
+      type: string
+    actionType:
+      $ref: '#/definitions/NotificationActionType'
+    criteria:
+      $ref: '#/definitions/Filter'
+    notificationTime:
+      type: array
+      items:
+        $ref: '#/definitions/NotifyTime'
+    order:
+      type: integer
+      format: int32
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    steps:
+      type: array
+      items:
+        $ref: '#/definitions/NotificationRuleStep'
+    schedules:
+      type: array
+      items:
+        $ref: '#/definitions/ScheduleRecipient'
+    repeat:
+      $ref: '#/definitions/NotificationRepeat'
     enabled:
       type: boolean
 
-ContactMeta:
-  type: object
-  required:
-    - method
-    - to
-  properties:
-    method:
-      $ref: '#/definitions/ContactMethod'
-    to:
-      type: string
-
-Duration:
-  type: object
-  required:
-    - timeAmount
-  properties:
-    timeAmount:
-      type: integer
-      format: int64
-    timeUnit:
-      type: string
-      enum:
-        - days
-        - hours
-        - minutes
-        - seconds
-        - milliseconds
-        - micros
-        - nanos
-
 NotificationRepeat:
   type: object
+  description: The amount of time in minutes that notification steps will be repeatedly apply
   properties:
     loopAfter:
       type: integer
       format: int32
+      minimum: 0
     enabled:
       type: boolean
 
-Filter:
+ChangeNotificationRuleOrderRequest:
   type: object
-  discriminator: type
-  required: type
   properties:
-    type:
-      type: string
-      enum:
-        - match-all
-        - match-any-condition
-        - match-all-conditions
-
-MatchAll:
-  x-discriminator-value: match-all
-  description: Match all filter
-  allOf:
-    - $ref: '#/definitions/Filter'
-    - type: object
-      properties:
-        type:
-          default: match-all
-
-MatchAllConditions:
-  x-discriminator-value: match-all-conditions
-  description: Match all conditions filter
-  allOf:
-    - $ref: '#/definitions/Filter'
-    - type: object
-      properties:
-        type:
-          default: match-all-conditions
-        conditions:
-          type: array
-          items:
-            $ref: '#/definitions/Condition'
-
-MatchAnyConditions:
-  x-discriminator-value: match-any-conditions
-  description: Match all conditions filter
-  allOf:
-    - $ref: '#/definitions/Filter'
-    - type: object
-      properties:
-        type:
-          default: match-any-conditions
-        conditions:
-          type: array
-          items:
-            $ref: '#/definitions/Condition'
-
-Condition:
-  type: object
-  required:
-    - field
-    - operation
-  properties:
-    field:
-      type: string
-      enum:
-        - message
-        - alias
-        - description
-        - source
-        - entity
-        - tags
-        - actions
-        - extra-properties
-        - recipients
-        - teams
-    key:
-      type: string
-    not:
-      type: boolean
-    operation:
-      type: string
-      enum:
-        - matches
-        - contains
-        - starts-with
-        - ends-with
-        - equals
-        - contains-key
-        - contains-value
-        - greater-than
-        - less-than
-        - is-empty
-        - equals-ignore-whitespace
-    expectedValue:
-      type: string
     order:
       type: integer
-      format: int64
-
-TimeRestrictionInterval:
-  type: object
-  discriminator: type
-  required: type
-  properties:
-    type:
-      type: string
-      enum:
-        - time-of-day
-        - weekday-and-time-of-day
-
-TimeOfDayTimeRestriction:
-  x-discriminator-value: time-of-day
-  description: Time restriction based on time of week and time of day
-  allOf:
-    - $ref: '#/definitions/TimeRestrictionInterval'
-    - type: object
-      properties:
-        type:
-          default: time-of-day
-        restriction:
-          $ref: '#/definitions/TimeRestriction'
-
-WeekdayTimeRestriction:
-  x-discriminator-value: weekday-and-time-of-day
-  description: Time restriction based on time of week and time of day
-  allOf:
-    - $ref: '#/definitions/TimeRestrictionInterval'
-    - type: object
-      properties:
-        type:
-          default: weekday-and-time-of-day
-        restrictions:
-          type: array
-          items:
-            $ref: '#/definitions/TimeRestriction'
-
-TimeRestriction:
-  type: array
-  items:
-    startDay:
-      $ref: '#/definitions/DayOfWeek'
-    endDay:
-      $ref: '#/definitions/DayOfWeek'
-    startHour:
-      type: integer
       format: int32
-    endHour:
-      type: integer
-      format: int32
-    startMin:
-      type: integer
-      format: int32
-    endMin:
-      type: integer
-      format: int32
-
-DayOfWeek:
-  type: string
-  enum:
-    - monday
-    - tuesday
-    - wednesday
-    - thursday
-    - friday
-    - saturday
-    - sunday
+      minimum: 0
