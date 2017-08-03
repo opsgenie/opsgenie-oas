@@ -1,0 +1,197 @@
+/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps:
+  get:
+    tags:
+      - notification-rule-step
+    summary: List Notification Rule Steps
+    description: Returns list of notification rule steps
+    operationId: listNotificationRuleSteps
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+    responses:
+      '200':
+        description: List of notification rule steps
+        schema:
+          $ref: '#/definitions/ListNotificationRuleStep'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - notification-rule-step
+    summary: Create Notification Rule Step
+    description: Creates a new notification rule step
+    operationId: createNotificationRuleStep
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - name: body
+        in: body
+        description: Request payload to create notification rule step
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUserNotificationStepPayload'
+    responses:
+      '201':
+        description: Notification rule step is created successfully
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps/{id}:
+  get:
+    tags:
+      - notification-rule-step
+    summary: Get Notification Rule Step
+    description: Returns notification rule step with given user identifier, rule id
+    operationId: getNotificationRuleStep
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/NotificationRuleStepId'
+    responses:
+      '200':
+        description: Notification rule step object that is retrieved
+        schema:
+          $ref: '#/definitions/GetNotificationRuleStepResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - notification-rule-step
+    summary: Delete Notification Rule Step
+    description: Deletes a notification rule step using user identifier, rule id, notification rule step id
+    operationId: deleteNotificationRuleStep
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/NotificationRuleStepId'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - notification-rule-step
+    summary: Update Notification Rule Step (Partial)
+    description: Update a notification rule step with given user identifier, rule id, notification rule step id
+    operationId: updateNotificationRuleStep
+    # x-collapse-params: UpdateScheduleRequest
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/NotificationRuleStepId'
+      - name: body
+        in: body
+        description: Request payload of update schedule action
+        required: false
+        schema:
+          $ref: '#/definitions/UpdateUserNotificationStepPayload'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps/{id}/disable:
+  post:
+    tags:
+      - notification-rule-step
+    summary: Disable Notification Rule Step
+    description: Disables a new notification rule step
+    operationId: disableNotificationRuleStep
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/NotificationRuleStepId'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/users/{userIdentifier}/notification-rules/{ruleId}/steps/{id}/enable:
+  post:
+    tags:
+      - notification-rule-step
+    summary: Enable Notification Rule Step
+    description: Enables a new notification rule step
+    operationId: enableNotificationRuleStep
+    parameters:
+      - $ref: '#/parameters/NotificationRuleStepUserIdentifier'
+      - $ref: '#/parameters/NotificationRuleStepRuleId'
+      - $ref: '#/parameters/NotificationRuleStepId'
+    responses:
+      '200':
+        $ref: '#/responses/Accepted'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+

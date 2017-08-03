@@ -1,0 +1,20 @@
+NotificationRuleStepUserIdentifier:
+  name: userIdentifier
+  in: path
+  description: Id or username of the user that the rule belongs to. Either of them should be specified.
+  required: true
+  type: string
+
+NotificationRuleStepRuleId:
+  name: ruleId
+  in: path
+  description: Id of the notification rule that step will belong to.
+  required: true
+  type: string
+
+NotificationRuleStepId:
+  name: id
+  in: path
+  description: Id of the rule step will be changed.
+  required: true
+  type: string
