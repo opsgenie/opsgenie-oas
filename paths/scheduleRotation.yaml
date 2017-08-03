@@ -124,10 +124,17 @@
     summary: Update Schedule Rotation (Partial)
     description: Update schedule rotation with given id
     operationId: updateScheduleRotation
+    # x-collapse-params: UpdateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
       - $ref: '#/parameters/ScheduleRotationId'
+      - name: body
+        in: body
+        description: Request payload of update schedule rotation action
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateScheduleRotationRequest'
     responses:
       '200':
         description: Schedule rotation information for given identifier
