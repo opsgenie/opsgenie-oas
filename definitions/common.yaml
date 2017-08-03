@@ -1,10 +1,4 @@
 ##################
-#     REQUEST    #
-##################
-BaseRequest:
-  type: object
-
-##################
 #    RESPONSE    #
 ##################
 BaseResponse:
