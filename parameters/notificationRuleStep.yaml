@@ -1,0 +1,6 @@
+NotificationRuleStepId:
+  name: id
+  in: path
+  description: Id of the rule step will be changed.
+  required: true
+  type: string

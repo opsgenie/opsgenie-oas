@@ -1,0 +1,6 @@
+NotificationRuleIdentifier:
+  name: ruleId
+  in: path
+  description: Id of the notification rule that step will belong to.
+  required: true
+  type: string

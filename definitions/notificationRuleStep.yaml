@@ -1,0 +1,77 @@
+##################
+#     REQUEST    #
+##################
+CreateNotificationRuleStepRequest:
+  type: object
+  required:
+    - contact
+    - enabled
+  properties:
+    contact:
+      $ref: '#/definitions/ContactMeta'
+      description: The contact that notification will be sent to.
+    sendAfter:
+      $ref: '#/definitions/Duration'
+      description: Time period (in minute) when notification will be sent after.
+    enabled:
+      type: boolean
+      description: Specifies whether given step will be enabled or not when it is created.
+
+UpdateNotificationRuleStepRequest:
+  type: object
+  properties:
+    contact:
+      $ref: '#/definitions/ContactMeta'
+      description: The contact that notification will be sent to.
+    sendAfter:
+      $ref: '#/definitions/Duration'
+      description: Time period (in minute) when notification will be sent after.
+    enabled:
+      type: boolean
+      description: Specifies whether given step will be enabled or not when it is updated.
+
+##################
+#    RESPONSE    #
+##################
+ListNotificationRuleStepsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/NotificationRuleStep'
+
+GetNotificationRuleStepResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NotificationRuleStep'
+
+##################
+#      MODEL     #
+##################
+NotificationRuleStep:
+  type: object
+  properties:
+    _parent:
+      $ref: '#/definitions/NotificationRuleStepParent'
+    id:
+      type: string
+    sendAfter:
+      $ref: '#/definitions/Duration'
+    contact:
+      $ref: '#/definitions/ContactMeta'
+    enabled:
+      type: boolean
+
+NotificationRuleStepParent:
+  type: object
+  properties:
+    name:
+      type: string
+    id:
+      type: string

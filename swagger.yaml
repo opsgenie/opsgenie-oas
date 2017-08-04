@@ -40,7 +40,7 @@ paths:
   - $ref: ./paths/user.yaml
   - $ref: ./paths/contact.yaml
   - $ref: ./paths/notificationRule.yaml # Will be implemented
-  - $ref: ./paths/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./paths/notificationRuleStep.yaml
   - $ref: ./paths/team.yaml
   - $ref: ./paths/teamMember.yaml
   - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
@@ -64,7 +64,7 @@ parameters:
   - $ref: ./parameters/user.yaml
   - $ref: ./parameters/contact.yaml
   - $ref: ./parameters/notificationRule.yaml # Will be implemented
-  - $ref: ./parameters/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./parameters/notificationRuleStep.yaml
   - $ref: ./parameters/team.yaml
   - $ref: ./parameters/teamMember.yaml
   - $ref: ./parameters/teamRoutingRule.yaml  # Will be implemented
@@ -83,7 +83,7 @@ responses:
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
   - $ref: ./responses/notificationRule.yaml # Will be implemented
-  - $ref: ./responses/notificationRuleStep.yaml # Will be implemented
+
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
 
@@ -101,7 +101,7 @@ definitions:
   - $ref: ./definitions/user.yaml
   - $ref: ./definitions/contact.yaml
   - $ref: ./definitions/notificationRule.yaml # Will be implemented
-  - $ref: ./definitions/notificationRuleStep.yaml # Will be implemented
+  - $ref: ./definitions/notificationRuleStep.yaml
   - $ref: ./definitions/team.yaml
   - $ref: ./definitions/teamMember.yaml
   - $ref: ./definitions/teamRoutingRule.yaml  # Will be implemented
