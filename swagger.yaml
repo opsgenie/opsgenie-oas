@@ -39,14 +39,14 @@ paths:
   - $ref: ./paths/account.yaml
   - $ref: ./paths/user.yaml
   - $ref: ./paths/contact.yaml
-  - $ref: ./paths/notificationRule.yaml # Will be implemented
+  - $ref: ./paths/notificationRule.yaml
   - $ref: ./paths/notificationRuleStep.yaml
   - $ref: ./paths/team.yaml
   - $ref: ./paths/teamMember.yaml
   - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./paths/schedule.yaml
   - $ref: ./paths/scheduleRotation.yaml
-  - $ref: ./paths/scheduleOverride.yaml # Will be implemented
+  - $ref: ./paths/scheduleOverride.yaml
   - $ref: ./paths/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./paths/escalation.yaml
   - $ref: ./paths/forwardingRule.yaml
@@ -63,14 +63,14 @@ parameters:
   - $ref: ./parameters/maintenance.yaml
   - $ref: ./parameters/user.yaml
   - $ref: ./parameters/contact.yaml
-  - $ref: ./parameters/notificationRule.yaml # Will be implemented
+  - $ref: ./parameters/notificationRule.yaml
   - $ref: ./parameters/notificationRuleStep.yaml
   - $ref: ./parameters/team.yaml
   - $ref: ./parameters/teamMember.yaml
   - $ref: ./parameters/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./parameters/schedule.yaml
-  - $ref: ./parameters/scheduleRotation.yaml # Will be implemented
-  - $ref: ./parameters/scheduleOverride.yaml # Will be implemented
+  - $ref: ./parameters/scheduleRotation.yaml
+  - $ref: ./parameters/scheduleOverride.yaml
   - $ref: ./parameters/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./parameters/escalation.yaml
   - $ref: ./parameters/forwardingRule.yaml
@@ -82,8 +82,6 @@ responses:
   - $ref: ./responses/common.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
-  - $ref: ./responses/notificationRule.yaml # Will be implemented
-
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
 
@@ -100,14 +98,14 @@ definitions:
   - $ref: ./definitions/account.yaml
   - $ref: ./definitions/user.yaml
   - $ref: ./definitions/contact.yaml
-  - $ref: ./definitions/notificationRule.yaml # Will be implemented
+  - $ref: ./definitions/notificationRule.yaml
   - $ref: ./definitions/notificationRuleStep.yaml
   - $ref: ./definitions/team.yaml
   - $ref: ./definitions/teamMember.yaml
   - $ref: ./definitions/teamRoutingRule.yaml  # Will be implemented
   - $ref: ./definitions/schedule.yaml
   - $ref: ./definitions/scheduleRotation.yaml
-  - $ref: ./definitions/scheduleOverride.yaml # Will be implemented
+  - $ref: ./definitions/scheduleOverride.yaml
   - $ref: ./definitions/whoIsOnCall.yaml  # Will be implemented
   - $ref: ./definitions/escalation.yaml
   - $ref: ./definitions/forwardingRule.yaml

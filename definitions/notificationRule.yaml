@@ -1,0 +1,212 @@
+##################
+#     REQUEST    #
+##################
+CreateNotificationRuleRequest:
+  type: object
+  required:
+    - name
+    - actionType
+    - enabled
+  properties:
+    name:
+      type: string
+      description: Name of the notification rule
+    actionType:
+      $ref: '#/definitions/NotificationActionType'
+    criteria:
+      $ref: '#/definitions/Filter'
+    notificationTime:
+      type: array
+      description: List of Time Periods that notification for schedule start/end will be sent
+      items:
+        $ref: '#/definitions/NotifyTime'
+    timeRestriction:
+      description: Time interval that notification rule will work
+      $ref: '#/definitions/TimeRestrictionInterval'
+    schedules:
+      type: array
+      description: List of schedules that notification rule will be applied when on call of that schedule starts/ends. This field is valid for Schedule Start/End rules
+      items:
+        $ref: '#/definitions/ScheduleRecipient'
+    order:
+      type: integer
+      description: The order of the notification rule within the notification rules with the same action type
+      format: int32
+      minimum: 0
+    steps:
+      description: List of steps that will be added to notification rule
+      type: array
+      items:
+        $ref: '#/definitions/CreateNotificationRuleStepRequest'
+    repeat:
+      $ref: '#/definitions/NotificationRepeat'
+    enabled:
+      type: boolean
+      description: Defines if notification rule will be enabled or not when it is created
+
+UpdateNotificationRuleRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the notification rule
+    criteria:
+      $ref: '#/definitions/Filter'
+    notificationTime:
+      type: array
+      description: List of Time Periods that notification for schedule start/end will be sent
+      items:
+        $ref: '#/definitions/NotifyTime'
+    timeRestriction:
+      description: Time interval that notification rule will work
+      $ref: '#/definitions/TimeRestrictionInterval'
+    schedules:
+      type: array
+      description: List of schedules that notification rule will be applied when on call of that schedule starts/ends. This field is valid for Schedule Start/End rules
+      items:
+        $ref: '#/definitions/ScheduleRecipient'
+    steps:
+      description: List of steps that will be added to notification rule
+      type: array
+      items:
+        $ref: '#/definitions/CreateNotificationRuleStepRequest'
+    repeat:
+      description: The amount of time in minutes that notification steps will be repeatedly apply
+      $ref: '#/definitions/NotificationRepeat'
+    order:
+      type: integer
+      description: The order of the notification rule within the notification rules with the same action type
+      format: int32
+      minimum: 0
+    enabled:
+      type: boolean
+      description: Defines if notification rule will be enabled or not when it is created
+
+##################
+#    RESPONSE    #
+##################
+ListNotificationRulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/NotificationRuleMeta'
+
+CreateNotificationRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NotificationRuleMeta'
+
+GetNotificationRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NotificationRule'
+
+UpdateNotificationRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NotificationRuleMeta'
+
+##################
+#      MODEL     #
+##################
+NotificationRuleMeta:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    actionType:
+      $ref: '#/definitions/NotificationActionType'
+    order:
+      type: integer
+      format: int32
+    enabled:
+      type: boolean
+
+NotificationActionType:
+  type: string
+  description: Type of the action that notification rule will have
+  enum:
+    - create-alert
+    - acknowledged-alert
+    - closed-alert
+    - renotified-alert
+    - assigned-alert
+    - add-note
+    - schedule-start
+    - schedule-end
+    - incoming-call-routing
+
+NotifyTime:
+  type: string
+  enum:
+    - just-before
+    - 15-minutes-ago
+    - 1-hour-ago
+    - 1-day-ago
+
+NotificationRule:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    actionType:
+      $ref: '#/definitions/NotificationActionType'
+    criteria:
+      $ref: '#/definitions/Filter'
+    notificationTime:
+      type: array
+      items:
+        $ref: '#/definitions/NotifyTime'
+    order:
+      type: integer
+      format: int32
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    steps:
+      type: array
+      items:
+        $ref: '#/definitions/NotificationRuleStep'
+    schedules:
+      type: array
+      items:
+        $ref: '#/definitions/ScheduleRecipient'
+    repeat:
+      $ref: '#/definitions/NotificationRepeat'
+    enabled:
+      type: boolean
+
+NotificationRepeat:
+  type: object
+  description: The amount of time in minutes that notification steps will be repeatedly apply
+  properties:
+    loopAfter:
+      type: integer
+      format: int32
+      minimum: 0
+    enabled:
+      type: boolean
+
+ChangeNotificationRuleOrderRequest:
+  type: object
+  properties:
+    order:
+      type: integer
+      format: int32
+      minimum: 0
