@@ -5,6 +5,9 @@
     summary: List Forwarding Rules
     description: Returns list of forwarding rules
     operationId: listForwardingRules
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/forwarding-rule-api#listForwardingRules
     responses:
       '200':
         description: List of forwarding rules
@@ -35,6 +38,9 @@
     summary: Create Forwarding Rule
     description: Creates a new forwarding rule
     operationId: createForwardingRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/forwarding-rule-api#createForwardingRule
     # x-collapse-params: CreateForwardingRule
     parameters:
       - name: body
@@ -60,6 +66,9 @@
     summary: Get Forwarding Rule
     description: Returns forwarding rule with given id or alias
     operationId: getForwardingRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/forwarding-rule-api#getForwardingRule
     # x-collapse-params: GetForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
@@ -98,6 +107,9 @@
     summary: Delete Forwarding Rule
     description: Deletes forwarding rule with given identifier
     operationId: deleteForwardingRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/forwarding-rule-api#deleteForwardingRule
     # x-collapse-params: DeleteForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
@@ -118,6 +130,9 @@
     summary: Update Forwarding Rule
     description: Update forwarding rule with given rule id or alias
     operationId: updateForwardingRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/forwarding-rule-api#updateForwardingRule
     # x-collapse-params: UpdateForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'

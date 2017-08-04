@@ -5,6 +5,9 @@
     summary: List Schedules
     description: Returns list of schedule
     operationId: listSchedules
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#listSchedules
     # x-collapse-params: ListSchedulesRequest
     parameters:
       - name: expand
@@ -49,6 +52,9 @@
     summary: Create Schedule
     description: Creates a new schedule
     operationId: createSchedule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#createSchedule
     parameters:
       - name: body
         in: body
@@ -91,6 +97,9 @@
     summary: Get Schedule
     description: Returns schedule with given id or name
     operationId: getSchedule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#getSchedule
     # x-collapse-params: GetScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -129,6 +138,9 @@
     summary: Update Schedule (Partial)
     description: Update schedule with given id or name
     operationId: updateSchedule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#updateSchedule
     # x-collapse-params: UpdateScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -175,6 +187,9 @@
     summary: Delete Schedule
     description: Delete schedule with given identifier
     operationId: deleteSchedule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#deleteSchedule
     # x-collapse-params: DeleteScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -196,6 +211,9 @@
     summary: Get Schedule Timeline
     description: Returns schedule timeline with given id or name
     operationId: getScheduleTimeline
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#getScheduleTimeline
     # x-collapse-params: GetScheduleTimelineRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -265,6 +283,9 @@
     summary: Export Schedule
     description: Returns an .ics file as byte array
     operationId: exportSchedule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#exportSchedule
     # x-collapse-params: ExportScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'

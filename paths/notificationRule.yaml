@@ -5,6 +5,9 @@
     summary: List Notification Rules
     description: Returns list of notification rules
     operationId: listNotificationRules
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#listNotificationRule
     # x-collapse-params: ListNotificationRulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -42,6 +45,9 @@
     summary: Create Notification Rule
     description: Creates a new notification rule
     operationId: createNotificationRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#createNotificationRule
     # x-collapse-params: CreateNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -90,6 +96,9 @@
     summary: Get Notification Rule
     description: Returns notification rule with given id
     operationId: getNotificationRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#getNotificationRule
     # x-collapse-params: GetNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -128,6 +137,9 @@
     summary: Delete Notification Rule
     description: Deletes a notification rule with given notification rule id
     operationId: deleteNotificationRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#deleteNotificationRule
     # x-collapse-params: DeleteNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -150,6 +162,9 @@
     summary: Update Notification Rule (Partial)
     description: Updates the notification rule with given notification rule id
     operationId: updateNotificationRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#updateNotificationRule
     # x-collapse-params: UpdateNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -199,6 +214,9 @@
     summary: Enable Notification Rule
     description: Enables a notification rule with given notification rule id
     operationId: enableNotificationRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#enableNotificationRule
     # x-collapse-params: EnableNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -220,6 +238,9 @@
     summary: Disable Notification Rule
     description: Disables a notification rule with given notification rule id
     operationId: disableNotificationRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#disableNotificationRule
     # x-collapse-params: DisableNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -241,6 +262,9 @@
     summary: Change order of Notification Rule
     description: Changes order of a notification rule with given notification rule id
     operationId: changeNotificationRuleOrder
+    # externalDocs:
+    #  description: For more information
+    #  url: External documentation is not available!
     # x-collapse-params: ChangeNotificationRuleOrderRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
