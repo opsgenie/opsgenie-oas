@@ -5,6 +5,9 @@
     summary: Create User
     description: Creates a user with the given payload
     operationId: createUser
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#createUser
     # x-collapse-params: CreateUserRequest
     parameters:
       - name: body
@@ -49,6 +52,9 @@
     summary: List users
     description: List users with given parameters
     operationId: listUsers
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#listUsers
     # x-collapse-params: ListUsersRequest
     parameters:
       - $ref: '#/parameters/UserLimitParam'
@@ -89,6 +95,9 @@
     summary: Get User
     description: Get user for the given identifier
     operationId: getUser
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#getUser
     # x-collapse-params: GetUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -134,6 +143,9 @@
     summary: Update User (Partial)
     description: Update user with the given identifier
     operationId: updateUser
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#updateUser
     # x-collapse-params: UpdateUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -160,6 +172,9 @@
     summary: Delete User
     description: Delete user with the given identifier
     operationId: deleteUser
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#deleteUser
     # x-collapse-params: DeleteUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -182,6 +197,9 @@
     summary: Get User Teams
     description: Get user teams for the given user identifier
     operationId: getUserTeams
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#listUserTeams
     # x-collapse-params: GetUserTeamsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -220,6 +238,9 @@
     summary: Get User Forwarding Rules
     description: Get user forwarding rules for the given user identifier
     operationId: getUserForwardingRules
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#listUserForwardingRules
     # x-collapse-params: GetUserForwardingRulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -258,6 +279,9 @@
     summary: Get User Escalations
     description: Get escalations of the user for the given identifier
     operationId: getUserEscalations
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#listUserEscalations
     # x-collapse-params: GetUserEscalationsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -296,6 +320,9 @@
     summary: Get User Schedules
     description: Get schedules of the user for the given identifier
     operationId: getUserSchedules
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/user-api#listUserSchedules
     # x-collapse-params: GetUserSchedulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'

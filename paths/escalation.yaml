@@ -5,6 +5,9 @@
     summary: List Escalations
     description: Returns list of escalations
     operationId: listEscalations
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/escalation-api#listEscalations
     # x-collapse-params: ListEscalationsRequest
     responses:
       '200':
@@ -40,6 +43,9 @@
     summary: Create Escalation
     description: Creates a new escalation
     operationId: createEscalation
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/escalation-api#createEscalation
     # x-collapse-params: CreateEscalationRequest
     parameters:
       - name: body
@@ -85,6 +91,9 @@
     summary: Get Escalation
     description: Returns escalation with given 'id' or 'name'
     operationId: getEscalation
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/escalation-api#getEscalation
     # x-collapse-params: GetEscalationRequest
     parameters:
       - $ref: '#/parameters/EscalationIdentifier'
@@ -123,6 +132,9 @@
     summary: Delete Escalation
     description: Deletes an escalation using escalation 'id' or 'name'
     operationId: deleteEscalation
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/escalation-api#deleteEscalation
     # x-collapse-params: DeleteEscalationRequest
     parameters:
       - $ref: '#/parameters/EscalationIdentifier'
@@ -143,6 +155,9 @@
     summary: Update Escalation (Partial)
     description: Updates the escalation using escalation 'id' or 'name'
     operationId: updateEscalation
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/escalation-api#updateEscalation
     # x-collapse-params: UpdateEscalationRequest
     parameters:
       - $ref: '#/parameters/EscalationIdentifier'

@@ -5,6 +5,9 @@
     summary: Get Account Info
     description: Used to search and retrieve account information in OpsGenie
     operationId: getInfo
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/account-api#getAccount
     # x-collapse-params: GetAccountInfoRequest
     responses:
       '200':

@@ -5,6 +5,9 @@
     summary: Create maintenance
     description: Creates a new maintenance
     operationId: createMaintenance
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/maintenance-api#createMaintenance
     # x-collapse-params: CreateMaintenanceRequest
     parameters:
       - name: body
@@ -47,6 +50,9 @@
     summary: List Maintenance
     description: List maintenance by type
     operationId: listMaintenance
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/maintenance-api#listMaintenance
     # x-collapse-params: ListMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceListType'
@@ -83,6 +89,9 @@
     summary: Get Maintenance
     description: Returns maintenance with given id
     operationId: getMaintenance
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/maintenance-api#getMaintenance
     # x-collapse-params: GetMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
@@ -120,6 +129,9 @@
     summary: Update Maintenance
     description: Update maintenance with given id
     operationId: updateMaintenance
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/maintenance-api#updateMaintenance
     # x-collapse-params: UpdateMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
@@ -163,6 +175,9 @@
     summary: Delete Maintenance
     description: Delete maintenance with given identifier
     operationId: deleteMaintenance
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/maintenance-api#deleteMaintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:
@@ -182,6 +197,9 @@
     summary: Cancel Maintenance
     description: Cance maintenance with given id
     operationId: cancelMaintenance
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/maintenance-api#cancelMaintenance
     # x-collapse-params: CancelMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'

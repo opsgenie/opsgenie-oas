@@ -5,6 +5,9 @@
     summary: Add Team Member
     description: Adds a member to team with given identifier
     operationId: addTeamMember
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/team-member-api#addMember
     # x-collapse-params: AddTeamMemberRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -34,6 +37,9 @@
     summary: Delete Team Member
     description: Deletes the member of team with given identifier
     operationId: deleteTeamMember
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/team-member-api#removeMember
     # x-collapse-params: DeleteTeamMemberRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'

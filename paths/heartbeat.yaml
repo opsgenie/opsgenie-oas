@@ -5,6 +5,9 @@
     summary: Ping Heartbeat
     description: Ping Heartbeat for given heartbeat name
     operationId: ping
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#pingHeartbeat
     # x-collapse-params: PingHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
@@ -25,6 +28,9 @@
     summary: Create Heartbeat
     description: Create a new heartbeat
     operationId: createHeartbeat
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#addHeartbeat
     # x-collapse-params: CreateHeartbeatRequest
     parameters:
       - name: body
@@ -66,6 +72,9 @@
     summary: Get Heartbeat
     description: Returns heartbeat with given name
     operationId: getHeartbeat
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#getHeartbeat
     # x-collapse-params: GetHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
@@ -103,6 +112,9 @@
     summary: Update Heartbeat (Partial)
     description: Update Heartbeatwith given name
     operationId: updateHeartbeat
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#updateHeartbeat
     # x-collapse-params: UpdateHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
@@ -145,6 +157,9 @@
     summary: Delete Heartbeat
     description: Delete heartbeat with given name
     operationId: deleteHeartbeat
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#deleteHeartbeat
     # x-collapse-params: DeleteHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
@@ -165,6 +180,9 @@
     summary: Enable Heartbeat
     description: Enable heartbeat request with given name
     operationId: enableHeartbeat
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#enableHeartbeat
     # x-collapse-params: EnableHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
@@ -203,6 +221,9 @@
     summary: Disable Heartbeat
     description: Disable heartbeat request with given name
     operationId: disableHeartbeat
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/heartbeat-api#disableHeartbeat
     # x-collapse-params: DisableHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'

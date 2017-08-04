@@ -5,6 +5,9 @@
     summary: Create Schedule Override
     description: Creates a schedule override for the specified user and schedule
     operationId: createScheduleOverride
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-override-api#createOverride
     # x-collapse-params: CreateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -49,6 +52,9 @@
     summary: List Schedule Overrides
     description: Returns list of schedule overrides
     operationId: listScheduleOverride
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-override-api#listOverrides
     # x-collapse-params: ListScheduleOverridesRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -88,6 +94,9 @@
     summary: Get Schedule Override
     description: Gets schedule override details with given alias
     operationId: getScheduleOverride
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-override-api#getOverride
     # x-collapse-params: GetScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -127,6 +136,9 @@
     summary: Update Schedule Override
     description: Update schedule override with given alias
     operationId: updateScheduleOverride
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-override-api#updateOverride
     # x-collapse-params: UpdateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -172,6 +184,9 @@
     summary: Delete Schedule Override
     description: Delete schedule override with given alias
     operationId: deleteScheduleOverride
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/schedule-override-api#deleteOverride
     # x-collapse-params: DeleteScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
