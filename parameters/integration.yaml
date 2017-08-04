@@ -1,0 +1,6 @@
+IntegrationId:
+  name: integrationId
+  type: string
+  in: path
+  description: Integration Id
+  required: true

@@ -1,0 +1,385 @@
+/v2/integrations:
+  get:
+    tags:
+      - integration
+    summary: List Integrations
+    description: List integrations with given parameters
+    operationId: listIntegrations
+    # x-collapse-params: ListIntegrationsRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request parameters
+        required: false
+        schema:
+          $ref: '#/definitions/ListIntegrationsRequest'
+    responses:
+      '200':
+        description: List of users with given parameters
+        schema:
+          $ref: '#/definitions/ListIntegrationsResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+          $ref: '#/responses/Unauthorized'
+      default:
+          $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}:
+  get:
+    tags:
+      - integration
+    summary: Get Integration
+    description: Get integration
+    operationId: getIntegration
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+    responses:
+      '200':
+        description: Get integration with given id
+        schema:
+          $ref: '#/definitions/GetIntegrationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+          $ref: '#/responses/Unauthorized'
+      default:
+          $ref: '#/responses/GeneralError'
+
+/v2/integrations/:
+  post:
+    tags:
+      - integration
+    summary: Create API Based Integration
+    description: Creates api based integration
+    operationId: createApiBasedIntegration
+    # x-collapse-params: CreateApiBasedIntegrationRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request parameters
+        required: true
+        schema:
+          $ref: '#/definitions/CreateApiBasedIntegrationRequest'
+    responses:
+      '201':
+        description: Integration information
+        schema:
+          $ref: '#/definitions/CreateApiBaseIntegrationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - integration
+    summary: Create Email Based Integration
+    description: Creates email based integration
+    operationId: createEmailBasedIntegration
+    # x-collapse-params: CreateEmailBasedIntegrationRequest
+    parameters:
+      - name: body
+        in: body
+        description: Request parameters
+        required: true
+        schema:
+          $ref: '#/definitions/CreateEmailBasedIntegrationRequest'
+    responses:
+      '201':
+        description: Integration information
+        schema:
+          $ref: '#/definitions/CreateEmailBaseIntegrationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}:
+  put:
+    tags:
+      - integration
+    summary: Update Integration
+    description: Update integration
+    operationId: updateIntegration
+    # x-collapse-params: UpdateIntegrationRequest
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+      - name: body
+        in: body
+        description: Request parameters
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateIntegrationRequest'
+    responses:
+      '200':
+        description: Integration updated
+        schema:
+          $ref: '#/definitions/UpdateIntegrationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}:
+  delete:
+    tags:
+      - integration
+    summary: Delete Integration
+    description: Delete integration with the given id
+    operationId: deleteIntegration
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}/enable:
+  post:
+    tags:
+      - integration
+    summary: Enable Integration
+    description: Enables integration
+    operationId: enableIntegration
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+    responses:
+      '201':
+        description: Integration information
+        schema:
+          $ref: '#/definitions/IntegrationMetaResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}/disable:
+  post:
+    tags:
+      - integration
+    summary: Disable Integration
+    description: Disables integration
+    operationId: disableIntegration
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+    responses:
+      '201':
+        description: Integration information
+        schema:
+          $ref: '#/definitions/IntegrationMetaResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}/authenticate:
+  post:
+    tags:
+      - integration
+    summary: Authenticate Integration
+    description: Authenticates integration
+    operationId: authenticatesIntegration
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+      - name: body
+        in: body
+        type: string
+        required: true
+    responses:
+      '201':
+        description: Integration information
+        schema:
+          $ref: '#/definitions/IntegrationMetaResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{integrationId}/actions:
+  get:
+    tags:
+      - integration
+    summary: Get Integration Actions
+    description: Get integration actions
+    operationId: getIntegrationActions
+    parameters:
+      - $ref: '#/parameters/IntegrationId'
+    responses:
+      '200':
+        description: Get integration actions
+        schema:
+          $ref: '#/definitions/GetIntegrationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+          $ref: '#/responses/Unauthorized'
+      default:
+          $ref: '#/responses/GeneralError'

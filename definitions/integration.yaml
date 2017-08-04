@@ -1,0 +1,233 @@
+##################
+#     REQUEST    #
+##################
+ListIntegrationsRequest:
+  type: object
+  properties:
+    type:
+      type: string
+      description: Type of the integration. If type parameter is given, the result will be filtered by type
+    teamId:
+      type: string
+      description: The ID of the team. If the team ID parameter is given, the result will be filtered by teamId
+    teamName:
+      type: string
+      description: The name of the team. If the team name parameter is given, the result will be filtered by teamName
+
+##################
+#    RESPONSE    #
+##################
+ListIntegrationsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Integration'
+        totalCount:
+          type: integer
+          format: int64
+        paging:
+          $ref: '#/definitions/PageDetails'
+
+##################
+#    RESPONSE    #
+##################
+GetIntegrationResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Integration'
+
+##################
+#     REQUEST    #
+##################
+CreateApiBasedIntegrationRequest:
+  type: object
+  required:
+    - type
+    - name
+  properties:
+    type:
+      type: string
+    name:
+      type: string
+    enabled:
+      type: boolean
+    allowConfigurationAccess:
+      type: boolean
+    allowWriteAccess:
+      type: boolean
+    ignoreRecipientsFromPayload:
+      type: boolean
+    ignoreTeamsFromPayload:
+      type: boolean
+    recipients:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
+    suppressNotifications:
+      type: boolean
+
+##################
+#    RESPONSE    #
+##################
+CreateApiBaseIntegrationResponse:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    enabled:
+      type: boolean
+    type:
+      type: string
+    apiKey:
+      type: string
+
+##################
+#     REQUEST    #
+##################
+CreateEmailBasedIntegrationRequest:
+  type: object
+  required:
+    - type
+    - name
+    - emailUsername
+  properties:
+    type:
+      type: string
+    name:
+      type: string
+    emailUsername:
+      type: string
+    enabled:
+      type: boolean
+    ignoreRecipientsFromPayload:
+      type: boolean
+    ignoreTeamsFromPayload:
+      type: boolean
+    recipients:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
+    suppressNotifications:
+      type: boolean
+
+##################
+#    RESPONSE    #
+##################
+CreateEmailBaseIntegrationResponse:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    enabled:
+      type: boolean
+    type:
+      type: string
+    emailAddress:
+      type: string
+      format: email
+
+##################
+#     REQUEST    #
+##################
+UpdateIntegrationRequest:
+  type: object
+  required:
+    - type
+    - name
+    - emailUsername
+  properties:
+    type:
+      type: string
+    name:
+      type: string
+    emailUsername:
+      type: string
+    enabled:
+      type: boolean
+    ignoreRecipientsFromPayload:
+      type: boolean
+    ignoreTeamsFromPayload:
+      type: boolean
+    recipients:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
+    suppressNotifications:
+      type: boolean
+
+##################
+#    RESPONSE    #
+##################
+UpdateIntegrationResponse:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    enabled:
+      type: boolean
+    type:
+      type: string
+    emailAddress:
+      type: string
+      format: email
+
+##################
+#    RESPONSE    #
+##################
+IntegrationMetaResponse:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    enabled:
+      type: boolean
+    type:
+      type: string
+
+##################
+#      MODEL     #
+##################
+Integration:
+  type: object
+  properties:
+    id:
+      type: string
+    type:
+      type: string
+    name:
+      type: string
+    teamId:
+       type: string
+    enabled:
+      type: boolean
+    isAdvanced:
+      type: boolean
+    presentationInfo:
+      $ref: '#/definitions/PresentationInfo'
+
+PresentationInfo:
+  type: object
+  properties:
+    integrationGroup:
+      type: string
+    displayName:
+      type: string
+    description:
+      type: string
+    premium:
+      type: boolean
