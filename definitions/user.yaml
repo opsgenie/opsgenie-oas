@@ -117,7 +117,7 @@ GetUserResponse:
         data:
           $ref: '#/definitions/User'
 
-GetUserTeamsResponse:
+ListUserTeamsResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -127,7 +127,7 @@ GetUserTeamsResponse:
           items:
             $ref: '#/definitions/TeamMeta'
 
-GetUserForwardingRulesResponse:
+ListUserForwardingRulesResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -137,7 +137,7 @@ GetUserForwardingRulesResponse:
           items:
             $ref: '#/definitions/ForwardingRule'
 
-GetUserEscalationsResponse:
+ListUserEscalationsResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -147,7 +147,7 @@ GetUserEscalationsResponse:
           items:
             $ref: '#/definitions/Escalation'
 
-GetUserSchedulesResponse:
+ListUserSchedulesResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'

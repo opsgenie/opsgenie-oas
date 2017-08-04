@@ -194,20 +194,20 @@
   get:
     tags:
       - user
-    summary: Get User Teams
-    description: Get user teams for the given user identifier
-    operationId: getUserTeams
+    summary: List User Teams
+    description: List user teams for the given user identifier
+    operationId: listUserTeams
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserTeams
-    # x-collapse-params: GetUserTeamsRequest
+    # x-collapse-params: ListUserTeamsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of team information for the given user identifier
         schema:
-          $ref: '#/definitions/GetUserTeamsResponse'
+          $ref: '#/definitions/ListUserTeamsResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -235,20 +235,20 @@
   get:
     tags:
       - user
-    summary: Get User Forwarding Rules
-    description: Get user forwarding rules for the given user identifier
-    operationId: getUserForwardingRules
+    summary: List User Forwarding Rules
+    description: List user forwarding rules for the given user identifier
+    operationId: listUserForwardingRules
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserForwardingRules
-    # x-collapse-params: GetUserForwardingRulesRequest
+    # x-collapse-params: ListUserForwardingRulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of forwarding rules for the given user identifier
         schema:
-          $ref: '#/definitions/GetUserForwardingRulesResponse'
+          $ref: '#/definitions/ListUserForwardingRulesResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -276,20 +276,20 @@
   get:
     tags:
       - user
-    summary: Get User Escalations
-    description: Get escalations of the user for the given identifier
-    operationId: getUserEscalations
+    summary: List User Escalations
+    description: List escalations of the user for the given identifier
+    operationId: listUserEscalations
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserEscalations
-    # x-collapse-params: GetUserEscalationsRequest
+    # x-collapse-params: ListUserEscalationsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of escalations for the given user identifier
         schema:
-          $ref: '#/definitions/GetUserEscalationsResponse'
+          $ref: '#/definitions/ListUserEscalationsResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -317,20 +317,20 @@
   get:
     tags:
       - user
-    summary: Get User Schedules
-    description: Get schedules of the user for the given identifier
-    operationId: getUserSchedules
+    summary: List User Schedules
+    description: List schedules of the user for the given identifier
+    operationId: listUserSchedules
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserSchedules
-    # x-collapse-params: GetUserSchedulesRequest
+    # x-collapse-params: ListUserSchedulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
       '200':
         description: List of schedules for the given user identifier
         schema:
-          $ref: '#/definitions/GetUserSchedulesResponse'
+          $ref: '#/definitions/ListUserSchedulesResponse'
         headers:
           X-Request-ID:
             description: Id of given request
