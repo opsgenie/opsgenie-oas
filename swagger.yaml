@@ -47,7 +47,7 @@ paths:
   - $ref: ./paths/schedule.yaml
   - $ref: ./paths/scheduleRotation.yaml
   - $ref: ./paths/scheduleOverride.yaml
-  - $ref: ./paths/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./paths/whoIsOnCall.yaml
   - $ref: ./paths/escalation.yaml
   - $ref: ./paths/forwardingRule.yaml
 
@@ -71,7 +71,7 @@ parameters:
   - $ref: ./parameters/schedule.yaml
   - $ref: ./parameters/scheduleRotation.yaml
   - $ref: ./parameters/scheduleOverride.yaml
-  - $ref: ./parameters/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./parameters/whoIsOnCall.yaml
   - $ref: ./parameters/escalation.yaml
   - $ref: ./parameters/forwardingRule.yaml
 
@@ -83,7 +83,6 @@ responses:
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
   - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
-  - $ref: ./responses/whoIsOnCall.yaml  # Will be implemented
 
 ################################################################################
 #                                DEFINITIONS                                   #
@@ -106,6 +105,6 @@ definitions:
   - $ref: ./definitions/schedule.yaml
   - $ref: ./definitions/scheduleRotation.yaml
   - $ref: ./definitions/scheduleOverride.yaml
-  - $ref: ./definitions/whoIsOnCall.yaml  # Will be implemented
+  - $ref: ./definitions/whoIsOnCall.yaml
   - $ref: ./definitions/escalation.yaml
   - $ref: ./definitions/forwardingRule.yaml

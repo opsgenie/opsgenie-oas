@@ -1,14 +1,6 @@
 ##################
 #    RESPONSE    #
 ##################
-GetOnCallsResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/OnCall'
-
 ListOnCallsResponse:
   type: object
   allOf:
@@ -19,7 +11,16 @@ ListOnCallsResponse:
           items:
             $ref: '#/definitions/OnCall'
 
-GetNextOnCallsResponse:
+GetOnCallResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/OnCall'
+
+
+GetNextOnCallResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -30,49 +31,43 @@ GetNextOnCallsResponse:
 ##################
 #      MODEL     #
 ##################
-BaseOnCall:
+# Combined model of OnCall and OnCallFlat
+OnCall:
   type: object
   properties:
     _parent:
       $ref: '#/definitions/ScheduleMeta'
+    onCallParticipants:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    onCallRecipients:
+      type: array
+      items:
+        type: string
 
-# Instead of single model, separate it to OnCall and OnCallFlat
-OnCall:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseOnCall'
-    - properties:
-        onCallParticipants:
-          type: array
-          items:
-            $ref: '#/definitions/Participant'
-        onCallRecipients:
-          type: array
-          items:
-            type: string
-
-# Instead of single model, separate it to NextOnCall and NextOnCallFlat
+# Combined model of NextOnCall and NextOnCallFlat
 NextOnCall:
   type: object
-  allOf:
-    - $ref: '#/definitions/BaseOnCall'
-    - properties:
-        nextOnCallRecipients:
-          type: array
-          items:
-            $ref: '#/definitions/Participant'
-        exactNextOnCallRecipients:
-          type: array
-          items:
-            $ref: '#/definitions/Participant'
-        nextOnCallParticipants:
-          type: array
-          items:
-            type: string
-        exactNextOnCallParticipants:
-          type: array
-          items:
-            type: string
+  properties:
+    _parent:
+      $ref: '#/definitions/ScheduleMeta'
+    nextOnCallRecipients:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    exactNextOnCallRecipients:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    nextOnCallParticipants:
+      type: array
+      items:
+        type: string
+    exactNextOnCallParticipants:
+      type: array
+      items:
+        type: string
 
 Participant:
   type: object
