@@ -7,7 +7,7 @@
     operationId: listSchedules
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#listSchedules
+      url: www.opsgenie.com/docs/rest-api/schedule-api#listSchedules
     # x-collapse-params: ListSchedulesRequest
     parameters:
       - name: expand
@@ -54,7 +54,7 @@
     operationId: createSchedule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#createSchedule
+      url: www.opsgenie.com/docs/rest-api/schedule-api#createSchedule
     parameters:
       - name: body
         in: body
@@ -99,7 +99,7 @@
     operationId: getSchedule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#getSchedule
+      url: www.opsgenie.com/docs/rest-api/schedule-api#getSchedule
     # x-collapse-params: GetScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -140,7 +140,7 @@
     operationId: updateSchedule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#updateSchedule
+      url: www.opsgenie.com/docs/rest-api/schedule-api#updateSchedule
     # x-collapse-params: UpdateScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -189,7 +189,7 @@
     operationId: deleteSchedule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#deleteSchedule
+      url: www.opsgenie.com/docs/rest-api/schedule-api#deleteSchedule
     # x-collapse-params: DeleteScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -213,7 +213,7 @@
     operationId: getScheduleTimeline
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#getScheduleTimeline
+      url: www.opsgenie.com/docs/rest-api/schedule-api#getScheduleTimeline
     # x-collapse-params: GetScheduleTimelineRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -285,7 +285,7 @@
     operationId: exportSchedule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/schedule-api#exportSchedule
+      url: www.opsgenie.com/docs/rest-api/schedule-api#exportSchedule
     # x-collapse-params: ExportScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'

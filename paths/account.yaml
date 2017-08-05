@@ -7,7 +7,7 @@
     operationId: getInfo
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/account-api#getAccount
+      url: www.opsgenie.com/docs/rest-api/account-api#getAccount
     # x-collapse-params: GetAccountInfoRequest
     responses:
       '200':

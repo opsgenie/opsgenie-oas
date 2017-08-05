@@ -7,7 +7,7 @@
     operationId: createContact
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#createContact
+      url: www.opsgenie.com/docs/rest-api/contact-api#createContact
     # x-collapse-params: CreateContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -52,7 +52,7 @@
     operationId: listContacts
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#listContacts
+      url: www.opsgenie.com/docs/rest-api/contact-api#listContacts
     # x-collapse-params: ListContactsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -89,7 +89,7 @@
     operationId: updateContact
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#updateContact
+      url: www.opsgenie.com/docs/rest-api/contact-api#updateContact
     # x-collapse-params: UpdateContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -120,7 +120,7 @@
     operationId: getContact
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#getContact
+      url: www.opsgenie.com/docs/rest-api/contact-api#getContact
     # x-collapse-params: GetContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -159,7 +159,7 @@
     operationId: deleteContact
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#deleteContact
+      url: www.opsgenie.com/docs/rest-api/contact-api#deleteContact
     # x-collapse-params: DeleteContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -181,7 +181,7 @@
     operationId: enableContact
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#enableContact
+      url: www.opsgenie.com/docs/rest-api/contact-api#enableContact
     # x-collapse-params: EnableContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -205,7 +205,7 @@
     operationId: disableContact
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/contact-api#disableContact
+      url: www.opsgenie.com/docs/rest-api/contact-api#disableContact
     # x-collapse-params: DisableContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'

@@ -7,7 +7,7 @@
     operationId: listNotificationRules
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#listNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#listNotificationRule
     # x-collapse-params: ListNotificationRulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -47,7 +47,7 @@
     operationId: createNotificationRule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#createNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#createNotificationRule
     # x-collapse-params: CreateNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -98,7 +98,7 @@
     operationId: getNotificationRule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#getNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#getNotificationRule
     # x-collapse-params: GetNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -139,7 +139,7 @@
     operationId: deleteNotificationRule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#deleteNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#deleteNotificationRule
     # x-collapse-params: DeleteNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -164,7 +164,7 @@
     operationId: updateNotificationRule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#updateNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#updateNotificationRule
     # x-collapse-params: UpdateNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -216,7 +216,7 @@
     operationId: enableNotificationRule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#enableNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#enableNotificationRule
     # x-collapse-params: EnableNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -240,7 +240,7 @@
     operationId: disableNotificationRule
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/notification-rule-api#disableNotificationRule
+      url: www.opsgenie.com/docs/rest-api/notification-rule-api#disableNotificationRule
     # x-collapse-params: DisableNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
