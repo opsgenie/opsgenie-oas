@@ -82,7 +82,6 @@ responses:
   - $ref: ./responses/common.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
-  - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
 
 ################################################################################
 #                                DEFINITIONS                                   #

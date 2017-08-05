@@ -3,7 +3,7 @@
     tags:
       - team-routing-rule
     summary: Create Team Routing Rule
-    description: Creates a new Team Routing Rule
+    description: Creates a new team routing rule
     operationId: createTeamRoutingRule
     # x-collapse-params: CreateTeamRoutingRuleRequest
     parameters:
@@ -17,7 +17,7 @@
           $ref: '#/definitions/CreateTeamRoutingRuleRequest'
     responses:
       '201':
-        description: Information for created Team Routing Rule
+        description: Information for created team routing rule
         schema:
           $ref: '#/definitions/SuccessResponse'
         headers:
@@ -40,6 +40,8 @@
         $ref: '#/responses/Unauthorized'
       '403':
         $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
       '422':
         $ref: '#/responses/UnprocessableEntity'
       default:
@@ -49,7 +51,7 @@
     tags:
       - team-routing-rule
     summary: List Team Routing Rules
-    description: Returns list of Team Routing Rules
+    description: Returns list of team routing rules
     operationId: listTeamRoutingRules
     # x-collapse-params: ListTeamRoutingRulesRequest
     parameters:
@@ -78,6 +80,8 @@
             type: string
       '403':
         $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -86,7 +90,7 @@
     tags:
       - team-routing-rule
     summary: Get Team Routing Rule
-    description: Returns Team Routing Rule with given id
+    description: Returns team routing rule with given id
     operationId: getTeamRoutingRule
     # x-collapse-params: GetTeamRoutingRuleRequest
     parameters:
@@ -114,6 +118,8 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '403':
+        $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
       default:
@@ -122,7 +128,7 @@
   patch:
     tags:
       - team-routing-rule
-    summary: Update Team Routing Rule
+    summary: Update Team Routing Rule (Partial)
     description: Update routing rule of the team
     operationId: updateTeamRoutingRule
     # x-collapse-params: UpdateTeamRoutingRuleRequest
@@ -145,6 +151,8 @@
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -152,7 +160,7 @@
     tags:
       - team-routing-rule
     summary: Delete Team Routing Rule
-    description: Delete Team Routing Rule with given id
+    description: Delete team routing rule with given id
     operationId: deleteTeamRoutingRule
     # x-collapse-params: DeleteTeamRoutingRuleRequest
     parameters:
@@ -164,36 +172,41 @@
         $ref: '#/responses/Ok'
       '401':
         $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
 /v2/teams/{identifier}/routing-rules/{id}/change-order:
-  tags:
-    - team-routing-rule
-  summary: Change Team Routing Rule Order
-  description: Change the order of Team Routing Rule with given id
-  operationId: changeTeamRoutingRuleOrder
-  # x-collapse-params: ChangeTeamRoutingRuleOrderRequest
-  parameters:
-    - $ref: '#/parameters/TeamIdentifier'
-    - $ref: '#/parameters/TeamIdentifierType2'
-    - $ref: '#/parameters/TeamRoutingRuleId'
-    - name: body
-      in: body
-      description: Request payload of Change Team Routing Rule Order action
-      required: true
-      schema:
-        $ref: '#/definitions/ChangeTeamRoutingRuleOrderRequest'
-  responses:
-    '200':
-      $ref: '#/responses/Ok'
-    '401':
-      $ref: '#/responses/Unauthorized'
-    '403':
-      $ref: '#/responses/Forbidden'
-    '404':
-      $ref: '#/responses/NotFound'
-    default:
-      $ref: '#/responses/GeneralError'
+  post:
+    tags:
+      - team-routing-rule
+    summary: Change Team Routing Rule Order
+    description: Change the order of team routing rule with given id
+    operationId: changeTeamRoutingRuleOrder
+    # x-collapse-params: ChangeTeamRoutingRuleOrderRequest
+    parameters:
+      - $ref: '#/parameters/TeamIdentifier'
+      - $ref: '#/parameters/TeamIdentifierType2'
+      - $ref: '#/parameters/TeamRoutingRuleId'
+      - name: body
+        in: body
+        description: Request payload of change team routing rule order action
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeTeamRoutingRuleOrderRequest'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'

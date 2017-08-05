@@ -261,55 +261,6 @@ TimeOfDayRestriction:
       type: integer
       format: int32
 
-Condition:
-  type: object
-  required:
-    - field
-    - operation
-  properties:
-    field:
-      type: string
-      description: Specifies which alert field will be used in condition
-      enum:
-       -  message
-       -  alias
-       -  description
-       -  source
-       -  entity
-       -  tags
-       -  actions
-       -  extra-properties
-       -  recipients
-       -  teams
-    key:
-      type: string
-      description: If field is set as extra-properties, key could be used for key-value pair
-    not:
-      type: boolean
-      description: Indicates behaviour of the given operation. Default value is false.
-      default: false
-    operation:
-      type: string
-      description: It is the operation that will be executed for the given field and key.
-      enum:
-        - matches
-        - contains
-        - starts-with
-        - ends-with
-        - equals
-        - contains-key
-        - contains-value
-        - greater-than
-        - less-than
-        - is-empty
-        - equals-ignore-whitespace
-    expectedValue:
-      type: string
-      description: User defined value that will be compared with alert field according to the operation.
-    order:
-      type: integer
-      description: Order of the condition in conditions list
-
 Duration:
   type: object
   required:
