@@ -7,7 +7,7 @@
     operationId: addTeamMember
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/team-member-api#addMember
+      url: www.opsgenie.com/docs/rest-api/team-member-api#addMember
     # x-collapse-params: AddTeamMemberRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -39,7 +39,7 @@
     operationId: deleteTeamMember
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/team-member-api#removeMember
+      url: www.opsgenie.com/docs/rest-api/team-member-api#removeMember
     # x-collapse-params: DeleteTeamMemberRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
