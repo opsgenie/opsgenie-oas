@@ -5,6 +5,9 @@
     summary: Create Team Routing Rule
     description: Creates a new team routing rule
     operationId: createTeamRoutingRule
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#createRoutingRule
     # x-collapse-params: CreateTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -53,6 +56,9 @@
     summary: List Team Routing Rules
     description: Returns list of team routing rules
     operationId: listTeamRoutingRules
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#listRoutingRules
     # x-collapse-params: ListTeamRoutingRulesRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -92,6 +98,9 @@
     summary: Get Team Routing Rule
     description: Returns team routing rule with given id
     operationId: getTeamRoutingRule
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#getRoutingRule
     # x-collapse-params: GetTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -131,6 +140,9 @@
     summary: Update Team Routing Rule (Partial)
     description: Update routing rule of the team
     operationId: updateTeamRoutingRule
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#updateRoutingRule
     # x-collapse-params: UpdateTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -162,6 +174,9 @@
     summary: Delete Team Routing Rule
     description: Delete team routing rule with given id
     operationId: deleteTeamRoutingRule
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#deleteRoutingRule
     # x-collapse-params: DeleteTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -186,6 +201,9 @@
     summary: Change Team Routing Rule Order
     description: Change the order of team routing rule with given id
     operationId: changeTeamRoutingRuleOrder
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#changeRoutingRuleOrder
     # x-collapse-params: ChangeTeamRoutingRuleOrderRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
