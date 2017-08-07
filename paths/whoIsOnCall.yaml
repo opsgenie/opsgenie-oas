@@ -5,6 +5,9 @@
     summary: List On Calls
     description: Lists current on-call participants of all schedules
     operationId: listOnCalls
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#listOnCalls
     # x-collapse-params: ListOnCallsRequest
     parameters:
       - $ref: '#/parameters/WhoIsOnCallFlat'
@@ -42,6 +45,9 @@
     summary: Get On Calls
     description: Gets current on-call participants of a specific schedule
     operationId: getOnCalls
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#getOnCalls
     # x-collapse-params: GetOnCallRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -83,6 +89,9 @@
     summary: Get Next On Calls
     description: Gets next on-call participants of a specific schedule
     operationId: getNextOnCalls
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#getNextOnCalls
     # x-collapse-params: GetNextOnCallRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -124,6 +133,9 @@
     summary: Export On-Call User
     description: Exports personal on-call timeline of 3 months to a .ics file
     operationId: exportOnCallUser
+    externalDocs:
+      description: For more information
+      url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#exportOnCalls
     # x-collapse-params: ExportOnCallUserRequest
     parameters:
       - name: identifier
