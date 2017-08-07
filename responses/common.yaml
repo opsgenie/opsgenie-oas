@@ -13,7 +13,7 @@ Ok:
       description: Status of rate limit
       type: string
     X-RateLimit-Reason:
-      description: Source of the rete limit
+      description: Source of the rate limit
       type: string
     X-RateLimit-Period-In-Sec:
       description: Time of throttle in seconds
@@ -34,7 +34,7 @@ Accepted:
       description: Status of rate limit
       type: string
     X-RateLimit-Reason:
-      description: Source of the rete limit
+      description: Source of the rate limit
       type: string
     X-RateLimit-Period-In-Sec:
       description: Time of throttle in seconds

@@ -1,0 +1,93 @@
+##################
+#     REQUEST    #
+##################
+CreateTeamRoutingRuleRequest:
+  type: object
+  required:
+    - notify
+  properties:
+    name:
+      type: string
+      description: Name of the team routing rule
+    order:
+      type: integer
+      format: int32
+      description: Order of team routing rule within the rules. order value is actually the index of the team routing rule.
+    criteria:
+      $ref: '#/definitions/Filter'
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    notify:
+      $ref: '#/definitions/Recipient'
+    timezone:
+      type: string
+      description: Timezone of team routing rule. If timezone field is not given, account timezone is used as default.
+
+UpdateTeamRoutingRuleRequest:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the team routing rule
+    criteria:
+      $ref: '#/definitions/Filter'
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    notify:
+      $ref: '#/definitions/Recipient'
+    timezone:
+      type: string
+      description: Timezone of team routing rule. If timezone field is not given, account timezone is used as default.
+
+ChangeTeamRoutingRuleOrderRequest:
+  type: object
+  properties:
+    order:
+      type: integer
+      format: int32
+      description: Order of team routing rule within the rules. order value is actually the index of the team routing rule.
+
+##################
+#    RESPONSE    #
+##################
+GetTeamRoutingRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/TeamRoutingRule'
+
+ListTeamRoutingRulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/TeamRoutingRule'
+
+##################
+#      MODEL     #
+##################
+TeamRoutingRule:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    isDefault:
+      type: boolean
+    order:
+      type: integer
+      format: int32
+    criteria:
+      $ref: '#/definitions/Filter'
+    timezone:
+      type: string
+    timeRestriction:
+      $ref: '#/definitions/TimeRestrictionInterval'
+    notify:
+      $ref: '#/definitions/Recipient'

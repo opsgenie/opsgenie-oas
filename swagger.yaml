@@ -43,7 +43,7 @@ paths:
   - $ref: ./paths/notificationRuleStep.yaml
   - $ref: ./paths/team.yaml
   - $ref: ./paths/teamMember.yaml
-  - $ref: ./paths/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./paths/teamRoutingRule.yaml
   - $ref: ./paths/schedule.yaml
   - $ref: ./paths/scheduleRotation.yaml
   - $ref: ./paths/scheduleOverride.yaml
@@ -67,7 +67,7 @@ parameters:
   - $ref: ./parameters/notificationRuleStep.yaml
   - $ref: ./parameters/team.yaml
   - $ref: ./parameters/teamMember.yaml
-  - $ref: ./parameters/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./parameters/teamRoutingRule.yaml
   - $ref: ./parameters/schedule.yaml
   - $ref: ./parameters/scheduleRotation.yaml
   - $ref: ./parameters/scheduleOverride.yaml
@@ -82,7 +82,6 @@ responses:
   - $ref: ./responses/common.yaml
   - $ref: ./responses/integration.yaml  # Will be implemented
   - $ref: ./responses/policy.yaml # Will be implemented
-  - $ref: ./responses/teamRoutingRule.yaml  # Will be implemented
 
 ################################################################################
 #                                DEFINITIONS                                   #
@@ -101,7 +100,7 @@ definitions:
   - $ref: ./definitions/notificationRuleStep.yaml
   - $ref: ./definitions/team.yaml
   - $ref: ./definitions/teamMember.yaml
-  - $ref: ./definitions/teamRoutingRule.yaml  # Will be implemented
+  - $ref: ./definitions/teamRoutingRule.yaml
   - $ref: ./definitions/schedule.yaml
   - $ref: ./definitions/scheduleRotation.yaml
   - $ref: ./definitions/scheduleOverride.yaml
