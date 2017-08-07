@@ -322,9 +322,9 @@ MatchAllConditions:
             $ref: '#/definitions/Condition'
           minItems: 1
 
-MatchAnyConditions:
-  x-discriminator-value: match-any-conditions
-  description: Match any conditions filter
+MatchAnyCondition:
+  x-discriminator-value: match-any-condition
+  description: Match any condition filter
   required:
     - conditions
   allOf:
@@ -332,7 +332,7 @@ MatchAnyConditions:
     - type: object
       properties:
         type:
-          default: match-any-conditions
+          default: match-any-condition
         conditions:
           type: array
           items:
