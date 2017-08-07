@@ -1,0 +1,93 @@
+##################
+#    RESPONSE    #
+##################
+ListOnCallsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/OnCall'
+
+GetOnCallResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/OnCall'
+
+
+GetNextOnCallResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/NextOnCall'
+
+##################
+#      MODEL     #
+##################
+# Combined model of OnCall and OnCallFlat
+OnCall:
+  type: object
+  properties:
+    _parent:
+      $ref: '#/definitions/ScheduleMeta'
+    onCallParticipants:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    onCallRecipients:
+      type: array
+      items:
+        type: string
+
+# Combined model of NextOnCall and NextOnCallFlat
+NextOnCall:
+  type: object
+  properties:
+    _parent:
+      $ref: '#/definitions/ScheduleMeta'
+    nextOnCallRecipients:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    exactNextOnCallRecipients:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    nextOnCallParticipants:
+      type: array
+      items:
+        type: string
+    exactNextOnCallParticipants:
+      type: array
+      items:
+        type: string
+
+Participant:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    type:
+      type: string
+    onCallParticipants:
+      type: array
+      items:
+        $ref: '#/definitions/Participant'
+    forwardedFrom:
+      $ref: '#/definitions/Participant'
+    escalationTime:
+      description: Only used by 'escalation' participants
+      type: integer
+      format: int32
+    notifyType:
+      description: Only used by 'escalation' participants
+      type: string
