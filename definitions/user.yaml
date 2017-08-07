@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateUserRequest:
+CreateUserPayload:
   type: object
   required:
     - username
@@ -48,7 +48,7 @@ CreateUserRequest:
       description: Invitation email will not be sent if set to true. Default value is false
       type: boolean
 
-UpdateUserRequest:
+UpdateUserPayload:
   type: object
   properties:
     username:

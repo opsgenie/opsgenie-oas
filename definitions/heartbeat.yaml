@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateHeartbeatRequest:
+CreateHeartbeatPayload:
   type: object
   allOf:
   - required:
@@ -34,7 +34,7 @@ CreateHeartbeatRequest:
         type: boolean
         description: Enable/disable heartbeat monitoring
 
-UpdateHeartbeatRequest:
+UpdateHeartbeatPayload:
   type: object
   properties:
     description:

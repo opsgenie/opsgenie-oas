@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateNotificationRuleRequest:
+CreateNotificationRulePayload:
   type: object
   required:
     - name
@@ -37,14 +37,14 @@ CreateNotificationRuleRequest:
       description: List of steps that will be added to notification rule
       type: array
       items:
-        $ref: '#/definitions/CreateNotificationRuleStepRequest'
+        $ref: '#/definitions/CreateNotificationRuleStepPayload'
     repeat:
       $ref: '#/definitions/NotificationRepeat'
     enabled:
       type: boolean
       description: Defines if notification rule will be enabled or not when it is created
 
-UpdateNotificationRuleRequest:
+UpdateNotificationRulePayload:
   type: object
   properties:
     name:
@@ -69,7 +69,7 @@ UpdateNotificationRuleRequest:
       description: List of steps that will be added to notification rule
       type: array
       items:
-        $ref: '#/definitions/CreateNotificationRuleStepRequest'
+        $ref: '#/definitions/CreateNotificationRuleStepPayload'
     repeat:
       description: The amount of time in minutes that notification steps will be repeatedly apply
       $ref: '#/definitions/NotificationRepeat'
@@ -81,6 +81,14 @@ UpdateNotificationRuleRequest:
     enabled:
       type: boolean
       description: Defines if notification rule will be enabled or not when it is created
+
+ChangeNotificationRuleOrderPayload:
+  type: object
+  properties:
+    order:
+      type: integer
+      format: int32
+      minimum: 0
 
 ##################
 #    RESPONSE    #
@@ -202,11 +210,3 @@ NotificationRepeat:
       minimum: 0
     enabled:
       type: boolean
-
-ChangeNotificationRuleOrderRequest:
-  type: object
-  properties:
-    order:
-      type: integer
-      format: int32
-      minimum: 0

@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateScheduleOverrideRequest:
+CreateScheduleOverridePayload:
   type: object
   required:
     - alias
@@ -30,7 +30,7 @@ CreateScheduleOverrideRequest:
       description: Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden
       minItems: 1
 
-UpdateScheduleOverrideRequest:
+UpdateScheduleOverridePayload:
   type: object
   required:
       - user

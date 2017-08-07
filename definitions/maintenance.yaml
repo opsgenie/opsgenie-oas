@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateMaintenanceRequest:
+CreateMaintenancePayload:
   type: object
   required:
     - time
@@ -20,7 +20,7 @@ CreateMaintenanceRequest:
       items:
         $ref: '#/definitions/MaintenanceRule'
 
-UpdateMaintenanceRequest:
+UpdateMaintenancePayload:
   type: object
   required:
     - time

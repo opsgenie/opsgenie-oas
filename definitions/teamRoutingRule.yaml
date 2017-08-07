@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateTeamRoutingRuleRequest:
+CreateTeamRoutingRulePayload:
   type: object
   required:
     - notify
@@ -23,7 +23,7 @@ CreateTeamRoutingRuleRequest:
       type: string
       description: Timezone of team routing rule. If timezone field is not given, account timezone is used as default.
 
-UpdateTeamRoutingRuleRequest:
+UpdateTeamRoutingRulePayload:
   type: object
   properties:
     name:
@@ -39,7 +39,7 @@ UpdateTeamRoutingRuleRequest:
       type: string
       description: Timezone of team routing rule. If timezone field is not given, account timezone is used as default.
 
-ChangeTeamRoutingRuleOrderRequest:
+ChangeTeamRoutingRuleOrderPayload:
   type: object
   properties:
     order:

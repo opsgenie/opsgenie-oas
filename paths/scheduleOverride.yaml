@@ -8,7 +8,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-override-api#createOverride
-    # x-collapse-params: CreateScheduleOverrideRequest
+    x-collapse-params: CreateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -17,7 +17,7 @@
         description: Request payload of created schedule override
         required: true
         schema:
-          $ref: '#/definitions/CreateScheduleOverrideRequest'
+          $ref: '#/definitions/CreateScheduleOverridePayload'
     responses:
       '201':
         description: Schedule override information for created schedule override
@@ -55,7 +55,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-override-api#listOverrides
-    # x-collapse-params: ListScheduleOverridesRequest
+    x-collapse-params: ListScheduleOverridesRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -97,7 +97,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-override-api#getOverride
-    # x-collapse-params: GetScheduleOverrideRequest
+    x-collapse-params: GetScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleOverrideAlias'
@@ -139,7 +139,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-override-api#updateOverride
-    # x-collapse-params: UpdateScheduleOverrideRequest
+    x-collapse-params: UpdateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleOverrideAlias'
@@ -149,7 +149,7 @@
         description: Request payload of update schedule override
         required: true
         schema:
-          $ref: '#/definitions/UpdateScheduleOverrideRequest'
+          $ref: '#/definitions/UpdateScheduleOverridePayload'
     responses:
       '200':
         description: Schedule override information for updated schedule override
@@ -187,7 +187,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-override-api#deleteOverride
-    # x-collapse-params: DeleteScheduleOverrideRequest
+    x-collapse-params: DeleteScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleOverrideAlias'

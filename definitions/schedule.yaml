@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateScheduleRequest:
+CreateSchedulePayload:
   type: object
   required:
     - name
@@ -24,10 +24,10 @@ CreateScheduleRequest:
     rotations:
       type: array
       items:
-        $ref: '#/definitions/CreateScheduleRotationRequest'
+        $ref: '#/definitions/CreateScheduleRotationPayload'
       minItems: 1
 
-UpdateScheduleRequest:
+UpdateSchedulePayload:
   type: object
   properties:
     name:
@@ -48,7 +48,7 @@ UpdateScheduleRequest:
     rotations:
       type: array
       items:
-        $ref: '#/definitions/CreateScheduleRotationRequest'
+        $ref: '#/definitions/CreateScheduleRotationPayload'
 
 ##################
 #    RESPONSE    #

@@ -61,7 +61,7 @@
         description: Request payload of created schedule
         required: true
         schema:
-          $ref: '#/definitions/CreateScheduleRequest'
+          $ref: '#/definitions/CreateSchedulePayload'
     responses:
       '201':
         description: Schedule meta information for created schedule
@@ -100,7 +100,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-api#getSchedule
-    # x-collapse-params: GetScheduleRequest
+    x-collapse-params: GetScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType'
@@ -141,7 +141,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-api#updateSchedule
-    # x-collapse-params: UpdateScheduleRequest
+    x-collapse-params: UpdateScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType'
@@ -150,7 +150,7 @@
         description: Request payload of update schedule action
         required: false
         schema:
-          $ref: '#/definitions/UpdateScheduleRequest'
+          $ref: '#/definitions/UpdateSchedulePayload'
     responses:
       '200':
         description: Schedule information for given identifier
@@ -190,7 +190,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-api#deleteSchedule
-    # x-collapse-params: DeleteScheduleRequest
+    x-collapse-params: DeleteScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType'
@@ -214,7 +214,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-api#getScheduleTimeline
-    # x-collapse-params: GetScheduleTimelineRequest
+    x-collapse-params: GetScheduleTimelineRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType'
@@ -286,7 +286,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-api#exportSchedule
-    # x-collapse-params: ExportScheduleRequest
+    x-collapse-params: ExportScheduleRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType'

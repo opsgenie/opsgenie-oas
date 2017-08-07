@@ -8,7 +8,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#createRoutingRule
-    # x-collapse-params: CreateTeamRoutingRuleRequest
+    x-collapse-params: CreateTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -17,7 +17,7 @@
         description: Request payload of createTeamRoutingRule
         required: true
         schema:
-          $ref: '#/definitions/CreateTeamRoutingRuleRequest'
+          $ref: '#/definitions/CreateTeamRoutingRulePayload'
     responses:
       '201':
         description: Information for created team routing rule
@@ -59,7 +59,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#listRoutingRules
-    # x-collapse-params: ListTeamRoutingRulesRequest
+    x-collapse-params: ListTeamRoutingRulesRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -101,7 +101,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#getRoutingRule
-    # x-collapse-params: GetTeamRoutingRuleRequest
+    x-collapse-params: GetTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -143,7 +143,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#updateRoutingRule
-    # x-collapse-params: UpdateTeamRoutingRuleRequest
+    x-collapse-params: UpdateTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -153,7 +153,7 @@
         description: Request payload of update Team Routing Rule action
         required: false
         schema:
-          $ref: '#/definitions/UpdateTeamRoutingRuleRequest'
+          $ref: '#/definitions/UpdateTeamRoutingRulePayload'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -177,7 +177,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#deleteRoutingRule
-    # x-collapse-params: DeleteTeamRoutingRuleRequest
+    x-collapse-params: DeleteTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -204,7 +204,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-routing-rule-api#changeRoutingRuleOrder
-    # x-collapse-params: ChangeTeamRoutingRuleOrderRequest
+    x-collapse-params: ChangeTeamRoutingRuleOrderRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -214,7 +214,7 @@
         description: Request payload of change team routing rule order action
         required: true
         schema:
-          $ref: '#/definitions/ChangeTeamRoutingRuleOrderRequest'
+          $ref: '#/definitions/ChangeTeamRoutingRuleOrderPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'

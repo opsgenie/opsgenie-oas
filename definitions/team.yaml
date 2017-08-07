@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateTeamRequest:
+CreateTeamPayload:
   type: object
   required:
     - name
@@ -18,7 +18,7 @@ CreateTeamRequest:
         $ref: '#/definitions/TeamMember'
       description: The users which will be added to team, and optionally their roles.
 
-UpdateTeamRequest:
+UpdateTeamPayload:
   type: object
   properties:
     name:

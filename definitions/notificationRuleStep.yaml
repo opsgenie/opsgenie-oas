@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateNotificationRuleStepRequest:
+CreateNotificationRuleStepPayload:
   type: object
   required:
     - contact
@@ -17,7 +17,7 @@ CreateNotificationRuleStepRequest:
       type: boolean
       description: Specifies whether given step will be enabled or not when it is created.
 
-UpdateNotificationRuleStepRequest:
+UpdateNotificationRuleStepPayload:
   type: object
   properties:
     contact:

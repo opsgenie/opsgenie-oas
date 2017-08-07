@@ -8,6 +8,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#createRotation
+    x-collapse-params: CreateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -16,7 +17,7 @@
         description: Request payload of created schedule rotation
         required: true
         schema:
-          $ref: '#/definitions/CreateScheduleRotationRequest'
+          $ref: '#/definitions/CreateScheduleRotationPayload'
     responses:
       '201':
         description: Schedule rotation meta information for created rotation
@@ -56,7 +57,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#listRotations
-    # x-collapse-params: ListScheduleRotationsRequest
+    x-collapse-params: ListScheduleRotationsRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -94,7 +95,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#getRotation
-    # x-collapse-params: GetScheduleRotationRequest
+    x-collapse-params: GetScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -136,7 +137,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#updateRotation
-    # x-collapse-params: UpdateScheduleRotationRequest
+    x-collapse-params: UpdateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -146,7 +147,7 @@
         description: Request payload of update schedule rotation action
         required: true
         schema:
-          $ref: '#/definitions/UpdateScheduleRotationRequest'
+          $ref: '#/definitions/UpdateScheduleRotationPayload'
     responses:
       '200':
         description: Schedule rotation information for given identifier
@@ -186,7 +187,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#deleteRotation
-    # x-collapse-params: DeleteScheduleRotationRequest
+    x-collapse-params: DeleteScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'

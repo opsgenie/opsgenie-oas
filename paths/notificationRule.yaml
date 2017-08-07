@@ -48,7 +48,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/notification-rule-api#createNotificationRule
-    # x-collapse-params: CreateNotificationRuleRequest
+    x-collapse-params: CreateNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - name: body
@@ -56,7 +56,7 @@
         description: Request payload of create notification rule
         required: true
         schema:
-          $ref: '#/definitions/CreateNotificationRuleRequest'
+          $ref: '#/definitions/CreateNotificationRulePayload'
     responses:
       '201':
         description: Notification rule meta information for created notification rule
@@ -99,7 +99,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/notification-rule-api#getNotificationRule
-    # x-collapse-params: GetNotificationRuleRequest
+    x-collapse-params: GetNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/NotificationRuleIdentifier'
@@ -140,7 +140,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/notification-rule-api#deleteNotificationRule
-    # x-collapse-params: DeleteNotificationRuleRequest
+    x-collapse-params: DeleteNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/NotificationRuleIdentifier'
@@ -165,7 +165,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/notification-rule-api#updateNotificationRule
-    # x-collapse-params: UpdateNotificationRuleRequest
+    x-collapse-params: UpdateNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/NotificationRuleIdentifier'
@@ -174,7 +174,7 @@
         description: Request payload of update notification rule
         required: true
         schema:
-          $ref: '#/definitions/UpdateNotificationRuleRequest'
+          $ref: '#/definitions/UpdateNotificationRulePayload'
     responses:
       '200':
         description: Notification rule meta information for updated notification rule
@@ -217,7 +217,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/notification-rule-api#enableNotificationRule
-    # x-collapse-params: EnableNotificationRuleRequest
+    x-collapse-params: EnableNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/NotificationRuleIdentifier'
@@ -241,7 +241,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/notification-rule-api#disableNotificationRule
-    # x-collapse-params: DisableNotificationRuleRequest
+    x-collapse-params: DisableNotificationRuleRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/NotificationRuleIdentifier'
@@ -265,7 +265,7 @@
     # externalDocs:
     #  description: For more information
     #  url: External documentation is not available!
-    # x-collapse-params: ChangeNotificationRuleOrderRequest
+    x-collapse-params: ChangeNotificationRuleOrderRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/NotificationRuleIdentifier'
@@ -274,7 +274,7 @@
         description: Request payload of change order of notification rule
         required: true
         schema:
-          $ref: '#/definitions/ChangeNotificationRuleOrderRequest'
+          $ref: '#/definitions/ChangeNotificationRuleOrderPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'

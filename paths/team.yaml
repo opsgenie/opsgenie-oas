@@ -15,7 +15,7 @@
         description: Request payload of created team
         required: true
         schema:
-          $ref: '#/definitions/CreateTeamRequest'
+          $ref: '#/definitions/CreateTeamPayload'
     responses:
       '201':
         description: Contact information for created contact
@@ -99,7 +99,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-api#getTeam
-    # x-collapse-params: GetTeamRequest
+    x-collapse-params: GetTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType'
@@ -140,7 +140,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-api#deleteTeam
-    # x-collapse-params: DeleteTeamRequest
+    x-collapse-params: DeleteTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType'
@@ -171,7 +171,7 @@
         in: body
         description: Request payload of update team action
         schema:
-          $ref: '#/definitions/UpdateTeamRequest'
+          $ref: '#/definitions/UpdateTeamPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -192,7 +192,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-api#listTeamLogs
-    # x-collapse-params: ListTeamLogsRequest
+    x-collapse-params: ListTeamLogsRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType'

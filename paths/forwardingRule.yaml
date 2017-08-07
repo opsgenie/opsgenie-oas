@@ -48,7 +48,7 @@
         description: Request payload to created forwarding rule
         required: true
         schema:
-          $ref: '#/definitions/CreateForwardingRuleRequest'
+          $ref: '#/definitions/CreateForwardingRulePayload'
     responses:
       '201':
         description: Forwarding rule meta information for created forwarding rule
@@ -69,7 +69,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/forwarding-rule-api#getForwardingRule
-    # x-collapse-params: GetForwardingRuleRequest
+    x-collapse-params: GetForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
       - $ref: '#/parameters/ForwardingRuleIdentifierType'
@@ -110,7 +110,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/forwarding-rule-api#deleteForwardingRule
-    # x-collapse-params: DeleteForwardingRuleRequest
+    x-collapse-params: DeleteForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
       - $ref: '#/parameters/ForwardingRuleIdentifierType'
@@ -133,7 +133,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/forwarding-rule-api#updateForwardingRule
-    # x-collapse-params: UpdateForwardingRuleRequest
+    x-collapse-params: UpdateForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
       - $ref: '#/parameters/ForwardingRuleIdentifierType'
@@ -142,7 +142,7 @@
         description: Request payload of update forwarding rule action
         required: true
         schema:
-          $ref: '#/definitions/UpdateForwardingRuleRequest'
+          $ref: '#/definitions/UpdateForwardingRulePayload'
     responses:
       '200':
         $ref: '#/responses/Accepted'

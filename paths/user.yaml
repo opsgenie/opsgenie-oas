@@ -15,7 +15,7 @@
         description: Request payload of the user object
         required: true
         schema:
-          $ref: '#/definitions/CreateUserRequest'
+          $ref: '#/definitions/CreateUserPayload'
     responses:
       '201':
         description: User meta information for created user
@@ -55,7 +55,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUsers
-    # x-collapse-params: ListUsersRequest
+    x-collapse-params: ListUsersRequest
     parameters:
       - $ref: '#/parameters/UserLimitParam'
       - $ref: '#/parameters/UserOffsetParam'
@@ -98,7 +98,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#getUser
-    # x-collapse-params: GetUserRequest
+    x-collapse-params: GetUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - name: expand
@@ -146,14 +146,14 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#updateUser
-    # x-collapse-params: UpdateUserRequest
+    x-collapse-params: UpdateUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - name: body
         in: body
         description: Request payload of the user object
         schema:
-          $ref: '#/definitions/UpdateUserRequest'
+          $ref: '#/definitions/UpdateUserPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'

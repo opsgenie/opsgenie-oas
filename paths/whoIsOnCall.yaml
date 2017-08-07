@@ -8,7 +8,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#listOnCalls
-    # x-collapse-params: ListOnCallsRequest
+    x-collapse-params: ListOnCallsRequest
     parameters:
       - $ref: '#/parameters/WhoIsOnCallFlat'
       - $ref: '#/parameters/WhoIsOnCallDate'
@@ -48,7 +48,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#getOnCalls
-    # x-collapse-params: GetOnCallRequest
+    x-collapse-params: GetOnCallRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'
@@ -92,7 +92,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#getNextOnCalls
-    # x-collapse-params: GetNextOnCallRequest
+    x-collapse-params: GetNextOnCallRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
       - $ref: '#/parameters/ScheduleIdentifierType2'

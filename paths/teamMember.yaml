@@ -8,7 +8,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-member-api#addMember
-    # x-collapse-params: AddTeamMemberRequest
+    x-collapse-params: AddTeamMemberRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'
@@ -17,7 +17,7 @@
         description: Request payload of added team member
         required: true
         schema:
-          $ref: '#/definitions/AddTeamMemberRequest'
+          $ref: '#/definitions/AddTeamMemberPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -40,7 +40,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-member-api#removeMember
-    # x-collapse-params: DeleteTeamMemberRequest
+    x-collapse-params: DeleteTeamMemberRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - $ref: '#/parameters/TeamIdentifierType2'

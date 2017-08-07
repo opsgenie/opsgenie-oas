@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-AlertActionRequest:
+AlertActionPayload:
   type: object
   properties:
     user:
@@ -14,10 +14,10 @@ AlertActionRequest:
       type: string
       description: Source field of the alert. Default value is IP address of the incoming request
 
-CreateAlertRequest:
+CreateAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - message
       properties:
@@ -68,25 +68,25 @@ CreateAlertRequest:
             - P4
             - P5
 
-AcknowledgeAlertRequest:
+AcknowledgeAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
 
-UnAcknowledgeAlertRequest:
+UnAcknowledgeAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
 
-CloseAlertRequest:
+CloseAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
 
-SnoozeAlertRequest:
+SnoozeAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - endTime
       properties:
@@ -95,45 +95,45 @@ SnoozeAlertRequest:
           format: date-time
           description: Date and time that snooze will lose effect
 
-EscalateAlertToNextRequest:
+EscalateAlertToNextPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - escalation
       properties:
         escalation:
           $ref: '#/definitions/EscalationRecipient'
 
-AssignAlertRequest:
+AssignAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - owner
       properties:
         owner:
           $ref: '#/definitions/UserRecipient'
 
-AddTeamToAlertRequest:
+AddTeamToAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - team
       properties:
         team:
           $ref: '#/definitions/TeamRecipient'
 
-ExecuteCustomAlertActionRequest:
+ExecuteCustomAlertActionPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
 
-AddTagsToAlertRequest:
+AddTagsToAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - tags
       properties:
@@ -142,10 +142,10 @@ AddTagsToAlertRequest:
           items:
             type: string
 
-AddDetailsToAlertRequest:
+AddDetailsToAlertPayload:
   type: object
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
     - required:
         - details
       properties:
@@ -155,14 +155,14 @@ AddDetailsToAlertRequest:
             type: string
           description: Key-value pairs to add as custom property into alert. You can refer here for example values
 
-AddNoteToAlertRequest:
+AddNoteToAlertPayload:
   type: object
   required:
     - note
   allOf:
-    - $ref: '#/definitions/AlertActionRequest'
+    - $ref: '#/definitions/AlertActionPayload'
 
-CreateSavedSearchRequest:
+CreateSavedSearchPayload:
   type: object
   required:
     - name

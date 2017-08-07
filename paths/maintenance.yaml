@@ -15,7 +15,7 @@
         description: Request payload of the maintenance object
         required: true
         schema:
-          $ref: '#/definitions/CreateMaintenanceRequest'
+          $ref: '#/definitions/CreateMaintenancePayload'
     responses:
       '201':
         description: Returns maintenance meta data
@@ -132,7 +132,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/maintenance-api#updateMaintenance
-    # x-collapse-params: UpdateMaintenanceRequest
+    x-collapse-params: UpdateMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
       - name: body
@@ -140,7 +140,7 @@
         description: Request payload of the maintenance object
         required: true
         schema:
-          $ref: '#/definitions/UpdateMaintenanceRequest'
+          $ref: '#/definitions/UpdateMaintenancePayload'
     responses:
       '200':
         description: Maintenance information for given identifier

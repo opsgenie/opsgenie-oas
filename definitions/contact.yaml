@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateContactRequest:
+CreateContactPayload:
   type: object
   required:
     - method
@@ -19,7 +19,7 @@ CreateContactRequest:
       type: string
       description: Address of contact method
 
-UpdateContactRequest:
+UpdateContactPayload:
   type: object
   required:
     - to

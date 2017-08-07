@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateEscalationRequest:
+CreateEscalationPayload:
   type: object
   required:
     - name
@@ -22,7 +22,7 @@ CreateEscalationRequest:
       description: Owner team of escalation.
       $ref: '#/definitions/TeamMeta'
 
-UpdateEscalationRequest:
+UpdateEscalationPayload:
   type: object
   properties:
     name:

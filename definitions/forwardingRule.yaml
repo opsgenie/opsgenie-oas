@@ -1,7 +1,7 @@
 ##################
 #     REQUEST    #
 ##################
-CreateForwardingRuleRequest:
+CreateForwardingRulePayload:
   type: object
   required:
     - fromUser
@@ -27,7 +27,7 @@ CreateForwardingRuleRequest:
       type: string
       description: A user defined identifier for the forwarding rule.
 
-UpdateForwardingRuleRequest:
+UpdateForwardingRulePayload:
   type: object
   required:
     - fromUser

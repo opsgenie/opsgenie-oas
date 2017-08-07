@@ -8,14 +8,14 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/contact-api#createContact
-    # x-collapse-params: CreateContactRequest
+    x-collapse-params: CreateContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - name: body
         in: body
         description: Request payload of creating contact action
         schema:
-          $ref: '#/definitions/CreateContactRequest'
+          $ref: '#/definitions/CreateContactPayload'
     responses:
       '201':
         description: Contact information for created contact
@@ -90,7 +90,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/contact-api#updateContact
-    # x-collapse-params: UpdateContactRequest
+    x-collapse-params: UpdateContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/ContactId'
@@ -99,7 +99,7 @@
         description: Request payload of update contact action
         required: false
         schema:
-          $ref: '#/definitions/UpdateContactRequest'
+          $ref: '#/definitions/UpdateContactPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -121,7 +121,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/contact-api#getContact
-    # x-collapse-params: GetContactRequest
+    x-collapse-params: GetContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/ContactId'
@@ -160,7 +160,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/contact-api#deleteContact
-    # x-collapse-params: DeleteContactRequest
+    x-collapse-params: DeleteContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/ContactId'
@@ -182,7 +182,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/contact-api#enableContact
-    # x-collapse-params: EnableContactRequest
+    x-collapse-params: EnableContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/ContactId'
@@ -206,7 +206,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/contact-api#disableContact
-    # x-collapse-params: DisableContactRequest
+    x-collapse-params: DisableContactRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
       - $ref: '#/parameters/ContactId'

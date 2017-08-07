@@ -59,7 +59,7 @@
     summary: List Alerts
     description: Returns list of alerts
     operationId: listAlerts
-    # x-collapse-params: ListAlertsRequest
+    x-collapse-params: ListAlertsRequest
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#listAlerts
@@ -173,7 +173,7 @@
         description: Request payload of created alert
         required: true
         schema:
-          $ref: '#/definitions/CreateAlertRequest'
+          $ref: '#/definitions/CreateAlertPayload'
     responses:
       '202':
         $ref: '#/responses/Accepted'
@@ -192,7 +192,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#getAlert
-    # x-collapse-params: GetAlertRequest
+    x-collapse-params: GetAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -231,7 +231,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#deleteAlert
-    # x-collapse-params: DeleteAlertRequest
+    x-collapse-params: DeleteAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -253,7 +253,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#acknowledgeAlert
-    # x-collapse-params: AcknowledgeAlertRequest
+    x-collapse-params: AcknowledgeAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -262,7 +262,7 @@
         description: Request payload of acknowledging alert action
         required: false
         schema:
-            $ref: '#/definitions/AcknowledgeAlertRequest'
+            $ref: '#/definitions/AcknowledgeAlertPayload'
     responses:
         '202':
           $ref: '#/responses/Accepted'
@@ -279,7 +279,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#unacknowledgeAlert
-    # x-collapse-params: UnAcknowledgeAlertRequest
+    x-collapse-params: UnAcknowledgeAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -288,7 +288,7 @@
         description: Request payload of unacknowledging alert action
         required: false
         schema:
-          $ref: '#/definitions/UnAcknowledgeAlertRequest'
+          $ref: '#/definitions/UnAcknowledgeAlertPayload'
     responses:
         '202':
           $ref: '#/responses/Accepted'
@@ -305,7 +305,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#closeAlert
-    # x-collapse-params: CloseAlertRequest
+    x-collapse-params: CloseAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -314,7 +314,7 @@
         description: Request payload of closing alert action
         required: false
         schema:
-          $ref: '#/definitions/CloseAlertRequest'
+          $ref: '#/definitions/CloseAlertPayload'
     responses:
         '202':
           $ref: '#/responses/Accepted'
@@ -331,7 +331,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#snoozeAlert
-    # x-collapse-params: SnoozeAlertRequest
+    x-collapse-params: SnoozeAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -340,7 +340,7 @@
         description: Request payload of snoozing alert action
         required: true
         schema:
-          $ref: '#/definitions/SnoozeAlertRequest'
+          $ref: '#/definitions/SnoozeAlertPayload'
     responses:
         '202':
           $ref: '#/responses/Accepted'
@@ -359,7 +359,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#escalateAlert
-    # x-collapse-params: EscalateAlertRequest
+    x-collapse-params: EscalateAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -368,7 +368,7 @@
         description: Request payload of escalating alert action
         required: true
         schema:
-          $ref: '#/definitions/EscalateAlertToNextRequest'
+          $ref: '#/definitions/EscalateAlertToNextPayload'
     responses:
         '202':
           $ref: '#/responses/Accepted'
@@ -385,7 +385,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#assignAlert
-    # x-collapse-params: AssignAlertRequest
+    x-collapse-params: AssignAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -394,7 +394,7 @@
         description: Request payload of assigning alert action
         required: true
         schema:
-          $ref: '#/definitions/AssignAlertRequest'
+          $ref: '#/definitions/AssignAlertPayload'
     responses:
         '202':
           $ref: '#/responses/Accepted'
@@ -411,7 +411,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#addTeamToAlert
-    # x-collapse-params: AddTeamToAlertRequest
+    x-collapse-params: AddTeamToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -420,7 +420,7 @@
         description: Request payload of adding team to alert action
         required: true
         schema:
-          $ref: '#/definitions/AddTeamToAlertRequest'
+          $ref: '#/definitions/AddTeamToAlertPayload'
     responses:
       '202':
         $ref: '#/responses/Accepted'
@@ -437,7 +437,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#executeCustomAction
-    # x-collapse-params: ExecuteCustomAlertActionRequest
+    x-collapse-params: ExecuteCustomAlertActionRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -451,7 +451,7 @@
         description: Request payload of executing custom alert action
         required: false
         schema:
-          $ref: '#/definitions/ExecuteCustomAlertActionRequest'
+          $ref: '#/definitions/ExecuteCustomAlertActionPayload'
     responses:
       '202':
         $ref: '#/responses/Accepted'
@@ -468,7 +468,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#listAlertRecipients
-    # x-collapse-params: ListAlertRecipientsRequest
+    x-collapse-params: ListAlertRecipientsRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -506,7 +506,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#listAlertLogs
-    # x-collapse-params: ListAlertLogsRequest
+    x-collapse-params: ListAlertLogsRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -548,7 +548,7 @@
     # externalDocs:
     #  description: For more information
     #  url: External documentation is not available!
-    # x-collapse-params: ListAlertAttachmentsRequest
+    x-collapse-params: ListAlertAttachmentsRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType2'
@@ -589,7 +589,7 @@
     # externalDocs:
     #  description: For more information
     #  url: External documentation is not available!
-    # x-collapse-params: AddAttachmentToAlertRequest
+    x-collapse-params: AddAttachmentToAlertRequest
     consumes:
       - multipart/form-data
     parameters:
@@ -655,7 +655,7 @@
     # externalDocs:
     #  description: For more information
     #  url: External documentation is not available!
-    # x-collapse-params: GetAlertAttachmentRequest
+    x-collapse-params: GetAlertAttachmentRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType2'
@@ -702,7 +702,7 @@
     # externalDocs:
     #  description: For more information
     #  url: External documentation is not available!
-    # x-collapse-params: RemoveAttachmentFromAlertRequest
+    x-collapse-params: RemoveAttachmentFromAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType2'
@@ -751,7 +751,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#addTagsToAlert
-    # x-collapse-params: AddTagsToAlertRequest
+    x-collapse-params: AddTagsToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -760,7 +760,7 @@
         description: Request payload of creating alert tags action
         required: true
         schema:
-          $ref: '#/definitions/AddTagsToAlertRequest'
+          $ref: '#/definitions/AddTagsToAlertPayload'
     responses:
       '202':
         $ref: '#/responses/Accepted'
@@ -776,7 +776,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#removeTagsFromAlert
-    # x-collapse-params: RemoveTagsFromAlertRequest
+    x-collapse-params: RemoveTagsFromAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -809,7 +809,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#addDetailsToAlert
-    # x-collapse-params: AddDetailsToAlertRequest
+    x-collapse-params: AddDetailsToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -818,7 +818,7 @@
         description: Request payload of adding alert details action
         required: true
         schema:
-          $ref: '#/definitions/AddDetailsToAlertRequest'
+          $ref: '#/definitions/AddDetailsToAlertPayload'
     responses:
       '202':
         $ref: '#/responses/Accepted'
@@ -834,7 +834,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#removeDetailsFromAlert
-    # x-collapse-params: RemoveDetailsFromAlertRequest
+    x-collapse-params: RemoveDetailsFromAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -867,7 +867,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#listAlertNotes
-    # x-collapse-params: ListAlertNotesRequest
+    x-collapse-params: ListAlertNotesRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -908,7 +908,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#addNoteToAlert
-    # x-collapse-params: AddNoteToAlertRequest
+    x-collapse-params: AddNoteToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
       - $ref: '#/parameters/AlertIdentifierType'
@@ -917,7 +917,7 @@
         description: Request payload of adding note to alert action
         required: true
         schema:
-          $ref: '#/definitions/AddNoteToAlertRequest'
+          $ref: '#/definitions/AddNoteToAlertPayload'
     responses:
       '202':
         $ref: '#/responses/Accepted'
@@ -975,7 +975,7 @@
         description: Request payload of creating saved search
         required: true
         schema:
-          $ref: '#/definitions/CreateSavedSearchRequest'
+          $ref: '#/definitions/CreateSavedSearchPayload'
     responses:
       200:
         description: Returns saved search meta information
@@ -1010,7 +1010,7 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#getSavedSearch
-    # x-collapse-params: GetSavedSearchRequest
+    x-collapse-params: GetSavedSearchRequest
     parameters:
       - $ref: '#/parameters/SearchIdentifier'
       - $ref: '#/parameters/SearchIdentifierType'
@@ -1060,7 +1060,7 @@
     # externalDocs:
     #  description: For more information
     #  url: External documentation is not available!
-    # x-collapse-params: DeleteSavedSearchRequest
+    x-collapse-params: DeleteSavedSearchRequest
     parameters:
       - $ref: '#/parameters/SearchIdentifier'
       - $ref: '#/parameters/SearchIdentifierType'
