@@ -1,0 +1,251 @@
+/v1/policies:
+  get:
+    tags:
+      - policy
+    summary: List Alert Policies
+    description: Returns list alert policies
+    operationId: listAlertPolicies
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#listPolicies
+    responses:
+      '200':
+        description: List of policies
+        schema:
+          $ref: '#/definitions/ListAlertPoliciesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - policy
+    summary: Create Alert Policy
+    description: Creates a new alert policy
+    operationId: createAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#createPolicy
+    parameters:
+      - name: body
+        in: body
+        description: Payload of created alert policy
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAlertPolicyPayload'
+    responses:
+      '201':
+        description: Policy meta information for created policy
+        schema:
+          $ref: '#/definitions/CreateAlertPolicyResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/policies/{policyId}:
+  get:
+    tags:
+      - policy
+    summary: Get Alert Policy
+    description: Used to get details of a single policy with id
+    operationId: getAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#getPolicy
+    parameters:
+      - $ref: '#/parameters/PolicyId'
+    responses:
+      '200':
+        description: Alert policy with given id
+        schema:
+          $ref: '#/definitions/GetAlertPolicyResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  put:
+    tags:
+      - policy
+    summary: Update Alert Policy
+    description: Update alert policy with given id
+    operationId: updateAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#updatePolicy
+    x-collapse-params: UpdateAlertPolicyRequest
+    parameters:
+      - $ref: '#/parameters/PolicyId'
+      - name: body
+        in: body
+        description: Payload of updated alert policy
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateAlertPolicyPayload'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - policy
+    summary: Delete Alert Policy
+    description: Delete alert policy with given id
+    operationId: deleteAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#deletePolicy
+    parameters:
+      - $ref: '#/parameters/PolicyId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/policies/{policyId}/enable:
+  post:
+    tags:
+      - policy
+    summary: Enable Alert Policy
+    description: Enable the alert policy with given id
+    operationId: enableAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#enablePolicy
+    parameters:
+      - $ref: '#/parameters/PolicyId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/policies/{policyId}/disable:
+  post:
+    tags:
+      - policy
+    summary: Disable Alert Policy
+    description: Disable the alert policy with given id
+    operationId: disableAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#disablePolicy
+    parameters:
+      - $ref: '#/parameters/PolicyId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/policies/{policyId}/change-order:
+  post:
+    tags:
+      - policy
+    summary: Change Alert Policy Order
+    description: Change execution order of the alert policy with given id
+    operationId: changeAlertPolicyOrder
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/rest-api/policy-api#changePolicyOrder
+    x-collapse-params: ChangeAlertPolicyOrderRequest
+    parameters:
+      - $ref: '#/parameters/PolicyId'
+      - name: body
+        in: body
+        description: Change order payload
+        required: true
+        schema:
+          $ref: '#/definitions/ChangeAlertPolicyOrderPayload'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'

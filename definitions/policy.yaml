@@ -1,0 +1,385 @@
+##################
+#    REQUEST     #
+##################
+CreateAlertPolicyPayload:
+  type: object
+  discriminator: type
+  required:
+    - request-type
+  properties:
+    request-type:
+      type: string
+      enum:
+        - modify
+        - auto-close
+        - notification-delay
+        - notification-deduplication
+        - notification-suppress
+        - notification-renotify
+        - auto-restart-notifications
+
+CreateModifyAlertPolicyPayload:
+  type: object
+  x-discriminator-value: modify
+  allOf:
+    - $ref: '#/definitions/CreateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyModify'
+
+CreateAutoCloseAlertPolicyPayload:
+  type: object
+  x-discriminator-value: auto-close
+  allOf:
+    - $ref: '#/definitions/CreateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyAutoClose'
+
+CreateNotificationDelayAlertPolicyPayload:
+  type: object
+  x-discriminator-value: notification-delay
+  allOf:
+    - $ref: '#/definitions/CreateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyDelay'
+
+CreateNotificationDeduplicationAlertPolicyPayload:
+  type: object
+  x-discriminator-value: notification-deduplication
+  allOf:
+    - $ref: '#/definitions/CreateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyDeduplication'
+
+CreateNotificationSuppressAlertPolicyPayload:
+  type: object
+  x-discriminator-value: notification-suppress
+  allOf:
+    - $ref: '#/definitions/CreateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicySuppress'
+
+CreateAutoRestartAlertPolicyPayload:
+  type: object
+  x-discriminator-value: auto-restart-notifications
+  allOf:
+    - $ref: '#/definitions/CreateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyAutoRestart'
+
+UpdateAlertPolicyPayload:
+  type: object
+  discriminator: type
+  required:
+    - request-type
+  properties:
+    request-type:
+      type: string
+      enum:
+        - modify
+        - auto-close
+        - notification-delay
+        - notification-deduplication
+        - notification-suppress
+        - notification-renotify
+        - auto-restart-notifications
+
+UpdateModifyAlertPolicyPayload:
+  type: object
+  x-discriminator-value: modify
+  allOf:
+    - $ref: '#/definitions/UpdateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyModify'
+
+UpdateAutoCloseAlertPolicyPayload:
+  type: object
+  x-discriminator-value: auto-close
+  allOf:
+    - $ref: '#/definitions/UpdateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyAutoClose'
+
+UpdateNotificationDelayAlertPolicyPayload:
+  type: object
+  x-discriminator-value: notification-delay
+  allOf:
+    - $ref: '#/definitions/UpdateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyDelay'
+
+UpdateNotificationDeduplicationAlertPolicyPayload:
+  type: object
+  x-discriminator-value: notification-deduplication
+  allOf:
+    - $ref: '#/definitions/UpdateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyDeduplication'
+
+UpdateNotificationSuppressAlertPolicyPayload:
+  type: object
+  x-discriminator-value: notification-suppress
+  allOf:
+    - $ref: '#/definitions/UpdateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicySuppress'
+
+UpdateAutoRestartAlertPolicyPayload:
+  type: object
+  x-discriminator-value: auto-restart-notifications
+  allOf:
+    - $ref: '#/definitions/UpdateAlertPolicyPayload'
+    - $ref: '#/definitions/AlertPolicyAutoRestart'
+
+ChangeAlertPolicyOrderPayload:
+  type: object
+  required:
+    - targetIndex
+  properties:
+    targetIndex:
+      type: integer
+      format: int32
+      description: Order of the target policy will be changed to this value. Larger values than policy count will put the target policy to last place
+      minimum: 0
+
+##################
+#    RESPONSE    #
+##################
+ListAlertPoliciesResponse:
+  type: object
+  allOf:
+  - $ref: '#/definitions/BaseResponse'
+  - properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AlertPolicyMeta'
+
+CreateAlertPolicyResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/AlertPolicyMeta'
+
+GetAlertPolicyResponse:
+  type: object
+  allOf:
+  - $ref: '#/definitions/BaseResponse'
+  - properties:
+      data:
+        $ref: '#/definitions/AlertPolicy'
+
+##################
+#      MODEL     #
+##################
+AlertPolicyMeta:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    type:
+      type: string
+      enum:
+        - modify
+        - auto-close
+        - notification-delay
+        - notification-deduplication
+        - notification-suppress
+        - notification-renotify
+        - auto-restart-notifications
+    order:
+      type: integer
+      format: int32
+    enabled:
+      type: boolean
+
+AlertPolicy:
+  type: object
+  discriminator: type
+  required:
+    - type
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+      description: Name of the policy
+    policyDescription:
+      type: string
+      description: Description of the policy
+    filter:
+      $ref: '#/definitions/Filter'
+      description: Conditions specified in this field must be met for this policy to work
+    timeRestrictions:
+      $ref: '#/definitions/TimeRestrictionInterval'
+      description: Time restrictions specified in this field must be met for this policy to work
+    enabled:
+      type: boolean
+      description: Activity status of the alert policy
+    type:
+      type: string
+      description: Type of the policy
+      enum:
+        - modify
+        - auto-close
+        - notification-delay
+        - notification-deduplication
+        - notification-suppress
+        - notification-renotify
+        - auto-restart-notifications
+
+AlertPolicyModify:
+  type: object
+  x-discriminator-value: modify
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
+    - properties:
+        ignoreOriginalAlertActions:
+          type: boolean
+        ignoreOriginalDetails:
+          description: If set to true, policy will ignore the original details of the alert. Default value is false
+          type: boolean
+        ignoreOriginalRecipients:
+          description: If set to true, policy will ignore the original recipients of the alert. Default value is false
+          type: boolean
+        ignoreOriginalTags:
+          description: If set to true, policy will ignore the original tags of the alert. Default value is false
+          type: boolean
+        ignoreOriginalTeams:
+          description: If set to true, policy will ignore the original teams of the alert. Default value is false
+          type: boolean
+        continue:
+          description: Will continue with other modify policies if set to true
+          type: boolean
+        alias:
+          description: Alias of the alert. You can use {{alias}} to refer to the original alias. Default value is {{alias}}
+          type: string
+        description:
+          description: Description of the alert. You can use {{description}} to refer to the original alert description. Default value is {{description}}
+          type: string
+        entity:
+          description: Entity field of the alert. You can use {{entity}} to refer to the original entity. Default value is {{entity}}
+          type: string
+        message:
+          description: Message of the alert
+          type: string
+        source:
+          description: Source field of the alert. You can use {{source}} to refer to the original source. Default value is {{source}}
+          type: string
+        actions:
+          description: Alert actions as a list of strings to add to the alerts original actions value. If ignoreOriginalAlertActions field is set to true, this will replace the original actions.
+          type: array
+          items:
+            type: string
+        recipients:
+          description: Recipients to add to the alerts original recipients value as a list of escalations, schedules, teams, users or the reserved word none or all. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.
+          type: array
+          items:
+            $ref: '#/definitions/Recipient'
+        tags:
+          description: Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.
+          type: array
+          items:
+            type: string
+        details:
+          description: Custom properties to add to the alerts original details value as a list of strings. If ignoreOriginalDetails field is set to true, this will replace the original details.
+          type: object
+          additionalProperties:
+            type: string
+        priority:
+          type: string
+          description: Priority level of the alert
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+
+AlertPolicyAutoClose:
+  type: object
+  x-discriminator-value: auto-close
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
+    - properties:
+        duration:
+          description: Duration to wait before closing the alert
+          $ref: '#/definitions/Duration'
+
+AlertPolicyDelay:
+  type: object
+  x-discriminator-value: notification-delay
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
+    - properties:
+        delayOption:
+          description: Delay type
+          type: string
+          enum:
+          - for-duration
+          - next-time
+          - next-weekday
+          - next-monday
+          - next-tuesday
+          - next-wednesday
+          - next-thursday
+          - next-friday
+          - next-saturday
+          - next-sunday
+        duration:
+          description: Interval to keep count of alerts for frequency based deduplication
+          $ref: '#/definitions/Duration'
+        untilHour:
+          description: Should be a number between 0-23
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 23
+        untilMinute:
+          description: Should be a number between 0-59
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 59
+
+AlertPolicyDeduplication:
+  type: object
+  x-discriminator-value: notification-deduplication
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
+    - properties:
+        deduplicationActionType:
+          type: string
+          description: Deduplication type
+          enum:
+          - value-based
+          - frequency-based
+        count:
+          description: Number of alerts before deduplication
+          type: integer
+          format: int32
+          minimum: 2
+          maximum: 100
+        duration:
+          description: Interval to keep count of alerts for frequency based deduplication
+          $ref: '#/definitions/Duration'
+
+AlertPolicyAutoRestart:
+  type: object
+  x-discriminator-value: auto-restart-notifications
+  required:
+    - maxRepeatCount
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
+    - properties:
+        duration:
+          description: Duration to wait before restarting the notification flow
+          $ref: '#/definitions/Duration'
+        maxRepeatCount:
+          description: Max restart count of the notification flow
+          type: integer
+          format: int32
+
+AlertPolicySuppress:
+  type: object
+  x-discriminator-value: notification-suppress
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
+
+AlertPolicyRenotify:
+  type: object
+  x-discriminator-value: notification-renotify
+  allOf:
+    - $ref: '#/definitions/AlertPolicy'
