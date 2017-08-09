@@ -7,7 +7,7 @@
     operationId: createScheduleOverride
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-override-api#createOverride
+      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#createOverride
     x-collapse-params: CreateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -54,7 +54,7 @@
     operationId: listScheduleOverride
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-override-api#listOverrides
+      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#listOverrides
     x-collapse-params: ListScheduleOverridesRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -96,7 +96,7 @@
     operationId: getScheduleOverride
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-override-api#getOverride
+      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#getOverride
     x-collapse-params: GetScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -138,7 +138,7 @@
     operationId: updateScheduleOverride
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-override-api#updateOverride
+      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#updateOverride
     x-collapse-params: UpdateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -186,7 +186,7 @@
     operationId: deleteScheduleOverride
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-override-api#deleteOverride
+      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#deleteOverride
     x-collapse-params: DeleteScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'

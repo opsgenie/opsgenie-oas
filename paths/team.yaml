@@ -7,7 +7,7 @@
     operationId: createTeam
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/team-api#createTeam
+      url: https://www.opsgenie.com/docs/rest-api/team-api#createTeam
     parameters:
       - name: body
         in: body
@@ -53,7 +53,7 @@
     operationId: listTeams
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/team-api#listTeams
+      url: https://www.opsgenie.com/docs/rest-api/team-api#listTeams
     parameters:
       - name: expand
         in: query
@@ -96,7 +96,7 @@
     operationId: getTeam
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/team-api#getTeam
+      url: https://www.opsgenie.com/docs/rest-api/team-api#getTeam
     x-collapse-params: GetTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -137,7 +137,7 @@
     operationId: deleteTeam
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/team-api#deleteTeam
+      url: https://www.opsgenie.com/docs/rest-api/team-api#deleteTeam
     x-collapse-params: DeleteTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -161,7 +161,7 @@
     operationId: updateTeam
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/team-api#updateTeam
+      url: https://www.opsgenie.com/docs/rest-api/team-api#updateTeam
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - name: body
@@ -188,7 +188,7 @@
     operationId: listTeamLogs
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/team-api#listTeamLogs
+      url: https://www.opsgenie.com/docs/rest-api/team-api#listTeamLogs
     x-collapse-params: ListTeamLogsRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'

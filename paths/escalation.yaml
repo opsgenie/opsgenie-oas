@@ -7,7 +7,7 @@
     operationId: listEscalations
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/escalation-api#listEscalations
+      url: https://www.opsgenie.com/docs/rest-api/escalation-api#listEscalations
     responses:
       '200':
         description: List of escalation informations
@@ -44,7 +44,7 @@
     operationId: createEscalation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/escalation-api#createEscalation
+      url: https://www.opsgenie.com/docs/rest-api/escalation-api#createEscalation
     parameters:
       - name: body
         in: body
@@ -91,7 +91,7 @@
     operationId: getEscalation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/escalation-api#getEscalation
+      url: https://www.opsgenie.com/docs/rest-api/escalation-api#getEscalation
     x-collapse-params: GetEscalationRequest
     parameters:
       - $ref: '#/parameters/EscalationIdentifier'
@@ -132,7 +132,7 @@
     operationId: deleteEscalation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/escalation-api#deleteEscalation
+      url: https://www.opsgenie.com/docs/rest-api/escalation-api#deleteEscalation
     x-collapse-params: DeleteEscalationRequest
     parameters:
       - $ref: '#/parameters/EscalationIdentifier'
@@ -155,7 +155,7 @@
     operationId: updateEscalation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/escalation-api#updateEscalation
+      url: https://www.opsgenie.com/docs/rest-api/escalation-api#updateEscalation
     x-collapse-params: UpdateEscalationRequest
     parameters:
       - $ref: '#/parameters/EscalationIdentifier'

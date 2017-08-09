@@ -7,7 +7,7 @@
     operationId: getRequestStatus
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#asyncRequest
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#asyncRequest
     parameters:
       - name: requestId
         in: path
@@ -61,7 +61,7 @@
     x-collapse-params: ListAlertsRequest
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#listAlerts
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#listAlerts
     parameters:
       - name: query
         in: query
@@ -165,7 +165,7 @@
     operationId: createAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#createAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#createAlert
     parameters:
       - name: body
         in: body
@@ -190,7 +190,7 @@
     operationId: getAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#getAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#getAlert
     x-collapse-params: GetAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -229,7 +229,7 @@
     operationId: deleteAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#deleteAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#deleteAlert
     x-collapse-params: DeleteAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -251,7 +251,7 @@
     operationId: acknowledgeAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#acknowledgeAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#acknowledgeAlert
     x-collapse-params: AcknowledgeAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -277,7 +277,7 @@
     operationId: unAcknowledgeAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#unacknowledgeAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#unacknowledgeAlert
     x-collapse-params: UnAcknowledgeAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -303,7 +303,7 @@
     operationId: closeAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#closeAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#closeAlert
     x-collapse-params: CloseAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -329,7 +329,7 @@
     operationId: snoozeAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#snoozeAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#snoozeAlert
     x-collapse-params: SnoozeAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -357,7 +357,7 @@
     operationId: escalateAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#escalateAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#escalateAlert
     x-collapse-params: EscalateAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -383,7 +383,7 @@
     operationId: assignAlert
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#assignAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#assignAlert
     x-collapse-params: AssignAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -409,7 +409,7 @@
     operationId: addTeam
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#addTeamToAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#addTeamToAlert
     x-collapse-params: AddTeamToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -435,7 +435,7 @@
     operationId: executeCustomAlertAction
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#executeCustomAction
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#executeCustomAction
     x-collapse-params: ExecuteCustomAlertActionRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -466,7 +466,7 @@
     operationId: listRecipients
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#listAlertRecipients
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#listAlertRecipients
     x-collapse-params: ListAlertRecipientsRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -504,7 +504,7 @@
     operationId: listLogs
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#listAlertLogs
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#listAlertLogs
     x-collapse-params: ListAlertLogsRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -749,7 +749,7 @@
     operationId: addTags
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#addTagsToAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#addTagsToAlert
     x-collapse-params: AddTagsToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -774,7 +774,7 @@
     operationId: removeTags
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#removeTagsFromAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#removeTagsFromAlert
     x-collapse-params: RemoveTagsFromAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -807,7 +807,7 @@
     operationId: addDetails
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#addDetailsToAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#addDetailsToAlert
     x-collapse-params: AddDetailsToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -832,7 +832,7 @@
     operationId: removeDetails
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#removeDetailsFromAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#removeDetailsFromAlert
     x-collapse-params: RemoveDetailsFromAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -865,7 +865,7 @@
     operationId: listNotes
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#listAlertNotes
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#listAlertNotes
     x-collapse-params: ListAlertNotesRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -906,7 +906,7 @@
     operationId: addNote
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#addNoteToAlert
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#addNoteToAlert
     x-collapse-params: AddNoteToAlertRequest
     parameters:
       - $ref: '#/parameters/AlertIdentifier'
@@ -932,7 +932,7 @@
     operationId: listSavedSearches
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#listSavedSearches
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#listSavedSearches
     responses:
       '200':
         description: Returns saved search list
@@ -965,7 +965,7 @@
     operationId: createSavedSearches
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#createSavedSearch
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#createSavedSearch
     parameters:
       - name: body
         in: body
@@ -1006,7 +1006,7 @@
     operationId: getSavedSearch
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/alert-api#getSavedSearch
+      url: https://www.opsgenie.com/docs/rest-api/alert-api#getSavedSearch
     x-collapse-params: GetSavedSearchRequest
     parameters:
       - $ref: '#/parameters/SearchIdentifier'

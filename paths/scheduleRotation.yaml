@@ -7,7 +7,7 @@
     operationId: createScheduleRotation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#createRotation
+      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#createRotation
     x-collapse-params: CreateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -56,7 +56,7 @@
     operationId: listScheduleRotations
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#listRotations
+      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#listRotations
     x-collapse-params: ListScheduleRotationsRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -94,7 +94,7 @@
     operationId: getScheduleRotation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#getRotation
+      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#getRotation
     x-collapse-params: GetScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -136,7 +136,7 @@
     operationId: updateScheduleRotation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#updateRotation
+      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#updateRotation
     x-collapse-params: UpdateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -186,7 +186,7 @@
     operationId: deleteScheduleRotation
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/schedule-rotation-api#deleteRotation
+      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#deleteRotation
     x-collapse-params: DeleteScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'

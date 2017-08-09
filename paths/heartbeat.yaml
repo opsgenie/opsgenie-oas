@@ -7,7 +7,7 @@
     operationId: ping
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#pingHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#pingHeartbeat
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -29,7 +29,7 @@
     operationId: createHeartbeat
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#addHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#addHeartbeat
     parameters:
       - name: body
         in: body
@@ -72,7 +72,7 @@
     operationId: getHeartbeat
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#getHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#getHeartbeat
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -111,7 +111,7 @@
     operationId: updateHeartbeat
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#updateHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#updateHeartbeat
     x-collapse-params: UpdateHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
@@ -156,7 +156,7 @@
     operationId: deleteHeartbeat
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#deleteHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#deleteHeartbeat
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -178,7 +178,7 @@
     operationId: enableHeartbeat
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#enableHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#enableHeartbeat
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -218,7 +218,7 @@
     operationId: disableHeartbeat
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/heartbeat-api#disableHeartbeat
+      url: https://www.opsgenie.com/docs/rest-api/heartbeat-api#disableHeartbeat
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:

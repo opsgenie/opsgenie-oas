@@ -7,7 +7,7 @@
     operationId: getInfo
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/account-api#getAccount
+      url: https://www.opsgenie.com/docs/rest-api/account-api#getAccount
     responses:
       '200':
         description: Request status information for given id

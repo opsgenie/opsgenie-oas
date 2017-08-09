@@ -7,7 +7,7 @@
     operationId: createMaintenance
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/maintenance-api#createMaintenance
+      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#createMaintenance
     parameters:
       - name: body
         in: body
@@ -51,7 +51,7 @@
     operationId: listMaintenance
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/maintenance-api#listMaintenance
+      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#listMaintenance
     parameters:
       - $ref: '#/parameters/MaintenanceListType'
     responses:
@@ -89,7 +89,7 @@
     operationId: getMaintenance
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/maintenance-api#getMaintenance
+      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#getMaintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:
@@ -128,7 +128,7 @@
     operationId: updateMaintenance
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/maintenance-api#updateMaintenance
+      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#updateMaintenance
     x-collapse-params: UpdateMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
@@ -174,7 +174,7 @@
     operationId: deleteMaintenance
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/maintenance-api#deleteMaintenance
+      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#deleteMaintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:
@@ -196,7 +196,7 @@
     operationId: cancelMaintenance
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/maintenance-api#cancelMaintenance
+      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#cancelMaintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:

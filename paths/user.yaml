@@ -7,7 +7,7 @@
     operationId: createUser
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#createUser
+      url: https://www.opsgenie.com/docs/rest-api/user-api#createUser
     parameters:
       - name: body
         in: body
@@ -53,7 +53,7 @@
     operationId: listUsers
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#listUsers
+      url: https://www.opsgenie.com/docs/rest-api/user-api#listUsers
     x-collapse-params: ListUsersRequest
     parameters:
       - $ref: '#/parameters/UserLimitParam'
@@ -96,7 +96,7 @@
     operationId: getUser
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#getUser
+      url: https://www.opsgenie.com/docs/rest-api/user-api#getUser
     x-collapse-params: GetUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -144,7 +144,7 @@
     operationId: updateUser
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#updateUser
+      url: https://www.opsgenie.com/docs/rest-api/user-api#updateUser
     x-collapse-params: UpdateUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -173,7 +173,7 @@
     operationId: deleteUser
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#deleteUser
+      url: https://www.opsgenie.com/docs/rest-api/user-api#deleteUser
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -197,7 +197,7 @@
     operationId: listUserTeams
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#listUserTeams
+      url: https://www.opsgenie.com/docs/rest-api/user-api#listUserTeams
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -237,7 +237,7 @@
     operationId: listUserForwardingRules
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#listUserForwardingRules
+      url: https://www.opsgenie.com/docs/rest-api/user-api#listUserForwardingRules
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -277,7 +277,7 @@
     operationId: listUserEscalations
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#listUserEscalations
+      url: https://www.opsgenie.com/docs/rest-api/user-api#listUserEscalations
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -317,7 +317,7 @@
     operationId: listUserSchedules
     externalDocs:
       description: For more information
-      url: www.opsgenie.com/docs/rest-api/user-api#listUserSchedules
+      url: https://www.opsgenie.com/docs/rest-api/user-api#listUserSchedules
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
