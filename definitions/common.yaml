@@ -104,8 +104,6 @@ TeamRecipient:
     properties:
       name:
         type: string
-      type:
-        default: team
 
 GroupRecipient:
   x-discriminator-value: group
@@ -116,8 +114,6 @@ GroupRecipient:
     properties:
       name:
         type: string
-      type:
-        default: group
 
 ScheduleRecipient:
   x-discriminator-value: schedule
@@ -128,8 +124,6 @@ ScheduleRecipient:
     properties:
       name:
         type: string
-      type:
-        default: schedule
 
 EscalationRecipient:
   x-discriminator-value: escalation
@@ -140,8 +134,6 @@ EscalationRecipient:
     properties:
       name:
         type: string
-      type:
-        default: escalation
 
 UserRecipient:
   x-discriminator-value: user
@@ -152,8 +144,6 @@ UserRecipient:
     properties:
       username:
         type: string
-      type:
-        default: user
 
 NoRecipient:
   x-discriminator-value: none
@@ -193,8 +183,6 @@ WeekdayTimeRestrictionInterval:
             $ref: '#/definitions/WeekdayTimeRestriction'
           minItems: 1
           maxItems: 15
-        type:
-          default: weekday-and-time-of-day
 
 TimeOfDayRestrictionInterval:
   type: object
@@ -206,8 +194,6 @@ TimeOfDayRestrictionInterval:
       properties:
         restriction:
           $ref: '#/definitions/TimeOfDayRestriction'
-        type:
-          default: time-of-day
 
 WeekdayTimeRestriction:
   type: object
@@ -301,9 +287,6 @@ MatchAll:
   allOf:
     - $ref: '#/definitions/Filter'
     - type: object
-      properties:
-        type:
-          default: match-all
 
 MatchAllConditions:
   x-discriminator-value: match-all-conditions
@@ -314,8 +297,6 @@ MatchAllConditions:
     - $ref: '#/definitions/Filter'
     - type: object
       properties:
-        type:
-          default: match-all-conditions
         conditions:
           type: array
           items:
@@ -331,8 +312,6 @@ MatchAnyCondition:
     - $ref: '#/definitions/Filter'
     - type: object
       properties:
-        type:
-          default: match-any-condition
         conditions:
           type: array
           items:
