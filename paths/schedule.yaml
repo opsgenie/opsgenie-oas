@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/schedule-api#listSchedules
-    # x-collapse-params: ListSchedulesRequest
     parameters:
       - name: expand
         in: query

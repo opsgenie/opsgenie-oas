@@ -41,7 +41,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/forwarding-rule-api#createForwardingRule
-    # x-collapse-params: CreateForwardingRule
     parameters:
       - name: body
         in: body

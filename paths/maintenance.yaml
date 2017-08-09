@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/maintenance-api#createMaintenance
-    # x-collapse-params: CreateMaintenanceRequest
     parameters:
       - name: body
         in: body
@@ -53,7 +52,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/maintenance-api#listMaintenance
-    # x-collapse-params: ListMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceListType'
     responses:
@@ -92,7 +90,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/maintenance-api#getMaintenance
-    # x-collapse-params: GetMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:
@@ -200,7 +197,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/maintenance-api#cancelMaintenance
-    # x-collapse-params: CancelMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:

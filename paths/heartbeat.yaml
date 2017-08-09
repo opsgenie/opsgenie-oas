@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/heartbeat-api#pingHeartbeat
-    # x-collapse-params: PingHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -31,7 +30,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/heartbeat-api#addHeartbeat
-    # x-collapse-params: CreateHeartbeatRequest
     parameters:
       - name: body
         in: body
@@ -75,7 +73,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/heartbeat-api#getHeartbeat
-    # x-collapse-params: GetHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -160,7 +157,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/heartbeat-api#deleteHeartbeat
-    # x-collapse-params: DeleteHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -183,7 +179,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/heartbeat-api#enableHeartbeat
-    # x-collapse-params: EnableHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:
@@ -224,7 +219,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/heartbeat-api#disableHeartbeat
-    # x-collapse-params: DisableHeartbeatRequest
     parameters:
       - $ref: '#/parameters/HeartbeatName'
     responses:

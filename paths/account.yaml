@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/account-api#getAccount
-    # x-collapse-params: GetAccountInfoRequest
     responses:
       '200':
         description: Request status information for given id

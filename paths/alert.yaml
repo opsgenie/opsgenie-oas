@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#asyncRequest
-    # x-collapse-params: GetRequestStatusRequest
     parameters:
       - name: requestId
         in: path
@@ -934,7 +933,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#listSavedSearches
-    # x-collapse-params: ListSavedSearchesRequest
     responses:
       '200':
         description: Returns saved search list
@@ -968,7 +966,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/alert-api#createSavedSearch
-    # x-collapse-params: CreateSavedSearchRequest
     parameters:
       - name: body
         in: body

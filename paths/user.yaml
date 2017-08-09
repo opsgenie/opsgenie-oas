@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#createUser
-    # x-collapse-params: CreateUserRequest
     parameters:
       - name: body
         in: body
@@ -175,7 +174,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#deleteUser
-    # x-collapse-params: DeleteUserRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -200,7 +198,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserTeams
-    # x-collapse-params: ListUserTeamsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -241,7 +238,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserForwardingRules
-    # x-collapse-params: ListUserForwardingRulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -282,7 +278,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserEscalations
-    # x-collapse-params: ListUserEscalationsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:
@@ -323,7 +318,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/user-api#listUserSchedules
-    # x-collapse-params: ListUserSchedulesRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
     responses:

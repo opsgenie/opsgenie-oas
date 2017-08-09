@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-api#createTeam
-    # x-collapse-params: CreateTeamRequest
     parameters:
       - name: body
         in: body
@@ -55,7 +54,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-api#listTeams
-    # x-collapse-params: ListTeamsRequest
     parameters:
       - name: expand
         in: query
@@ -164,7 +162,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/team-api#updateTeam
-    # x-collapse-params: UpdateTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
       - name: body

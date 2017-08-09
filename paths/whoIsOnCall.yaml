@@ -136,7 +136,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/who-is-on-call-api#exportOnCalls
-    # x-collapse-params: ExportOnCallUserRequest
     parameters:
       - name: identifier
         in: path

@@ -8,7 +8,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/escalation-api#listEscalations
-    # x-collapse-params: ListEscalationsRequest
     responses:
       '200':
         description: List of escalation informations
@@ -46,7 +45,6 @@
     externalDocs:
       description: For more information
       url: www.opsgenie.com/docs/rest-api/escalation-api#createEscalation
-    # x-collapse-params: CreateEscalationRequest
     parameters:
       - name: body
         in: body
