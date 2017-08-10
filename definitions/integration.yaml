@@ -1,22 +1,36 @@
 ##################
 #     REQUEST    #
 ##################
-ListIntegrationsRequest:
+
+AuthenticateIntegrationPayload:
   type: object
+  required:
+    - type
   properties:
     type:
       type: string
-      description: Type of the integration. If type parameter is given, the result will be filtered by type
-    teamId:
-      type: string
-      description: The ID of the team. If the team ID parameter is given, the result will be filtered by teamId
-    teamName:
-      type: string
-      description: The name of the team. If the team name parameter is given, the result will be filtered by teamName
+
 
 ##################
 #    RESPONSE    #
 ##################
+
+CreateIntegrationResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/IntegrationMetaDto'
+
+GetIntegrationResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/IntegrationDto'
+
 ListIntegrationsResponse:
   type: object
   allOf:
@@ -25,151 +39,60 @@ ListIntegrationsResponse:
         data:
           type: array
           items:
-            $ref: '#/definitions/Integration'
-        totalCount:
-          type: integer
-          format: int64
-        paging:
-          $ref: '#/definitions/PageDetails'
+            $ref: '#/definitions/IntegrationMetaDto'
 
-##################
-#    RESPONSE    #
-##################
-GetIntegrationResponse:
+UpdateIntegrationResponse:
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
     - properties:
         data:
-          $ref: '#/definitions/Integration'
+          $ref: '#/IntegrationMetaDto'
 
-##################
-#     REQUEST    #
-##################
-CreateApiBasedIntegrationRequest:
+EnableDisableIntegrationResponse:
   type: object
-  required:
-    - type
-    - name
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/IntegrationMetaDto'
+
+ActionCategorizedListResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/ActionCategorizedListDto'
+
+ActionCategorizedListDto:
+  type: object
   properties:
-    type:
-      type: string
-    name:
-      type: string
-    enabled:
-      type: boolean
-    allowConfigurationAccess:
-      type: boolean
-    allowWriteAccess:
-      type: boolean
-    ignoreRecipientsFromPayload:
-      type: boolean
-    ignoreTeamsFromPayload:
-      type: boolean
-    recipients:
+    _parent:
+      $ref: '#/IntegrationMetaDto'
+    ignore:
       type: array
       items:
-        $ref: '#/definitions/Recipient'
-    suppressNotifications:
-      type: boolean
-
-##################
-#    RESPONSE    #
-##################
-CreateApiBaseIntegrationResponse:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-    enabled:
-      type: boolean
-    type:
-      type: string
-    apiKey:
-      type: string
-
-##################
-#     REQUEST    #
-##################
-CreateEmailBasedIntegrationRequest:
-  type: object
-  required:
-    - type
-    - name
-    - emailUsername
-  properties:
-    type:
-      type: string
-    name:
-      type: string
-    emailUsername:
-      type: string
-    enabled:
-      type: boolean
-    ignoreRecipientsFromPayload:
-      type: boolean
-    ignoreTeamsFromPayload:
-      type: boolean
-    recipients:
+        $ref: '#/IgnoreIntegrationActionDto'
+    create:
       type: array
       items:
-        $ref: '#/definitions/Recipient'
-    suppressNotifications:
-      type: boolean
-
-##################
-#    RESPONSE    #
-##################
-CreateEmailBaseIntegrationResponse:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-    enabled:
-      type: boolean
-    type:
-      type: string
-    emailAddress:
-      type: string
-      format: email
-
-##################
-#     REQUEST    #
-##################
-UpdateIntegrationRequest:
-  type: object
-  required:
-    - type
-    - name
-    - emailUsername
-  properties:
-    type:
-      type: string
-    name:
-      type: string
-    emailUsername:
-      type: string
-    enabled:
-      type: boolean
-    ignoreRecipientsFromPayload:
-      type: boolean
-    ignoreTeamsFromPayload:
-      type: boolean
-    recipients:
+        $ref: '#/AlertCreateIntegrationActionDto'
+    close:
       type: array
       items:
-        $ref: '#/definitions/Recipient'
-    suppressNotifications:
-      type: boolean
+        $ref: '#/AlertCloseIntegrationActionDto'
+    acknowledge:
+      type: array
+      items:
+        $ref: '#/AlertAckIntegrationActionDto'
+    addNote:
+      type: array
+      items:
+        $ref: '#/AlertNoteIntegrationActionDto'
 
-##################
-#    RESPONSE    #
-##################
-UpdateIntegrationResponse:
+
+IntegrationMetaDto:
   type: object
   properties:
     id:
@@ -180,54 +103,1077 @@ UpdateIntegrationResponse:
       type: boolean
     type:
       type: string
-    emailAddress:
-      type: string
-      format: email
 
-##################
-#    RESPONSE    #
-##################
-IntegrationMetaResponse:
-  type: object
-  properties:
-    id:
-      type: string
-    name:
-      type: string
-    enabled:
-      type: boolean
-    type:
-      type: string
 
 ##################
 #      MODEL     #
 ##################
-Integration:
+IntegrationDto:
+  type: object
+  discriminator: type
+  required:
+    - name
+    - type
+  properties:
+    _readOnly:
+      type: array
+      items:
+        type: string
+    type:
+      type: string
+      enum:
+        - API
+        - Datadog
+        - OpsGenie
+        - Webhook
+        - Jira
+        - JiraServiceDesk
+        - ServiceNowV2
+        - Circonus
+        - ConnectWise
+        - Desk
+        - DynatraceAppMon
+        - ESWatcher
+        - Freshdesk
+        - HipChatV2
+        - Icinga
+        - Icinga2
+        - Kayako
+        - LogicMonitor
+        - Marid
+        - Mattermost
+        - NagiosV2
+        - NagiosXIV2
+        - MSTeams
+        - OP5
+        - Solarwinds
+        - SolarWindsWebHelpDesk
+        - Stackdriver
+        - StatusIO
+        - StatusPageIO
+        - Zabbix
+        - Zendesk
+        - Zenoss
+        # EmailBasedIncomingIntegrations
+        - Monitis
+        - RingCentralEmail
+    name:
+      type: string
+    ownerTeam:
+      $ref: '#/TeamMeta'
+    enabled:
+      type: boolean
+    isGlobal:
+      type: boolean
+
+TeamMeta:
   type: object
   properties:
     id:
       type: string
-    type:
-      type: string
     name:
       type: string
-    teamId:
-       type: string
-    enabled:
-      type: boolean
-    isAdvanced:
-      type: boolean
-    presentationInfo:
-      $ref: '#/definitions/PresentationInfo'
 
-PresentationInfo:
+AlertFilterDto:
   type: object
   properties:
-    integrationGroup:
+    conditionMatchType:
       type: string
-    displayName:
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+    conditions:
+      type: array
+      items:
+        $ref: '#/CallbackConditionDto'
+
+CallbackConditionDto:
+  type: object
+  properties:
+    field:
       type: string
-    description:
-      type: string
-    premium:
+      enum:
+        - message
+        - alias
+        - description
+        - source
+        - entity
+        - tags
+        - actions
+        - extra-properties
+        - recipients
+        - teams
+    not:
       type: boolean
+    operation:
+      type: string
+      enum:
+        - matches
+        - contains
+        - starts-with
+        - ends-with
+        - equals
+        - contains-key
+        - contains-value
+        - greater-than
+        - less-than
+        - is-empty
+        - equals-ignore-whitespace
+    expectedValue:
+      type: string
+    order:
+      type: integer
+      format: int32
+    isNot:
+      type: boolean
+
+BaseIncomingFeature:
+  type: object
+  discriminator: feature-type
+  properties:
+    suppressNotifications:
+      type: boolean
+    ignoreTeamsFromPayload:
+      type: boolean
+    ignoreRecipientsFromPayload:
+      type: boolean
+    recipients:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
+    isAdvanced:
+      type: boolean
+    feature-type:
+      type: string
+      enum:
+        - email-based
+        - token-based
+
+TokenBasedIncomingFeature:
+  type: object
+  x-discriminator-value: token-based
+  allOf:
+    - $ref: '#/BaseIncomingFeature'
+    - properties:
+        allowConfigurationAccess:
+          type: boolean
+        allowWriteAccess:
+          type: boolean
+
+EmailBasedIncomingFeature:
+  type: object
+  x-discriminator-value: email-based
+  required:
+    - emailUsername
+  allOf:
+    - $ref: '#/BaseIncomingFeature'
+    - properties:
+        emailAddress:
+          type: string
+        emailUsername:
+          type: string
+
+BaseIntegrationActionDto:
+  type: object
+  discriminator: type
+  required:
+    - type
+  properties:
+    name:
+      type: string
+    order:
+      type: integer
+      format: int32
+    filter:
+      $ref: '#/IntegrationActionFilterDto'
+    type:
+      type: string
+      enum:
+        - ignore
+        - acknowledge
+        - addNote
+        - close
+        - create
+
+IntegrationActionFilterDto:
+  type: object
+  properties:
+    conditionMatchType:
+      type: string
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+    conditions:
+      type: array
+      items:
+        $ref: '#/IntegrationConditionDto'
+
+
+IntegrationConditionDto:
+  type: object
+  required:
+    - field
+    - operation
+    - expectedValue
+  properties:
+    field:
+      type: string
+    not:
+      type: boolean
+    operation:
+      type: string
+      enum:
+        - matches
+        - contains
+        - starts-with
+        - ends-with
+        - equals
+        - contains-key
+        - contains-value
+        - greater-than
+        - less-than
+        - is-empty
+        - equals-ignore-whitespace
+    expectedValue:
+      type: string
+
+IgnoreIntegrationActionDto:
+  type: object
+  x-discriminator-value: ignore
+  allOf:
+    - $ref: '#/BaseIntegrationActionDto'
+
+AlertCreateIntegrationActionDto:
+  type: object
+  x-discriminator-value: create
+  allOf:
+    - $ref: '#/BaseIntegrationActionDto'
+    - $ref: '#/AlertIntegrationActionDto'
+    - properties:
+        source:
+          type: string
+        message:
+          type: string
+        description:
+          type: string
+        entity:
+          type: string
+        priority:
+          type: string
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+        appendAttachments:
+          type: boolean
+        alertActions:
+          type: array
+          items:
+            type: string
+        ignoreAlertActionsFromPayload:
+          type: boolean
+        recipients:
+          type: array
+          items:
+            $ref: '#/definitions/Recipient'
+        ignoreRecipientsFromPayload:
+          type: boolean
+        ignoreTeamsFromPayload:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        ignoreTagsFromPayload:
+          type: boolean
+        extraProperties:
+          type: object
+          additionalProperties:
+            type: string
+        ignoreExtraPropertiesFromPayload:
+          type: boolean
+
+AlertCloseIntegrationActionDto:
+  type: object
+  x-discriminator-value: close
+  allOf:
+    - $ref: '#/BaseIntegrationActionDto'
+    - $ref: '#/AlertIntegrationActionDto'
+
+AlertAckIntegrationActionDto:
+  type: object
+  x-discriminator-value: acknowledge
+  allOf:
+    - $ref: '#/BaseIntegrationActionDto'
+    - $ref: '#/AlertIntegrationActionDto'
+
+AlertNoteIntegrationActionDto:
+  type: object
+  x-discriminator-value: addNote
+  allOf:
+    - $ref: '#/BaseIntegrationActionDto'
+    - $ref: '#/AlertIntegrationActionDto'
+
+AlertIntegrationActionDto:
+  type: object
+  properties:
+    user:
+      type: string
+    note:
+      type: string
+    alias:
+      type: string
+
+##############################
+#     INTEGRATION MODELs     #
+##############################
+
+DatadogIntegrationDto:
+  type: object
+  x-discriminator-value: Datadog
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/DatadogCallbackDto'
+
+OpsgenieIntegrationDto:
+  type: object
+  x-discriminator-value: OpsGenie
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/OpsgenieCallbackDto'
+
+ApiIntegrationDto:
+  type: object
+  x-discriminator-value: API
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+WebhookIntegrationDto:
+  type: object
+  x-discriminator-value: Webhook
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/WebhookCallbackDto'
+
+JiraIntegrationDto:
+  type: object
+  x-discriminator-value: Jira
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/JiraCallbackDto'
+
+JiraServiceDeskIntegrationDto:
+  type: object
+  x-discriminator-value: JiraServiceDesk
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/JiraServiceDeskCallbackDto'
+
+ServiceNowV2IntegrationDto:
+  type: object
+  x-discriminator-value: ServiceNowV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/ServiceNowCallbackDto'
+
+CirconusIntegrationDto:
+  type: object
+  x-discriminator-value: Circonus
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/CirconusCallbackDto'
+
+ConnectWiseIntegrationDto:
+  type: object
+  x-discriminator-value: ConnectWise
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/ConnectWiseCallbackDto'
+
+DeskIntegrationDto:
+  type: object
+  x-discriminator-value: Desk
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/DeskCallbackDto'
+
+DynatraceAppMonIntegrationDto:
+  type: object
+  x-discriminator-value: DynatraceAppMon
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/DynatraceAppMonCallbackDto'
+
+EsWatcherIntegrationDto:
+  type: object
+  x-discriminator-value: ESWatcher
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/EsWatcherCallbackDto'
+
+FreshdeskIntegrationDto:
+  type: object
+  x-discriminator-value: Freshdesk
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/FreshdeskCallbackDto'
+
+HipchatV2IntegrationDto:
+  type: object
+  x-discriminator-value: HipChatV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/HipchatCallbackDto'
+
+IcingaIntegrationDto:
+  type: object
+  x-discriminator-value: Icinga
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+Icinga2IntegrationDto:
+  type: object
+  x-discriminator-value: Icinga2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+KayakoIntegrationDto:
+  type: object
+  x-discriminator-value: Kayako
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/KayakoCallbackDto'
+
+LogicMonitorIntegrationDto:
+  type: object
+  x-discriminator-value: LogicMonitor
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/LogicMonitorCallbackDto'
+
+MaridIntegrationDto:
+  type: object
+  x-discriminator-value: Marid
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+MattermostIntegrationDto:
+  type: object
+  x-discriminator-value: Mattermost
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MattermostCallbackDto'
+
+NagiosV2IntegrationDto:
+  type: object
+  x-discriminator-value: NagiosV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+NagiosXIV2IntegrationDto:
+  type: object
+  x-discriminator-value: NagiosXIV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+MSTeamsIntegrationDto:
+  type: object
+  x-discriminator-value: MSTeams
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MSTeamsCallbackDto'
+    - properties:
+        executeCommands:
+          type: boolean
+
+Op5IntegrationDto:
+  type: object
+  x-discriminator-value: OP5
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/Op5CallbackDto'
+
+SolarwindsIntegrationDto:
+  type: object
+  x-discriminator-value: Solarwinds
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+SolarWindsWebHelpDeskIntegrationDto:
+  type: object
+  x-discriminator-value: SolarWindsWebHelpDesk
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/SolarWindsWebHelpDeskCallbackDto'
+
+StackdriverIntegrationDto:
+  type: object
+  x-discriminator-value: Stackdriver
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/StackdriverCallbackDto'
+
+StatusIOIntegrationDto:
+  type: object
+  x-discriminator-value: StatusIO
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/StatusIOCallbackDto'
+
+StatusPageIOIntegrationDto:
+  type: object
+  x-discriminator-value: StatusPageIO
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/StatusPageIOCallbackDto'
+
+ZabbixIntegrationDto:
+  type: object
+  x-discriminator-value: Zabbix
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+ZendeskIntegrationDto:
+  type: object
+  x-discriminator-value: Zendesk
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/ZendeskCallbackDto'
+
+ZenossIntegrationDto:
+  type: object
+  x-discriminator-value: Zenoss
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+    - $ref: '#/MaridCallbackDto'
+
+#
+# Email Based Integrations
+#
+
+MonitisIntegrationDto:
+  type: object
+  x-discriminator-value: Monitis
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+RingCentralIntegrationDto:
+  type: object
+  x-discriminator-value: RingCentralEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+##############################################
+#     INTEGRATION COMMON CALLBACK MODELS     #
+##############################################
+
+OutgoingCallbackDto:
+  type: object
+  discriminator: callback-type
+  properties:
+    alertFilter:
+      $ref: '#/AlertFilterDto'
+    alertActions:
+      type: array
+      items:
+        type: string
+    callback-type:
+      type: string
+      enum:
+        - bidirectional-callback
+        - webhook-callback
+
+OutgoingCallbackNewDto:
+  type: object
+  discriminator: callback-new-type
+  properties:
+    alertFilter:
+      $ref: '#/AlertFilterDto'
+    forwardingEnabled:
+      type: boolean
+    forwardingActionMappings:
+      type: array
+      items:
+        $ref: '#/ActionMappingDto'
+    callback-type:
+      type: string
+      enum:
+        - bidirectional-callback-new
+
+BidirectionalCallbackDto:
+  type: object
+  x-discriminator-value: bidirectional-callback
+  discriminator: bidirectional-callback-type
+  allOf:
+    - $ref: '#/OutgoingCallbackDto'
+    - properties:
+        sendAlertActions:
+          type: boolean
+        bidirectional-callback-type:
+          type: string
+          enum:
+            - datadog-callback
+            - circonus-callback
+            - connectwise-callback
+            - desk-callback
+            - eswatcher-callback
+            - freshdesk-callback
+            - hipchat-callback
+            - marid-callback
+            - logic-monitor-callback
+            - mattermost-callback
+            - slack-callback
+            - solarwinds-web-helpdesk-callback
+            - stackdriver-callback
+            - statusio-callback
+
+
+BidirectionalCallbackNewDto:
+  type: object
+  x-discriminator-value: bidirectional-callback-new
+  discriminator: bidirectional-callback-new-type
+  allOf:
+    - $ref: '#/OutgoingCallbackNewDto'
+    - properties:
+        updatesActionMappings:
+          type: array
+          items:
+            $ref: '#/ActionMappingDto'
+        updatesEnabled:
+          type: boolean
+        bidirectional-callback-new-type:
+          type: string
+          enum:
+            - opsgenie-callback
+            - jira-callback
+            - jira-servicedesk-callback
+            - servicenow-callback
+            - dynatrace-appmon-callback
+            - kayako-callback
+            - msteams-callback
+            - op5-callback
+            - statuspageio-callback
+            - zendesk-callback
+
+##############################################
+#     ACTION MAPPING MODELS                  #
+##############################################
+
+ActionMappingDto:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - create
+        - acknowledge
+        - unacknowledge
+        - snooze
+        - escalate-to-next
+        - add-note
+        - add-recipient
+        - add-team
+        - add-tags
+        - remove-tags
+        - close
+        - delete
+        - escalate
+        - custom-action
+        - assign-ownership
+        - take-ownership
+    extraField:
+      type: string
+    extraFieldForMappedAction:
+      type: string
+    mappedAction:
+      type: string
+      enum:
+        # Opsgenie Integration Mapped Actions
+        - create-alert
+        - close-alert
+        - add-note
+        - acknowledge-alert
+        - unacknowledge-alert
+        # Jira & Jira Service Desk Integration Mapped Actions
+        - create-issue
+        - add-comment-to-issue
+        - in-progress-issue
+        - resolve-issue
+        - close-issue
+        - issue-done
+        # ServiceNow Integration Mapped Actions
+        - create-incident
+        - add-note-to-incident
+        - resolve-incident
+        - close-incident
+        - assign-to-group
+        - assign-to-user
+        - assign-to-owner
+        - sendToCustomEndpoint
+        # DynatraceAppMon Integration Mapped Actions
+        - confirm-incident
+        - in-progress-incident
+        # Kayako Integration Mapped Actions
+        # add-note already exists
+        - add-tag
+        - create-conversation
+        - set-status-to-open
+        - set-status-to-pending
+        - set-status-to-completed
+        # MSTeams Integration Mapped Actions
+        - send-to-channel
+        # Op5 Integration Mapped Actions
+        - acknowledge
+        # StatusPageIO Integration Mapped Actions
+        # create-incident already exists
+        - create-incident-and-update-component-statuses
+        # resolve-incident already exists
+        - resolve-incident-and-update-component-statuses-back-to-operational
+        # add-note-to-incident already exists
+        - update-component-statuses
+        # Zendesk Integration Mapped Actions
+        - create-ticket
+        - add-internal-note
+        - public-reply
+        - set-status-to-closed
+        # set-status-to-open already exists
+        # set-status-to-pending already exists
+        - set-status-to-solved
+
+
+##############################################
+#     INTEGRATION CALLBACK MODELS            #
+##############################################
+
+DatadogCallbackDto:
+  type: object
+  x-discriminator-value: datadog-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        token:
+          type: string
+
+OpsgenieCallbackDto:
+  type: object
+  x-discriminator-value: opsgenie-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        destinationApiKey:
+          type: string
+        apiKey:
+          type: string
+
+WebhookCallbackDto:
+  type: object
+  x-discriminator-value: webhook-callback
+  allOf:
+    - $ref: '#/OutgoingCallbackDto'
+    - properties:
+        url:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+
+JiraCallbackDto:
+  type: object
+  x-discriminator-value: jira-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        jiraUsername:
+          type: string
+        jiraPassword:
+          type: string
+        jiraUrl:
+          type: string
+        projectKey:
+          type: string
+        issueTypeName:
+          type: string
+
+ServiceNowCallbackDto:
+  type: object
+  x-discriminator-value: servicenow-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        scriptedRestAPIURL:
+          type: string
+        servicenowUserName:
+          type: string
+        servicenowPassword:
+          type: string
+
+CirconusCallbackDto:
+  type: object
+  x-discriminator-value: circonus-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        circonusURL:
+          type: string
+
+ConnectWiseCallbackDto:
+  type: object
+  x-discriminator-value: connectwise-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        awsLambdaUrl:
+          type: string
+
+DeskCallbackDto:
+  type: object
+  x-discriminator-value: desk-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        consumerKey:
+          type: string
+        consumerKeySecret:
+          type: string
+        accessToken:
+          type: string
+        accessTokenSecret:
+          type: string
+        subdomain:
+          type: string
+
+DynatraceAppMonCallbackDto:
+  type: object
+  x-discriminator-value: dynatrace-appmon-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        url:
+          type: string
+        profileName:
+          type: string
+
+EsWatcherCallbackDto:
+  type: object
+  x-discriminator-value: eswatcher-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        eswatcherActionId:
+          type: string
+        eswatcherHostId:
+          type: string
+
+FreshdeskCallbackDto:
+  type: object
+  x-discriminator-value: freshdesk-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        freshdeskApiKey:
+          type: string
+        freshdeskSubdomain:
+          type: string
+
+HipchatCallbackDto:
+  type: object
+  x-discriminator-value: hipchat-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        rooms:
+          type: array
+          items:
+            type: string
+        token:
+          type: string
+        notify:
+          type: boolean
+        hostUrl:
+          type: string
+
+MaridCallbackDto:
+  type: object
+  x-discriminator-value: marid-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+
+JiraServiceDeskCallbackDto:
+  type: object
+  x-discriminator-value: jira-servicedesk-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        jiraUsername:
+          type: string
+        jiraPassword:
+          type: string
+        jiraUrl:
+          type: string
+        projectKey:
+          type: string
+        issueTypeName:
+          type: string
+
+KayakoCallbackDto:
+  type: object
+  x-discriminator-value: kayako-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        email:
+          type: string
+        password:
+          type: string
+        subdomain:
+          type: string
+
+LogicMonitorCallbackDto:
+  type: object
+  x-discriminator-value: logic-monitor-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        accountName:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+
+MattermostCallbackDto:
+  type: object
+  x-discriminator-value: mattermost-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        url:
+          type: string
+
+MSTeamsCallbackDto:
+  type: object
+  x-discriminator-value: msteams-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        webhookUrl:
+          type: string
+
+Op5CallbackDto:
+  type: object
+  x-discriminator-value: op5-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        url:
+          type: string
+
+SolarWindsWebHelpDeskCallbackDto:
+  type: object
+  x-discriminator-value: solarwinds-web-helpdesk-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        solarWindsWebHelpDeskApiKey:
+          type: string
+        solarWindsWebHelpServerURL:
+          type: string
+
+StackdriverCallbackDto:
+  type: object
+  x-discriminator-value: stackdriver-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        stackdriverApiKey:
+          type: string
+
+StatusIOCallbackDto:
+  type: object
+  x-discriminator-value: statusio-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackDto'
+    - properties:
+        statusIoApiId:
+          type: string
+        statusIoApiKey:
+          type: string
+        statusIoStatusPageId:
+          type: string
+
+StatusPageIOCallbackDto:
+  type: object
+  x-discriminator-value: statuspageio-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        statusPagePageId:
+          type: string
+        statusPageApiKey:
+          type: string
+
+ZendeskCallbackDto:
+  type: object
+  x-discriminator-value: zendesk-callback
+  allOf:
+    - $ref: '#/BidirectionalCallbackNewDto'
+    - properties:
+        zendeskApiToken:
+          type: string
+        zendeskEmail:
+          type: string
+        zendeskSubdomain:
+          type: string

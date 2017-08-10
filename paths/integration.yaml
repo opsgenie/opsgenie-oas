@@ -5,17 +5,17 @@
     summary: List Integrations
     description: List integrations with given parameters
     operationId: listIntegrations
-    # x-collapse-params: ListIntegrationsRequest
+    x-collapse-params: ListIntegrationPayload
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#listIntegration
     parameters:
-      - name: body
-        in: body
-        description: Request parameters
-        required: false
-        schema:
-          $ref: '#/definitions/ListIntegrationsRequest'
+      - $ref: '#/parameters/IntegrationType'
+      - $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamName'
     responses:
       '200':
-        description: List of users with given parameters
+        description: List of integrations with given parameters
         schema:
           $ref: '#/definitions/ListIntegrationsResponse'
         headers:
@@ -39,12 +39,61 @@
       default:
           $ref: '#/responses/GeneralError'
 
-/v2/integrations/{integrationId}:
+  post:
+    tags:
+      - integration
+    summary: Create Integration
+    description: Creates integration
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#createGenericIntegration
+    operationId: createIntegration
+    parameters:
+      - name: body
+        in: body
+        description: Create integration payload
+        required: true
+        schema:
+          $ref: '#/definitions/IntegrationDto'
+    responses:
+      '201':
+        description: Integration information
+        schema:
+          $ref: '#/definitions/CreateIntegrationResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v2/integrations/{id}:
   get:
     tags:
       - integration
     summary: Get Integration
     description: Get integration
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#getIntegration
     operationId: getIntegration
     parameters:
       - $ref: '#/parameters/IntegrationId'
@@ -74,103 +123,15 @@
       default:
           $ref: '#/responses/GeneralError'
 
-/v2/integrations/:
-  post:
-    tags:
-      - integration
-    summary: Create API Based Integration
-    description: Creates api based integration
-    operationId: createApiBasedIntegration
-    # x-collapse-params: CreateApiBasedIntegrationRequest
-    parameters:
-      - name: body
-        in: body
-        description: Request parameters
-        required: true
-        schema:
-          $ref: '#/definitions/CreateApiBasedIntegrationRequest'
-    responses:
-      '201':
-        description: Integration information
-        schema:
-          $ref: '#/definitions/CreateApiBaseIntegrationResponse'
-        headers:
-          X-Request-ID:
-            description: Id of given request
-            type: string
-          X-Response-Time:
-            description: Process time of given request
-            type: string
-          X-RateLimit-State:
-            description: Status of rate limit
-            type: string
-          X-RateLimit-Reason:
-            description: Source of the rate limit
-            type: string
-          X-RateLimit-Period-In-Sec:
-            description: Time of throttle in seconds
-            type: string
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      default:
-        $ref: '#/responses/GeneralError'
-
-  post:
-    tags:
-      - integration
-    summary: Create Email Based Integration
-    description: Creates email based integration
-    operationId: createEmailBasedIntegration
-    # x-collapse-params: CreateEmailBasedIntegrationRequest
-    parameters:
-      - name: body
-        in: body
-        description: Request parameters
-        required: true
-        schema:
-          $ref: '#/definitions/CreateEmailBasedIntegrationRequest'
-    responses:
-      '201':
-        description: Integration information
-        schema:
-          $ref: '#/definitions/CreateEmailBaseIntegrationResponse'
-        headers:
-          X-Request-ID:
-            description: Id of given request
-            type: string
-          X-Response-Time:
-            description: Process time of given request
-            type: string
-          X-RateLimit-State:
-            description: Status of rate limit
-            type: string
-          X-RateLimit-Reason:
-            description: Source of the rate limit
-            type: string
-          X-RateLimit-Period-In-Sec:
-            description: Time of throttle in seconds
-            type: string
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      default:
-        $ref: '#/responses/GeneralError'
-
-/v2/integrations/{integrationId}:
   put:
     tags:
       - integration
     summary: Update Integration
     description: Update integration
     operationId: updateIntegration
-    # x-collapse-params: UpdateIntegrationRequest
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegration
     parameters:
       - $ref: '#/parameters/IntegrationId'
       - name: body
@@ -178,7 +139,7 @@
         description: Request parameters
         required: true
         schema:
-          $ref: '#/definitions/UpdateIntegrationRequest'
+          $ref: '#/definitions/IntegrationDto'
     responses:
       '200':
         description: Integration updated
@@ -207,12 +168,14 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/integrations/{integrationId}:
   delete:
     tags:
       - integration
     summary: Delete Integration
     description: Delete integration with the given id
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#deleteIntegration
     operationId: deleteIntegration
     parameters:
       - $ref: '#/parameters/IntegrationId'
@@ -228,12 +191,15 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/integrations/{integrationId}/enable:
+/v2/integrations/{id}/enable:
   post:
     tags:
       - integration
     summary: Enable Integration
     description: Enables integration
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#enableIntegration
     operationId: enableIntegration
     parameters:
       - $ref: '#/parameters/IntegrationId'
@@ -241,7 +207,7 @@
       '201':
         description: Integration information
         schema:
-          $ref: '#/definitions/IntegrationMetaResponse'
+          $ref: '#/definitions/EnableDisableIntegrationResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -267,12 +233,15 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/integrations/{integrationId}/disable:
+/v2/integrations/{id}/disable:
   post:
     tags:
       - integration
     summary: Disable Integration
     description: Disables integration
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#disableIntegration
     operationId: disableIntegration
     parameters:
       - $ref: '#/parameters/IntegrationId'
@@ -280,7 +249,7 @@
       '201':
         description: Integration information
         schema:
-          $ref: '#/definitions/IntegrationMetaResponse'
+          $ref: '#/definitions/EnableDisableIntegrationResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -306,46 +275,32 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/integrations/{integrationId}/authenticate:
+/v2/integrations/authenticate:
   post:
     tags:
       - integration
     summary: Authenticate Integration
     description: Authenticates integration
-    operationId: authenticatesIntegration
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#authenticateIntegration
+    operationId: authenticateIntegration
     parameters:
-      - $ref: '#/parameters/IntegrationId'
       - name: body
         in: body
-        type: string
+        description: Request parameters
         required: true
-    responses:
-      '201':
-        description: Integration information
         schema:
-          $ref: '#/definitions/IntegrationMetaResponse'
-        headers:
-          X-Request-ID:
-            description: Id of given request
-            type: string
-          X-Response-Time:
-            description: Process time of given request
-            type: string
-          X-RateLimit-State:
-            description: Status of rate limit
-            type: string
-          X-RateLimit-Reason:
-            description: Source of the rate limit
-            type: string
-          X-RateLimit-Period-In-Sec:
-            description: Time of throttle in seconds
-            type: string
+          $ref: '#/definitions/AuthenticateIntegrationPayload'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
       '401':
         $ref: '#/responses/Unauthorized'
       '403':
         $ref: '#/responses/Forbidden'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
+      '404':
+        $ref: '#/responses/NotFound'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -356,13 +311,16 @@
     summary: Get Integration Actions
     description: Get integration actions
     operationId: getIntegrationActions
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#getIntegrationActions
     parameters:
-      - $ref: '#/parameters/IntegrationId'
+      - $ref: '#/parameters/ActionsIntegrationId'
     responses:
       '200':
-        description: Get integration actions
+        description: List of integration actions
         schema:
-          $ref: '#/definitions/GetIntegrationResponse'
+          $ref: '#/definitions/ActionCategorizedListResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -383,3 +341,95 @@
           $ref: '#/responses/Unauthorized'
       default:
           $ref: '#/responses/GeneralError'
+
+  put:
+    tags:
+      - integration
+    summary: Update Integration Actions
+    description: Updates integration Actions
+    operationId: updateIntegrationActions
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegrationActions
+    parameters:
+      - $ref: '#/parameters/ActionsIntegrationId'
+      - name: body
+        in: body
+        description: Request payload to update integration actions
+        required: true
+        schema:
+          $ref: '#/definitions/ActionCategorizedListDto'
+    responses:
+      '200':
+        description: Updated integration action list
+        schema:
+          $ref: '#/definitions/ActionCategorizedListResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '404':
+        $ref: '#/responses/NotFound'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - integration
+    summary: Create Integration Action
+    description: Creates Integration Action
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/rest-api/integration-api#createIntegrationActions
+    operationId: createIntegrationAction
+    parameters:
+      - $ref: '#/parameters/ActionsIntegrationId'
+      - name: body
+        in: body
+        description: Request payload to create integration action
+        required: true
+        schema:
+          $ref: '#/definitions/BaseIntegrationActionDto'
+    responses:
+      '201':
+        description:
+        schema:
+          $ref: '#/definitions/ActionCategorizedListResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      default:
+        $ref: '#/responses/GeneralError'
