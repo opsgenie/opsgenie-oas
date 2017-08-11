@@ -51,7 +51,7 @@
         description: Payload of created alert policy
         required: true
         schema:
-          $ref: '#/definitions/CreateAlertPolicyPayload'
+          $ref: '#/definitions/AlertPolicy'
     responses:
       '201':
         description: Policy meta information for created policy
@@ -141,7 +141,7 @@
         description: Payload of updated alert policy
         required: true
         schema:
-          $ref: '#/definitions/UpdateAlertPolicyPayload'
+          $ref: '#/definitions/AlertPolicy'
     responses:
       '200':
         $ref: '#/responses/Ok'

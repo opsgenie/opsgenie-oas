@@ -1,124 +1,6 @@
 ##################
 #    REQUEST     #
 ##################
-CreateAlertPolicyPayload:
-  type: object
-  discriminator: type
-  required:
-    - request-type
-  properties:
-    request-type:
-      type: string
-      enum:
-        - modify
-        - auto-close
-        - notification-delay
-        - notification-deduplication
-        - notification-suppress
-        - notification-renotify
-        - auto-restart-notifications
-
-CreateModifyAlertPolicyPayload:
-  type: object
-  x-discriminator-value: modify
-  allOf:
-    - $ref: '#/definitions/CreateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyModify'
-
-CreateAutoCloseAlertPolicyPayload:
-  type: object
-  x-discriminator-value: auto-close
-  allOf:
-    - $ref: '#/definitions/CreateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyAutoClose'
-
-CreateNotificationDelayAlertPolicyPayload:
-  type: object
-  x-discriminator-value: notification-delay
-  allOf:
-    - $ref: '#/definitions/CreateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyDelay'
-
-CreateNotificationDeduplicationAlertPolicyPayload:
-  type: object
-  x-discriminator-value: notification-deduplication
-  allOf:
-    - $ref: '#/definitions/CreateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyDeduplication'
-
-CreateNotificationSuppressAlertPolicyPayload:
-  type: object
-  x-discriminator-value: notification-suppress
-  allOf:
-    - $ref: '#/definitions/CreateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicySuppress'
-
-CreateAutoRestartAlertPolicyPayload:
-  type: object
-  x-discriminator-value: auto-restart-notifications
-  allOf:
-    - $ref: '#/definitions/CreateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyAutoRestart'
-
-UpdateAlertPolicyPayload:
-  type: object
-  discriminator: type
-  required:
-    - request-type
-  properties:
-    request-type:
-      type: string
-      enum:
-        - modify
-        - auto-close
-        - notification-delay
-        - notification-deduplication
-        - notification-suppress
-        - notification-renotify
-        - auto-restart-notifications
-
-UpdateModifyAlertPolicyPayload:
-  type: object
-  x-discriminator-value: modify
-  allOf:
-    - $ref: '#/definitions/UpdateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyModify'
-
-UpdateAutoCloseAlertPolicyPayload:
-  type: object
-  x-discriminator-value: auto-close
-  allOf:
-    - $ref: '#/definitions/UpdateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyAutoClose'
-
-UpdateNotificationDelayAlertPolicyPayload:
-  type: object
-  x-discriminator-value: notification-delay
-  allOf:
-    - $ref: '#/definitions/UpdateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyDelay'
-
-UpdateNotificationDeduplicationAlertPolicyPayload:
-  type: object
-  x-discriminator-value: notification-deduplication
-  allOf:
-    - $ref: '#/definitions/UpdateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyDeduplication'
-
-UpdateNotificationSuppressAlertPolicyPayload:
-  type: object
-  x-discriminator-value: notification-suppress
-  allOf:
-    - $ref: '#/definitions/UpdateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicySuppress'
-
-UpdateAutoRestartAlertPolicyPayload:
-  type: object
-  x-discriminator-value: auto-restart-notifications
-  allOf:
-    - $ref: '#/definitions/UpdateAlertPolicyPayload'
-    - $ref: '#/definitions/AlertPolicyAutoRestart'
-
 ChangeAlertPolicyOrderPayload:
   type: object
   required:
@@ -220,7 +102,7 @@ AlertPolicy:
         - notification-renotify
         - auto-restart-notifications
 
-AlertPolicyModify:
+ModifyAlertPolicy:
   type: object
   x-discriminator-value: modify
   allOf:
@@ -288,7 +170,7 @@ AlertPolicyModify:
             - P4
             - P5
 
-AlertPolicyAutoClose:
+AutoCloseAlertPolicy:
   type: object
   x-discriminator-value: auto-close
   allOf:
@@ -298,7 +180,7 @@ AlertPolicyAutoClose:
           description: Duration to wait before closing the alert
           $ref: '#/definitions/Duration'
 
-AlertPolicyDelay:
+NotificationDelayAlertPolicy:
   type: object
   x-discriminator-value: notification-delay
   allOf:
@@ -334,7 +216,7 @@ AlertPolicyDelay:
           minimum: 0
           maximum: 59
 
-AlertPolicyDeduplication:
+NotificationDeduplicationAlertPolicy:
   type: object
   x-discriminator-value: notification-deduplication
   allOf:
@@ -356,7 +238,7 @@ AlertPolicyDeduplication:
           description: Interval to keep count of alerts for frequency based deduplication
           $ref: '#/definitions/Duration'
 
-AlertPolicyAutoRestart:
+AutoRestartNotificationsAlertPolicy:
   type: object
   x-discriminator-value: auto-restart-notifications
   required:
@@ -372,13 +254,13 @@ AlertPolicyAutoRestart:
           type: integer
           format: int32
 
-AlertPolicySuppress:
+NotificationSuppressAlertPolicy:
   type: object
   x-discriminator-value: notification-suppress
   allOf:
     - $ref: '#/definitions/AlertPolicy'
 
-AlertPolicyRenotify:
+NotificationRenotifyAlertPolicy:
   type: object
   x-discriminator-value: notification-renotify
   allOf:
