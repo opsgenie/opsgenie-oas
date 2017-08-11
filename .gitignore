@@ -1,6 +1,7 @@
 # idea conf files
 .idea/
 *.iml
+*.DS_Store
 
 # building
 target/

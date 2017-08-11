@@ -122,17 +122,14 @@ IntegrationDto:
     type:
       type: string
       enum:
-        - API
         - Datadog
         - OpsGenie
-        - Webhook
         - Jira
         - JiraServiceDesk
         - ServiceNowV2
         - Circonus
         - ConnectWise
         - Desk
-        - DynatraceAppMon
         - ESWatcher
         - Freshdesk
         - HipChatV2
@@ -155,8 +152,121 @@ IntegrationDto:
         - Zendesk
         - Zenoss
         # EmailBasedIncomingIntegrations
-        - Monitis
+        - AutoTaskEmail
+        - AutotaskAEMEmail
+        - Email
+        - LabTechEmail
+        - NeustarEmail
+        - RedGateSqlMonitorEmail
         - RingCentralEmail
+        - UptrendsEmail
+        # TokenBasedIncomingIntegrations
+        - Airbrake
+        - AlertLogic
+        - AlertSite
+        - AmazonCloudTrail
+        - CloudWatch
+        - AmazonEc2AutoScaling
+        - AmazonRds
+        - AmazonRoute53HealthCheck
+        - AmazonSes
+        - AmazonSns
+        - API
+        - AppDynamics
+        - AppSignal
+        - Atatus
+        - Azure
+        - AzureOMS
+        - Boundary
+        - Catchpoint
+        - CheckMK
+        - Cherwell
+        - CircleCi
+        - CloudMonix
+        - CloudSploit
+        - Codeship
+        - Compose
+        - Consul
+        - CopperEgg
+        - Crashlytics
+        - DataloopIO
+        - Detectify
+        - DNSCheck
+        - DripStat
+        - Dynatrace
+        - Errorception
+        - EvidentIO
+        - Freshservice
+        - GhostInspector
+        - GoogleStackdriver
+        - GrafanaV2
+        - Graylog
+        - Heartbeat
+        - Honeybadger
+        - HostedGraphite
+        - Librato
+        - Logentries
+        - Loggly
+        - Logstash
+        - LogzIO
+        - MongoDBCloud
+        - Monitis
+        - Netuitive
+        - NewRelic
+        - NewRelicV2
+        - NodePing
+        - ObserviumV2
+        - OEM
+        - OpsDash
+        - PagerDutyCompatibility
+        - Panopta
+        - Papertrail
+        - PingdomV2
+        - Pingometer
+        - Prometheus
+        - Prtg
+        - Rackspace
+        - Riemann
+        - Rigor
+        - Rollbar
+        - Runscope
+        - Scalyr
+        - SCOM
+        - Scout
+        - SematextSpm
+        - Sensu
+        - ServerDensity
+        - ServerGuard24
+        - SignalSciences
+        - Signalfx
+        - Site24x7
+        - Soasta
+        - SolarwindsMSPNCentral
+        - Splunk
+        - StatusCake
+        - StruxureWare
+        - SumoLogic
+        - SysdigCloud
+        - ThousandEyes
+        - ThreatStack
+        - Tideways
+        - TravisCI
+        - Twilio
+        - UptimeWebhook
+        - UptimeRobot
+        - VCenter
+        - Wavefront
+        # OutgoingIntegrations
+        - AmazonSnsOutgoing
+        - Campfire
+        - Flock
+        - Flowdock
+        - FlowdockV2
+        - Kore
+        - Moxtra
+        - Planio
+        - RingCentralGlip
+        - Webhook
     name:
       type: string
     ownerTeam:
@@ -448,20 +558,6 @@ OpsgenieIntegrationDto:
     - $ref: '#/TokenBasedIncomingFeature'
     - $ref: '#/OpsgenieCallbackDto'
 
-ApiIntegrationDto:
-  type: object
-  x-discriminator-value: API
-  allOf:
-    - $ref: '#/IntegrationDto'
-    - $ref: '#/TokenBasedIncomingFeature'
-
-WebhookIntegrationDto:
-  type: object
-  x-discriminator-value: Webhook
-  allOf:
-    - $ref: '#/IntegrationDto'
-    - $ref: '#/WebhookCallbackDto'
-
 JiraIntegrationDto:
   type: object
   x-discriminator-value: Jira
@@ -509,14 +605,6 @@ DeskIntegrationDto:
     - $ref: '#/IntegrationDto'
     - $ref: '#/TokenBasedIncomingFeature'
     - $ref: '#/DeskCallbackDto'
-
-DynatraceAppMonIntegrationDto:
-  type: object
-  x-discriminator-value: DynatraceAppMon
-  allOf:
-    - $ref: '#/IntegrationDto'
-    - $ref: '#/TokenBasedIncomingFeature'
-    - $ref: '#/DynatraceAppMonCallbackDto'
 
 EsWatcherIntegrationDto:
   type: object
@@ -690,22 +778,809 @@ ZenossIntegrationDto:
     - $ref: '#/MaridCallbackDto'
 
 #
-# Email Based Integrations
+# Email Based Incoming Integrations
 #
+
+AutoTaskEmailIntegrationDto:
+  type: object
+  x-discriminator-value: AutoTaskEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+AutoTaskAEMEmailIntegrationDto:
+  type: object
+  x-discriminator-value: AutotaskAEMEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+EmailIntegrationDto:
+  type: object
+  x-discriminator-value: Email
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+LabTechEmailIntegrationDto:
+  type: object
+  x-discriminator-value: LabTechEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+NeustarIntegrationDto:
+  type: object
+  x-discriminator-value: NeustarEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+RedGateSqlMonitorEmailIntegrationDto:
+  type: object
+  x-discriminator-value: RedGateSqlMonitorEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+RingCentralEmailIntegrationDto:
+  type: object
+  x-discriminator-value: RingCentralEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+UptrendsEmailIntegrationDto:
+  type: object
+  x-discriminator-value: UptrendsEmail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/EmailBasedIncomingFeature'
+
+#
+# Token Based Incoming Integrations
+#
+
+AirbrakeIntegrationDto:
+  type: object
+  x-discriminator-value: Airbrake
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AlertLogicIntegrationDto:
+  type: object
+  x-discriminator-value: AlertLogic
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AlertSiteIntegrationDto:
+  type: object
+  x-discriminator-value: AlertSite
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AmazonCloudTrailIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonCloudTrail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CloudWatchIntegrationDto:
+  type: object
+  x-discriminator-value: CloudWatch
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AmazonEc2AutoScalingIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonEc2AutoScaling
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AmazonRdsIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonRds
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AmazonRoute53HealthCheckIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonRoute53HealthCheck
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AmazonSesIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonSes
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AmazonSnsIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonSns
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ApiIntegrationDto:
+  type: object
+  x-discriminator-value: API
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AppDynamicsIntegrationDto:
+  type: object
+  x-discriminator-value: AppDynamics
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AppSignalIntegrationDto:
+  type: object
+  x-discriminator-value: AppSignal
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AtatusIntegrationDto:
+  type: object
+  x-discriminator-value: Atatus
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AzureIntegrationDto:
+  type: object
+  x-discriminator-value: Azure
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+AzureOMSIntegrationDto:
+  type: object
+  x-discriminator-value: AzureOMS
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+BoundaryIntegrationDto:
+  type: object
+  x-discriminator-value: Boundary
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CatchpointIntegrationDto:
+  type: object
+  x-discriminator-value: Catchpoint
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CheckMKIntegrationDto:
+  type: object
+  x-discriminator-value: CheckMK
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CherwellIntegrationDto:
+  type: object
+  x-discriminator-value: Cherwell
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CircleCiIntegrationDto:
+  type: object
+  x-discriminator-value: CircleCi
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CloudMonixIntegrationDto:
+  type: object
+  x-discriminator-value: CloudMonix
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CloudSploitIntegrationDto:
+  type: object
+  x-discriminator-value: CloudSploit
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CodeshipIntegrationDto:
+  type: object
+  x-discriminator-value: Codeship
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ComposeIntegrationDto:
+  type: object
+  x-discriminator-value: Compose
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ConsulIntegrationDto:
+  type: object
+  x-discriminator-value: Consul
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CopperEggIntegrationDto:
+  type: object
+  x-discriminator-value: CopperEgg
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+CrashlyticsIntegrationDto:
+  type: object
+  x-discriminator-value: Crashlytics
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+DataloopIOIntegrationDto:
+  type: object
+  x-discriminator-value: DataloopIO
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+DetectifyIntegrationDto:
+  type: object
+  x-discriminator-value: Detectify
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+DNSCheckIntegrationDto:
+  type: object
+  x-discriminator-value: DNSCheck
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+DripStatIntegrationDto:
+  type: object
+  x-discriminator-value: DripStat
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+DynatraceIntegrationDto:
+  type: object
+  x-discriminator-value: Dynatrace
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ErrorceptionIntegrationDto:
+  type: object
+  x-discriminator-value: Errorception
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+EvidentIOIntegrationDto:
+  type: object
+  x-discriminator-value: EvidentIO
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+FreshserviceIntegrationDto:
+  type: object
+  x-discriminator-value: Freshservice
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+GhostInspectorIntegrationDto:
+  type: object
+  x-discriminator-value: GhostInspector
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+GoogleStackdriverIntegrationDto:
+  type: object
+  x-discriminator-value: GoogleStackdriver
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+GrafanaV2IntegrationDto:
+  type: object
+  x-discriminator-value: GrafanaV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+GraylogIntegrationDto:
+  type: object
+  x-discriminator-value: Graylog
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+HeartbeatIntegrationDto:
+  type: object
+  x-discriminator-value: Heartbeat
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+HoneybadgerIntegrationDto:
+  type: object
+  x-discriminator-value: Honeybadger
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+HostedGraphiteIntegrationDto:
+  type: object
+  x-discriminator-value: HostedGraphite
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+LibratoIntegrationDto:
+  type: object
+  x-discriminator-value: Librato
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+LogentriesIntegrationDto:
+  type: object
+  x-discriminator-value: Logentries
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+LogglyIntegrationDto:
+  type: object
+  x-discriminator-value: Loggly
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+LogstashIntegrationDto:
+  type: object
+  x-discriminator-value: Logstash
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+LogzIOIntegrationDto:
+  type: object
+  x-discriminator-value: LogzIO
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+MongoDBCloudIntegrationDto:
+  type: object
+  x-discriminator-value: MongoDBCloud
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
 
 MonitisIntegrationDto:
   type: object
   x-discriminator-value: Monitis
   allOf:
     - $ref: '#/IntegrationDto'
-    - $ref: '#/EmailBasedIncomingFeature'
+    - $ref: '#/TokenBasedIncomingFeature'
 
-RingCentralIntegrationDto:
+NetuitiveIntegrationDto:
   type: object
-  x-discriminator-value: RingCentralEmail
+  x-discriminator-value: Netuitive
   allOf:
     - $ref: '#/IntegrationDto'
-    - $ref: '#/EmailBasedIncomingFeature'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+NewRelicV2IntegrationDto:
+  type: object
+  x-discriminator-value: NewRelicV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+NewRelicIntegrationDto:
+  type: object
+  x-discriminator-value: NewRelic
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+NodePingIntegrationDto:
+  type: object
+  x-discriminator-value: NodePing
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ObserviumV2IntegrationDto:
+  type: object
+  x-discriminator-value: ObserviumV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+OEMIntegrationDto:
+  type: object
+  x-discriminator-value: OEM
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+OpsDashIntegrationDto:
+  type: object
+  x-discriminator-value: OpsDash
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PagerDutyCompatibilityIntegrationDto:
+  type: object
+  x-discriminator-value: PagerDutyCompatibility
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PanoptaIntegrationDto:
+  type: object
+  x-discriminator-value: Panopta
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PapertrailIntegrationDto:
+  type: object
+  x-discriminator-value: Papertrail
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PingdomV2IntegrationDto:
+  type: object
+  x-discriminator-value: PingdomV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PingometerIntegrationDto:
+  type: object
+  x-discriminator-value: Pingometer
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PrometheusIntegrationDto:
+  type: object
+  x-discriminator-value: Prometheus
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+PrtgIntegrationDto:
+  type: object
+  x-discriminator-value: Prtg
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+RackspaceIntegrationDto:
+  type: object
+  x-discriminator-value: Rackspace
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+RiemannIntegrationDto:
+  type: object
+  x-discriminator-value: Riemann
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+RigorIntegrationDto:
+  type: object
+  x-discriminator-value: Rigor
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+RollbarIntegrationDto:
+  type: object
+  x-discriminator-value: Rollbar
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+RunscopeIntegrationDto:
+  type: object
+  x-discriminator-value: Runscope
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ScalyrIntegrationDto:
+  type: object
+  x-discriminator-value: Scalyr
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SCOMIntegrationDto:
+  type: object
+  x-discriminator-value: SCOM
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ScoutIntegrationDto:
+  type: object
+  x-discriminator-value: Scout
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SematextSpmIntegrationDto:
+  type: object
+  x-discriminator-value: SematextSpm
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SensuIntegrationDto:
+  type: object
+  x-discriminator-value: Sensu
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ServerDensityIntegrationDto:
+  type: object
+  x-discriminator-value: ServerDensity
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ServerGuard24IntegrationDto:
+  type: object
+  x-discriminator-value: ServerGuard24
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SignalSciencesIntegrationDto:
+  type: object
+  x-discriminator-value: SignalSciences
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SignalfxIntegrationDto:
+  type: object
+  x-discriminator-value: Signalfx
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+Site24x7IntegrationDto:
+  type: object
+  x-discriminator-value: Site24x7
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SoastaIntegrationDto:
+  type: object
+  x-discriminator-value: Soasta
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SolarwindsMSPNCentralIntegrationDto:
+  type: object
+  x-discriminator-value: SolarwindsMSPNCentral
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SplunkIntegrationDto:
+  type: object
+  x-discriminator-value: Splunk
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+StatusCakeIntegrationDto:
+  type: object
+  x-discriminator-value: StatusCake
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+StruxureWareIntegrationDto:
+  type: object
+  x-discriminator-value: StruxureWare
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SumoLogicIntegrationDto:
+  type: object
+  x-discriminator-value: SumoLogic
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+SysdigCloudIntegrationDto:
+  type: object
+  x-discriminator-value: SysdigCloud
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ThousandEyesIntegrationDto:
+  type: object
+  x-discriminator-value: ThousandEyes
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+ThreatStackIntegrationDto:
+  type: object
+  x-discriminator-value: ThreatStack
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+TidewaysIntegrationDto:
+  type: object
+  x-discriminator-value: Tideways
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+TravisCIIntegrationDto:
+  type: object
+  x-discriminator-value: TravisCI
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+TwilioCIIntegrationDto:
+  type: object
+  x-discriminator-value: Twilio
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+UptimeWebhookIntegrationDto:
+  type: object
+  x-discriminator-value: UptimeWebhook
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+UptimeRobotIntegrationDto:
+  type: object
+  x-discriminator-value: UptimeRobot
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+VCenterIntegrationDto:
+  type: object
+  x-discriminator-value: VCenter
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+WavefrontIntegrationDto:
+  type: object
+  x-discriminator-value: Wavefront
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/TokenBasedIncomingFeature'
+
+#
+# Outgoing Integrations
+#
+
+AmazonSnsOutgoingIntegrationDto:
+  type: object
+  x-discriminator-value: AmazonSnsOutgoing
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/AmazonSnsCallbackDto'
+
+CampfireIntegrationDto:
+  type: object
+  x-discriminator-value: Campfire
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/AmazonSnsCallbackDto'
+
+FlockIntegrationDto:
+  type: object
+  x-discriminator-value: Flock
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/WebhookCallbackDto'
+
+FlowdockIntegrationDto:
+  type: object
+  x-discriminator-value: Flowdock
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/FlowdockCallbackDto'
+
+FlowdockV2IntegrationDto:
+  type: object
+  x-discriminator-value: FlowdockV2
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/FlowdockV2CallbackDto'
+
+KoreIntegrationDto:
+  type: object
+  x-discriminator-value: Kore
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/WebhookCallbackDto'
+
+MoxtraIntegrationDto:
+  type: object
+  x-discriminator-value: Moxtra
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/WebhookCallbackDto'
+
+PlanioIntegrationDto:
+  type: object
+  x-discriminator-value: Planio
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/PlanioCallbackDto'
+
+RingCentralGlipIntegrationDto:
+  type: object
+  x-discriminator-value: RingCentralGlip
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/WebhookCallbackDto'
+
+
+WebhookIntegrationDto:
+  type: object
+  x-discriminator-value: Webhook
+  allOf:
+    - $ref: '#/IntegrationDto'
+    - $ref: '#/WebhookCallbackDto'
+
 
 ##############################################
 #     INTEGRATION COMMON CALLBACK MODELS     #
@@ -726,6 +1601,10 @@ OutgoingCallbackDto:
       enum:
         - bidirectional-callback
         - webhook-callback
+        - campfire-callback
+        - flowdock-callback
+        - flowdockv2-callback
+        - planio-callback
 
 OutgoingCallbackNewDto:
   type: object
@@ -743,6 +1622,7 @@ OutgoingCallbackNewDto:
       type: string
       enum:
         - bidirectional-callback-new
+        - amazon-sns-callback
 
 BidirectionalCallbackDto:
   type: object
@@ -792,7 +1672,6 @@ BidirectionalCallbackNewDto:
             - jira-callback
             - jira-servicedesk-callback
             - servicenow-callback
-            - dynatrace-appmon-callback
             - kayako-callback
             - msteams-callback
             - op5-callback
@@ -854,9 +1733,6 @@ ActionMappingDto:
         - assign-to-user
         - assign-to-owner
         - sendToCustomEndpoint
-        # DynatraceAppMon Integration Mapped Actions
-        - confirm-incident
-        - in-progress-incident
         # Kayako Integration Mapped Actions
         # add-note already exists
         - add-tag
@@ -883,6 +1759,8 @@ ActionMappingDto:
         # set-status-to-open already exists
         # set-status-to-pending already exists
         - set-status-to-solved
+        # Amazon Sns Outgoing Integration Mapped Actions
+        - publish
 
 
 ##############################################
@@ -985,21 +1863,6 @@ DeskCallbackDto:
         accessTokenSecret:
           type: string
         subdomain:
-          type: string
-
-DynatraceAppMonCallbackDto:
-  type: object
-  x-discriminator-value: dynatrace-appmon-callback
-  allOf:
-    - $ref: '#/BidirectionalCallbackNewDto'
-    - properties:
-        username:
-          type: string
-        password:
-          type: string
-        url:
-          type: string
-        profileName:
           type: string
 
 EsWatcherCallbackDto:
@@ -1176,4 +2039,70 @@ ZendeskCallbackDto:
         zendeskEmail:
           type: string
         zendeskSubdomain:
+          type: string
+
+AmazonSnsCallbackDto:
+  type: object
+  x-discriminator-value: amazon-sns-callback
+  allOf:
+    - $ref: '#/OutgoingCallbackNewDto'
+    - properties:
+        topicArn:
+          type: string
+        region:
+          type: string
+
+CampfireCallbackDto:
+  type: object
+  x-discriminator-value: campfire-callback
+  allOf:
+    - $ref: '#/OutgoingCallbackDto'
+    - properties:
+        token:
+          type: string
+        subdomain:
+          type: string
+        notify:
+          type: boolean
+        rooms:
+          type: object
+          additionalProperties:
+            type: string
+
+FlowdockCallbackDto:
+  type: object
+  x-discriminator-value: flowdock-callback
+  allOf:
+    - $ref: '#/OutgoingCallbackDto'
+    - properties:
+        flowdockApiToken:
+          type: string
+        flowdockTags:
+          type: object
+          additionalProperties:
+            type: string
+        externalUsername:
+          type: string
+
+FlowdockV2CallbackDto:
+  type: object
+  x-discriminator-value: flowdockv2-callback
+  allOf:
+    - $ref: '#/OutgoingCallbackDto'
+    - properties:
+        flowdockFlowToken:
+          type: string
+
+PlanioCallbackDto:
+  type: object
+  x-discriminator-value: planio-callback
+  allOf:
+    - $ref: '#/OutgoingCallbackDto'
+    - properties:
+        planioApiKey:
+          type: string
+        projectId:
+          type: integer
+          format: int32
+        subdomain:
           type: string
