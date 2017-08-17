@@ -338,6 +338,7 @@ Condition:
         - extra-properties
         - recipients
         - teams
+        - priority
     key:
       type: string
       description: If field is set as extra-properties, key could be used for key-value pair
