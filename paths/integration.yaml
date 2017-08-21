@@ -5,7 +5,7 @@
     summary: List Integrations
     description: List integrations with given parameters
     operationId: listIntegrations
-    x-collapse-params: ListIntegrationPayload
+    x-collapse-params: ListIntegrationRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#listIntegration
@@ -54,7 +54,7 @@
         description: Create integration payload
         required: true
         schema:
-          $ref: '#/definitions/IntegrationDto'
+          $ref: '#/definitions/Integration'
     responses:
       '201':
         description: Integration information
@@ -129,6 +129,7 @@
     summary: Update Integration
     description: Update integration
     operationId: updateIntegration
+    x-collapse-params: UpdateIntegrationRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegration
@@ -139,7 +140,7 @@
         description: Request parameters
         required: true
         schema:
-          $ref: '#/definitions/IntegrationDto'
+          $ref: '#/definitions/Integration'
     responses:
       '200':
         description: Integration updated
@@ -348,6 +349,7 @@
     summary: Update Integration Actions
     description: Updates integration Actions
     operationId: updateIntegrationActions
+    x-collapse-params: UpdateIntegrationActionRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegrationActions
@@ -358,7 +360,7 @@
         description: Request payload to update integration actions
         required: true
         schema:
-          $ref: '#/definitions/ActionCategorizedListDto'
+          $ref: '#/definitions/ActionCategorizedList'
     responses:
       '200':
         description: Updated integration action list
@@ -392,6 +394,7 @@
       - integration
     summary: Create Integration Action
     description: Creates Integration Action
+    x-collapse-params: CreateIntegrationActionRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#createIntegrationActions
@@ -403,7 +406,7 @@
         description: Request payload to create integration action
         required: true
         schema:
-          $ref: '#/definitions/BaseIntegrationActionDto'
+          $ref: '#/definitions/BaseIntegrationAction'
     responses:
       '201':
         description:
