@@ -5,7 +5,7 @@
     summary: List Integrations
     description: List integrations with given parameters
     operationId: listIntegrations
-    x-collapse-params: ListIntegrationPayload
+    x-collapse-params: ListIntegrationRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#listIntegration
@@ -129,6 +129,7 @@
     summary: Update Integration
     description: Update integration
     operationId: updateIntegration
+    x-collapse-params: UpdateIntegrationRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegration
@@ -348,6 +349,7 @@
     summary: Update Integration Actions
     description: Updates integration Actions
     operationId: updateIntegrationActions
+    x-collapse-params: UpdateIntegrationActionRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegrationActions
@@ -392,6 +394,7 @@
       - integration
     summary: Create Integration Action
     description: Creates Integration Action
+    x-collapse-params: CreateIntegrationActionRequest
     externalDocs:
       description: For more information
       url: https://docs.opsgenie.com/docs/rest-api/integration-api#createIntegrationActions
