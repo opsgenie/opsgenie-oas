@@ -45,8 +45,32 @@ GeneralError:
   schema:
     $ref: '#/definitions/ErrorResponse'
 
+BadRequest:
+  description: Invalid JSON body
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
 Unauthorized:
   description: apiKey is invalid or integration is disabled
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
+PaymentRequired:
+  description: apiKey is valid but the account cannot do this action because of subscription plan
   schema:
     $ref: '#/definitions/ErrorResponse'
   headers:
@@ -83,6 +107,18 @@ NotFound:
 
 UnprocessableEntity:
   description: Semantic errors in request body
+  schema:
+    $ref: '#/definitions/ErrorResponse'
+  headers:
+    X-Request-ID:
+      description: Id of given request
+      type: string
+    X-Response-Time:
+      description: Process time of given request
+      type: string
+
+TooManyRequest:
+  description: Throttling
   schema:
     $ref: '#/definitions/ErrorResponse'
   headers:

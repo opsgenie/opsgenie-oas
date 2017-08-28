@@ -29,10 +29,16 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
       '403':
         $ref: '#/responses/Forbidden'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -73,12 +79,18 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
       '403':
         $ref: '#/responses/Forbidden'
       '422':
         $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -115,12 +127,20 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
       '403':
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -145,12 +165,20 @@
     responses:
       '200':
         $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
       '403':
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -168,12 +196,20 @@
     responses:
       '200':
         $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
       '403':
         $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -192,10 +228,20 @@
     responses:
       '200':
         $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -214,10 +260,20 @@
     responses:
       '200':
         $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
 
@@ -243,9 +299,19 @@
     responses:
       '200':
         $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
       '401':
         $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
       '404':
         $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
