@@ -154,6 +154,18 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+          X-Paging-Prev:
+            description: Previous page url
+            type: string
+          X-Paging-Next:
+            description: Next page url
+            type: string
+          X-Paging-First:
+            description: First page url
+            type: string
+          X-Paging-Last:
+            description: Last page url
+            type: string
       default:
         $ref: '#/responses/GeneralError'
 
@@ -534,6 +546,12 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
+          X-Paging-Next:
+            description: Next page url
+            type: string
+          X-Paging-First:
+            description: First page url
+            type: string
       default:
         $ref: '#/responses/GeneralError'
 
@@ -894,6 +912,12 @@
             type: string
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
+            type: string
+          X-Paging-Next:
+            description: Next page url
+            type: string
+          X-Paging-First:
+            description: First page url
             type: string
       default:
         $ref: '#/responses/GeneralError'

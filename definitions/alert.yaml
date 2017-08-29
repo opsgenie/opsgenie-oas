@@ -207,6 +207,8 @@ ListAlertsResponse:
           type: array
           items:
             $ref: '#/definitions/BaseAlert'
+        paging:
+          $ref: '#/definitions/PageDetails'
 
 GetAlertResponse:
   type: object
