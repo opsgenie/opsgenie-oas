@@ -7,7 +7,7 @@
     operationId: listOnCalls
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/who-is-on-call-api#listOnCalls
+      url: https://www.opsgenie.com/docs/who-is-on-call-api#section-list-on-calls
     x-collapse-params: ListOnCallsRequest
     parameters:
       - $ref: '#/parameters/WhoIsOnCallFlat'
@@ -55,7 +55,7 @@
     operationId: getOnCalls
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/who-is-on-call-api#getOnCalls
+      url: https://www.opsgenie.com/docs/who-is-on-call-api#section-get-on-calls
     x-collapse-params: GetOnCallRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -109,7 +109,7 @@
     operationId: getNextOnCalls
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/who-is-on-call-api#getNextOnCalls
+      url: https://www.opsgenie.com/docs/who-is-on-call-api#section-get-next-on-calls
     x-collapse-params: GetNextOnCallRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -163,7 +163,7 @@
     operationId: exportOnCallUser
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/who-is-on-call-api#exportOnCalls
+      url: https://www.opsgenie.com/docs/who-is-on-call-api#section-export-on-call-user
     parameters:
       - name: identifier
         in: path

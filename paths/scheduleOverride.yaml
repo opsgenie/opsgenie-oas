@@ -7,7 +7,7 @@
     operationId: createScheduleOverride
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#createOverride
+      url: https://www.opsgenie.com/docs/schedule-override-api#section-create-schedule-override
     x-collapse-params: CreateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -64,7 +64,7 @@
     operationId: listScheduleOverride
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#listOverrides
+      url: https://www.opsgenie.com/docs/schedule-override-api#section-list-schedule-overrides
     x-collapse-params: ListScheduleOverridesRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -116,7 +116,7 @@
     operationId: getScheduleOverride
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#getOverride
+      url: https://www.opsgenie.com/docs/schedule-override-api#section-get-schedule-override
     x-collapse-params: GetScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -168,7 +168,7 @@
     operationId: updateScheduleOverride
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#updateOverride
+      url: https://www.opsgenie.com/docs/schedule-override-api#section-update-schedule-override
     x-collapse-params: UpdateScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -226,7 +226,7 @@
     operationId: deleteScheduleOverride
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-override-api#deleteOverride
+      url: https://www.opsgenie.com/docs/schedule-override-api#section-delete-schedule-override
     x-collapse-params: DeleteScheduleOverrideRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'

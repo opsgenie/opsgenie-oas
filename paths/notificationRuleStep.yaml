@@ -7,7 +7,7 @@
     operationId: listNotificationRuleSteps
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#listNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-list-notification-rule-step
     x-collapse-params: ListNotificationRuleStepsRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -58,7 +58,7 @@
     operationId: createNotificationRuleStep
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#createNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-create-notification-rule-step
     x-collapse-params: CreateNotificationRuleStepRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -116,7 +116,7 @@
     operationId: getNotificationRuleStep
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#getNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-get-notification-rule-step
     x-collapse-params: GetNotificationRuleStepRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -168,7 +168,7 @@
     operationId: deleteNotificationRuleStep
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#deleteNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-delete-notification-rule-step
     x-collapse-params: DeleteNotificationRuleStepRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -202,7 +202,7 @@
     operationId: updateNotificationRuleStep
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#updateNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-update-notification-rule-step-partial
     x-collapse-params: UpdateNotificationRuleStepRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -243,7 +243,7 @@
     operationId: disableNotificationRuleStep
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#disableNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-disable-notification-rule-step
     x-collapse-params: DisableNotificationRuleStepRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'
@@ -278,7 +278,7 @@
     operationId: enableNotificationRuleStep
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/notification-rule-step-api#enableNotificationRuleStep
+      url: https://www.opsgenie.com/docs/notification-rule-step-api#section-enable-notification-rule-step
     x-collapse-params: EnableNotificationRuleStepRequest
     parameters:
       - $ref: '#/parameters/UserIdentifier'

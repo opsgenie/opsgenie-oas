@@ -7,7 +7,7 @@
     operationId: createTeamRoutingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-routing-rule-api#createRoutingRule
+      url: https://www.opsgenie.com/docs//team-routing-rule-api#section-create-team-routing-rule
     x-collapse-params: CreateTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -64,7 +64,7 @@
     operationId: listTeamRoutingRules
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-routing-rule-api#listRoutingRules
+      url: https://www.opsgenie.com/docs/team-routing-rule-api#section-list-team-routing-rules
     x-collapse-params: ListTeamRoutingRulesRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -116,7 +116,7 @@
     operationId: getTeamRoutingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-routing-rule-api#getRoutingRule
+      url: https://www.opsgenie.com/docs/team-routing-rule-api#section-get-team-routing-rule
     x-collapse-params: GetTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -168,7 +168,7 @@
     operationId: updateTeamRoutingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-routing-rule-api#updateRoutingRule
+      url: https://www.opsgenie.com/docs/team-routing-rule-api#section-update-team-routing-rule-partial
     x-collapse-params: UpdateTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -208,7 +208,7 @@
     operationId: deleteTeamRoutingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-routing-rule-api#deleteRoutingRule
+      url: https://www.opsgenie.com/docs/team-routing-rule-api#section-delete-team-routing-rule
     x-collapse-params: DeleteTeamRoutingRuleRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -243,7 +243,7 @@
     operationId: changeTeamRoutingRuleOrder
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-routing-rule-api#changeRoutingRuleOrder
+      url: https://www.opsgenie.com/docs/team-routing-rule-api#section-change-team-routing-rule-order
     x-collapse-params: ChangeTeamRoutingRuleOrderRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'

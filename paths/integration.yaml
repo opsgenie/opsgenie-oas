@@ -5,10 +5,10 @@
     summary: List Integrations
     description: List integrations with given parameters
     operationId: listIntegrations
-    x-collapse-params: ListIntegrationRequest
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#listIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-list-integrations
+    x-collapse-params: ListIntegrationRequest
     parameters:
       - $ref: '#/parameters/IntegrationType'
       - $ref: '#/parameters/TeamId'
@@ -54,10 +54,10 @@
       - integration
     summary: Create Integration
     description: Creates integration
+    operationId: createIntegration
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#createGenericIntegration
-    operationId: createIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-create-api-based-integration
     parameters:
       - name: body
         in: body
@@ -107,10 +107,10 @@
       - integration
     summary: Get Integration
     description: Get integration
+    operationId: getIntegration
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#getIntegration
-    operationId: getIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-get-integration
     parameters:
       - $ref: '#/parameters/IntegrationId'
     responses:
@@ -157,10 +157,10 @@
     summary: Update Integration
     description: Update integration
     operationId: updateIntegration
-    x-collapse-params: UpdateIntegrationRequest
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-update-integration
+    x-collapse-params: UpdateIntegrationRequest
     parameters:
       - $ref: '#/parameters/IntegrationId'
       - name: body
@@ -212,10 +212,10 @@
       - integration
     summary: Delete Integration
     description: Delete integration with the given id
+    operationId: deleteIntegration
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#deleteIntegration
-    operationId: deleteIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-delete-integration
     parameters:
       - $ref: '#/parameters/IntegrationId'
     responses:
@@ -244,10 +244,10 @@
       - integration
     summary: Enable Integration
     description: Enables integration
+    operationId: enableIntegration
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#enableIntegration
-    operationId: enableIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-enable-integration
     parameters:
       - $ref: '#/parameters/IntegrationId'
     responses:
@@ -294,10 +294,10 @@
       - integration
     summary: Disable Integration
     description: Disables integration
+    operationId: disableIntegration
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#disableIntegration
-    operationId: disableIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-disable-integration
     parameters:
       - $ref: '#/parameters/IntegrationId'
     responses:
@@ -344,10 +344,10 @@
       - integration
     summary: Authenticate Integration
     description: Authenticates integration
+    operationId: authenticateIntegration
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#authenticateIntegration
-    operationId: authenticateIntegration
+      url: https://www.opsgenie.com/docs/integration-api#section-authenticate-integration
     parameters:
       - name: body
         in: body
@@ -384,7 +384,7 @@
     operationId: getIntegrationActions
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#getIntegrationActions
+      url: https://www.opsgenie.com/docs/integration-api#section-get-integration-actions
     parameters:
       - $ref: '#/parameters/ActionsIntegrationId'
     responses:
@@ -431,10 +431,10 @@
     summary: Update Integration Actions
     description: Updates integration Actions
     operationId: updateIntegrationActions
-    x-collapse-params: UpdateIntegrationActionRequest
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#updateIntegrationActions
+      url: https://www.opsgenie.com/docs/integration-api#section-update-all-integration-actions
+    x-collapse-params: UpdateIntegrationActionRequest
     parameters:
       - $ref: '#/parameters/ActionsIntegrationId'
       - name: body
@@ -486,11 +486,11 @@
       - integration
     summary: Create Integration Action
     description: Creates Integration Action
-    x-collapse-params: CreateIntegrationActionRequest
+    operationId: createIntegrationAction
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/rest-api/integration-api#createIntegrationActions
-    operationId: createIntegrationAction
+      url: https://www.opsgenie.com/docs/integration-api#section-create-a-new-integration-action
+    x-collapse-params: CreateIntegrationActionRequest
     parameters:
       - $ref: '#/parameters/ActionsIntegrationId'
       - name: body

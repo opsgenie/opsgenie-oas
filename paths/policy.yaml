@@ -7,7 +7,7 @@
     operationId: listAlertPolicies
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#listPolicies
+      url: https://www.opsgenie.com/docs/policy-api#section-list-policies
     responses:
       '200':
         description: List of policies
@@ -50,7 +50,7 @@
     operationId: createAlertPolicy
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#createPolicy
+      url: https://www.opsgenie.com/docs/policy-api#section-create-policy
     parameters:
       - name: body
         in: body
@@ -103,7 +103,7 @@
     operationId: getAlertPolicy
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#getPolicy
+      url: https://www.opsgenie.com/docs/policy-api#section-get-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
     responses:
@@ -152,7 +152,7 @@
     operationId: updateAlertPolicy
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#updatePolicy
+      url: https://www.opsgenie.com/docs/policy-api#section-update-policy
     x-collapse-params: UpdateAlertPolicyRequest
     parameters:
       - $ref: '#/parameters/PolicyId'
@@ -190,7 +190,7 @@
     operationId: deleteAlertPolicy
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#deletePolicy
+      url: https://www.opsgenie.com/docs/policy-api#section-delete-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
     responses:
@@ -222,7 +222,7 @@
     operationId: enableAlertPolicy
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#enablePolicy
+      url: https://www.opsgenie.com/docs/policy-api#section-enable-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
     responses:
@@ -254,7 +254,7 @@
     operationId: disableAlertPolicy
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#disablePolicy
+      url: https://www.opsgenie.com/docs/policy-api#section-disable-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
     responses:
@@ -286,7 +286,7 @@
     operationId: changeAlertPolicyOrder
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/policy-api#changePolicyOrder
+      url: https://www.opsgenie.com/docs/policy-api#section-change-policy-order
     x-collapse-params: ChangeAlertPolicyOrderRequest
     parameters:
       - $ref: '#/parameters/PolicyId'
