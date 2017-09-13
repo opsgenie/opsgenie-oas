@@ -3,7 +3,7 @@
     tags:
       - integration
     summary: List Integrations
-    description: List integrations with given parameters
+    description: Returns list of integrations with given parameters
     operationId: listIntegrations
     externalDocs:
       description: For more information
@@ -11,11 +11,11 @@
     x-collapse-params: ListIntegrationRequest
     parameters:
       - $ref: '#/parameters/IntegrationType'
-      - $ref: '#/parameters/TeamId'
-      - $ref: '#/parameters/TeamName'
+      - $ref: '#/parameters/IntegrationTeamId'
+      - $ref: '#/parameters/IntegrationTeamName'
     responses:
       '200':
-        description: List of integrations with given parameters
+        description: List of integration informations
         schema:
           $ref: '#/definitions/ListIntegrationsResponse'
         headers:
@@ -53,7 +53,7 @@
     tags:
       - integration
     summary: Create Integration
-    description: Creates integration
+    description: Creates a new integration
     operationId: createIntegration
     externalDocs:
       description: For more information
@@ -61,13 +61,13 @@
     parameters:
       - name: body
         in: body
-        description: Create integration payload
+        description: Request payload of created integration
         required: true
         schema:
           $ref: '#/definitions/Integration'
     responses:
       '201':
-        description: Integration information
+        description: Integration meta information for created integration
         schema:
           $ref: '#/definitions/CreateIntegrationResponse'
         headers:
@@ -106,7 +106,7 @@
     tags:
       - integration
     summary: Get Integration
-    description: Get integration
+    description: Returns integration with given id
     operationId: getIntegration
     externalDocs:
       description: For more information
@@ -115,7 +115,7 @@
       - $ref: '#/parameters/IntegrationId'
     responses:
       '200':
-        description: Get integration with given id
+        description: Integration information for given identifier
         schema:
           $ref: '#/definitions/GetIntegrationResponse'
         headers:
@@ -155,7 +155,7 @@
     tags:
       - integration
     summary: Update Integration
-    description: Update integration
+    description: Update integration with given id
     operationId: updateIntegration
     externalDocs:
       description: For more information
@@ -165,13 +165,13 @@
       - $ref: '#/parameters/IntegrationId'
       - name: body
         in: body
-        description: Request parameters
+        description: Request payload of update integration action
         required: true
         schema:
           $ref: '#/definitions/Integration'
     responses:
       '200':
-        description: Integration updated
+        description: Integration information for given identifier
         schema:
           $ref: '#/definitions/UpdateIntegrationResponse'
         headers:
@@ -211,7 +211,7 @@
     tags:
       - integration
     summary: Delete Integration
-    description: Delete integration with the given id
+    description: Delete integration with given id
     operationId: deleteIntegration
     externalDocs:
       description: For more information
@@ -243,7 +243,7 @@
     tags:
       - integration
     summary: Enable Integration
-    description: Enables integration
+    description: Enable integration with given ID
     operationId: enableIntegration
     externalDocs:
       description: For more information
@@ -252,9 +252,9 @@
       - $ref: '#/parameters/IntegrationId'
     responses:
       '201':
-        description: Integration information
+        description: Integration information for given identifier
         schema:
-          $ref: '#/definitions/EnableDisableIntegrationResponse'
+          $ref: '#/definitions/EnableIntegrationResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -293,7 +293,7 @@
     tags:
       - integration
     summary: Disable Integration
-    description: Disables integration
+    description: Disable integration with given ID
     operationId: disableIntegration
     externalDocs:
       description: For more information
@@ -302,9 +302,9 @@
       - $ref: '#/parameters/IntegrationId'
     responses:
       '201':
-        description: Integration information
+        description: Integration information for given identifier
         schema:
-          $ref: '#/definitions/EnableDisableIntegrationResponse'
+          $ref: '#/definitions/DisableIntegrationResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -343,7 +343,7 @@
     tags:
       - integration
     summary: Authenticate Integration
-    description: Authenticates integration
+    description: Authenticates integration with given type
     operationId: authenticateIntegration
     externalDocs:
       description: For more information
@@ -351,7 +351,7 @@
     parameters:
       - name: body
         in: body
-        description: Request parameters
+        description: Request payload to authenticate integration
         required: true
         schema:
           $ref: '#/definitions/AuthenticateIntegrationPayload'
@@ -375,23 +375,23 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/integrations/{integrationId}/actions:
+/v2/integrations/{id}/actions:
   get:
     tags:
       - integration
-    summary: Get Integration Actions
-    description: Get integration actions
-    operationId: getIntegrationActions
+    summary: List Integration Actions
+    description: List integration actions of given integration id
+    operationId: listIntegrationActions
     externalDocs:
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-get-integration-actions
     parameters:
-      - $ref: '#/parameters/ActionsIntegrationId'
+      - $ref: '#/parameters/IntegrationId'
     responses:
       '200':
         description: List of integration actions
         schema:
-          $ref: '#/definitions/ActionCategorizedListResponse'
+          $ref: '#/definitions/ListIntegrationActionsResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -429,25 +429,25 @@
     tags:
       - integration
     summary: Update Integration Actions
-    description: Updates integration Actions
+    description: Updates integration actions of given integration id
     operationId: updateIntegrationActions
     externalDocs:
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-update-all-integration-actions
     x-collapse-params: UpdateIntegrationActionRequest
     parameters:
-      - $ref: '#/parameters/ActionsIntegrationId'
+      - $ref: '#/parameters/IntegrationId'
       - name: body
         in: body
         description: Request payload to update integration actions
         required: true
         schema:
-          $ref: '#/definitions/ActionCategorizedList'
+          $ref: '#/definitions/ActionCategorized'
     responses:
       '200':
-        description: Updated integration action list
+        description: List of integration actions
         schema:
-          $ref: '#/definitions/ActionCategorizedListResponse'
+          $ref: '#/definitions/UpdateIntegrationActionsResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -485,14 +485,14 @@
     tags:
       - integration
     summary: Create Integration Action
-    description: Creates Integration Action
+    description: Creates integration actions of given integration id
     operationId: createIntegrationAction
     externalDocs:
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-create-a-new-integration-action
     x-collapse-params: CreateIntegrationActionRequest
     parameters:
-      - $ref: '#/parameters/ActionsIntegrationId'
+      - $ref: '#/parameters/IntegrationId'
       - name: body
         in: body
         description: Request payload to create integration action
@@ -501,9 +501,9 @@
           $ref: '#/definitions/BaseIntegrationAction'
     responses:
       '201':
-        description:
+        description: List of integration actions
         schema:
-          $ref: '#/definitions/ActionCategorizedListResponse'
+          $ref: '#/definitions/CreateIntegrationActionsResponse'
         headers:
           X-Request-ID:
             description: Id of given request

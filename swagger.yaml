@@ -32,7 +32,7 @@ security:
 ################################################################################
 paths:
   - $ref: ./paths/alert.yaml
-  - $ref: ./paths/integration.yaml  # Will be implemented
+  - $ref: ./paths/integration.yaml
   - $ref: ./paths/heartbeat.yaml
   - $ref: ./paths/policy.yaml
   - $ref: ./paths/maintenance.yaml
@@ -57,7 +57,7 @@ paths:
 parameters:
   - $ref: ./parameters/common.yaml
   - $ref: ./parameters/alert.yaml
-  - $ref: ./parameters/integration.yaml  # Will be implemented
+  - $ref: ./parameters/integration.yaml
   - $ref: ./parameters/heartbeat.yaml
   - $ref: ./parameters/policy.yaml
   - $ref: ./parameters/maintenance.yaml
@@ -80,7 +80,6 @@ parameters:
 ################################################################################
 responses:
   - $ref: ./responses/common.yaml
-  - $ref: ./responses/integration.yaml  # Will be implemented
 
 ################################################################################
 #                                DEFINITIONS                                   #
@@ -88,7 +87,7 @@ responses:
 definitions:
   - $ref: ./definitions/common.yaml
   - $ref: ./definitions/alert.yaml
-  - $ref: ./definitions/integration.yaml  # Will be implemented
+  - $ref: ./definitions/integration.yaml
   - $ref: ./definitions/heartbeat.yaml
   - $ref: ./definitions/policy.yaml
   - $ref: ./definitions/maintenance.yaml
