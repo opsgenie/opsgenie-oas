@@ -5,7 +5,7 @@ swagger: '2.0'
 ################################################################################
 info:
   title: OpsGenie REST API
-  description: OpsGenie RESTful API specifications
+  description: OpsGenie OpenAPI Specification
   version: "2.0.0"
 # the domain of the service
 host: api.opsgenie.com
