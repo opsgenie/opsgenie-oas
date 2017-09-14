@@ -7,7 +7,7 @@
     operationId: createScheduleRotation
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#createRotation
+      url: https://www.opsgenie.com/docs/schedule-rotation-api#section-create-schedule-rotation
     x-collapse-params: CreateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -64,7 +64,7 @@
     operationId: listScheduleRotations
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#listRotations
+      url: https://www.opsgenie.com/docs/schedule-rotation-api#section-list-schedule-rotations
     x-collapse-params: ListScheduleRotationsRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -116,7 +116,7 @@
     operationId: getScheduleRotation
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#getRotation
+      url: https://www.opsgenie.com/docs/schedule-rotation-api#section-get-schedule-rotation
     x-collapse-params: GetScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -168,7 +168,7 @@
     operationId: updateScheduleRotation
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#updateRotation
+      url: https://www.opsgenie.com/docs/schedule-rotation-api#section-update-schedule-rotation-partial
     x-collapse-params: UpdateScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'
@@ -226,7 +226,7 @@
     operationId: deleteScheduleRotation
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/schedule-rotation-api#deleteRotation
+      url: https://www.opsgenie.com/docs/schedule-rotation-api#section-delete-schedule-rotation
     x-collapse-params: DeleteScheduleRotationRequest
     parameters:
       - $ref: '#/parameters/ScheduleIdentifier'

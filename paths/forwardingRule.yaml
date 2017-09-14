@@ -7,7 +7,7 @@
     operationId: listForwardingRules
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/forwarding-rule-api#listForwardingRules
+      url: https://www.opsgenie.com/docs/forwarding-rule-api#section-list-forwarding-rules
     responses:
       '200':
         description: List of forwarding rules
@@ -52,7 +52,7 @@
     operationId: createForwardingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/forwarding-rule-api#createForwardingRule
+      url: https://www.opsgenie.com/docs/forwarding-rule-api#section-create-forwarding-rule
     parameters:
       - name: body
         in: body
@@ -89,7 +89,7 @@
     operationId: getForwardingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/forwarding-rule-api#getForwardingRule
+      url: https://www.opsgenie.com/docs/forwarding-rule-api#section-get-forwarding-rule
     x-collapse-params: GetForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
@@ -140,7 +140,7 @@
     operationId: deleteForwardingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/forwarding-rule-api#deleteForwardingRule
+      url: https://www.opsgenie.com/docs/forwarding-rule-api#section-delete-forwarding-rule
     x-collapse-params: DeleteForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'
@@ -173,7 +173,7 @@
     operationId: updateForwardingRule
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/forwarding-rule-api#updateForwardingRule
+      url: https://www.opsgenie.com/docs/forwarding-rule-api#section-update-forwarding-rule
     x-collapse-params: UpdateForwardingRuleRequest
     parameters:
       - $ref: '#/parameters/ForwardingRuleIdentifier'

@@ -7,7 +7,7 @@
     operationId: createTeam
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-api#createTeam
+      url: https://www.opsgenie.com/docs/team-api#section-create-team
     parameters:
       - name: body
         in: body
@@ -61,7 +61,7 @@
     operationId: listTeams
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-api#listTeams
+      url: https://www.opsgenie.com/docs/team-api#section-list-teams
     parameters:
       - name: expand
         in: query
@@ -116,7 +116,7 @@
     operationId: getTeam
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-api#getTeam
+      url: https://www.opsgenie.com/docs/team-api#section-get-team
     x-collapse-params: GetTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -167,7 +167,7 @@
     operationId: deleteTeam
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-api#deleteTeam
+      url: https://www.opsgenie.com/docs/team-api#section-delete-team
     x-collapse-params: DeleteTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -192,7 +192,6 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/teams/{identifier}/:
   patch:
     tags:
       - team
@@ -201,7 +200,7 @@
     operationId: updateTeam
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-api#updateTeam
+      url: https://www.opsgenie.com/docs/team-api#section-update-team-partial
     x-collapse-params: UpdateTeamRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'
@@ -239,7 +238,7 @@
     operationId: listTeamLogs
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/team-api#listTeamLogs
+      url: https://www.opsgenie.com/docs/team-api#section-list-team-logs
     x-collapse-params: ListTeamLogsRequest
     parameters:
       - $ref: '#/parameters/TeamIdentifier'

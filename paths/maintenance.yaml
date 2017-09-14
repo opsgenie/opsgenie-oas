@@ -2,12 +2,12 @@
   post:
     tags:
       - maintenance
-    summary: Create maintenance
+    summary: Create Maintenance
     description: Creates a new maintenance
     operationId: createMaintenance
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#createMaintenance
+      url: https://www.opsgenie.com/docs/maintenance-api#section-create-maintenance
     parameters:
       - name: body
         in: body
@@ -59,7 +59,7 @@
     operationId: listMaintenance
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#listMaintenance
+      url: https://www.opsgenie.com/docs/maintenance-api#section-list-maintenance
     parameters:
       - $ref: '#/parameters/MaintenanceListType'
     responses:
@@ -105,7 +105,7 @@
     operationId: getMaintenance
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#getMaintenance
+      url: https://www.opsgenie.com/docs/maintenance-api#section-get-maintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:
@@ -154,7 +154,7 @@
     operationId: updateMaintenance
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#updateMaintenance
+      url: https://www.opsgenie.com/docs/maintenance-api#section-update-maintenance
     x-collapse-params: UpdateMaintenanceRequest
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
@@ -210,7 +210,7 @@
     operationId: deleteMaintenance
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#deleteMaintenance
+      url: https://www.opsgenie.com/docs/maintenance-api#section-delete-maintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:
@@ -238,11 +238,11 @@
     tags:
       - maintenance
     summary: Cancel Maintenance
-    description: Cance maintenance with given id
+    description: Cancel maintenance with given id
     operationId: cancelMaintenance
     externalDocs:
       description: For more information
-      url: https://www.opsgenie.com/docs/rest-api/maintenance-api#cancelMaintenance
+      url: https://www.opsgenie.com/docs/maintenance-api#section-cancel-maintenance
     parameters:
       - $ref: '#/parameters/MaintenanceIdentifier'
     responses:

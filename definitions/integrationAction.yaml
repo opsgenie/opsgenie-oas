@@ -1,0 +1,208 @@
+##################
+#    RESPONSE    #
+##################
+ListIntegrationActionsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ActionCategorized'
+
+UpdateIntegrationActionsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ActionCategorized'
+
+CreateIntegrationActionsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ActionCategorized'
+
+##################
+#      MODEL     #
+##################
+ActionCategorized:
+  type: object
+  properties:
+    _parent:
+      $ref: '#/definitions/IntegrationMeta'
+    ignore:
+      type: array
+      items:
+        $ref: '#/definitions/IgnoreIntegrationAction'
+    create:
+      type: array
+      items:
+        $ref: '#/definitions/CreateIntegrationAction'
+    close:
+      type: array
+      items:
+        $ref: '#/definitions/CloseIntegrationAction'
+    acknowledge:
+      type: array
+      items:
+        $ref: '#/definitions/AckIntegrationAction'
+    addNote:
+      type: array
+      items:
+        $ref: '#/definitions/AddNoteIntegrationAction'
+
+IntegrationActionFilter:
+  type: object
+  properties:
+    conditionMatchType:
+      type: string
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+    conditions:
+      type: array
+      items:
+        $ref: '#/definitions/IntegrationCondition'
+
+IntegrationCondition:
+  type: object
+  required:
+    - field
+    - operation
+    - expectedValue
+  properties:
+    field:
+      type: string
+    not:
+      type: boolean
+    operation:
+      type: string
+      enum:
+        - matches
+        - contains
+        - starts-with
+        - ends-with
+        - equals
+        - contains-key
+        - contains-value
+        - greater-than
+        - less-than
+        - is-empty
+        - equals-ignore-whitespace
+    expectedValue:
+      type: string
+
+BaseIntegrationAction:
+  type: object
+  discriminator: type
+  required:
+    - type
+  properties:
+    name:
+      type: string
+    order:
+      type: integer
+      format: int32
+    filter:
+      $ref: '#/definitions/IntegrationActionFilter'
+    type:
+      type: string
+      enum:
+        - ignore
+        - acknowledge
+        - addNote
+        - close
+        - create
+
+CommonIntegrationAction:
+  type: object
+  properties:
+    user:
+      type: string
+    note:
+      type: string
+    alias:
+      type: string
+
+IgnoreIntegrationAction:
+  type: object
+  x-discriminator-value: ignore
+  allOf:
+    - $ref: '#/definitions/BaseIntegrationAction'
+
+CreateIntegrationAction:
+  type: object
+  x-discriminator-value: create
+  allOf:
+    - $ref: '#/definitions/BaseIntegrationAction'
+    - $ref: '#/definitions/CommonIntegrationAction'
+    - properties:
+        source:
+          type: string
+        message:
+          type: string
+        description:
+          type: string
+        entity:
+          type: string
+        priority:
+          type: string
+          enum:
+            - P1
+            - P2
+            - P3
+            - P4
+            - P5
+        appendAttachments:
+          type: boolean
+        alertActions:
+          type: array
+          items:
+            type: string
+        ignoreAlertActionsFromPayload:
+          type: boolean
+        recipients:
+          type: array
+          items:
+            $ref: '#/definitions/Recipient'
+        ignoreRecipientsFromPayload:
+          type: boolean
+        ignoreTeamsFromPayload:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        ignoreTagsFromPayload:
+          type: boolean
+        extraProperties:
+          type: object
+          additionalProperties:
+            type: string
+        ignoreExtraPropertiesFromPayload:
+          type: boolean
+
+CloseIntegrationAction:
+  type: object
+  x-discriminator-value: close
+  allOf:
+    - $ref: '#/definitions/BaseIntegrationAction'
+    - $ref: '#/definitions/CommonIntegrationAction'
+
+AckIntegrationAction:
+  type: object
+  x-discriminator-value: acknowledge
+  allOf:
+    - $ref: '#/definitions/BaseIntegrationAction'
+    - $ref: '#/definitions/CommonIntegrationAction'
+
+AddNoteIntegrationAction:
+  type: object
+  x-discriminator-value: addNote
+  allOf:
+    - $ref: '#/definitions/BaseIntegrationAction'
+    - $ref: '#/definitions/CommonIntegrationAction'

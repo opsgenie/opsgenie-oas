@@ -1,34 +1,27 @@
 IntegrationId:
   name: id
-  type: string
   in: path
   description: Integration Id
   required: true
-
-ActionsIntegrationId:
-  name: integrationId
   type: string
-  in: path
-  description: Integration Id
-  required: true
 
 IntegrationType:
   name: type
-  type: string
   in: query
-  description: Type of the integration. If type parameter is given, the result will be filtered by type
+  description: Type of the integration (For instance, "API" for API Integration). If type parameter is given, the result will be filtered by type
   required: false
-
-TeamId:
-  name: teamId
   type: string
+
+IntegrationTeamId:
+  name: teamId
   in: query
   description: The ID of the team. If the team ID parameter is given, the result will be filtered by teamId
   required: false
-
-TeamName:
-  name: teamName
   type: string
+
+IntegrationTeamName:
+  name: teamName
   in: query
   description: The name of the team. If the team name parameter is given, the result will be filtered by teamName
   required: false
+  type: string
