@@ -107,6 +107,7 @@ CallbackCondition:
         - extra-properties
         - recipients
         - teams
+        - priority
     not:
       type: boolean
     operation:
