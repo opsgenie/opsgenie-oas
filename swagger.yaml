@@ -33,6 +33,7 @@ security:
 paths:
   - $ref: ./paths/alert.yaml
   - $ref: ./paths/integration.yaml
+  - $ref: ./paths/integrationAction.yaml
   - $ref: ./paths/heartbeat.yaml
   - $ref: ./paths/policy.yaml
   - $ref: ./paths/maintenance.yaml
@@ -88,6 +89,7 @@ definitions:
   - $ref: ./definitions/common.yaml
   - $ref: ./definitions/alert.yaml
   - $ref: ./definitions/integration.yaml
+  - $ref: ./definitions/integrationAction.yaml
   - $ref: ./definitions/heartbeat.yaml
   - $ref: ./definitions/policy.yaml
   - $ref: ./definitions/maintenance.yaml
