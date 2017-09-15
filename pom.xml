@@ -4,7 +4,7 @@
     <groupId>com.opsgenie.oas</groupId>
     <artifactId>swagger-spec</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>opsgenie-oas</name>
     <url>http://maven.apache.org</url>
 
@@ -43,11 +43,20 @@
                                 <groupId>com.opsgenie.client</groupId>
                                 <artifactId>java-sdk</artifactId>
                                 <artifactVersion>1.0.0</artifactVersion>
+                                <developerName>Alp, Baris, Mustafa, Halil, Alperen, Zafer</developerName>
+                                <developerEmail>support@opsgenie.com</developerEmail>
+                                <developerOrganization>OpsGenie</developerOrganization>
+                                <developerOrganizationUrl>https://www.opsgenie.com/</developerOrganizationUrl>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <dateLibrary>joda</dateLibrary>
                                 <library>jersey2</library>
                                 <sortParamsByRequiredFlag>false</sortParamsByRequiredFlag>
                                 <useBeanValidation>true</useBeanValidation>
                                 <performBeanValidation>true</performBeanValidation>
+                                <supportJava6>false</supportJava6>
+                                <useRuntimeException>true</useRuntimeException>
+                                <licenseName>Apache License 2.0 (Apache-2.0)</licenseName>
+                                <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
                             </configOptions>
                         </configuration>
                     </execution>
