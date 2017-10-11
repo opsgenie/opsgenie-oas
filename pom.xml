@@ -4,7 +4,7 @@
     <groupId>com.opsgenie.oas</groupId>
     <artifactId>swagger-spec</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>opsgenie-oas</name>
     <url>http://maven.apache.org</url>
 
