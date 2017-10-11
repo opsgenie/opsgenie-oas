@@ -42,7 +42,7 @@
                             <configOptions>
                                 <groupId>com.opsgenie.oas</groupId>
                                 <artifactId>opsgenie-sdk-swagger</artifactId>
-                                <artifactVersion>1.0.0</artifactVersion>
+                                <artifactVersion>1.0.1</artifactVersion>
                                 <developerName>Alp, Baris, Mustafa, Halil, Alperen, Zafer</developerName>
                                 <developerEmail>support@opsgenie.com</developerEmail>
                                 <developerOrganization>OpsGenie</developerOrganization>
