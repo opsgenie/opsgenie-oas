@@ -32,9 +32,9 @@
                             <!-- target output path -->
                             <output>${project.build.directory}/generated-sources/java</output>
                             <!-- package for generated models -->
-                            <modelPackage>com.opsgenie.oas.sdk</modelPackage>
+                            <modelPackage>com.opsgenie.oas.sdk.model</modelPackage>
                             <!-- package for generated api classes -->
-                            <apiPackage>com.opsgenie.oas.sdk</apiPackage>
+                            <apiPackage>com.opsgenie.oas.sdk.api</apiPackage>
                             <!-- package for invoker Objects -->
                             <invokerPackage>com.opsgenie.oas.sdk</invokerPackage>
 
