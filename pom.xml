@@ -4,7 +4,7 @@
     <groupId>com.opsgenie.oas</groupId>
     <artifactId>swagger-spec</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>opsgenie-oas</name>
     <url>http://maven.apache.org</url>
 
@@ -42,7 +42,7 @@
                             <configOptions>
                                 <groupId>com.opsgenie.oas</groupId>
                                 <artifactId>opsgenie-sdk-swagger</artifactId>
-                                <artifactVersion>1.0.1</artifactVersion>
+                                <artifactVersion>1.0.2</artifactVersion>
                                 <developerName>Alp, Baris, Mustafa, Halil, Alperen, Zafer</developerName>
                                 <developerEmail>support@opsgenie.com</developerEmail>
                                 <developerOrganization>OpsGenie</developerOrganization>

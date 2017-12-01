@@ -21,6 +21,9 @@ CreateEscalationPayload:
     ownerTeam:
       description: Owner team of escalation.
       $ref: '#/definitions/TeamMeta'
+    repeat:
+      description: Repeat preferences of escalation
+      $ref: '#/definitions/EscalationRepeat'
 
 UpdateEscalationPayload:
   type: object
@@ -39,6 +42,9 @@ UpdateEscalationPayload:
     ownerTeam:
       description: Owner team of escalation.
       $ref: '#/definitions/TeamMeta'
+    repeat:
+      description: Repeat preferences of escalation
+      $ref: '#/definitions/EscalationRepeat'
 
 ##################
 #    RESPONSE    #
@@ -79,6 +85,8 @@ Escalation:
       type: array
       items:
         $ref: '#/definitions/EscalationRule'
+    repeat:
+      $ref: '#/definitions/EscalationRepeat'
 
 EscalationRule:
   type: object
@@ -108,3 +116,19 @@ EscalationRule:
       $ref: '#/definitions/Duration'
     recipient:
       $ref: '#/definitions/Recipient'
+
+EscalationRepeat:
+  type: object
+  properties:
+    waitInterval:
+      type: integer
+      nullable: true
+    count:
+      type: integer
+      nullable: true
+    resetRecipientStates:
+      type: boolean
+      nullable: true
+    closeAlertAfterAll:
+      type: boolean
+      nullable: true
