@@ -60,6 +60,35 @@
                             </configOptions>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>swagger-python-sdk</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <!-- specify the swagger yaml/json -->
+                            <inputSpec>swagger.json</inputSpec>
+                            <!-- target to generate java client code -->
+                            <language>python</language>
+
+                            <configHelp>false</configHelp>
+
+                            <!-- target output path -->
+                            <output>${project.build.directory}/generated-sources/python</output>
+
+                            <!-- pass any necessary config options -->
+                            <configOptions>
+                              <packageVersion>1.0.7</packageVersion>
+			      <packageName>opsgenie_swagger</packageName>
+			      <projectName>opsgenie_swagger</projectName>
+                              <appName>Python SDK for OpsGenie Web/REST API</appName>
+			      <appDescription>Python SDK for OpsGenie Web/REST API</appDescription>
+                              <packageUrl>https://github.com/opsgenie/opsgenie-python-sdk</packageUrl>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
         </plugins>

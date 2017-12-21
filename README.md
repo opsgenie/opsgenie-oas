@@ -22,14 +22,18 @@ node ./multi-file-swagger/index.js -- swagger.yaml > swagger.json
 
 ---
 
-### How To Generate Swagger Classes (for Java)
+### How To Generate Swagger Classes (for Java and Python)
 At this stage, we are using __our swagger-codegen__ implementation and use special params like x-collapse-params. However, you can also use default [swagger-codegen](https://github.com/swagger-api/swagger-codegen)  during the Java SDK generation.
 
 ```bash
 cd $PROJECT_ROOT
 mvn clean install
+# For Java
 cd ./target/generated-sources/java
 mvn install
+# For Python
+cd ./target/generated-sources/python
+python setup.py clean build sdist
 ```
 
 For configuration of pom.xml, you can refer [here](https://github.com/swagger-api/swagger-codegen/tree/master/modules/swagger-codegen-maven-plugin)
