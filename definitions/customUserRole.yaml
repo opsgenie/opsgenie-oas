@@ -1,0 +1,89 @@
+##################
+#     REQUEST    #
+##################
+CreateCustomUserRolePayload:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      description: Name of custom user role
+    extendedRole:
+      type: string
+      description: Custom role. Must not be one of the defined values (i.e. "user", "observer", "stakeholder")
+    grantedRights:
+      type: array
+      description: Rights granted to the custom user role.
+      items:
+        type: string
+    disallowedRights:
+      type: array
+      description: Rights disallowed for the custom user role.
+      items:
+        type: string
+
+UpdateCustomUserRolePayload:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of custom user role
+    extendedRole:
+      type: string
+      description: Custom role. Must not be one of the defined values (i.e. "user", "observer", "stakeholder")
+    grantedRights:
+      type: array
+      description: Rights granted to the custom user role.
+      items:
+        type: string
+    disallowedRights:
+      type: array
+      description: Rights disallowed for the custom user role.
+      items:
+        type: string
+
+##################
+#    RESPONSE    #
+##################
+ListCustomUserRolesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/CustomUserRole'
+
+GetCustomUserRoleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/CustomUserRole'
+
+##################
+#      MODEL     #
+##################
+CustomUserRole:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    extendedRole:
+      type: string
+      description: Custom role. Must not be one of the defined values (i.e. "user", "observer", "stakeholder")
+    grantedRights:
+      type: array
+      description: Rights granted to the custom user role.
+      items:
+        type: string
+    disallowedRights:
+      type: array
+      description: Rights disallowed for the custom user role.
+      items:
+        type: string
