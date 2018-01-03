@@ -1,0 +1,75 @@
+##################
+#     REQUEST    #
+##################
+CreateTeamRolePayload:
+  type: object
+  required:
+    - name
+    - rights
+  properties:
+    name:
+      type: string
+      description: Name of the team role
+    rights:
+      type: array
+      description: List of team role rights.
+      items:
+        $ref: '#/definitions/TeamRight'
+
+UpdateTeamRolePayload:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the team role
+    rights:
+      type: array
+      description: List of team role rights.
+      items:
+        $ref: '#/definitions/TeamRight'
+
+##################
+#    RESPONSE    #
+##################
+GetTeamRoleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/TeamRole'
+
+ListTeamRoleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/TeamRole'
+
+##################
+#      MODEL     #
+##################
+TeamRole:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    rights:
+      type: array
+      items:
+        $ref: '#/definitions/TeamRight'
+
+TeamRight:
+  type: object
+  required:
+    - right
+  properties:
+    right:
+      type: string
+    granted:
+      type: boolean

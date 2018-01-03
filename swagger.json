@@ -6947,6 +6947,361 @@
         }
       }
     },
+    "/v2/teams/{identifier}/roles": {
+      "get": {
+        "tags": [
+          "team-role"
+        ],
+        "summary": "List Team Roles",
+        "description": "Returns list of team roles",
+        "operationId": "listTeamRoles",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://www.opsgenie.com/docs/team-role-api#section-list-team-roles"
+        },
+        "x-collapse-params": "ListTeamRolesRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TeamIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamIdentifierType2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of team role informations",
+            "schema": {
+              "$ref": "#/definitions/ListTeamRoleResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "team-role"
+        ],
+        "summary": "Create Team Role",
+        "description": "Creates a new team role",
+        "operationId": "createTeamRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://www.opsgenie.com/docs/team-role-api#section-create-team-role"
+        },
+        "x-collapse-params": "AddTeamRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TeamIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamIdentifierType2"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of created team role",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateTeamRolePayload"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Team role meta information for created team role",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/teams/{identifier}/roles/{teamRoleIdentifier}": {
+      "get": {
+        "tags": [
+          "team-role"
+        ],
+        "summary": "Get Team Role",
+        "description": "Returns team role with given 'id' or 'name'",
+        "operationId": "getTeamRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://www.opsgenie.com/docs/team-role-api#section-get-team-role"
+        },
+        "x-collapse-params": "GetTeamRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TeamIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamIdentifierType2"
+          },
+          {
+            "$ref": "#/parameters/TeamRoleIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamRoleIdentifierType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team Role object that is retrieved",
+            "schema": {
+              "$ref": "#/definitions/GetTeamRoleResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "team-role"
+        ],
+        "summary": "Delete Team Role",
+        "description": "Deletes a team role using team role 'id' or 'name'",
+        "operationId": "deleteTeamRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://www.opsgenie.com/docs/team-role-api#section-delete-team-role"
+        },
+        "x-collapse-params": "DeleteTeamRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TeamIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamIdentifierType2"
+          },
+          {
+            "$ref": "#/parameters/TeamRoleIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamRoleIdentifierType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "team-role"
+        ],
+        "summary": "Update Team Role (Partial)",
+        "description": "Updates the team role using team role 'id' or 'name'",
+        "operationId": "updateTeamRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://www.opsgenie.com/docs/team-role-api#section-update-team-rolepartial"
+        },
+        "x-collapse-params": "UpdateTeamRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/TeamIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamIdentifierType2"
+          },
+          {
+            "$ref": "#/parameters/TeamRoleIdentifier"
+          },
+          {
+            "$ref": "#/parameters/TeamRoleIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update team role",
+            "schema": {
+              "$ref": "#/definitions/UpdateTeamRolePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
     "/v2/teams/{identifier}/routing-rules": {
       "post": {
         "tags": [
@@ -9631,6 +9986,328 @@
           }
         }
       }
+    },
+    "/v2/roles": {
+      "get": {
+        "tags": [
+          "custom-user-role"
+        ],
+        "summary": "List Custom User Roles",
+        "description": "Returns list of custom user roles",
+        "operationId": "listCustomUserRoles",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/users-and-user-roles#section-custom-roles"
+        },
+        "responses": {
+          "200": {
+            "description": "List of custom user role informations",
+            "schema": {
+              "$ref": "#/definitions/ListCustomUserRolesResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "custom-user-role"
+        ],
+        "summary": "Create Custom User Role",
+        "description": "Creates a new custom user role",
+        "operationId": "createCustomUserRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/users-and-user-roles#section-custom-roles"
+        },
+        "x-collapse-params": "AddCustomUserRoleRequest",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of created custom user role",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCustomUserRolePayload"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Custom user role meta information for created custom user role",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/roles/{identifier}": {
+      "get": {
+        "tags": [
+          "custom-user-role"
+        ],
+        "summary": "Get Custom User Role",
+        "description": "Returns custom user role with given 'id' or 'name'",
+        "operationId": "getCustomUserRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/users-and-user-roles#section-custom-roles"
+        },
+        "x-collapse-params": "GetCustomUserRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/CustomUserRoleIdentifier"
+          },
+          {
+            "$ref": "#/parameters/CustomUserRoleIdentifierType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Custom User Role object that is retrieved",
+            "schema": {
+              "$ref": "#/definitions/GetCustomUserRoleResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "custom-user-role"
+        ],
+        "summary": "Delete Custom User Role",
+        "description": "Deletes a custom user role using role 'id' or 'name'",
+        "operationId": "deleteCustomUserRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/users-and-user-roles#section-custom-roles"
+        },
+        "x-collapse-params": "DeleteCustomUserRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/CustomUserRoleIdentifier"
+          },
+          {
+            "$ref": "#/parameters/CustomUserRoleIdentifierType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "custom-user-role"
+        ],
+        "summary": "Update Custom User Role",
+        "description": "Updates the custom user role using role 'id' or 'name'",
+        "operationId": "updateCustomUserRole",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/users-and-user-roles#section-custom-roles"
+        },
+        "x-collapse-params": "UpdateCustomUserRoleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/CustomUserRoleIdentifier"
+          },
+          {
+            "$ref": "#/parameters/CustomUserRoleIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update custom user role",
+            "schema": {
+              "$ref": "#/definitions/UpdateCustomUserRolePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -9939,6 +10616,25 @@
       "required": true,
       "type": "string"
     },
+    "TeamRoleIdentifier": {
+      "name": "teamRoleIdentifier",
+      "in": "path",
+      "description": "Identifier of team role which could be team role 'id' or 'name'",
+      "required": true,
+      "type": "string"
+    },
+    "TeamRoleIdentifierType": {
+      "name": "identifierType",
+      "in": "query",
+      "description": "Type of the identifier that is provided as an in-line parameter. Possible values are 'id' or 'name'",
+      "required": false,
+      "type": "string",
+      "enum": [
+        "id",
+        "name"
+      ],
+      "default": "id"
+    },
     "TeamRoutingRuleId": {
       "name": "id",
       "in": "path",
@@ -10041,6 +10737,25 @@
       "enum": [
         "id",
         "alias"
+      ],
+      "default": "id"
+    },
+    "CustomUserRoleIdentifier": {
+      "name": "identifier",
+      "in": "path",
+      "description": "Identifier of custom user role which could be user role 'id' or 'name'",
+      "required": true,
+      "type": "string"
+    },
+    "CustomUserRoleIdentifierType": {
+      "name": "identifierType",
+      "in": "query",
+      "description": "Type of the identifier that is provided as an in-line parameter. Possible values are 'id' or 'name'",
+      "required": false,
+      "type": "string",
+      "enum": [
+        "id",
+        "name"
       ],
       "default": "id"
     }
@@ -16805,11 +17520,7 @@
         },
         "role": {
           "type": "string",
-          "description": "Member role of the user, consisting 'user' and 'admin'. Default value is 'user'",
-          "enum": [
-            "user",
-            "admin"
-          ],
+          "description": "Member role of the user, consisting 'user', 'admin' or a custom team role. Default value is 'user'",
           "default": "user"
         }
       }
@@ -16822,12 +17533,108 @@
         },
         "role": {
           "type": "string",
-          "description": "Member role of the user, consisting 'user' and 'admin'. Default value is 'user'",
-          "enum": [
-            "user",
-            "admin"
-          ],
+          "description": "Member role of the user, consisting 'user', 'admin' or a custom team role. Default value is 'user'",
           "default": "user"
+        }
+      }
+    },
+    "CreateTeamRolePayload": {
+      "type": "object",
+      "required": [
+        "name",
+        "rights"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the team role"
+        },
+        "rights": {
+          "type": "array",
+          "description": "List of team role rights.",
+          "items": {
+            "$ref": "#/definitions/TeamRight"
+          }
+        }
+      }
+    },
+    "UpdateTeamRolePayload": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the team role"
+        },
+        "rights": {
+          "type": "array",
+          "description": "List of team role rights.",
+          "items": {
+            "$ref": "#/definitions/TeamRight"
+          }
+        }
+      }
+    },
+    "GetTeamRoleResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/TeamRole"
+            }
+          }
+        }
+      ]
+    },
+    "ListTeamRoleResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TeamRole"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "TeamRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TeamRight"
+          }
+        }
+      }
+    },
+    "TeamRight": {
+      "type": "object",
+      "required": [
+        "right"
+      ],
+      "properties": {
+        "right": {
+          "type": "string"
+        },
+        "granted": {
+          "type": "boolean"
         }
       }
     },
@@ -17768,6 +18575,10 @@
         "ownerTeam": {
           "description": "Owner team of escalation.",
           "$ref": "#/definitions/TeamMeta"
+        },
+        "repeat": {
+          "description": "Repeat preferences of escalation",
+          "$ref": "#/definitions/EscalationRepeat"
         }
       }
     },
@@ -17792,6 +18603,10 @@
         "ownerTeam": {
           "description": "Owner team of escalation.",
           "$ref": "#/definitions/TeamMeta"
+        },
+        "repeat": {
+          "description": "Repeat preferences of escalation",
+          "$ref": "#/definitions/EscalationRepeat"
         }
       }
     },
@@ -17848,6 +18663,9 @@
           "items": {
             "$ref": "#/definitions/EscalationRule"
           }
+        },
+        "repeat": {
+          "$ref": "#/definitions/EscalationRepeat"
         }
       }
     },
@@ -17885,6 +18703,27 @@
         },
         "recipient": {
           "$ref": "#/definitions/Recipient"
+        }
+      }
+    },
+    "EscalationRepeat": {
+      "type": "object",
+      "properties": {
+        "waitInterval": {
+          "type": "integer",
+          "nullable": true
+        },
+        "count": {
+          "type": "integer",
+          "nullable": true
+        },
+        "resetRecipientStates": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "closeAlertAfterAll": {
+          "type": "boolean",
+          "nullable": true
         }
       }
     },
@@ -18031,6 +18870,125 @@
         },
         "alias": {
           "type": "string"
+        }
+      }
+    },
+    "CreateCustomUserRolePayload": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of custom user role"
+        },
+        "extendedRole": {
+          "type": "string",
+          "description": "Custom role. Must not be one of the defined values (i.e. \"user\", \"observer\", \"stakeholder\")"
+        },
+        "grantedRights": {
+          "type": "array",
+          "description": "Rights granted to the custom user role.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disallowedRights": {
+          "type": "array",
+          "description": "Rights disallowed for the custom user role.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UpdateCustomUserRolePayload": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of custom user role"
+        },
+        "extendedRole": {
+          "type": "string",
+          "description": "Custom role. Must not be one of the defined values (i.e. \"user\", \"observer\", \"stakeholder\")"
+        },
+        "grantedRights": {
+          "type": "array",
+          "description": "Rights granted to the custom user role.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disallowedRights": {
+          "type": "array",
+          "description": "Rights disallowed for the custom user role.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ListCustomUserRolesResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomUserRole"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "GetCustomUserRoleResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/CustomUserRole"
+            }
+          }
+        }
+      ]
+    },
+    "CustomUserRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "extendedRole": {
+          "type": "string",
+          "description": "Custom role. Must not be one of the defined values (i.e. \"user\", \"observer\", \"stakeholder\")"
+        },
+        "grantedRights": {
+          "type": "array",
+          "description": "Rights granted to the custom user role.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disallowedRights": {
+          "type": "array",
+          "description": "Rights disallowed for the custom user role.",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

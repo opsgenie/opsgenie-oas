@@ -11,10 +11,7 @@ AddTeamMemberPayload:
       description: Member identifier of the team, consisting 'id' and/or 'username'
     role:
       type: string
-      description: Member role of the user, consisting 'user' and 'admin'. Default value is 'user'
-      enum:
-        - user
-        - admin
+      description: Member role of the user, consisting 'user', 'admin' or a custom team role. Default value is 'user'
       default: user
 
 ##################
@@ -27,8 +24,5 @@ TeamMember:
       $ref: '#/definitions/UserMeta'
     role:
       type: string
-      description: Member role of the user, consisting 'user' and 'admin'. Default value is 'user'
-      enum:
-        - user
-        - admin
+      description: Member role of the user, consisting 'user', 'admin' or a custom team role. Default value is 'user'
       default: user

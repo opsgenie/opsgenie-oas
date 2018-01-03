@@ -44,6 +44,7 @@ paths:
   - $ref: ./paths/notificationRuleStep.yaml
   - $ref: ./paths/team.yaml
   - $ref: ./paths/teamMember.yaml
+  - $ref: ./paths/teamRole.yaml
   - $ref: ./paths/teamRoutingRule.yaml
   - $ref: ./paths/schedule.yaml
   - $ref: ./paths/scheduleRotation.yaml
@@ -51,6 +52,7 @@ paths:
   - $ref: ./paths/whoIsOnCall.yaml
   - $ref: ./paths/escalation.yaml
   - $ref: ./paths/forwardingRule.yaml
+  - $ref: ./paths/customUserRole.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -68,6 +70,7 @@ parameters:
   - $ref: ./parameters/notificationRuleStep.yaml
   - $ref: ./parameters/team.yaml
   - $ref: ./parameters/teamMember.yaml
+  - $ref: ./parameters/teamRole.yaml
   - $ref: ./parameters/teamRoutingRule.yaml
   - $ref: ./parameters/schedule.yaml
   - $ref: ./parameters/scheduleRotation.yaml
@@ -75,6 +78,7 @@ parameters:
   - $ref: ./parameters/whoIsOnCall.yaml
   - $ref: ./parameters/escalation.yaml
   - $ref: ./parameters/forwardingRule.yaml
+  - $ref: ./parameters/customUserRole.yaml
 
 ################################################################################
 #                                 RESPONSES                                    #
@@ -100,6 +104,7 @@ definitions:
   - $ref: ./definitions/notificationRuleStep.yaml
   - $ref: ./definitions/team.yaml
   - $ref: ./definitions/teamMember.yaml
+  - $ref: ./definitions/teamRole.yaml
   - $ref: ./definitions/teamRoutingRule.yaml
   - $ref: ./definitions/schedule.yaml
   - $ref: ./definitions/scheduleRotation.yaml
@@ -107,3 +112,4 @@ definitions:
   - $ref: ./definitions/whoIsOnCall.yaml
   - $ref: ./definitions/escalation.yaml
   - $ref: ./definitions/forwardingRule.yaml
+  - $ref: ./definitions/customUserRole.yaml
