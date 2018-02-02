@@ -1,7 +1,7 @@
 ##################
 #    REQUEST     #
 ##################
-ChangeAlertPolicyOrderPayload:
+ChangePolicyOrderPayload:
   type: object
   required:
     - targetIndex
@@ -11,11 +11,17 @@ ChangeAlertPolicyOrderPayload:
       format: int32
       description: Order of the target policy will be changed to this value. Larger values than policy count will put the target policy to last place
       minimum: 0
-
 ##################
 #    RESPONSE    #
 ##################
-ListAlertPoliciesResponse:
+CreatePolicyResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/PolicyMeta'
+ListPoliciesResponse:
   type: object
   allOf:
   - $ref: '#/definitions/BaseResponse'
@@ -23,28 +29,20 @@ ListAlertPoliciesResponse:
       data:
         type: array
         items:
-          $ref: '#/definitions/AlertPolicyMeta'
-
-CreateAlertPolicyResponse:
-  type: object
-  allOf:
-    - $ref: '#/definitions/BaseResponse'
-    - properties:
-        data:
-          $ref: '#/definitions/AlertPolicyMeta'
-
-GetAlertPolicyResponse:
+          $ref: '#/definitions/PolicyMeta'
+GetPolicyResponse:
   type: object
   allOf:
   - $ref: '#/definitions/BaseResponse'
   - properties:
       data:
-        $ref: '#/definitions/AlertPolicy'
+        $ref: '#/definitions/Policy'
+
 
 ##################
 #      MODEL     #
 ##################
-AlertPolicyMeta:
+PolicyMeta:
   type: object
   properties:
     id:
@@ -54,20 +52,15 @@ AlertPolicyMeta:
     type:
       type: string
       enum:
-        - modify
-        - auto-close
-        - notification-delay
-        - notification-deduplication
-        - notification-suppress
-        - notification-renotify
-        - auto-restart-notifications
+        - alert
+        - notification
     order:
       type: integer
       format: int32
     enabled:
       type: boolean
 
-AlertPolicy:
+Policy:
   type: object
   discriminator: type
   required:
@@ -81,6 +74,9 @@ AlertPolicy:
     policyDescription:
       type: string
       description: Description of the policy
+    teamId:
+      type: string
+      description: TeamId of the policy
     filter:
       $ref: '#/definitions/Filter'
       description: Conditions specified in this field must be met for this policy to work
@@ -94,27 +90,22 @@ AlertPolicy:
       type: string
       description: Type of the policy
       enum:
-        - modify
-        - auto-close
-        - notification-delay
-        - notification-deduplication
-        - notification-suppress
-        - notification-renotify
-        - auto-restart-notifications
+        - alert
+        - notification
 
-ModifyAlertPolicy:
+AlertPolicy:
   type: object
-  x-discriminator-value: modify
+  x-discriminator-value: alert
   allOf:
-    - $ref: '#/definitions/AlertPolicy'
+    - $ref: '#/definitions/Policy'
     - properties:
-        ignoreOriginalAlertActions:
+        ignoreOriginalActions:
           type: boolean
         ignoreOriginalDetails:
           description: If set to true, policy will ignore the original details of the alert. Default value is false
           type: boolean
-        ignoreOriginalRecipients:
-          description: If set to true, policy will ignore the original recipients of the alert. Default value is false
+        ignoreOriginalResponders:
+          description: If set to true, policy will ignore the original responders of the alert. Default value is false
           type: boolean
         ignoreOriginalTags:
           description: If set to true, policy will ignore the original tags of the alert. Default value is false
@@ -141,17 +132,17 @@ ModifyAlertPolicy:
           description: Source field of the alert. You can use {{source}} to refer to the original source. Default value is {{source}}
           type: string
         actions:
-          description: Alert actions as a list of strings to add to the alerts original actions value. If ignoreOriginalAlertActions field is set to true, this will replace the original actions.
+          description: Alert actions as a list of strings to add to the alerts original actions value. If ignoreOriginalActions field is set to true, this will replace the original actions.
           type: array
           items:
             type: string
-        recipients:
-          description: Recipients to add to the alerts original recipients value as a list of escalations, schedules, teams, users or the reserved word none or all. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.
+        responders:
+          description: Responders to add to the alerts original responders value as a list of teams or users. If ignoreOriginalResponders field is set to true, this will replace the original responders.
           type: array
           items:
-            $ref: '#/definitions/Recipient'
+            $ref: '#/definitions/Responder'
         tags:
-          description: Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.
+          description: Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalTags field is set to true, this will replace the original tags.
           type: array
           items:
             type: string
@@ -170,98 +161,96 @@ ModifyAlertPolicy:
             - P4
             - P5
 
-AutoCloseAlertPolicy:
+NotificationPolicy:
   type: object
-  x-discriminator-value: auto-close
+  x-discriminator-value: notification
   allOf:
-    - $ref: '#/definitions/AlertPolicy'
+    - $ref: '#/definitions/Policy'
     - properties:
-        duration:
-          description: Duration to wait before closing the alert
-          $ref: '#/definitions/Duration'
+        autoRestartAction:
+          description: Auto-restart action defined for the policy.
+          $ref: '#/definitions/AutoRestartAction'
+        autoCloseAction:
+          description: Auto-close action defined for the policy.
+          $ref: '#/definitions/AutoCloseAction'
+        deduplicationAction:
+          description: Deduplication action defined for the policy.
+          $ref: '#/definitions/DeduplicationAction'
+        delayAction:
+          description: Delay action defined for the policy.
+          $ref: '#/definitions/DelayAction'
+        suppress:
+          description: If set to true, notifications related to the matching alert will be suppressed. Default value is false.
+          type: boolean
 
-NotificationDelayAlertPolicy:
+AutoRestartAction:
   type: object
-  x-discriminator-value: notification-delay
-  allOf:
-    - $ref: '#/definitions/AlertPolicy'
-    - properties:
-        delayOption:
-          description: Delay type
-          type: string
-          enum:
-          - for-duration
-          - next-time
-          - next-weekday
-          - next-monday
-          - next-tuesday
-          - next-wednesday
-          - next-thursday
-          - next-friday
-          - next-saturday
-          - next-sunday
-        duration:
-          description: Interval to keep count of alerts for frequency based deduplication
-          $ref: '#/definitions/Duration'
-        untilHour:
-          description: Should be a number between 0-23
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 23
-        untilMinute:
-          description: Should be a number between 0-59
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 59
-
-NotificationDeduplicationAlertPolicy:
-  type: object
-  x-discriminator-value: notification-deduplication
-  allOf:
-    - $ref: '#/definitions/AlertPolicy'
-    - properties:
-        deduplicationActionType:
-          type: string
-          description: Deduplication type
-          enum:
-          - value-based
-          - frequency-based
-        count:
-          description: Number of alerts before deduplication
-          type: integer
-          format: int32
-          minimum: 2
-          maximum: 100
-        duration:
-          description: Interval to keep count of alerts for frequency based deduplication
-          $ref: '#/definitions/Duration'
-
-AutoRestartNotificationsAlertPolicy:
-  type: object
-  x-discriminator-value: auto-restart-notifications
   required:
+    - duration
     - maxRepeatCount
-  allOf:
-    - $ref: '#/definitions/AlertPolicy'
-    - properties:
-        duration:
-          description: Duration to wait before restarting the notification flow
-          $ref: '#/definitions/Duration'
-        maxRepeatCount:
-          description: Max restart count of the notification flow
-          type: integer
-          format: int32
+  properties:
+    duration:
+      $ref: '#/definitions/Duration'
+    maxRepeatCount:
+      type: integer
+      format: int32
 
-NotificationSuppressAlertPolicy:
+AutoCloseAction:
   type: object
-  x-discriminator-value: notification-suppress
-  allOf:
-    - $ref: '#/definitions/AlertPolicy'
+  required:
+    - duration
+  properties:
+    duration:
+      $ref: '#/definitions/Duration'
+    maxRepeatCount:
+      type: integer
+      format: int32
 
-NotificationRenotifyAlertPolicy:
+DeduplicationAction:
   type: object
-  x-discriminator-value: notification-renotify
-  allOf:
-    - $ref: '#/definitions/AlertPolicy'
+  required:
+    - deduplicationActionType
+    - count
+  properties:
+    deduplicationActionType:
+      type: string
+      enum:
+        - value-based
+        - frequency-based
+    count:
+      type: integer
+      format: int32
+      minimum: 2
+      maximum: 100
+    duration:
+      $ref: '#/definitions/Duration'
+DelayAction:
+  type: object
+  required:
+    - delayOption
+  properties:
+    delayOption:
+      type: string
+      enum:
+        - for-duration
+        - next-time
+        - next-weekday
+        - next-monday
+        - next-tuesday
+        - next-wednesday
+        - next-thursday
+        - next-friday
+        - next-saturday
+        - next-sunday
+    untilHour:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 23
+    untilMinute:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 59
+    duration:
+      $ref: '#/definitions/Duration'

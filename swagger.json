@@ -3400,7 +3400,7 @@
     "/v1/policies": {
       "get": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "List Alert Policies",
         "description": "Returns list alert policies",
@@ -3413,7 +3413,7 @@
           "200": {
             "description": "List of policies",
             "schema": {
-              "$ref": "#/definitions/ListAlertPoliciesResponse"
+              "$ref": "#/definitions/DeprecatedListAlertPoliciesResponse"
             },
             "headers": {
               "X-Request-ID": {
@@ -3460,7 +3460,7 @@
       },
       "post": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Create Alert Policy",
         "description": "Creates a new alert policy",
@@ -3476,7 +3476,7 @@
             "description": "Payload of created alert policy",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AlertPolicy"
+              "$ref": "#/definitions/DeprecatedAlertPolicy"
             }
           }
         ],
@@ -3484,7 +3484,7 @@
           "201": {
             "description": "Policy meta information for created policy",
             "schema": {
-              "$ref": "#/definitions/CreateAlertPolicyResponse"
+              "$ref": "#/definitions/DeprecatedCreateAlertPolicyResponse"
             },
             "headers": {
               "X-Request-ID": {
@@ -3536,7 +3536,7 @@
     "/v1/policies/{policyId}": {
       "get": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Get Alert Policy",
         "description": "Used to get details of a single policy with id",
@@ -3554,7 +3554,7 @@
           "200": {
             "description": "Alert policy with given id",
             "schema": {
-              "$ref": "#/definitions/GetAlertPolicyResponse"
+              "$ref": "#/definitions/DeprecatedGetAlertPolicyResponse"
             },
             "headers": {
               "X-Request-ID": {
@@ -3607,7 +3607,7 @@
       },
       "put": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Update Alert Policy",
         "description": "Update alert policy with given id",
@@ -3627,7 +3627,7 @@
             "description": "Payload of updated alert policy",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AlertPolicy"
+              "$ref": "#/definitions/DeprecatedAlertPolicy"
             }
           }
         ],
@@ -3663,7 +3663,7 @@
       },
       "delete": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Delete Alert Policy",
         "description": "Delete alert policy with given id",
@@ -3711,7 +3711,7 @@
     "/v1/policies/{policyId}/enable": {
       "post": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Enable Alert Policy",
         "description": "Enable the alert policy with given id",
@@ -3759,7 +3759,7 @@
     "/v1/policies/{policyId}/disable": {
       "post": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Disable Alert Policy",
         "description": "Disable the alert policy with given id",
@@ -3807,7 +3807,7 @@
     "/v1/policies/{policyId}/change-order": {
       "post": {
         "tags": [
-          "policy"
+          "deprecatedPolicy"
         ],
         "summary": "Change Alert Policy Order",
         "description": "Change execution order of the alert policy with given id",
@@ -3827,7 +3827,7 @@
             "description": "Change order payload",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ChangeAlertPolicyOrderPayload"
+              "$ref": "#/definitions/DeprecatedChangeAlertPolicyOrderPayload"
             }
           }
         ],
@@ -10308,6 +10308,608 @@
           }
         }
       }
+    },
+    "/v2/policies": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Create Policy",
+        "description": "Creates a new policy",
+        "operationId": "createPolicy",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-create-policy"
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Payload of created policy",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Policy meta information for created policy",
+            "schema": {
+              "$ref": "#/definitions/CreatePolicyResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/policies/alert": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "List Alert Policies",
+        "description": "Returns the list of alert policies",
+        "operationId": "listAlertPolicies",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-list-alert-policies"
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of policies",
+            "schema": {
+              "$ref": "#/definitions/ListPoliciesResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/policies/notification": {
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "List Notification Policies",
+        "description": "Returns the list of notification policies",
+        "operationId": "listNotificationPolicies",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-list-notification-policies"
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of policies",
+            "schema": {
+              "$ref": "#/definitions/ListPoliciesResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/policies/{policyId}": {
+      "delete": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Delete Policy",
+        "description": "Delete policy with given id",
+        "operationId": "deletePolicy",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-delete-policy"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/PolicyId"
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Get Policy",
+        "description": "Used to get details of a single policy with id",
+        "operationId": "getPolicy",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-get-policy"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/PolicyId"
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy with given id",
+            "schema": {
+              "$ref": "#/definitions/GetPolicyResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Update Policy",
+        "description": "Update alert policy with given id",
+        "operationId": "updatePolicy",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-update-policy"
+        },
+        "x-collapse-params": "UpdatePolicyRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PolicyId"
+          },
+          {
+            "$ref": "#/parameters/TeamId"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Payload of updated policy",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/policies/{policyId}/enable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Enable Policy",
+        "description": "Enable the policy with given id",
+        "operationId": "enablePolicy",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-enable-policy"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/PolicyId"
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/policies/{policyId}/disable": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Disable Policy",
+        "description": "Disable the policy with given id",
+        "operationId": "disablePolicy",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-disable-policy"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/PolicyId"
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "TeamId of policy created if it belongs to a team",
+            "required": false,
+            "schema": {
+              "$ref": "#/parameters/TeamId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/policies/{policyId}/change-order": {
+      "post": {
+        "tags": [
+          "policy"
+        ],
+        "summary": "Change Policy Order",
+        "description": "Change execution order of the policy with given id",
+        "operationId": "changePolicyOrder",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-change-policy-order"
+        },
+        "x-collapse-params": "ChangePolicyOrderRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PolicyId"
+          },
+          {
+            "$ref": "#/parameters/TeamId"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Change order payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangePolicyOrderPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -10465,6 +11067,13 @@
       "in": "path",
       "description": "Id of the requested policy",
       "required": true,
+      "type": "string"
+    },
+    "TeamId": {
+      "name": "teamId",
+      "in": "query",
+      "description": "TeamId of policy created if it belongs to a team",
+      "required": false,
       "type": "string"
     },
     "MaintenanceIdentifier": {
@@ -10758,6 +11367,377 @@
         "name"
       ],
       "default": "id"
+    },
+    "DeprecatedChangeAlertPolicyOrderPayload": {
+      "type": "object",
+      "required": [
+        "targetIndex"
+      ],
+      "properties": {
+        "targetIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Order of the target policy will be changed to this value. Larger values than policy count will put the target policy to last place",
+          "minimum": 0
+        }
+      }
+    },
+    "DeprecatedListAlertPoliciesResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DeprecatedAlertPolicyMeta"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedCreateAlertPolicyResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/DeprecatedAlertPolicyMeta"
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedGetAlertPolicyResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/DeprecatedAlertPolicy"
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedAlertPolicyMeta": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "modify",
+            "auto-close",
+            "notification-delay",
+            "notification-deduplication",
+            "notification-suppress",
+            "notification-renotify",
+            "auto-restart-notifications"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DeprecatedAlertPolicy": {
+      "type": "object",
+      "discriminator": "type",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the policy"
+        },
+        "policyDescription": {
+          "type": "string",
+          "description": "Description of the policy"
+        },
+        "filter": {
+          "$ref": "#/definitions/Filter",
+          "description": "Conditions specified in this field must be met for this policy to work"
+        },
+        "timeRestrictions": {
+          "$ref": "#/definitions/TimeRestrictionInterval",
+          "description": "Time restrictions specified in this field must be met for this policy to work"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Activity status of the alert policy"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the policy",
+          "enum": [
+            "modify",
+            "auto-close",
+            "notification-delay",
+            "notification-deduplication",
+            "notification-suppress",
+            "notification-renotify",
+            "auto-restart-notifications"
+          ]
+        }
+      }
+    },
+    "DeprecatedModifyAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "modify",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        },
+        {
+          "properties": {
+            "ignoreOriginalAlertActions": {
+              "type": "boolean"
+            },
+            "ignoreOriginalDetails": {
+              "description": "If set to true, policy will ignore the original details of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "ignoreOriginalRecipients": {
+              "description": "If set to true, policy will ignore the original recipients of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "ignoreOriginalTags": {
+              "description": "If set to true, policy will ignore the original tags of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "ignoreOriginalTeams": {
+              "description": "If set to true, policy will ignore the original teams of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "continue": {
+              "description": "Will continue with other modify policies if set to true",
+              "type": "boolean"
+            },
+            "alias": {
+              "description": "Alias of the alert. You can use {{alias}} to refer to the original alias. Default value is {{alias}}",
+              "type": "string"
+            },
+            "description": {
+              "description": "Description of the alert. You can use {{description}} to refer to the original alert description. Default value is {{description}}",
+              "type": "string"
+            },
+            "entity": {
+              "description": "Entity field of the alert. You can use {{entity}} to refer to the original entity. Default value is {{entity}}",
+              "type": "string"
+            },
+            "message": {
+              "description": "Message of the alert",
+              "type": "string"
+            },
+            "source": {
+              "description": "Source field of the alert. You can use {{source}} to refer to the original source. Default value is {{source}}",
+              "type": "string"
+            },
+            "actions": {
+              "description": "Alert actions as a list of strings to add to the alerts original actions value. If ignoreOriginalAlertActions field is set to true, this will replace the original actions.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "recipients": {
+              "description": "Recipients to add to the alerts original recipients value as a list of escalations, schedules, teams, users or the reserved word none or all. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
+            "tags": {
+              "description": "Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "details": {
+              "description": "Custom properties to add to the alerts original details value as a list of strings. If ignoreOriginalDetails field is set to true, this will replace the original details.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "priority": {
+              "type": "string",
+              "description": "Priority level of the alert",
+              "enum": [
+                "P1",
+                "P2",
+                "P3",
+                "P4",
+                "P5"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedAutoCloseAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "auto-close",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        },
+        {
+          "properties": {
+            "duration": {
+              "description": "Duration to wait before closing the alert",
+              "$ref": "#/definitions/Duration"
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedNotificationDelayAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "notification-delay",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        },
+        {
+          "properties": {
+            "delayOption": {
+              "description": "Delay type",
+              "type": "string",
+              "enum": [
+                "for-duration",
+                "next-time",
+                "next-weekday",
+                "next-monday",
+                "next-tuesday",
+                "next-wednesday",
+                "next-thursday",
+                "next-friday",
+                "next-saturday",
+                "next-sunday"
+              ]
+            },
+            "duration": {
+              "description": "Interval to keep count of alerts for frequency based deduplication",
+              "$ref": "#/definitions/Duration"
+            },
+            "untilHour": {
+              "description": "Should be a number between 0-23",
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 23
+            },
+            "untilMinute": {
+              "description": "Should be a number between 0-59",
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 59
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedNotificationDeduplicationAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "notification-deduplication",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        },
+        {
+          "properties": {
+            "deduplicationActionType": {
+              "type": "string",
+              "description": "Deduplication type",
+              "enum": [
+                "value-based",
+                "frequency-based"
+              ]
+            },
+            "count": {
+              "description": "Number of alerts before deduplication",
+              "type": "integer",
+              "format": "int32",
+              "minimum": 2,
+              "maximum": 100
+            },
+            "duration": {
+              "description": "Interval to keep count of alerts for frequency based deduplication",
+              "$ref": "#/definitions/Duration"
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedAutoRestartNotificationsAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "auto-restart-notifications",
+      "required": [
+        "maxRepeatCount"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        },
+        {
+          "properties": {
+            "duration": {
+              "description": "Duration to wait before restarting the notification flow",
+              "$ref": "#/definitions/Duration"
+            },
+            "maxRepeatCount": {
+              "description": "Max restart count of the notification flow",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      ]
+    },
+    "DeprecatedNotificationSuppressAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "notification-suppress",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        }
+      ]
+    },
+    "DeprecatedNotificationRenotifyAlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "notification-renotify",
+      "allOf": [
+        {
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
+        }
+      ]
     }
   },
   "responses": {
@@ -11462,6 +12442,60 @@
           "description": "Order of the condition in conditions list"
         }
       }
+    },
+    "Responder": {
+      "type": "object",
+      "discriminator": "type",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "user",
+            "team"
+          ]
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "UserResponder": {
+      "x-discriminator-value": "user",
+      "description": "User responder",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Responder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TeamResponder": {
+      "x-discriminator-value": "team",
+      "description": "Team responder",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Responder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      ]
     },
     "AlertActionPayload": {
       "type": "object",
@@ -15801,7 +16835,7 @@
         }
       }
     },
-    "ChangeAlertPolicyOrderPayload": {
+    "DeprecatedChangeAlertPolicyOrderPayload": {
       "type": "object",
       "required": [
         "targetIndex"
@@ -15815,7 +16849,7 @@
         }
       }
     },
-    "ListAlertPoliciesResponse": {
+    "DeprecatedListAlertPoliciesResponse": {
       "type": "object",
       "allOf": [
         {
@@ -15826,14 +16860,14 @@
             "data": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/AlertPolicyMeta"
+                "$ref": "#/definitions/DeprecatedAlertPolicyMeta"
               }
             }
           }
         }
       ]
     },
-    "CreateAlertPolicyResponse": {
+    "DeprecatedCreateAlertPolicyResponse": {
       "type": "object",
       "allOf": [
         {
@@ -15842,13 +16876,13 @@
         {
           "properties": {
             "data": {
-              "$ref": "#/definitions/AlertPolicyMeta"
+              "$ref": "#/definitions/DeprecatedAlertPolicyMeta"
             }
           }
         }
       ]
     },
-    "GetAlertPolicyResponse": {
+    "DeprecatedGetAlertPolicyResponse": {
       "type": "object",
       "allOf": [
         {
@@ -15857,13 +16891,13 @@
         {
           "properties": {
             "data": {
-              "$ref": "#/definitions/AlertPolicy"
+              "$ref": "#/definitions/DeprecatedAlertPolicy"
             }
           }
         }
       ]
     },
-    "AlertPolicyMeta": {
+    "DeprecatedAlertPolicyMeta": {
       "type": "object",
       "properties": {
         "id": {
@@ -15893,7 +16927,7 @@
         }
       }
     },
-    "AlertPolicy": {
+    "DeprecatedAlertPolicy": {
       "type": "object",
       "discriminator": "type",
       "required": [
@@ -15938,12 +16972,12 @@
         }
       }
     },
-    "ModifyAlertPolicy": {
+    "DeprecatedModifyAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "modify",
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         },
         {
           "properties": {
@@ -16033,12 +17067,12 @@
         }
       ]
     },
-    "AutoCloseAlertPolicy": {
+    "DeprecatedAutoCloseAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "auto-close",
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         },
         {
           "properties": {
@@ -16050,12 +17084,12 @@
         }
       ]
     },
-    "NotificationDelayAlertPolicy": {
+    "DeprecatedNotificationDelayAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "notification-delay",
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         },
         {
           "properties": {
@@ -16097,12 +17131,12 @@
         }
       ]
     },
-    "NotificationDeduplicationAlertPolicy": {
+    "DeprecatedNotificationDeduplicationAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "notification-deduplication",
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         },
         {
           "properties": {
@@ -16129,7 +17163,7 @@
         }
       ]
     },
-    "AutoRestartNotificationsAlertPolicy": {
+    "DeprecatedAutoRestartNotificationsAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "auto-restart-notifications",
       "required": [
@@ -16137,7 +17171,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         },
         {
           "properties": {
@@ -16154,21 +17188,21 @@
         }
       ]
     },
-    "NotificationSuppressAlertPolicy": {
+    "DeprecatedNotificationSuppressAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "notification-suppress",
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         }
       ]
     },
-    "NotificationRenotifyAlertPolicy": {
+    "DeprecatedNotificationRenotifyAlertPolicy": {
       "type": "object",
       "x-discriminator-value": "notification-renotify",
       "allOf": [
         {
-          "$ref": "#/definitions/AlertPolicy"
+          "$ref": "#/definitions/DeprecatedAlertPolicy"
         }
       ]
     },
@@ -18989,6 +20023,359 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "ChangePolicyOrderPayload": {
+      "type": "object",
+      "required": [
+        "targetIndex"
+      ],
+      "properties": {
+        "targetIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Order of the target policy will be changed to this value. Larger values than policy count will put the target policy to last place",
+          "minimum": 0
+        }
+      }
+    },
+    "CreatePolicyResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/PolicyMeta"
+            }
+          }
+        }
+      ]
+    },
+    "ListPoliciesResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PolicyMeta"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "GetPolicyResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        }
+      ]
+    },
+    "PolicyMeta": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "alert",
+            "notification"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Policy": {
+      "type": "object",
+      "discriminator": "type",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the policy"
+        },
+        "policyDescription": {
+          "type": "string",
+          "description": "Description of the policy"
+        },
+        "teamId": {
+          "type": "string",
+          "description": "TeamId of the policy"
+        },
+        "filter": {
+          "$ref": "#/definitions/Filter",
+          "description": "Conditions specified in this field must be met for this policy to work"
+        },
+        "timeRestrictions": {
+          "$ref": "#/definitions/TimeRestrictionInterval",
+          "description": "Time restrictions specified in this field must be met for this policy to work"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Activity status of the alert policy"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the policy",
+          "enum": [
+            "alert",
+            "notification"
+          ]
+        }
+      }
+    },
+    "AlertPolicy": {
+      "type": "object",
+      "x-discriminator-value": "alert",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Policy"
+        },
+        {
+          "properties": {
+            "ignoreOriginalActions": {
+              "type": "boolean"
+            },
+            "ignoreOriginalDetails": {
+              "description": "If set to true, policy will ignore the original details of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "ignoreOriginalResponders": {
+              "description": "If set to true, policy will ignore the original responders of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "ignoreOriginalTags": {
+              "description": "If set to true, policy will ignore the original tags of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "ignoreOriginalTeams": {
+              "description": "If set to true, policy will ignore the original teams of the alert. Default value is false",
+              "type": "boolean"
+            },
+            "continue": {
+              "description": "Will continue with other modify policies if set to true",
+              "type": "boolean"
+            },
+            "alias": {
+              "description": "Alias of the alert. You can use {{alias}} to refer to the original alias. Default value is {{alias}}",
+              "type": "string"
+            },
+            "description": {
+              "description": "Description of the alert. You can use {{description}} to refer to the original alert description. Default value is {{description}}",
+              "type": "string"
+            },
+            "entity": {
+              "description": "Entity field of the alert. You can use {{entity}} to refer to the original entity. Default value is {{entity}}",
+              "type": "string"
+            },
+            "message": {
+              "description": "Message of the alert",
+              "type": "string"
+            },
+            "source": {
+              "description": "Source field of the alert. You can use {{source}} to refer to the original source. Default value is {{source}}",
+              "type": "string"
+            },
+            "actions": {
+              "description": "Alert actions as a list of strings to add to the alerts original actions value. If ignoreOriginalActions field is set to true, this will replace the original actions.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "responders": {
+              "description": "Responders to add to the alerts original responders value as a list of teams or users. If ignoreOriginalResponders field is set to true, this will replace the original responders.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Responder"
+              }
+            },
+            "tags": {
+              "description": "Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalTags field is set to true, this will replace the original tags.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "details": {
+              "description": "Custom properties to add to the alerts original details value as a list of strings. If ignoreOriginalDetails field is set to true, this will replace the original details.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "priority": {
+              "type": "string",
+              "description": "Priority level of the alert",
+              "enum": [
+                "P1",
+                "P2",
+                "P3",
+                "P4",
+                "P5"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "NotificationPolicy": {
+      "type": "object",
+      "x-discriminator-value": "notification",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Policy"
+        },
+        {
+          "properties": {
+            "autoRestartAction": {
+              "description": "Auto-restart action defined for the policy.",
+              "$ref": "#/definitions/AutoRestartAction"
+            },
+            "autoCloseAction": {
+              "description": "Auto-close action defined for the policy.",
+              "$ref": "#/definitions/AutoCloseAction"
+            },
+            "deduplicationAction": {
+              "description": "Deduplication action defined for the policy.",
+              "$ref": "#/definitions/DeduplicationAction"
+            },
+            "delayAction": {
+              "description": "Delay action defined for the policy.",
+              "$ref": "#/definitions/DelayAction"
+            },
+            "suppress": {
+              "description": "If set to true, notifications related to the matching alert will be suppressed. Default value is false.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "AutoRestartAction": {
+      "type": "object",
+      "required": [
+        "duration",
+        "maxRepeatCount"
+      ],
+      "properties": {
+        "duration": {
+          "$ref": "#/definitions/Duration"
+        },
+        "maxRepeatCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "AutoCloseAction": {
+      "type": "object",
+      "required": [
+        "duration"
+      ],
+      "properties": {
+        "duration": {
+          "$ref": "#/definitions/Duration"
+        },
+        "maxRepeatCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DeduplicationAction": {
+      "type": "object",
+      "required": [
+        "deduplicationActionType",
+        "count"
+      ],
+      "properties": {
+        "deduplicationActionType": {
+          "type": "string",
+          "enum": [
+            "value-based",
+            "frequency-based"
+          ]
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 2,
+          "maximum": 100
+        },
+        "duration": {
+          "$ref": "#/definitions/Duration"
+        }
+      }
+    },
+    "DelayAction": {
+      "type": "object",
+      "required": [
+        "delayOption"
+      ],
+      "properties": {
+        "delayOption": {
+          "type": "string",
+          "enum": [
+            "for-duration",
+            "next-time",
+            "next-weekday",
+            "next-monday",
+            "next-tuesday",
+            "next-wednesday",
+            "next-thursday",
+            "next-friday",
+            "next-saturday",
+            "next-sunday"
+          ]
+        },
+        "untilHour": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0,
+          "maximum": 23
+        },
+        "untilMinute": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0,
+          "maximum": 59
+        },
+        "duration": {
+          "$ref": "#/definitions/Duration"
         }
       }
     }

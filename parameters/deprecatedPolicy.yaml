@@ -1,0 +1,6 @@
+PolicyId:
+  name: policyId
+  in: path
+  description: Id of the requested policy
+  required: true
+  type: string

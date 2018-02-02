@@ -368,3 +368,38 @@ Condition:
       type: integer
       format: int64
       description: Order of the condition in conditions list
+
+Responder:
+  type: object
+  discriminator: type
+  required:
+    - type
+    - id
+  properties:
+    type:
+      type: string
+      enum:
+        - user
+        - team
+    id:
+      type: string
+
+UserResponder:
+  x-discriminator-value: user
+  description: User responder
+  allOf:
+  - $ref: '#/definitions/Responder'
+  - type: object
+    properties:
+      id:
+        type: string
+
+TeamResponder:
+  x-discriminator-value: team
+  description: Team responder
+  allOf:
+  - $ref: '#/definitions/Responder'
+  - type: object
+    properties:
+      name:
+        type: string
