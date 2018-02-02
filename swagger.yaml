@@ -35,7 +35,7 @@ paths:
   - $ref: ./paths/integration.yaml
   - $ref: ./paths/integrationAction.yaml
   - $ref: ./paths/heartbeat.yaml
-  - $ref: ./paths/policy.yaml
+  - $ref: ./paths/deprecatedPolicy.yaml
   - $ref: ./paths/maintenance.yaml
   - $ref: ./paths/account.yaml
   - $ref: ./paths/user.yaml
@@ -53,6 +53,7 @@ paths:
   - $ref: ./paths/escalation.yaml
   - $ref: ./paths/forwardingRule.yaml
   - $ref: ./paths/customUserRole.yaml
+  - $ref: ./paths/policy.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -79,6 +80,7 @@ parameters:
   - $ref: ./parameters/escalation.yaml
   - $ref: ./parameters/forwardingRule.yaml
   - $ref: ./parameters/customUserRole.yaml
+  - $ref: ./definitions/deprecatedPolicy.yaml
 
 ################################################################################
 #                                 RESPONSES                                    #
@@ -95,7 +97,7 @@ definitions:
   - $ref: ./definitions/integration.yaml
   - $ref: ./definitions/integrationAction.yaml
   - $ref: ./definitions/heartbeat.yaml
-  - $ref: ./definitions/policy.yaml
+  - $ref: ./definitions/deprecatedPolicy.yaml
   - $ref: ./definitions/maintenance.yaml
   - $ref: ./definitions/account.yaml
   - $ref: ./definitions/user.yaml
@@ -113,3 +115,4 @@ definitions:
   - $ref: ./definitions/escalation.yaml
   - $ref: ./definitions/forwardingRule.yaml
   - $ref: ./definitions/customUserRole.yaml
+  - $ref: ./definitions/policy.yaml

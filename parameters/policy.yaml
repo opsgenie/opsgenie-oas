@@ -4,3 +4,9 @@ PolicyId:
   description: Id of the requested policy
   required: true
   type: string
+TeamId:
+  name: teamId
+  in: query
+  description: TeamId of policy created if it belongs to a team
+  required: false
+  type: string

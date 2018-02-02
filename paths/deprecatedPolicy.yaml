@@ -1,31 +1,68 @@
-/v2/policies:
-  post:
+/v1/policies:
+  get:
     tags:
-      - policy
-    summary: Create Policy
-    description: Creates a new policy
-    operationId: createPolicy
+      - deprecatedPolicy
+    summary: List Alert Policies
+    description: Returns list alert policies
+    operationId: listAlertPolicies
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-create-policy
+      url: https://www.opsgenie.com/docs/policy-api#section-list-policies
+    responses:
+      '200':
+        description: List of policies
+        schema:
+          $ref: '#/definitions/DeprecatedListAlertPoliciesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  post:
+    tags:
+      - deprecatedPolicy
+    summary: Create Alert Policy
+    description: Creates a new alert policy
+    operationId: createAlertPolicy
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/policy-api#section-create-policy
     parameters:
       - name: body
         in: body
-        description: Payload of created policy
+        description: Payload of created alert policy
         required: true
         schema:
-          $ref: '#/definitions/Policy'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+          $ref: '#/definitions/DeprecatedAlertPolicy'
     responses:
       '201':
         description: Policy meta information for created policy
         schema:
-          $ref: '#/definitions/CreatePolicyResponse'
+          $ref: '#/definitions/DeprecatedCreateAlertPolicyResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -57,166 +94,23 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/policies/alert:
+/v1/policies/{policyId}:
   get:
     tags:
-      - policy
-    summary: List Alert Policies
-    description: Returns the list of alert policies
-    operationId: listAlertPolicies
-    externalDocs:
-      description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-list-alert-policies
-    parameters:
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
-    responses:
-      '200':
-        description: List of policies
-        schema:
-          $ref: '#/definitions/ListPoliciesResponse'
-        headers:
-          X-Request-ID:
-            description: Id of given request
-            type: string
-          X-Response-Time:
-            description: Process time of given request
-            type: string
-          X-RateLimit-State:
-            description: Status of rate limit
-            type: string
-          X-RateLimit-Reason:
-            description: Source of the rate limit
-            type: string
-          X-RateLimit-Period-In-Sec:
-            description: Time of throttle in seconds
-            type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '429':
-        $ref: '#/responses/TooManyRequest'
-      default:
-        $ref: '#/responses/GeneralError'
-
-/v2/policies/notification:
-  get:
-    tags:
-      - policy
-    summary: List Notification Policies
-    description: Returns the list of notification policies
-    operationId: listNotificationPolicies
-    externalDocs:
-      description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-list-notification-policies
-    parameters:
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
-    responses:
-      '200':
-        description: List of policies
-        schema:
-          $ref: '#/definitions/ListPoliciesResponse'
-        headers:
-          X-Request-ID:
-            description: Id of given request
-            type: string
-          X-Response-Time:
-            description: Process time of given request
-            type: string
-          X-RateLimit-State:
-            description: Status of rate limit
-            type: string
-          X-RateLimit-Reason:
-            description: Source of the rate limit
-            type: string
-          X-RateLimit-Period-In-Sec:
-            description: Time of throttle in seconds
-            type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '429':
-        $ref: '#/responses/TooManyRequest'
-      default:
-        $ref: '#/responses/GeneralError'
-/v2/policies/{policyId}:
-  delete:
-    tags:
-      - policy
-    summary: Delete Policy
-    description: Delete policy with given id
-    operationId: deletePolicy
-    externalDocs:
-      description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-delete-policy
-    parameters:
-      - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
-    responses:
-      '200':
-        $ref: '#/responses/Ok'
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
-      default:
-        $ref: '#/responses/GeneralError'
-  get:
-    tags:
-      - policy
-    summary: Get Policy
+      - deprecatedPolicy
+    summary: Get Alert Policy
     description: Used to get details of a single policy with id
-    operationId: getPolicy
+    operationId: getAlertPolicy
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-get-policy
+      url: https://www.opsgenie.com/docs/policy-api#section-get-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
     responses:
       '200':
-        description: Policy with given id
+        description: Alert policy with given id
         schema:
-          $ref: '#/definitions/GetPolicyResponse'
+          $ref: '#/definitions/DeprecatedGetAlertPolicyResponse'
         headers:
           X-Request-ID:
             description: Id of given request
@@ -249,26 +143,25 @@
         $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
+
   put:
     tags:
-      - policy
-    summary: Update Policy
+      - deprecatedPolicy
+    summary: Update Alert Policy
     description: Update alert policy with given id
-    operationId: updatePolicy
+    operationId: updateAlertPolicy
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-update-policy
-    x-collapse-params: UpdatePolicyRequest
+      url: https://www.opsgenie.com/docs/policy-api#section-update-policy
+    x-collapse-params: UpdateAlertPolicyRequest
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - $ref: '#/parameters/TeamId'
       - name: body
         in: body
-        description: Payload of updated policy
+        description: Payload of updated alert policy
         required: true
         schema:
-          $ref: '#/definitions/Policy'
-
+          $ref: '#/definitions/DeprecatedAlertPolicy'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -289,24 +182,17 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/policies/{policyId}/enable:
-  post:
+  delete:
     tags:
-      - policy
-    summary: Enable Policy
-    description: Enable the policy with given id
-    operationId: enablePolicy
+      - deprecatedPolicy
+    summary: Delete Alert Policy
+    description: Delete alert policy with given id
+    operationId: deleteAlertPolicy
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-enable-policy
+      url: https://www.opsgenie.com/docs/policy-api#section-delete-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -327,24 +213,18 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/policies/{policyId}/disable:
+/v1/policies/{policyId}/enable:
   post:
     tags:
-      - policy
-    summary: Disable Policy
-    description: Disable the policy with given id
-    operationId: disablePolicy
+      - deprecatedPolicy
+    summary: Enable Alert Policy
+    description: Enable the alert policy with given id
+    operationId: enableAlertPolicy
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-disable-policy
+      url: https://www.opsgenie.com/docs/policy-api#section-enable-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -365,26 +245,57 @@
       default:
         $ref: '#/responses/GeneralError'
 
-/v2/policies/{policyId}/change-order:
+/v1/policies/{policyId}/disable:
   post:
     tags:
-      - policy
-    summary: Change Policy Order
-    description: Change execution order of the policy with given id
-    operationId: changePolicyOrder
+      - deprecatedPolicy
+    summary: Disable Alert Policy
+    description: Disable the alert policy with given id
+    operationId: disableAlertPolicy
     externalDocs:
       description: For more information
-      url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-change-policy-order
-    x-collapse-params: ChangePolicyOrderRequest
+      url: https://www.opsgenie.com/docs/policy-api#section-disable-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - $ref: '#/parameters/TeamId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/policies/{policyId}/change-order:
+  post:
+    tags:
+      - deprecatedPolicy
+    summary: Change Alert Policy Order
+    description: Change execution order of the alert policy with given id
+    operationId: changeAlertPolicyOrder
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/policy-api#section-change-policy-order
+    x-collapse-params: ChangeAlertPolicyOrderRequest
+    parameters:
+      - $ref: '#/parameters/PolicyId'
       - name: body
         in: body
         description: Change order payload
         required: true
         schema:
-          $ref: '#/definitions/ChangePolicyOrderPayload'
+          $ref: '#/definitions/DeprecatedChangeAlertPolicyOrderPayload'
     responses:
       '200':
         $ref: '#/responses/Ok'
