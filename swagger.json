@@ -20309,10 +20309,6 @@
       "properties": {
         "duration": {
           "$ref": "#/definitions/Duration"
-        },
-        "maxRepeatCount": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
