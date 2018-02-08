@@ -202,9 +202,6 @@ AutoCloseAction:
   properties:
     duration:
       $ref: '#/definitions/Duration'
-    maxRepeatCount:
-      type: integer
-      format: int32
 
 DeduplicationAction:
   type: object
