@@ -35,6 +35,11 @@ CreateAlertPayload:
           description: Teams that the alert will be routed to send notifications
           items:
             $ref: '#/definitions/TeamRecipient'
+        responders:
+          type: array
+          description: Responders that the alert will be routed to send notifications
+          items:
+            $ref: '#/definitions/Recipient'
         visibleTo:
           type: array
           description: Teams and users that the alert will become visible to without sending any notification
@@ -124,6 +129,16 @@ AddTeamToAlertPayload:
       properties:
         team:
           $ref: '#/definitions/TeamRecipient'
+
+AddResponderToAlertPayload:
+  type: object
+  allOf:
+    - $ref: '#/definitions/AlertActionPayload'
+    - required:
+        - responder
+      properties:
+        responder:
+          $ref: '#/definitions/Recipient'
 
 ExecuteCustomAlertActionPayload:
   type: object
@@ -368,6 +383,10 @@ BaseAlert:
       type: array
       items:
         $ref: '#/definitions/AlertTeamMeta'
+    responders:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
     integration:
       $ref: '#/definitions/AlertIntegration'
     report:
