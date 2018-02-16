@@ -539,6 +539,46 @@
       default:
         $ref: '#/responses/GeneralError'
 
+/v2/alerts/{identifier}/responders:
+  post:
+    tags:
+      - alert
+    summary: Add Responder
+    description: Add responder to alert with given identifier
+    operationId: addResponder
+    externalDocs:
+      description: For more information
+      url: https://www.opsgenie.com/docs/alert-api#section-add-responder-to-alert
+    x-collapse-params: AddResponderToAlertRequest
+    parameters:
+      - $ref: '#/parameters/AlertIdentifier'
+      - $ref: '#/parameters/AlertIdentifierType'
+      - name: body
+        in: body
+        description: Request payload of adding responder to alert action
+        required: true
+        schema:
+          $ref: '#/definitions/AddResponderToAlertPayload'
+    responses:
+      '202':
+        $ref: '#/responses/Accepted'
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
 /v2/alerts/{identifier}/teams:
   post:
     tags:
