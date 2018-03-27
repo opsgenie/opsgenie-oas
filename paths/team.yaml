@@ -62,15 +62,6 @@
     externalDocs:
       description: For more information
       url: https://www.opsgenie.com/docs/team-api#section-list-teams
-    parameters:
-      - name: expand
-        in: query
-        description: Returns more detailed response with expanding it. Possible value is 'member' which is also returned with expandable field of response
-        required: false
-        collectionFormat: csv
-        type: array
-        items:
-          type: string
     responses:
       '200':
         description: Team information for given identifier
