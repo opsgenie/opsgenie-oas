@@ -1,6 +1,6 @@
-##################
-#    RESPONSE    #
-##################
+####################
+#     RESPONSE     #
+####################
 ListIntegrationActionsResponse:
   type: object
   allOf:
@@ -25,9 +25,9 @@ CreateIntegrationActionsResponse:
         data:
           $ref: '#/definitions/ActionCategorized'
 
-##################
-#      MODEL     #
-##################
+#################
+#     MODEL     #
+#################
 ActionCategorized:
   type: object
   properties:
@@ -73,7 +73,6 @@ IntegrationCondition:
   required:
     - field
     - operation
-    - expectedValue
   properties:
     field:
       type: string
@@ -95,38 +94,49 @@ IntegrationCondition:
         - equals-ignore-whitespace
     expectedValue:
       type: string
+    order:
+      type: integer
+      format: int32
 
 BaseIntegrationAction:
   type: object
   discriminator: type
   required:
     - type
+    - name
   properties:
     name:
       type: string
     order:
       type: integer
       format: int32
+      minimum: 0
     filter:
       $ref: '#/definitions/IntegrationActionFilter'
     type:
       type: string
       enum:
-        - ignore
         - acknowledge
         - addNote
         - close
         - create
+        - ignore
 
 CommonIntegrationAction:
   type: object
-  properties:
-    user:
-      type: string
-    note:
-      type: string
-    alias:
-      type: string
+  required:
+    - user
+    - note
+    - alias
+  allOf:
+    - $ref: '#/definitions/BaseIntegrationAction'
+    - properties:
+        user:
+          type: string
+        note:
+          type: string
+        alias:
+          type: string
 
 IgnoreIntegrationAction:
   type: object
@@ -138,7 +148,6 @@ CreateIntegrationAction:
   type: object
   x-discriminator-value: create
   allOf:
-    - $ref: '#/definitions/BaseIntegrationAction'
     - $ref: '#/definitions/CommonIntegrationAction'
     - properties:
         source:
@@ -157,6 +166,8 @@ CreateIntegrationAction:
             - P3
             - P4
             - P5
+        customPriority:
+          type: string
         appendAttachments:
           type: boolean
         alertActions:
@@ -190,19 +201,16 @@ CloseIntegrationAction:
   type: object
   x-discriminator-value: close
   allOf:
-    - $ref: '#/definitions/BaseIntegrationAction'
     - $ref: '#/definitions/CommonIntegrationAction'
 
 AckIntegrationAction:
   type: object
   x-discriminator-value: acknowledge
   allOf:
-    - $ref: '#/definitions/BaseIntegrationAction'
     - $ref: '#/definitions/CommonIntegrationAction'
 
 AddNoteIntegrationAction:
   type: object
   x-discriminator-value: addNote
   allOf:
-    - $ref: '#/definitions/BaseIntegrationAction'
     - $ref: '#/definitions/CommonIntegrationAction'

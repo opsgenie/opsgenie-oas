@@ -1,6 +1,6 @@
-##################
-#     REQUEST    #
-##################
+###################
+#     REQUEST     #
+###################
 AuthenticateIntegrationPayload:
   type: object
   required:
@@ -8,10 +8,212 @@ AuthenticateIntegrationPayload:
   properties:
     type:
       type: string
+      enum:
+        - Airbrake
+        - AlertLogic
+        - AlertSite
+        - AmazonCloudTrail
+        - AmazonEc2AutoScaling
+        - AmazonRds
+        - AmazonRoute53HealthCheck
+        - AmazonSes
+        - AmazonSns
+        - AmazonSnsOutgoing
+        - API
+        - Apica
+        - Apimetrics
+        - AppDynamics
+        - AppSignal
+        - AppSignalV2
+        - Atatus
+        - AutotaskAEMEmail
+        - AutoTaskEmail
+        - Azure
+        - AzureAutoScale
+        - AzureOMS
+        - AzureServiceHealth
+        - Bitbucket
+        - BlueMatador
+        - BMCFootPrintsV11
+        - BMCFootPrintsV12
+        - BMCRemedy
+        - BMCRemedyForce
+        - Boundary
+        - Campfire
+        - Catchpoint
+        - CheckMK
+        - Cherwell
+        - CircleCi
+        - Circonus
+        - CloudMonix
+        - CloudSploit
+        - CloudWatch
+        - CloudWatchEvents
+        - Codeship
+        - Compose
+        - ConnectWise
+        - ConnectWiseManage
+        - ConnectWiseManageV2
+        - Consul
+        - CopperEgg
+        - Crashlytics
+        - Datadog
+        - DataloopIO
+        - Desk
+        - Detectify
+        - DNSCheck
+        - DripStat
+        - Ruxit
+        - DynatraceV2
+        - DynatraceAppMon
+        - Email
+        - Errorception
+        - ESWatcher
+        - EvidentIO
+        - Flock
+        - Flowdock
+        - FlowdockV2
+        - Freshdesk
+        - Freshservice
+        - GhostInspector
+        - GitHub
+        - GitLab
+        - GoogleStackdriver
+        - Grafana
+        - GrafanaV2
+        - Graylog
+        - Heartbeat
+        - HipChat
+        - HipChatV2
+        - HipChatAddOn
+        - Honeybadger
+        - HostedGraphite
+        - Humio
+        - Icinga
+        - Icinga2
+        - IncomingCall
+        - Instana
+        - Jenkins
+        - Jira
+        - JiraServiceDesk
+        - Kapacitor
+        - Kayako
+        - Kore
+        - LabTechEmail
+        - Librato
+        - LibreNMS
+        - Lightstep
+        - Logentries
+        - Loggly
+        - LogicMonitor
+        - Logstash
+        - LogzIO
+        - Looker
+        - Loom
+        - Magentrix
+        - Marid
+        - Mattermost
+        - MongoDBCloud
+        - Monitis
+        - MonitisEmail
+        - Moxtra
+        - MSTeams
+        - Nagios
+        - NagiosV2
+        - NagiosXI
+        - NagiosXIV2
+        - NeustarEmail
+        - Netuitive
+        - NewRelic
+        - NewRelicV2
+        - NewRelicSyntheticsEmail
+        - NodePing
+        - Observium
+        - ObserviumV2
+        - OEM
+        - OEMEmail
+        - OP5
+        - OpsDash
+        - OpsGenie
+        - Opsview
+        - PagerDutyCompatibility
+        - Panopta
+        - Papertrail
+        - Pingdom
+        - PingdomV2
+        - PingdomWebhook
+        - Pingometer
+        - Planio
+        - Prometheus
+        - Prtg
+        - Rackspace
+        - Raygun
+        - RedGateSqlMonitorEmail
+        - Riemann
+        - Rigor
+        - RingCentralEmail
+        - RingCentralGlip
+        - Rollbar
+        - Runscope
+        - SalesForceServiceCloud
+        - SaltStack
+        - Scalyr
+        - Sentry
+        - SCOM
+        - Scout
+        - SematextSpm
+        - Sensu
+        - ServerDensity
+        - ServerGuard24
+        - ServiceNow
+        - ServiceNowV2
+        - ServiceNowV3
+        - Signalfx
+        - SignalSciences
+        - Site24x7
+        - Slack
+        - SlackApp
+        - Soasta
+        - Solarwinds
+        - SolarwindsMSPNCentral
+        - SolarWindsWebHelpDesk
+        - Splunk
+        - SplunkITSI
+        - Stackdriver
+        - StatusCake
+        - StatusHub
+        - StatusIO
+        - StatusPageIO
+        - Statusy
+        - StruxureWare
+        - SumoLogic
+        - SysdigCloud
+        - ThousandEyes
+        - ThreatStack
+        - Tideways
+        - Trace
+        - TrackIt
+        - TravisCI
+        - Twilio
+        - UpdownIO
+        - UptimeRobot
+        - UptimeRobotEmail
+        - UptimeWebhook
+        - UptrendsEmail
+        - VCenter
+        - VCSA
+        - Wavefront
+        - Webhook
+        - XLRelease
+        - Xmpp
+        - Zabbix
+        - Zendesk
+        - Zenoss
+        - ZyrionEmail
 
-##################
-#    RESPONSE    #
-##################
+####################
+#     RESPONSE     #
+####################
 ListIntegrationsResponse:
   type: object
   allOf:
@@ -62,9 +264,9 @@ DisableIntegrationResponse:
         data:
           $ref: '#/definitions/IntegrationMeta'
 
-##################
-#      MODEL     #
-##################
+#################
+#     MODEL     #
+#################
 IntegrationMeta:
   type: object
   properties:
@@ -75,6 +277,8 @@ IntegrationMeta:
     enabled:
       type: boolean
     type:
+      type: string
+    teamId:
       type: string
 
 AlertFilter:
@@ -93,6 +297,10 @@ AlertFilter:
 
 CallbackCondition:
   type: object
+  required:
+    - field
+    - operation
+    - expectedValue
   properties:
     field:
       type: string
@@ -154,6 +362,7 @@ ActionMapping:
         - custom-action
         - assign-ownership
         - take-ownership
+        - update-priority
     extraField:
       type: string
     extraFieldForMappedAction:
@@ -161,41 +370,118 @@ ActionMapping:
     mappedAction:
       type: string
       enum:
-        # Amazon Sns Outgoing Integration Mapped Actions
+        # AmazonSns Integration Mapped Actions
         - publish
-        # Jira & Jira Service Desk Integration Mapped Actions
+        # BMCFootPrintsV11 Integration Mapped Actions
+        - create-incident
+        - create-problem
+        - update-description
+        - update-priority
+        - resolve-issue
+        # BMCFootPrintsV12 Integration Mapped Actions
+        # create-incident already exists
+        # create-problem already exists
+        # update-description already exists
+        # update-priority already exists
+        - resolve-ticket
+        # BMCRemedy Integration Mapped Actions
+        - add-work-info
+        # create-incident already exists
+        - close-incident
+        # Cherwell Integration Mapped Actions
+        - add-journal
+        # create-incident already exists
+        - in-progress-incident
+        - resolve-incident
+        # ConnectWiseManage Integration Mapped Actions
+        - create-service-ticket
+        - add-discussion-note-to-ticket
+        - add-resolution-note-to-ticket
+        - add-internal-note-to-ticket
+        # ConnectWiseManageV2 Integration Mapped Actions
+        # create-service-ticket already exists
+        - close-service-ticket
+        - in-progress-ticket
+        # add-discussion-note-to-ticket already exists
+        # add-resolution-note-to-ticket already exists
+        # add-internal-note-to-ticket already exists
+        # DynatraceAppMon Integration Mapped Actions
+        - confirm-incident
+        # in-progress-incident already exists
+        # Freshdesk Integration Mapped Actions
+        - add-note
+        - set-status-to-closed
+        - set-status-to-pending
+        - set-status-to-resolved
+        # Freshservice Integration Mapped Actions
+        - create-ticket
+        - add-public-note
+        - add-private-note
+        - set-status-to-open
+        # set-status-to-pending already exists
+        # set-status-to-resolved already exists
+        # set-status-to-closed already exists
+        # Jira Integration Mapped Actions
         - create-issue
         - add-comment-to-issue
         - in-progress-issue
-        - resolve-issue
+        # resolve-issue already exists
         - close-issue
         - issue-done
+        # JiraServiceDesk Integration Mapped Actions
+        # create-issue already exists
+        # add-comment-to-issue already exists
+        # resolve-issue already exists
         # Kayako Integration Mapped Actions
-        - add-note
+        # add-note already exists
         - add-tag
         - create-conversation
-        - set-status-to-open
-        - set-status-to-pending
+        # set-status-to-open already exists
+        # set-status-to-pending already exists
         - set-status-to-completed
+        # LibreNMS Integration Mapped Actions
+        - ack-alert
+        - unmute-alert
         # MSTeams Integration Mapped Actions
         - send-to-channel
-        # Op5 Integration Mapped Actions
+        # Magentrix Integration Mapped Actions
+        - create-case
+        - set-case-status-to-active
+        - set-case-status-to-close
+        - set-case-status-to-close-as-duplicate
+        # OP5 Integration Mapped Actions
         - acknowledge
-        # Opsgenie Integration Mapped Actions
+        # OpsGenie Integration Mapped Actions
         - create-alert
         - close-alert
         # add-note already exists
         - acknowledge-alert
         - unacknowledge-alert
+        # Prtg Integration Mapped Actions
+        - acknowledgeSensor
+        # Rollbar Integration Mapped Actions
+        - setStatusToClosed
+        # SalesForceServiceCloud Integration Mapped Actions
+        - set-case-status-to-working
+        # set-case-status-to-close already exists
+        # update-priority already exists
         # ServiceNow Integration Mapped Actions
-        - create-incident
+        # create-incident already exists
         - add-note-to-incident
-        - resolve-incident
-        - close-incident
+        # resolve-incident already exists
+        # close-incident already exists
         - assign-to-group
         - assign-to-user
         - assign-to-owner
         - send-to-custom-endpoint
+        # SolarwindsMSPNcentral Integration Mapped Actions
+        - acknowledge-notification
+        # SplunkITSI Integration Mapped Actions
+        - createTag
+        - createComment
+        - updateSeverity
+        - updateStatusToClosed
+        - updateStatusToInProgress
         # StatusPageIO Integration Mapped Actions
         # create-incident already exists
         - create-incident-and-update-component-statuses
@@ -203,18 +489,20 @@ ActionMapping:
         - resolve-incident-and-update-component-statuses-back-to-operational
         # add-note-to-incident already exists
         - update-component-statuses
+        # Webhook Integration Mapped Actions
+        - postToUrl
         # Zendesk Integration Mapped Actions
-        - create-ticket
+        # create-ticket already exists
         - add-internal-note
         - public-reply
-        - set-status-to-closed
+        # set-status-to-closed already exists
         # set-status-to-open already exists
         # set-status-to-pending already exists
         - set-status-to-solved
 
-###########################################
-#    INTEGRATION COMMON CALLBACK MODELS   #
-###########################################
+##############################################
+#     INTEGRATION COMMON CALLBACK MODELS     #
+##############################################
 OutgoingCallbackNew:
   type: object
   discriminator: callback-type
@@ -230,8 +518,9 @@ OutgoingCallbackNew:
     callback-type:
       type: string
       enum:
-        - bidirectional-callback-new
         - amazon-sns-callback
+        - base-webhook-callback
+        - bidirectional-callback-new
 
 BidirectionalCallbackNew:
   type: object
@@ -249,15 +538,59 @@ BidirectionalCallbackNew:
         bidirectional-callback-type:
           type: string
           enum:
-            - opsgenie-callback
+            - bmc-foot-prints-v11-callback
+            - bmc-foot-prints-v12-callback
+            - bmc-remedy-callback
+            - cherwell-callback
+            - connect-wise-manage-callback
+            - connect-wise-manage-v2-callback
+            - dynatrace-app-mon-callback
+            - freshdesk-callback
+            - freshservice-callback
             - jira-callback
             - jira-service-desk-callback
-            - service-now-callback
             - kayako-callback
+            - libre-nms-callback
+            - magentrix-callback
             - ms-teams-callback
             - op5-callback
+            - ops-genie-callback
+            - prtg-callback
+            - rollbar-callback
+            - sales-force-service-cloud-callback
+            - service-now-v2-callback
+            - service-now-v3-callback
+            - solarwinds-msp-ncentral-callback
+            - splunk-itsi-callback
             - status-page-io-callback
             - zendesk-callback
+
+BaseWebhookCallback:
+  type: object
+  x-discriminator-value: base-webhook-callback
+  discriminator: base-webhook-callback-type
+  allOf:
+    - $ref: '#/definitions/OutgoingCallbackNew'
+    - properties:
+        url:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        addAlertDetails:
+          type: boolean
+        addAlertDescription:
+          type: boolean
+        base-webhook-callback-type:
+          type: string
+          enum:
+            - flock-callback
+            - kore-callback
+            - moxtra-callback
+            - ring-central-glip-callback
+            - statusy-callback
+            - webhook-callback
 
 OutgoingCallback:
   type: object
@@ -273,7 +606,6 @@ OutgoingCallback:
       type: string
       enum:
         - bidirectional-callback
-        - webhook-callback
         - campfire-callback
         - flowdock-callback
         - flowdock-v2-callback
@@ -291,24 +623,25 @@ BidirectionalCallback:
         bidirectional-callback-type:
           type: string
           enum:
-            - datadog-callback
             - circonus-callback
             - connect-wise-callback
+            - datadog-callback
             - desk-callback
             - es-watcher-callback
-            - freshdesk-callback
-            - hipchat-callback
-            - marid-callback
+            - hip-chat-add-on-callback
+            - hip-chat-callback-v2
             - logic-monitor-callback
+            - marid-callback
             - mattermost-callback
+            - slack-app-callback
             - slack-callback
-            - solarwinds-web-helpdesk-callback
+            - solar-winds-web-help-desk-callback
             - stackdriver-callback
             - status-io-callback
 
-#########################################
-#       INTEGRATION CALLBACK MODELS     #
-#########################################
+#######################################
+#     INTEGRATION CALLBACK MODELS     #
+#######################################
 AmazonSnsCallback:
   type: object
   x-discriminator-value: amazon-sns-callback
@@ -320,15 +653,13 @@ AmazonSnsCallback:
         region:
           type: string
 
-OpsgenieCallback:
+OpsGenieCallback:
   type: object
-  x-discriminator-value: opsgenie-callback
+  x-discriminator-value: ops-genie-callback
   allOf:
     - $ref: '#/definitions/BidirectionalCallbackNew'
     - properties:
         destinationApiKey:
-          type: string
-        apiKey:
           type: string
 
 JiraCallback:
@@ -365,9 +696,9 @@ JiraServiceDeskCallback:
         issueTypeName:
           type: string
 
-ServiceNowCallback:
+ServiceNowV2Callback:
   type: object
-  x-discriminator-value: service-now-callback
+  x-discriminator-value: service-now-v2-callback
   allOf:
     - $ref: '#/definitions/BidirectionalCallbackNew'
     - properties:
@@ -376,6 +707,19 @@ ServiceNowCallback:
         servicenowUserName:
           type: string
         servicenowPassword:
+          type: string
+
+ServiceNowV3Callback:
+  type: object
+  x-discriminator-value: service-now-v3-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        instanceSubdomain:
+          type: string
+        userId:
+          type: string
+        password:
           type: string
 
 KayakoCallback:
@@ -400,7 +744,7 @@ MSTeamsCallback:
         webhookUrl:
           type: string
 
-Op5Callback:
+OP5Callback:
   type: object
   x-discriminator-value: op5-callback
   allOf:
@@ -441,14 +785,7 @@ WebhookCallback:
   type: object
   x-discriminator-value: webhook-callback
   allOf:
-    - $ref: '#/definitions/OutgoingCallback'
-    - properties:
-        url:
-          type: string
-        headers:
-          type: object
-          additionalProperties:
-            type: string
+    - $ref: '#/definitions/BaseWebhookCallback'
 
 CampfireCallback:
   type: object
@@ -463,8 +800,8 @@ CampfireCallback:
         notify:
           type: boolean
         rooms:
-          type: object
-          additionalProperties:
+          type: array
+          items:
             type: string
 
 FlowdockCallback:
@@ -476,8 +813,8 @@ FlowdockCallback:
         flowdockApiToken:
           type: string
         flowdockTags:
-          type: object
-          additionalProperties:
+          type: array
+          items:
             type: string
         externalUsername:
           type: string
@@ -564,29 +901,27 @@ FreshdeskCallback:
   type: object
   x-discriminator-value: freshdesk-callback
   allOf:
-    - $ref: '#/definitions/BidirectionalCallback'
+    - $ref: '#/definitions/BidirectionalCallbackNew'
     - properties:
-        freshdeskApiKey:
+        apiKey:
           type: string
         freshdeskSubdomain:
           type: string
 
-HipchatCallback:
+HipChatAddOnCallback:
   type: object
-  x-discriminator-value: hipchat-callback
+  x-discriminator-value: hip-chat-add-on-callback
   allOf:
     - $ref: '#/definitions/BidirectionalCallback'
     - properties:
-        rooms:
-          type: array
-          items:
-            type: string
-        token:
-          type: string
         notify:
           type: boolean
+        groupName:
+          type: string
         hostUrl:
           type: string
+        useCollapsedMessages:
+          type: boolean
 
 MaridCallback:
   type: object
@@ -618,7 +953,7 @@ MattermostCallback:
 
 SolarWindsWebHelpDeskCallback:
   type: object
-  x-discriminator-value: solarwinds-web-helpdesk-callback
+  x-discriminator-value: solar-winds-web-help-desk-callback
   allOf:
     - $ref: '#/definitions/BidirectionalCallback'
     - properties:
@@ -649,15 +984,321 @@ StatusIOCallback:
         statusIoStatusPageId:
           type: string
 
-###################################
-#     INTEGRATION COMMON MODELS   #
-###################################
+BMCFootPrintsV11Callback:
+  type: object
+  x-discriminator-value: bmc-foot-prints-v11-callback
+  required:
+    - url
+    - username
+    - password
+    - incidentWorkspaceId
+    - problemWorkspaceId
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        url:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        incidentWorkspaceId:
+          type: string
+        problemWorkspaceId:
+          type: string
+
+BMCFootPrintsV12Callback:
+  type: object
+  x-discriminator-value: bmc-foot-prints-v12-callback
+  required:
+    - url
+    - username
+    - password
+    - workspaceName
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        url:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        workspaceName:
+          type: string
+
+BMCRemedyCallback:
+  type: object
+  x-discriminator-value: bmc-remedy-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        midtierServerUrl:
+          type: string
+        serverName:
+          type: string
+
+CherwellCallback:
+  type: object
+  x-discriminator-value: cherwell-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        clientId:
+          type: string
+        apiUrl:
+          type: string
+
+ConnectWiseManageCallback:
+  type: object
+  x-discriminator-value: connect-wise-manage-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        publicKey:
+          type: string
+        privateKey:
+          type: string
+        loginCompany:
+          type: string
+        companyName:
+          type: string
+        cwmUrl:
+          type: string
+        companyId:
+          type: string
+
+ConnectWiseManageV2Callback:
+  type: object
+  x-discriminator-value: connect-wise-manage-v2-callback
+  required:
+    - boardId
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        publicKey:
+          type: string
+        privateKey:
+          type: string
+        loginCompany:
+          type: string
+        companyName:
+          type: string
+        cwmUrl:
+          type: string
+        companyId:
+          type: string
+        boardName:
+          type: string
+        boardId:
+          type: integer
+          format: int32
+
+DynatraceAppMonCallback:
+  type: object
+  x-discriminator-value: dynatrace-app-mon-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        url:
+          type: string
+        profileName:
+          type: string
+
+FlockCallback:
+  type: object
+  x-discriminator-value: flock-callback
+  allOf:
+    - $ref: '#/definitions/BaseWebhookCallback'
+
+FreshserviceCallback:
+  type: object
+  x-discriminator-value: freshservice-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        subdomain:
+          type: string
+
+HipChatCallbackV2:
+  type: object
+  x-discriminator-value: hip-chat-callback-v2
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallback'
+    - properties:
+        rooms:
+          type: array
+          items:
+            type: string
+        token:
+          type: string
+        notify:
+          type: boolean
+        hostUrl:
+          type: string
+
+KoreCallback:
+  type: object
+  x-discriminator-value: kore-callback
+  allOf:
+    - $ref: '#/definitions/BaseWebhookCallback'
+
+LibreNMSCallback:
+  type: object
+  x-discriminator-value: libre-nms-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        url:
+          type: string
+        apiToken:
+          type: string
+
+MagentrixCallback:
+  type: object
+  x-discriminator-value: magentrix-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        subdomain:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+
+MoxtraCallback:
+  type: object
+  x-discriminator-value: moxtra-callback
+  allOf:
+    - $ref: '#/definitions/BaseWebhookCallback'
+
+PrtgCallback:
+  type: object
+  x-discriminator-value: prtg-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        passhash:
+          type: string
+        prtgUrl:
+          type: string
+
+RingCentralGlipCallback:
+  type: object
+  x-discriminator-value: ring-central-glip-callback
+  allOf:
+    - $ref: '#/definitions/BaseWebhookCallback'
+
+RollbarCallback:
+  type: object
+  x-discriminator-value: rollbar-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        writeAccessToken:
+          type: string
+
+SalesForceServiceCloudCallback:
+  type: object
+  x-discriminator-value: sales-force-service-cloud-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        url:
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+
+SlackAppCallback:
+  type: object
+  x-discriminator-value: slack-app-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallback'
+    - properties:
+        channel:
+          type: string
+        teamName:
+          type: string
+        sendDescription:
+          type: boolean
+        sendRoutedTeams:
+          type: boolean
+        sendTags:
+          type: boolean
+
+SlackCallback:
+  type: object
+  x-discriminator-value: slack-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallback'
+    - properties:
+        url:
+          type: string
+
+SolarwindsMSPNcentralCallback:
+  type: object
+  x-discriminator-value: solarwinds-msp-ncentral-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        username:
+          type: string
+        password:
+          type: string
+        url:
+          type: string
+
+SplunkITSICallback:
+  type: object
+  x-discriminator-value: splunk-itsi-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        url:
+          type: string
+        password:
+          type: string
+
+StatusyCallback:
+  type: object
+  x-discriminator-value: statusy-callback
+  allOf:
+    - $ref: '#/definitions/BaseWebhookCallback'
+
+#####################################
+#     INTEGRATION COMMON MODELS     #
+#####################################
 Integration:
   type: object
   discriminator: type
   required:
-    - name
     - type
+    - name
   properties:
     type:
       description: Type of the integration. (For instance, "API" for API Integration)
@@ -674,13 +1315,24 @@ Integration:
         - AmazonSns
         - AmazonSnsOutgoing
         - API
+        - Apica
+        - Apimetrics
         - AppDynamics
         - AppSignal
+        - AppSignalV2
         - Atatus
         - AutotaskAEMEmail
         - AutoTaskEmail
         - Azure
+        - AzureAutoScale
         - AzureOMS
+        - AzureServiceHealth
+        - Bitbucket
+        - BlueMatador
+        - BMCFootPrintsV11
+        - BMCFootPrintsV12
+        - BMCRemedy
+        - BMCRemedyForce
         - Boundary
         - Campfire
         - Catchpoint
@@ -691,9 +1343,12 @@ Integration:
         - CloudMonix
         - CloudSploit
         - CloudWatch
+        - CloudWatchEvents
         - Codeship
         - Compose
         - ConnectWise
+        - ConnectWiseManage
+        - ConnectWiseManageV2
         - Consul
         - CopperEgg
         - Crashlytics
@@ -703,6 +1358,8 @@ Integration:
         - Detectify
         - DNSCheck
         - DripStat
+        - DynatraceAppMon
+        - DynatraceV2
         - Email
         - Errorception
         - ESWatcher
@@ -713,53 +1370,77 @@ Integration:
         - Freshdesk
         - Freshservice
         - GhostInspector
+        - GitHub
+        - GitLab
         - GoogleStackdriver
+        - Grafana
         - GrafanaV2
         - Graylog
         - Heartbeat
+        - HipChat
+        - HipChatAddOn
         - HipChatV2
         - Honeybadger
         - HostedGraphite
+        - Humio
         - Icinga
         - Icinga2
+        - IncomingCall
+        - Instana
+        - Jenkins
         - Jira
         - JiraServiceDesk
+        - Kapacitor
         - Kayako
         - Kore
         - LabTechEmail
         - Librato
+        - LibreNMS
+        - Lightstep
         - Logentries
         - Loggly
         - LogicMonitor
         - Logstash
         - LogzIO
+        - Looker
+        - Loom
+        - Magentrix
         - Marid
         - Mattermost
         - MongoDBCloud
         - Monitis
+        - MonitisEmail
         - Moxtra
         - MSTeams
+        - Nagios
         - NagiosV2
+        - NagiosXI
         - NagiosXIV2
-        - NeustarEmail
         - Netuitive
+        - NeustarEmail
         - NewRelic
         - NewRelicV2
         - NodePing
+        - Observium
         - ObserviumV2
         - OEM
+        - OEMEmail
         - OP5
         - OpsDash
         - OpsGenie
+        - Opsview
         - PagerDutyCompatibility
         - Panopta
         - Papertrail
+        - Pingdom
         - PingdomV2
+        - PingdomWebhook
         - Pingometer
         - Planio
         - Prometheus
         - Prtg
         - Rackspace
+        - Raygun
         - RedGateSqlMonitorEmail
         - Riemann
         - Rigor
@@ -768,43 +1449,61 @@ Integration:
         - Rollbar
         - Runscope
         - Ruxit
+        - SalesForceServiceCloud
+        - SaltStack
         - Scalyr
         - SCOM
         - Scout
         - SematextSpm
         - Sensu
+        - Sentry
         - ServerDensity
         - ServerGuard24
+        - ServiceNow
         - ServiceNowV2
+        - ServiceNowV3
         - Signalfx
         - SignalSciences
         - Site24x7
+        - Slack
+        - SlackApp
         - Soasta
         - Solarwinds
         - SolarwindsMSPNCentral
         - SolarWindsWebHelpDesk
         - Splunk
+        - SplunkITSI
         - Stackdriver
         - StatusCake
+        - StatusHub
         - StatusIO
         - StatusPageIO
+        - Statusy
         - StruxureWare
         - SumoLogic
         - SysdigCloud
         - ThousandEyes
         - ThreatStack
         - Tideways
+        - Trace
+        - TrackIt
         - TravisCI
         - Twilio
+        - UpdownIO
         - UptimeRobot
+        - UptimeRobotEmail
         - UptimeWebhook
         - UptrendsEmail
         - VCenter
+        - VCSA
         - Wavefront
         - Webhook
+        - XLRelease
+        - Xmpp
         - Zabbix
         - Zendesk
         - Zenoss
+        - ZyrionEmail
     id:
       type: string
     name:
@@ -842,6 +1541,24 @@ BaseIncomingFeature:
         $ref: '#/definitions/Recipient'
     isAdvanced:
       type: boolean
+    ignoreTagsFromPayload:
+      type: boolean
+    ignoreExtraPropertiesFromPayload:
+      type: boolean
+    priority:
+      type: string
+    customPriority:
+      type: string
+    tags:
+      type: array
+      items:
+        type: string
+    extraProperties:
+      type: object
+      additionalProperties:
+        type: string
+    assignedTeam:
+      $ref: '#/definitions/TeamMeta'
     feature-type:
       type: string
       enum:
@@ -948,9 +1665,26 @@ AmazonSnsOutgoingIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/AmazonSnsCallback'
 
+ApicaIntegration:
+  type: object
+  x-discriminator-value: Apica
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 ApiIntegration:
   type: object
   x-discriminator-value: API
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - properties:
+        isDefaultIntegration:
+          type: boolean
+
+ApimetricsIntegration:
+  type: object
+  x-discriminator-value: Apimetrics
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -969,6 +1703,13 @@ AppSignalIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+AppSignalV2Integration:
+  type: object
+  x-discriminator-value: AppSignalV2
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 AtatusIntegration:
   type: object
   x-discriminator-value: Atatus
@@ -976,7 +1717,7 @@ AtatusIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-AutoTaskAEMEmailIntegration:
+AutotaskAEMEmailIntegration:
   type: object
   x-discriminator-value: AutotaskAEMEmail
   allOf:
@@ -989,6 +1730,13 @@ AutoTaskEmailIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/EmailBasedIncomingFeature'
+
+AzureAutoScaleIntegration:
+  type: object
+  x-discriminator-value: AzureAutoScale
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
 
 AzureIntegration:
   type: object
@@ -1004,6 +1752,58 @@ AzureOMSIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+AzureServiceHealthIntegration:
+  type: object
+  x-discriminator-value: AzureServiceHealth
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+BitbucketIntegration:
+  type: object
+  x-discriminator-value: Bitbucket
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+BlueMatadorIntegration:
+  type: object
+  x-discriminator-value: BlueMatador
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+BMCFootPrintsV11Integration:
+  type: object
+  x-discriminator-value: BMCFootPrintsV11
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/BMCFootPrintsV11Callback'
+
+BMCFootPrintsV12Integration:
+  type: object
+  x-discriminator-value: BMCFootPrintsV12
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/BMCFootPrintsV12Callback'
+
+BMCRemedyForceIntegration:
+  type: object
+  x-discriminator-value: BMCRemedyForce
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+BMCRemedyIntegration:
+  type: object
+  x-discriminator-value: BMCRemedy
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/BMCRemedyCallback'
+
 BoundaryIntegration:
   type: object
   x-discriminator-value: Boundary
@@ -1016,7 +1816,7 @@ CampfireIntegration:
   x-discriminator-value: Campfire
   allOf:
     - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/AmazonSnsCallback'
+    - $ref: '#/definitions/CampfireCallback'
 
 CatchpointIntegration:
   type: object
@@ -1038,6 +1838,7 @@ CherwellIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/CherwellCallback'
 
 CircleCiIntegration:
   type: object
@@ -1064,6 +1865,13 @@ CloudMonixIntegration:
 CloudSploitIntegration:
   type: object
   x-discriminator-value: CloudSploit
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+CloudWatchEventsIntegration:
+  type: object
+  x-discriminator-value: CloudWatchEvents
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1096,6 +1904,22 @@ ConnectWiseIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/ConnectWiseCallback'
+
+ConnectWiseManageIntegration:
+  type: object
+  x-discriminator-value: ConnectWiseManage
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/ConnectWiseManageCallback'
+
+ConnectWiseManageV2Integration:
+  type: object
+  x-discriminator-value: ConnectWiseManageV2
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/ConnectWiseManageV2Callback'
 
 ConsulIntegration:
   type: object
@@ -1148,7 +1972,7 @@ DetectifyIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-DNSCheckIntegration:
+DnsCheckIntegration:
   type: object
   x-discriminator-value: DNSCheck
   allOf:
@@ -1158,6 +1982,28 @@ DNSCheckIntegration:
 DripStatIntegration:
   type: object
   x-discriminator-value: DripStat
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+DynatraceAppMonIntegration:
+  type: object
+  x-discriminator-value: DynatraceAppMon
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/DynatraceAppMonCallback'
+
+DynatraceIntegration:
+  type: object
+  x-discriminator-value: Ruxit
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+DynatraceV2Integration:
+  type: object
+  x-discriminator-value: DynatraceV2
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1176,14 +2022,6 @@ ErrorceptionIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-XPackAlertingIntegration:
-  type: object
-  x-discriminator-value: ESWatcher
-  allOf:
-    - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/TokenBasedIncomingFeature'
-    - $ref: '#/definitions/XPackAlertingCallback'
-
 EvidentIOIntegration:
   type: object
   x-discriminator-value: EvidentIO
@@ -1196,7 +2034,7 @@ FlockIntegration:
   x-discriminator-value: Flock
   allOf:
     - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/WebhookCallback'
+    - $ref: '#/definitions/FlockCallback'
 
 FlowdockIntegration:
   type: object
@@ -1226,6 +2064,7 @@ FreshserviceIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/FreshserviceCallback'
 
 GhostInspectorIntegration:
   type: object
@@ -1234,9 +2073,30 @@ GhostInspectorIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-GoogleStackdriverIntegration:
+GitHubIntegration:
+  type: object
+  x-discriminator-value: GitHub
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+GitLabIntegration:
+  type: object
+  x-discriminator-value: GitLab
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+GoogleStackDriverIntegration:
   type: object
   x-discriminator-value: GoogleStackdriver
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+GrafanaIntegration:
+  type: object
+  x-discriminator-value: Grafana
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1262,13 +2122,32 @@ HeartbeatIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-HipchatV2Integration:
+HipChatAddOnIntegration:
+  type: object
+  x-discriminator-value: HipChatAddOn
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/HipChatAddOnCallback'
+    - properties:
+        requireMatchingUser:
+          type: boolean
+        glanceLabel:
+          type: string
+
+HipChatIntegration:
+  type: object
+  x-discriminator-value: HipChat
+  allOf:
+    - $ref: '#/definitions/Integration'
+
+HipChatIntegrationV2:
   type: object
   x-discriminator-value: HipChatV2
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
-    - $ref: '#/definitions/HipchatCallback'
+    - $ref: '#/definitions/HipChatCallbackV2'
 
 HoneybadgerIntegration:
   type: object
@@ -1284,13 +2163,12 @@ HostedGraphiteIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-IcingaIntegration:
+HumioIntegration:
   type: object
-  x-discriminator-value: Icinga
+  x-discriminator-value: Humio
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
-    - $ref: '#/definitions/MaridCallback'
 
 Icinga2Integration:
   type: object
@@ -1299,6 +2177,34 @@ Icinga2Integration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/MaridCallback'
+
+IcingaIntegration:
+  type: object
+  x-discriminator-value: Icinga
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/MaridCallback'
+
+IncomingCallIntegration:
+  type: object
+  x-discriminator-value: IncomingCall
+  allOf:
+    - $ref: '#/definitions/Integration'
+
+InstanaIntegration:
+  type: object
+  x-discriminator-value: Instana
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+JenkinsIntegration:
+  type: object
+  x-discriminator-value: Jenkins
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
 
 JiraIntegration:
   type: object
@@ -1316,6 +2222,13 @@ JiraServiceDeskIntegration:
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/JiraServiceDeskCallback'
 
+KapacitorIntegration:
+  type: object
+  x-discriminator-value: Kapacitor
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 KayakoIntegration:
   type: object
   x-discriminator-value: Kayako
@@ -1329,7 +2242,7 @@ KoreIntegration:
   x-discriminator-value: Kore
   allOf:
     - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/WebhookCallback'
+    - $ref: '#/definitions/KoreCallback'
 
 LabTechEmailIntegration:
   type: object
@@ -1341,6 +2254,21 @@ LabTechEmailIntegration:
 LibratoIntegration:
   type: object
   x-discriminator-value: Librato
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+LibreNMSIntegration:
+  type: object
+  x-discriminator-value: LibreNMS
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/LibreNMSCallback'
+
+LightstepIntegration:
+  type: object
+  x-discriminator-value: Lightstep
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1381,6 +2309,28 @@ LogzIOIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+LookerIntegration:
+  type: object
+  x-discriminator-value: Looker
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+LoomIntegration:
+  type: object
+  x-discriminator-value: Loom
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+MagentrixIntegration:
+  type: object
+  x-discriminator-value: Magentrix
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/MagentrixCallback'
+
 MaridIntegration:
   type: object
   x-discriminator-value: Marid
@@ -1404,6 +2354,13 @@ MongoDBCloudIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+MonitisEmailIntegration:
+  type: object
+  x-discriminator-value: MonitisEmail
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/EmailBasedIncomingFeature'
+
 MonitisIntegration:
   type: object
   x-discriminator-value: Monitis
@@ -1416,7 +2373,7 @@ MoxtraIntegration:
   x-discriminator-value: Moxtra
   allOf:
     - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/WebhookCallback'
+    - $ref: '#/definitions/MoxtraCallback'
 
 MSTeamsIntegration:
   type: object
@@ -1426,10 +2383,22 @@ MSTeamsIntegration:
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/MSTeamsCallback'
     - properties:
+        requireMatchingUser:
+          type: boolean
         executeCommands:
           type: boolean
+        tenantId:
+          type: string
 
-NagiosV2Integration:
+NagiosIntegrationV1:
+  type: object
+  x-discriminator-value: Nagios
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/MaridCallback'
+
+NagiosIntegrationV2:
   type: object
   x-discriminator-value: NagiosV2
   allOf:
@@ -1437,7 +2406,15 @@ NagiosV2Integration:
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/MaridCallback'
 
-NagiosXIV2Integration:
+NagiosXIIntegrationV1:
+  type: object
+  x-discriminator-value: NagiosXI
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/MaridCallback'
+
+NagiosXIIntegrationV2:
   type: object
   x-discriminator-value: NagiosXIV2
   allOf:
@@ -1445,19 +2422,19 @@ NagiosXIV2Integration:
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/MaridCallback'
 
-NeustarIntegration:
-  type: object
-  x-discriminator-value: NeustarEmail
-  allOf:
-    - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/EmailBasedIncomingFeature'
-
 NetuitiveIntegration:
   type: object
   x-discriminator-value: Netuitive
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+NeustarIntegration:
+  type: object
+  x-discriminator-value: NeustarEmail
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/EmailBasedIncomingFeature'
 
 NewRelicIntegration:
   type: object
@@ -1480,12 +2457,26 @@ NodePingIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+ObserviumIntegration:
+  type: object
+  x-discriminator-value: Observium
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 ObserviumV2Integration:
   type: object
   x-discriminator-value: ObserviumV2
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+OEMEmailIntegration:
+  type: object
+  x-discriminator-value: OEMEmail
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/EmailBasedIncomingFeature'
 
 OEMIntegration:
   type: object
@@ -1494,13 +2485,13 @@ OEMIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-Op5Integration:
+OP5Integration:
   type: object
   x-discriminator-value: OP5
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
-    - $ref: '#/definitions/Op5Callback'
+    - $ref: '#/definitions/OP5Callback'
 
 OpsDashIntegration:
   type: object
@@ -1509,13 +2500,20 @@ OpsDashIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-OpsgenieIntegration:
+OpsGenieIntegration:
   type: object
   x-discriminator-value: OpsGenie
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
-    - $ref: '#/definitions/OpsgenieCallback'
+    - $ref: '#/definitions/OpsGenieCallback'
+
+OpsviewIntegration:
+  type: object
+  x-discriminator-value: Opsview
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
 
 PagerDutyCompatibilityIntegration:
   type: object
@@ -1538,9 +2536,23 @@ PapertrailIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+PingdomIntegration:
+  type: object
+  x-discriminator-value: Pingdom
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/EmailBasedIncomingFeature'
+
 PingdomV2Integration:
   type: object
   x-discriminator-value: PingdomV2
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+PingdomWebhookIntegration:
+  type: object
+  x-discriminator-value: PingdomWebhook
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1572,10 +2584,18 @@ PrtgIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/PrtgCallback'
 
 RackspaceIntegration:
   type: object
   x-discriminator-value: Rackspace
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+RaygunIntegration:
+  type: object
+  x-discriminator-value: Raygun
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1613,7 +2633,7 @@ RingCentralGlipIntegration:
   x-discriminator-value: RingCentralGlip
   allOf:
     - $ref: '#/definitions/Integration'
-    - $ref: '#/definitions/WebhookCallback'
+    - $ref: '#/definitions/RingCentralGlipCallback'
 
 RollbarIntegration:
   type: object
@@ -1621,6 +2641,7 @@ RollbarIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/RollbarCallback'
 
 RunscopeIntegration:
   type: object
@@ -1629,9 +2650,17 @@ RunscopeIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-DynatraceIntegration:
+SalesForceServiceCloudIntegration:
   type: object
-  x-discriminator-value: Ruxit
+  x-discriminator-value: SalesForceServiceCloud
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/SalesForceServiceCloudCallback'
+
+SaltStackIntegration:
+  type: object
+  x-discriminator-value: SaltStack
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1643,7 +2672,7 @@ ScalyrIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-SCOMIntegration:
+ScomIntegration:
   type: object
   x-discriminator-value: SCOM
   allOf:
@@ -1671,6 +2700,13 @@ SensuIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+SentryIntegration:
+  type: object
+  x-discriminator-value: Sentry
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 ServerDensityIntegration:
   type: object
   x-discriminator-value: ServerDensity
@@ -1685,13 +2721,28 @@ ServerGuard24Integration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+ServiceNowIntegration:
+  type: object
+  x-discriminator-value: ServiceNow
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 ServiceNowV2Integration:
   type: object
   x-discriminator-value: ServiceNowV2
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
-    - $ref: '#/definitions/ServiceNowCallback'
+    - $ref: '#/definitions/ServiceNowV2Callback'
+
+ServiceNowV3Integration:
+  type: object
+  x-discriminator-value: ServiceNowV3
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/ServiceNowV3Callback'
 
 SignalfxIntegration:
   type: object
@@ -1714,6 +2765,29 @@ Site24x7Integration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+SlackAppIntegration:
+  type: object
+  x-discriminator-value: SlackApp
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/SlackAppCallback'
+    - properties:
+        requireMatchingUser:
+          type: boolean
+        executeCommands:
+          type: boolean
+        useSlackButtons:
+          type: boolean
+
+SlackIntegration:
+  type: object
+  x-discriminator-value: Slack
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/SlackCallback'
+
 SoastaIntegration:
   type: object
   x-discriminator-value: Soasta
@@ -1735,6 +2809,7 @@ SolarwindsMSPNCentralIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/SolarwindsMSPNcentralCallback'
 
 SolarWindsWebHelpDeskIntegration:
   type: object
@@ -1751,6 +2826,14 @@ SplunkIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+SplunkITSIIntegration:
+  type: object
+  x-discriminator-value: SplunkITSI
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/SplunkITSICallback'
+
 StackdriverIntegration:
   type: object
   x-discriminator-value: Stackdriver
@@ -1762,6 +2845,13 @@ StackdriverIntegration:
 StatusCakeIntegration:
   type: object
   x-discriminator-value: StatusCake
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+StatusHubIntegration:
+  type: object
+  x-discriminator-value: StatusHub
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -1781,6 +2871,13 @@ StatusPageIOIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/StatusPageIOCallback'
+
+StatusyIntegration:
+  type: object
+  x-discriminator-value: Statusy
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/StatusyCallback'
 
 StruxureWareIntegration:
   type: object
@@ -1824,6 +2921,21 @@ TidewaysIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+TraceIntegration:
+  type: object
+  x-discriminator-value: Trace
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+TrackItIntegration:
+  type: object
+  x-discriminator-value: TrackIt
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/MaridCallback'
+
 TravisCIIntegration:
   type: object
   x-discriminator-value: TravisCI
@@ -1831,12 +2943,26 @@ TravisCIIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
-TwilioCIIntegration:
+TwilioIntegration:
   type: object
   x-discriminator-value: Twilio
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+UpdownIOIntegration:
+  type: object
+  x-discriminator-value: UpdownIO
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+UptimeRobotEmailIntegration:
+  type: object
+  x-discriminator-value: UptimeRobotEmail
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/EmailBasedIncomingFeature'
 
 UptimeRobotIntegration:
   type: object
@@ -1866,6 +2992,13 @@ VCenterIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+VCSAIntegration:
+  type: object
+  x-discriminator-value: VCSA
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 WavefrontIntegration:
   type: object
   x-discriminator-value: Wavefront
@@ -1879,6 +3012,29 @@ WebhookIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/WebhookCallback'
+
+XLReleaseIntegration:
+  type: object
+  x-discriminator-value: XLRelease
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+XmppIntegration:
+  type: object
+  x-discriminator-value: Xmpp
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/MaridCallback'
+
+XPackAlertingIntegration:
+  type: object
+  x-discriminator-value: ESWatcher
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/XPackAlertingCallback'
 
 ZabbixIntegration:
   type: object
@@ -1903,3 +3059,10 @@ ZenossIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
     - $ref: '#/definitions/MaridCallback'
+
+ZyrionIntegration:
+  type: object
+  x-discriminator-value: ZyrionEmail
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/EmailBasedIncomingFeature'
