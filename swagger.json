@@ -13400,7 +13400,210 @@
       ],
       "properties": {
         "type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "Airbrake",
+            "AlertLogic",
+            "AlertSite",
+            "AmazonCloudTrail",
+            "AmazonEc2AutoScaling",
+            "AmazonRds",
+            "AmazonRoute53HealthCheck",
+            "AmazonSes",
+            "AmazonSns",
+            "AmazonSnsOutgoing",
+            "API",
+            "Apica",
+            "Apimetrics",
+            "AppDynamics",
+            "AppSignal",
+            "AppSignalV2",
+            "Atatus",
+            "AutotaskAEMEmail",
+            "AutoTaskEmail",
+            "Azure",
+            "AzureAutoScale",
+            "AzureOMS",
+            "AzureServiceHealth",
+            "Bitbucket",
+            "BlueMatador",
+            "BMCFootPrintsV11",
+            "BMCFootPrintsV12",
+            "BMCRemedy",
+            "BMCRemedyForce",
+            "Boundary",
+            "Campfire",
+            "Catchpoint",
+            "CheckMK",
+            "Cherwell",
+            "CircleCi",
+            "Circonus",
+            "CloudMonix",
+            "CloudSploit",
+            "CloudWatch",
+            "CloudWatchEvents",
+            "Codeship",
+            "Compose",
+            "ConnectWise",
+            "ConnectWiseManage",
+            "ConnectWiseManageV2",
+            "Consul",
+            "CopperEgg",
+            "Crashlytics",
+            "Datadog",
+            "DataloopIO",
+            "Desk",
+            "Detectify",
+            "DNSCheck",
+            "DripStat",
+            "Ruxit",
+            "DynatraceV2",
+            "DynatraceAppMon",
+            "Email",
+            "Errorception",
+            "ESWatcher",
+            "EvidentIO",
+            "Flock",
+            "Flowdock",
+            "FlowdockV2",
+            "Freshdesk",
+            "Freshservice",
+            "GhostInspector",
+            "GitHub",
+            "GitLab",
+            "GoogleStackdriver",
+            "Grafana",
+            "GrafanaV2",
+            "Graylog",
+            "Heartbeat",
+            "HipChat",
+            "HipChatV2",
+            "HipChatAddOn",
+            "Honeybadger",
+            "HostedGraphite",
+            "Humio",
+            "Icinga",
+            "Icinga2",
+            "IncomingCall",
+            "Instana",
+            "Jenkins",
+            "Jira",
+            "JiraServiceDesk",
+            "Kapacitor",
+            "Kayako",
+            "Kore",
+            "LabTechEmail",
+            "Librato",
+            "LibreNMS",
+            "Lightstep",
+            "Logentries",
+            "Loggly",
+            "LogicMonitor",
+            "Logstash",
+            "LogzIO",
+            "Looker",
+            "Loom",
+            "Magentrix",
+            "Marid",
+            "Mattermost",
+            "MongoDBCloud",
+            "Monitis",
+            "MonitisEmail",
+            "Moxtra",
+            "MSTeams",
+            "Nagios",
+            "NagiosV2",
+            "NagiosXI",
+            "NagiosXIV2",
+            "NeustarEmail",
+            "Netuitive",
+            "NewRelic",
+            "NewRelicV2",
+            "NewRelicSyntheticsEmail",
+            "NodePing",
+            "Observium",
+            "ObserviumV2",
+            "OEM",
+            "OEMEmail",
+            "OP5",
+            "OpsDash",
+            "OpsGenie",
+            "Opsview",
+            "PagerDutyCompatibility",
+            "Panopta",
+            "Papertrail",
+            "Pingdom",
+            "PingdomV2",
+            "PingdomWebhook",
+            "Pingometer",
+            "Planio",
+            "Prometheus",
+            "Prtg",
+            "Rackspace",
+            "Raygun",
+            "RedGateSqlMonitorEmail",
+            "Riemann",
+            "Rigor",
+            "RingCentralEmail",
+            "RingCentralGlip",
+            "Rollbar",
+            "Runscope",
+            "SalesForceServiceCloud",
+            "SaltStack",
+            "Scalyr",
+            "Sentry",
+            "SCOM",
+            "Scout",
+            "SematextSpm",
+            "Sensu",
+            "ServerDensity",
+            "ServerGuard24",
+            "ServiceNow",
+            "ServiceNowV2",
+            "ServiceNowV3",
+            "Signalfx",
+            "SignalSciences",
+            "Site24x7",
+            "Slack",
+            "SlackApp",
+            "Soasta",
+            "Solarwinds",
+            "SolarwindsMSPNCentral",
+            "SolarWindsWebHelpDesk",
+            "Splunk",
+            "SplunkITSI",
+            "Stackdriver",
+            "StatusCake",
+            "StatusHub",
+            "StatusIO",
+            "StatusPageIO",
+            "Statusy",
+            "StruxureWare",
+            "SumoLogic",
+            "SysdigCloud",
+            "ThousandEyes",
+            "ThreatStack",
+            "Tideways",
+            "Trace",
+            "TrackIt",
+            "TravisCI",
+            "Twilio",
+            "UpdownIO",
+            "UptimeRobot",
+            "UptimeRobotEmail",
+            "UptimeWebhook",
+            "UptrendsEmail",
+            "VCenter",
+            "VCSA",
+            "Wavefront",
+            "Webhook",
+            "XLRelease",
+            "Xmpp",
+            "Zabbix",
+            "Zendesk",
+            "Zenoss",
+            "ZyrionEmail"
+          ]
         }
       }
     },
@@ -13511,6 +13714,9 @@
         },
         "type": {
           "type": "string"
+        },
+        "teamId": {
+          "type": "string"
         }
       }
     },
@@ -13535,6 +13741,11 @@
     },
     "CallbackCondition": {
       "type": "object",
+      "required": [
+        "field",
+        "operation",
+        "expectedValue"
+      ],
       "properties": {
         "field": {
           "type": "string",
@@ -13604,7 +13815,8 @@
             "escalate",
             "custom-action",
             "assign-ownership",
-            "take-ownership"
+            "take-ownership",
+            "update-priority"
           ]
         },
         "extraField": {
@@ -13617,39 +13829,72 @@
           "type": "string",
           "enum": [
             "publish",
+            "create-incident",
+            "create-problem",
+            "update-description",
+            "update-priority",
+            "resolve-issue",
+            "resolve-ticket",
+            "add-work-info",
+            "close-incident",
+            "add-journal",
+            "in-progress-incident",
+            "resolve-incident",
+            "create-service-ticket",
+            "add-discussion-note-to-ticket",
+            "add-resolution-note-to-ticket",
+            "add-internal-note-to-ticket",
+            "close-service-ticket",
+            "in-progress-ticket",
+            "confirm-incident",
+            "add-note",
+            "set-status-to-closed",
+            "set-status-to-pending",
+            "set-status-to-resolved",
+            "create-ticket",
+            "add-public-note",
+            "add-private-note",
+            "set-status-to-open",
             "create-issue",
             "add-comment-to-issue",
             "in-progress-issue",
-            "resolve-issue",
             "close-issue",
             "issue-done",
-            "add-note",
             "add-tag",
             "create-conversation",
-            "set-status-to-open",
-            "set-status-to-pending",
             "set-status-to-completed",
+            "ack-alert",
+            "unmute-alert",
             "send-to-channel",
+            "create-case",
+            "set-case-status-to-active",
+            "set-case-status-to-close",
+            "set-case-status-to-close-as-duplicate",
             "acknowledge",
             "create-alert",
             "close-alert",
             "acknowledge-alert",
             "unacknowledge-alert",
-            "create-incident",
+            "acknowledgeSensor",
+            "setStatusToClosed",
+            "set-case-status-to-working",
             "add-note-to-incident",
-            "resolve-incident",
-            "close-incident",
             "assign-to-group",
             "assign-to-user",
             "assign-to-owner",
             "send-to-custom-endpoint",
+            "acknowledge-notification",
+            "createTag",
+            "createComment",
+            "updateSeverity",
+            "updateStatusToClosed",
+            "updateStatusToInProgress",
             "create-incident-and-update-component-statuses",
             "resolve-incident-and-update-component-statuses-back-to-operational",
             "update-component-statuses",
-            "create-ticket",
+            "postToUrl",
             "add-internal-note",
             "public-reply",
-            "set-status-to-closed",
             "set-status-to-solved"
           ]
         }
@@ -13674,8 +13919,9 @@
         "callback-type": {
           "type": "string",
           "enum": [
-            "bidirectional-callback-new",
-            "amazon-sns-callback"
+            "amazon-sns-callback",
+            "base-webhook-callback",
+            "bidirectional-callback-new"
           ]
         }
       }
@@ -13702,15 +13948,72 @@
             "bidirectional-callback-type": {
               "type": "string",
               "enum": [
-                "opsgenie-callback",
+                "bmc-foot-prints-v11-callback",
+                "bmc-foot-prints-v12-callback",
+                "bmc-remedy-callback",
+                "cherwell-callback",
+                "connect-wise-manage-callback",
+                "connect-wise-manage-v2-callback",
+                "dynatrace-app-mon-callback",
+                "freshdesk-callback",
+                "freshservice-callback",
                 "jira-callback",
                 "jira-service-desk-callback",
-                "service-now-callback",
                 "kayako-callback",
+                "libre-nms-callback",
+                "magentrix-callback",
                 "ms-teams-callback",
                 "op5-callback",
+                "ops-genie-callback",
+                "prtg-callback",
+                "rollbar-callback",
+                "sales-force-service-cloud-callback",
+                "service-now-v2-callback",
+                "service-now-v3-callback",
+                "solarwinds-msp-ncentral-callback",
+                "splunk-itsi-callback",
                 "status-page-io-callback",
                 "zendesk-callback"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "BaseWebhookCallback": {
+      "type": "object",
+      "x-discriminator-value": "base-webhook-callback",
+      "discriminator": "base-webhook-callback-type",
+      "allOf": [
+        {
+          "$ref": "#/definitions/OutgoingCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "headers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "addAlertDetails": {
+              "type": "boolean"
+            },
+            "addAlertDescription": {
+              "type": "boolean"
+            },
+            "base-webhook-callback-type": {
+              "type": "string",
+              "enum": [
+                "flock-callback",
+                "kore-callback",
+                "moxtra-callback",
+                "ring-central-glip-callback",
+                "statusy-callback",
+                "webhook-callback"
               ]
             }
           }
@@ -13734,7 +14037,6 @@
           "type": "string",
           "enum": [
             "bidirectional-callback",
-            "webhook-callback",
             "campfire-callback",
             "flowdock-callback",
             "flowdock-v2-callback",
@@ -13759,18 +14061,19 @@
             "bidirectional-callback-type": {
               "type": "string",
               "enum": [
-                "datadog-callback",
                 "circonus-callback",
                 "connect-wise-callback",
+                "datadog-callback",
                 "desk-callback",
                 "es-watcher-callback",
-                "freshdesk-callback",
-                "hipchat-callback",
-                "marid-callback",
+                "hip-chat-add-on-callback",
+                "hip-chat-callback-v2",
                 "logic-monitor-callback",
+                "marid-callback",
                 "mattermost-callback",
+                "slack-app-callback",
                 "slack-callback",
-                "solarwinds-web-helpdesk-callback",
+                "solar-winds-web-help-desk-callback",
                 "stackdriver-callback",
                 "status-io-callback"
               ]
@@ -13798,9 +14101,9 @@
         }
       ]
     },
-    "OpsgenieCallback": {
+    "OpsGenieCallback": {
       "type": "object",
-      "x-discriminator-value": "opsgenie-callback",
+      "x-discriminator-value": "ops-genie-callback",
       "allOf": [
         {
           "$ref": "#/definitions/BidirectionalCallbackNew"
@@ -13808,9 +14111,6 @@
         {
           "properties": {
             "destinationApiKey": {
-              "type": "string"
-            },
-            "apiKey": {
               "type": "string"
             }
           }
@@ -13873,9 +14173,9 @@
         }
       ]
     },
-    "ServiceNowCallback": {
+    "ServiceNowV2Callback": {
       "type": "object",
-      "x-discriminator-value": "service-now-callback",
+      "x-discriminator-value": "service-now-v2-callback",
       "allOf": [
         {
           "$ref": "#/definitions/BidirectionalCallbackNew"
@@ -13889,6 +14189,28 @@
               "type": "string"
             },
             "servicenowPassword": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "ServiceNowV3Callback": {
+      "type": "object",
+      "x-discriminator-value": "service-now-v3-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "instanceSubdomain": {
+              "type": "string"
+            },
+            "userId": {
+              "type": "string"
+            },
+            "password": {
               "type": "string"
             }
           }
@@ -13933,7 +14255,7 @@
         }
       ]
     },
-    "Op5Callback": {
+    "OP5Callback": {
       "type": "object",
       "x-discriminator-value": "op5-callback",
       "allOf": [
@@ -14001,20 +14323,7 @@
       "x-discriminator-value": "webhook-callback",
       "allOf": [
         {
-          "$ref": "#/definitions/OutgoingCallback"
-        },
-        {
-          "properties": {
-            "url": {
-              "type": "string"
-            },
-            "headers": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "#/definitions/BaseWebhookCallback"
         }
       ]
     },
@@ -14037,8 +14346,8 @@
               "type": "boolean"
             },
             "rooms": {
-              "type": "object",
-              "additionalProperties": {
+              "type": "array",
+              "items": {
                 "type": "string"
               }
             }
@@ -14059,8 +14368,8 @@
               "type": "string"
             },
             "flowdockTags": {
-              "type": "object",
-              "additionalProperties": {
+              "type": "array",
+              "items": {
                 "type": "string"
               }
             },
@@ -14210,11 +14519,11 @@
       "x-discriminator-value": "freshdesk-callback",
       "allOf": [
         {
-          "$ref": "#/definitions/BidirectionalCallback"
+          "$ref": "#/definitions/BidirectionalCallbackNew"
         },
         {
           "properties": {
-            "freshdeskApiKey": {
+            "apiKey": {
               "type": "string"
             },
             "freshdeskSubdomain": {
@@ -14224,29 +14533,26 @@
         }
       ]
     },
-    "HipchatCallback": {
+    "HipChatAddOnCallback": {
       "type": "object",
-      "x-discriminator-value": "hipchat-callback",
+      "x-discriminator-value": "hip-chat-add-on-callback",
       "allOf": [
         {
           "$ref": "#/definitions/BidirectionalCallback"
         },
         {
           "properties": {
-            "rooms": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "token": {
-              "type": "string"
-            },
             "notify": {
               "type": "boolean"
             },
+            "groupName": {
+              "type": "string"
+            },
             "hostUrl": {
               "type": "string"
+            },
+            "useCollapsedMessages": {
+              "type": "boolean"
             }
           }
         }
@@ -14301,7 +14607,7 @@
     },
     "SolarWindsWebHelpDeskCallback": {
       "type": "object",
-      "x-discriminator-value": "solarwinds-web-helpdesk-callback",
+      "x-discriminator-value": "solar-winds-web-help-desk-callback",
       "allOf": [
         {
           "$ref": "#/definitions/BidirectionalCallback"
@@ -14356,12 +14662,512 @@
         }
       ]
     },
+    "BMCFootPrintsV11Callback": {
+      "type": "object",
+      "x-discriminator-value": "bmc-foot-prints-v11-callback",
+      "required": [
+        "url",
+        "username",
+        "password",
+        "incidentWorkspaceId",
+        "problemWorkspaceId"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "incidentWorkspaceId": {
+              "type": "string"
+            },
+            "problemWorkspaceId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "BMCFootPrintsV12Callback": {
+      "type": "object",
+      "x-discriminator-value": "bmc-foot-prints-v12-callback",
+      "required": [
+        "url",
+        "username",
+        "password",
+        "workspaceName"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "workspaceName": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "BMCRemedyCallback": {
+      "type": "object",
+      "x-discriminator-value": "bmc-remedy-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "midtierServerUrl": {
+              "type": "string"
+            },
+            "serverName": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "CherwellCallback": {
+      "type": "object",
+      "x-discriminator-value": "cherwell-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "clientId": {
+              "type": "string"
+            },
+            "apiUrl": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "ConnectWiseManageCallback": {
+      "type": "object",
+      "x-discriminator-value": "connect-wise-manage-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "publicKey": {
+              "type": "string"
+            },
+            "privateKey": {
+              "type": "string"
+            },
+            "loginCompany": {
+              "type": "string"
+            },
+            "companyName": {
+              "type": "string"
+            },
+            "cwmUrl": {
+              "type": "string"
+            },
+            "companyId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "ConnectWiseManageV2Callback": {
+      "type": "object",
+      "x-discriminator-value": "connect-wise-manage-v2-callback",
+      "required": [
+        "boardId"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "publicKey": {
+              "type": "string"
+            },
+            "privateKey": {
+              "type": "string"
+            },
+            "loginCompany": {
+              "type": "string"
+            },
+            "companyName": {
+              "type": "string"
+            },
+            "cwmUrl": {
+              "type": "string"
+            },
+            "companyId": {
+              "type": "string"
+            },
+            "boardName": {
+              "type": "string"
+            },
+            "boardId": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      ]
+    },
+    "DynatraceAppMonCallback": {
+      "type": "object",
+      "x-discriminator-value": "dynatrace-app-mon-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "profileName": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "FlockCallback": {
+      "type": "object",
+      "x-discriminator-value": "flock-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
+    "FreshserviceCallback": {
+      "type": "object",
+      "x-discriminator-value": "freshservice-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "subdomain": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "HipChatCallbackV2": {
+      "type": "object",
+      "x-discriminator-value": "hip-chat-callback-v2",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "rooms": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "token": {
+              "type": "string"
+            },
+            "notify": {
+              "type": "boolean"
+            },
+            "hostUrl": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "KoreCallback": {
+      "type": "object",
+      "x-discriminator-value": "kore-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
+    "LibreNMSCallback": {
+      "type": "object",
+      "x-discriminator-value": "libre-nms-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "apiToken": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "MagentrixCallback": {
+      "type": "object",
+      "x-discriminator-value": "magentrix-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "subdomain": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "MoxtraCallback": {
+      "type": "object",
+      "x-discriminator-value": "moxtra-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
+    "PrtgCallback": {
+      "type": "object",
+      "x-discriminator-value": "prtg-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "passhash": {
+              "type": "string"
+            },
+            "prtgUrl": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "RingCentralGlipCallback": {
+      "type": "object",
+      "x-discriminator-value": "ring-central-glip-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
+    "RollbarCallback": {
+      "type": "object",
+      "x-discriminator-value": "rollbar-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "writeAccessToken": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "SalesForceServiceCloudCallback": {
+      "type": "object",
+      "x-discriminator-value": "sales-force-service-cloud-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "clientId": {
+              "type": "string"
+            },
+            "clientSecret": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "SlackAppCallback": {
+      "type": "object",
+      "x-discriminator-value": "slack-app-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "channel": {
+              "type": "string"
+            },
+            "teamName": {
+              "type": "string"
+            },
+            "sendDescription": {
+              "type": "boolean"
+            },
+            "sendRoutedTeams": {
+              "type": "boolean"
+            },
+            "sendTags": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "SlackCallback": {
+      "type": "object",
+      "x-discriminator-value": "slack-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "SolarwindsMSPNcentralCallback": {
+      "type": "object",
+      "x-discriminator-value": "solarwinds-msp-ncentral-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "SplunkITSICallback": {
+      "type": "object",
+      "x-discriminator-value": "splunk-itsi-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "StatusyCallback": {
+      "type": "object",
+      "x-discriminator-value": "statusy-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
     "Integration": {
       "type": "object",
       "discriminator": "type",
       "required": [
-        "name",
-        "type"
+        "type",
+        "name"
       ],
       "properties": {
         "type": {
@@ -14379,13 +15185,24 @@
             "AmazonSns",
             "AmazonSnsOutgoing",
             "API",
+            "Apica",
+            "Apimetrics",
             "AppDynamics",
             "AppSignal",
+            "AppSignalV2",
             "Atatus",
             "AutotaskAEMEmail",
             "AutoTaskEmail",
             "Azure",
+            "AzureAutoScale",
             "AzureOMS",
+            "AzureServiceHealth",
+            "Bitbucket",
+            "BlueMatador",
+            "BMCFootPrintsV11",
+            "BMCFootPrintsV12",
+            "BMCRemedy",
+            "BMCRemedyForce",
             "Boundary",
             "Campfire",
             "Catchpoint",
@@ -14396,9 +15213,12 @@
             "CloudMonix",
             "CloudSploit",
             "CloudWatch",
+            "CloudWatchEvents",
             "Codeship",
             "Compose",
             "ConnectWise",
+            "ConnectWiseManage",
+            "ConnectWiseManageV2",
             "Consul",
             "CopperEgg",
             "Crashlytics",
@@ -14408,6 +15228,8 @@
             "Detectify",
             "DNSCheck",
             "DripStat",
+            "DynatraceAppMon",
+            "DynatraceV2",
             "Email",
             "Errorception",
             "ESWatcher",
@@ -14418,53 +15240,77 @@
             "Freshdesk",
             "Freshservice",
             "GhostInspector",
+            "GitHub",
+            "GitLab",
             "GoogleStackdriver",
+            "Grafana",
             "GrafanaV2",
             "Graylog",
             "Heartbeat",
+            "HipChat",
+            "HipChatAddOn",
             "HipChatV2",
             "Honeybadger",
             "HostedGraphite",
+            "Humio",
             "Icinga",
             "Icinga2",
+            "IncomingCall",
+            "Instana",
+            "Jenkins",
             "Jira",
             "JiraServiceDesk",
+            "Kapacitor",
             "Kayako",
             "Kore",
             "LabTechEmail",
             "Librato",
+            "LibreNMS",
+            "Lightstep",
             "Logentries",
             "Loggly",
             "LogicMonitor",
             "Logstash",
             "LogzIO",
+            "Looker",
+            "Loom",
+            "Magentrix",
             "Marid",
             "Mattermost",
             "MongoDBCloud",
             "Monitis",
+            "MonitisEmail",
             "Moxtra",
             "MSTeams",
+            "Nagios",
             "NagiosV2",
+            "NagiosXI",
             "NagiosXIV2",
-            "NeustarEmail",
             "Netuitive",
+            "NeustarEmail",
             "NewRelic",
             "NewRelicV2",
             "NodePing",
+            "Observium",
             "ObserviumV2",
             "OEM",
+            "OEMEmail",
             "OP5",
             "OpsDash",
             "OpsGenie",
+            "Opsview",
             "PagerDutyCompatibility",
             "Panopta",
             "Papertrail",
+            "Pingdom",
             "PingdomV2",
+            "PingdomWebhook",
             "Pingometer",
             "Planio",
             "Prometheus",
             "Prtg",
             "Rackspace",
+            "Raygun",
             "RedGateSqlMonitorEmail",
             "Riemann",
             "Rigor",
@@ -14473,43 +15319,61 @@
             "Rollbar",
             "Runscope",
             "Ruxit",
+            "SalesForceServiceCloud",
+            "SaltStack",
             "Scalyr",
             "SCOM",
             "Scout",
             "SematextSpm",
             "Sensu",
+            "Sentry",
             "ServerDensity",
             "ServerGuard24",
+            "ServiceNow",
             "ServiceNowV2",
+            "ServiceNowV3",
             "Signalfx",
             "SignalSciences",
             "Site24x7",
+            "Slack",
+            "SlackApp",
             "Soasta",
             "Solarwinds",
             "SolarwindsMSPNCentral",
             "SolarWindsWebHelpDesk",
             "Splunk",
+            "SplunkITSI",
             "Stackdriver",
             "StatusCake",
+            "StatusHub",
             "StatusIO",
             "StatusPageIO",
+            "Statusy",
             "StruxureWare",
             "SumoLogic",
             "SysdigCloud",
             "ThousandEyes",
             "ThreatStack",
             "Tideways",
+            "Trace",
+            "TrackIt",
             "TravisCI",
             "Twilio",
+            "UpdownIO",
             "UptimeRobot",
+            "UptimeRobotEmail",
             "UptimeWebhook",
             "UptrendsEmail",
             "VCenter",
+            "VCSA",
             "Wavefront",
             "Webhook",
+            "XLRelease",
+            "Xmpp",
             "Zabbix",
             "Zendesk",
-            "Zenoss"
+            "Zenoss",
+            "ZyrionEmail"
           ]
         },
         "id": {
@@ -14562,6 +15426,33 @@
         },
         "isAdvanced": {
           "type": "boolean"
+        },
+        "ignoreTagsFromPayload": {
+          "type": "boolean"
+        },
+        "ignoreExtraPropertiesFromPayload": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "string"
+        },
+        "customPriority": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extraProperties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "assignedTeam": {
+          "$ref": "#/definitions/TeamMeta"
         },
         "feature-type": {
           "type": "string",
@@ -14736,9 +15627,40 @@
         }
       ]
     },
+    "ApicaIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Apica",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "ApiIntegration": {
       "type": "object",
       "x-discriminator-value": "API",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "properties": {
+            "isDefaultIntegration": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "ApimetricsIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Apimetrics",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -14772,6 +15694,18 @@
         }
       ]
     },
+    "AppSignalV2Integration": {
+      "type": "object",
+      "x-discriminator-value": "AppSignalV2",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "AtatusIntegration": {
       "type": "object",
       "x-discriminator-value": "Atatus",
@@ -14784,7 +15718,7 @@
         }
       ]
     },
-    "AutoTaskAEMEmailIntegration": {
+    "AutotaskAEMEmailIntegration": {
       "type": "object",
       "x-discriminator-value": "AutotaskAEMEmail",
       "allOf": [
@@ -14805,6 +15739,18 @@
         },
         {
           "$ref": "#/definitions/EmailBasedIncomingFeature"
+        }
+      ]
+    },
+    "AzureAutoScaleIntegration": {
+      "type": "object",
+      "x-discriminator-value": "AzureAutoScale",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
         }
       ]
     },
@@ -14832,6 +15778,99 @@
         }
       ]
     },
+    "AzureServiceHealthIntegration": {
+      "type": "object",
+      "x-discriminator-value": "AzureServiceHealth",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "BitbucketIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Bitbucket",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "BlueMatadorIntegration": {
+      "type": "object",
+      "x-discriminator-value": "BlueMatador",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "BMCFootPrintsV11Integration": {
+      "type": "object",
+      "x-discriminator-value": "BMCFootPrintsV11",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/BMCFootPrintsV11Callback"
+        }
+      ]
+    },
+    "BMCFootPrintsV12Integration": {
+      "type": "object",
+      "x-discriminator-value": "BMCFootPrintsV12",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/BMCFootPrintsV12Callback"
+        }
+      ]
+    },
+    "BMCRemedyForceIntegration": {
+      "type": "object",
+      "x-discriminator-value": "BMCRemedyForce",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "BMCRemedyIntegration": {
+      "type": "object",
+      "x-discriminator-value": "BMCRemedy",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/BMCRemedyCallback"
+        }
+      ]
+    },
     "BoundaryIntegration": {
       "type": "object",
       "x-discriminator-value": "Boundary",
@@ -14852,7 +15891,7 @@
           "$ref": "#/definitions/Integration"
         },
         {
-          "$ref": "#/definitions/AmazonSnsCallback"
+          "$ref": "#/definitions/CampfireCallback"
         }
       ]
     },
@@ -14889,6 +15928,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/CherwellCallback"
         }
       ]
     },
@@ -14934,6 +15976,18 @@
     "CloudSploitIntegration": {
       "type": "object",
       "x-discriminator-value": "CloudSploit",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "CloudWatchEventsIntegration": {
+      "type": "object",
+      "x-discriminator-value": "CloudWatchEvents",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -14991,6 +16045,36 @@
         },
         {
           "$ref": "#/definitions/ConnectWiseCallback"
+        }
+      ]
+    },
+    "ConnectWiseManageIntegration": {
+      "type": "object",
+      "x-discriminator-value": "ConnectWiseManage",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/ConnectWiseManageCallback"
+        }
+      ]
+    },
+    "ConnectWiseManageV2Integration": {
+      "type": "object",
+      "x-discriminator-value": "ConnectWiseManageV2",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/ConnectWiseManageV2Callback"
         }
       ]
     },
@@ -15084,7 +16168,7 @@
         }
       ]
     },
-    "DNSCheckIntegration": {
+    "DnsCheckIntegration": {
       "type": "object",
       "x-discriminator-value": "DNSCheck",
       "allOf": [
@@ -15099,6 +16183,45 @@
     "DripStatIntegration": {
       "type": "object",
       "x-discriminator-value": "DripStat",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "DynatraceAppMonIntegration": {
+      "type": "object",
+      "x-discriminator-value": "DynatraceAppMon",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/DynatraceAppMonCallback"
+        }
+      ]
+    },
+    "DynatraceIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Ruxit",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "DynatraceV2Integration": {
+      "type": "object",
+      "x-discriminator-value": "DynatraceV2",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15132,21 +16255,6 @@
         }
       ]
     },
-    "XPackAlertingIntegration": {
-      "type": "object",
-      "x-discriminator-value": "ESWatcher",
-      "allOf": [
-        {
-          "$ref": "#/definitions/Integration"
-        },
-        {
-          "$ref": "#/definitions/TokenBasedIncomingFeature"
-        },
-        {
-          "$ref": "#/definitions/XPackAlertingCallback"
-        }
-      ]
-    },
     "EvidentIOIntegration": {
       "type": "object",
       "x-discriminator-value": "EvidentIO",
@@ -15167,7 +16275,7 @@
           "$ref": "#/definitions/Integration"
         },
         {
-          "$ref": "#/definitions/WebhookCallback"
+          "$ref": "#/definitions/FlockCallback"
         }
       ]
     },
@@ -15219,6 +16327,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/FreshserviceCallback"
         }
       ]
     },
@@ -15234,9 +16345,45 @@
         }
       ]
     },
-    "GoogleStackdriverIntegration": {
+    "GitHubIntegration": {
+      "type": "object",
+      "x-discriminator-value": "GitHub",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "GitLabIntegration": {
+      "type": "object",
+      "x-discriminator-value": "GitLab",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "GoogleStackDriverIntegration": {
       "type": "object",
       "x-discriminator-value": "GoogleStackdriver",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "GrafanaIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Grafana",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15282,7 +16429,41 @@
         }
       ]
     },
-    "HipchatV2Integration": {
+    "HipChatAddOnIntegration": {
+      "type": "object",
+      "x-discriminator-value": "HipChatAddOn",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/HipChatAddOnCallback"
+        },
+        {
+          "properties": {
+            "requireMatchingUser": {
+              "type": "boolean"
+            },
+            "glanceLabel": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "HipChatIntegration": {
+      "type": "object",
+      "x-discriminator-value": "HipChat",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        }
+      ]
+    },
+    "HipChatIntegrationV2": {
       "type": "object",
       "x-discriminator-value": "HipChatV2",
       "allOf": [
@@ -15293,7 +16474,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/HipchatCallback"
+          "$ref": "#/definitions/HipChatCallbackV2"
         }
       ]
     },
@@ -15321,18 +16502,15 @@
         }
       ]
     },
-    "IcingaIntegration": {
+    "HumioIntegration": {
       "type": "object",
-      "x-discriminator-value": "Icinga",
+      "x-discriminator-value": "Humio",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
-        },
-        {
-          "$ref": "#/definitions/MaridCallback"
         }
       ]
     },
@@ -15348,6 +16526,54 @@
         },
         {
           "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
+    "IcingaIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Icinga",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
+    "IncomingCallIntegration": {
+      "type": "object",
+      "x-discriminator-value": "IncomingCall",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        }
+      ]
+    },
+    "InstanaIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Instana",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "JenkinsIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Jenkins",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
         }
       ]
     },
@@ -15381,6 +16607,18 @@
         }
       ]
     },
+    "KapacitorIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Kapacitor",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "KayakoIntegration": {
       "type": "object",
       "x-discriminator-value": "Kayako",
@@ -15404,7 +16642,7 @@
           "$ref": "#/definitions/Integration"
         },
         {
-          "$ref": "#/definitions/WebhookCallback"
+          "$ref": "#/definitions/KoreCallback"
         }
       ]
     },
@@ -15423,6 +16661,33 @@
     "LibratoIntegration": {
       "type": "object",
       "x-discriminator-value": "Librato",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "LibreNMSIntegration": {
+      "type": "object",
+      "x-discriminator-value": "LibreNMS",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/LibreNMSCallback"
+        }
+      ]
+    },
+    "LightstepIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Lightstep",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15495,6 +16760,45 @@
         }
       ]
     },
+    "LookerIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Looker",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "LoomIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Loom",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "MagentrixIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Magentrix",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MagentrixCallback"
+        }
+      ]
+    },
     "MaridIntegration": {
       "type": "object",
       "x-discriminator-value": "Marid",
@@ -15537,6 +16841,18 @@
         }
       ]
     },
+    "MonitisEmailIntegration": {
+      "type": "object",
+      "x-discriminator-value": "MonitisEmail",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
+        }
+      ]
+    },
     "MonitisIntegration": {
       "type": "object",
       "x-discriminator-value": "Monitis",
@@ -15557,7 +16873,7 @@
           "$ref": "#/definitions/Integration"
         },
         {
-          "$ref": "#/definitions/WebhookCallback"
+          "$ref": "#/definitions/MoxtraCallback"
         }
       ]
     },
@@ -15576,14 +16892,35 @@
         },
         {
           "properties": {
+            "requireMatchingUser": {
+              "type": "boolean"
+            },
             "executeCommands": {
               "type": "boolean"
+            },
+            "tenantId": {
+              "type": "string"
             }
           }
         }
       ]
     },
-    "NagiosV2Integration": {
+    "NagiosIntegrationV1": {
+      "type": "object",
+      "x-discriminator-value": "Nagios",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
+    "NagiosIntegrationV2": {
       "type": "object",
       "x-discriminator-value": "NagiosV2",
       "allOf": [
@@ -15598,7 +16935,22 @@
         }
       ]
     },
-    "NagiosXIV2Integration": {
+    "NagiosXIIntegrationV1": {
+      "type": "object",
+      "x-discriminator-value": "NagiosXI",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
+    "NagiosXIIntegrationV2": {
       "type": "object",
       "x-discriminator-value": "NagiosXIV2",
       "allOf": [
@@ -15613,18 +16965,6 @@
         }
       ]
     },
-    "NeustarIntegration": {
-      "type": "object",
-      "x-discriminator-value": "NeustarEmail",
-      "allOf": [
-        {
-          "$ref": "#/definitions/Integration"
-        },
-        {
-          "$ref": "#/definitions/EmailBasedIncomingFeature"
-        }
-      ]
-    },
     "NetuitiveIntegration": {
       "type": "object",
       "x-discriminator-value": "Netuitive",
@@ -15634,6 +16974,18 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "NeustarIntegration": {
+      "type": "object",
+      "x-discriminator-value": "NeustarEmail",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
         }
       ]
     },
@@ -15673,6 +17025,18 @@
         }
       ]
     },
+    "ObserviumIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Observium",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "ObserviumV2Integration": {
       "type": "object",
       "x-discriminator-value": "ObserviumV2",
@@ -15682,6 +17046,18 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "OEMEmailIntegration": {
+      "type": "object",
+      "x-discriminator-value": "OEMEmail",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
         }
       ]
     },
@@ -15697,7 +17073,7 @@
         }
       ]
     },
-    "Op5Integration": {
+    "OP5Integration": {
       "type": "object",
       "x-discriminator-value": "OP5",
       "allOf": [
@@ -15708,7 +17084,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/Op5Callback"
+          "$ref": "#/definitions/OP5Callback"
         }
       ]
     },
@@ -15724,7 +17100,7 @@
         }
       ]
     },
-    "OpsgenieIntegration": {
+    "OpsGenieIntegration": {
       "type": "object",
       "x-discriminator-value": "OpsGenie",
       "allOf": [
@@ -15735,7 +17111,19 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/OpsgenieCallback"
+          "$ref": "#/definitions/OpsGenieCallback"
+        }
+      ]
+    },
+    "OpsviewIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Opsview",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
         }
       ]
     },
@@ -15775,9 +17163,33 @@
         }
       ]
     },
+    "PingdomIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Pingdom",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
+        }
+      ]
+    },
     "PingdomV2Integration": {
       "type": "object",
       "x-discriminator-value": "PingdomV2",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "PingdomWebhookIntegration": {
+      "type": "object",
+      "x-discriminator-value": "PingdomWebhook",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15832,12 +17244,27 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/PrtgCallback"
         }
       ]
     },
     "RackspaceIntegration": {
       "type": "object",
       "x-discriminator-value": "Rackspace",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "RaygunIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Raygun",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15903,7 +17330,7 @@
           "$ref": "#/definitions/Integration"
         },
         {
-          "$ref": "#/definitions/WebhookCallback"
+          "$ref": "#/definitions/RingCentralGlipCallback"
         }
       ]
     },
@@ -15916,6 +17343,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/RollbarCallback"
         }
       ]
     },
@@ -15931,9 +17361,24 @@
         }
       ]
     },
-    "DynatraceIntegration": {
+    "SalesForceServiceCloudIntegration": {
       "type": "object",
-      "x-discriminator-value": "Ruxit",
+      "x-discriminator-value": "SalesForceServiceCloud",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SalesForceServiceCloudCallback"
+        }
+      ]
+    },
+    "SaltStackIntegration": {
+      "type": "object",
+      "x-discriminator-value": "SaltStack",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15955,7 +17400,7 @@
         }
       ]
     },
-    "SCOMIntegration": {
+    "ScomIntegration": {
       "type": "object",
       "x-discriminator-value": "SCOM",
       "allOf": [
@@ -16003,6 +17448,18 @@
         }
       ]
     },
+    "SentryIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Sentry",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "ServerDensityIntegration": {
       "type": "object",
       "x-discriminator-value": "ServerDensity",
@@ -16027,6 +17484,18 @@
         }
       ]
     },
+    "ServiceNowIntegration": {
+      "type": "object",
+      "x-discriminator-value": "ServiceNow",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "ServiceNowV2Integration": {
       "type": "object",
       "x-discriminator-value": "ServiceNowV2",
@@ -16038,7 +17507,22 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/ServiceNowCallback"
+          "$ref": "#/definitions/ServiceNowV2Callback"
+        }
+      ]
+    },
+    "ServiceNowV3Integration": {
+      "type": "object",
+      "x-discriminator-value": "ServiceNowV3",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/ServiceNowV3Callback"
         }
       ]
     },
@@ -16078,6 +17562,49 @@
         }
       ]
     },
+    "SlackAppIntegration": {
+      "type": "object",
+      "x-discriminator-value": "SlackApp",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SlackAppCallback"
+        },
+        {
+          "properties": {
+            "requireMatchingUser": {
+              "type": "boolean"
+            },
+            "executeCommands": {
+              "type": "boolean"
+            },
+            "useSlackButtons": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "SlackIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Slack",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SlackCallback"
+        }
+      ]
+    },
     "SoastaIntegration": {
       "type": "object",
       "x-discriminator-value": "Soasta",
@@ -16114,6 +17641,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SolarwindsMSPNcentralCallback"
         }
       ]
     },
@@ -16144,6 +17674,21 @@
         }
       ]
     },
+    "SplunkITSIIntegration": {
+      "type": "object",
+      "x-discriminator-value": "SplunkITSI",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SplunkITSICallback"
+        }
+      ]
+    },
     "StackdriverIntegration": {
       "type": "object",
       "x-discriminator-value": "Stackdriver",
@@ -16162,6 +17707,18 @@
     "StatusCakeIntegration": {
       "type": "object",
       "x-discriminator-value": "StatusCake",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "StatusHubIntegration": {
+      "type": "object",
+      "x-discriminator-value": "StatusHub",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -16198,6 +17755,18 @@
         },
         {
           "$ref": "#/definitions/StatusPageIOCallback"
+        }
+      ]
+    },
+    "StatusyIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Statusy",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/StatusyCallback"
         }
       ]
     },
@@ -16273,6 +17842,33 @@
         }
       ]
     },
+    "TraceIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Trace",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "TrackItIntegration": {
+      "type": "object",
+      "x-discriminator-value": "TrackIt",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
     "TravisCIIntegration": {
       "type": "object",
       "x-discriminator-value": "TravisCI",
@@ -16285,7 +17881,7 @@
         }
       ]
     },
-    "TwilioCIIntegration": {
+    "TwilioIntegration": {
       "type": "object",
       "x-discriminator-value": "Twilio",
       "allOf": [
@@ -16294,6 +17890,30 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "UpdownIOIntegration": {
+      "type": "object",
+      "x-discriminator-value": "UpdownIO",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "UptimeRobotEmailIntegration": {
+      "type": "object",
+      "x-discriminator-value": "UptimeRobotEmail",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
         }
       ]
     },
@@ -16345,6 +17965,18 @@
         }
       ]
     },
+    "VCSAIntegration": {
+      "type": "object",
+      "x-discriminator-value": "VCSA",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "WavefrontIntegration": {
       "type": "object",
       "x-discriminator-value": "Wavefront",
@@ -16366,6 +17998,48 @@
         },
         {
           "$ref": "#/definitions/WebhookCallback"
+        }
+      ]
+    },
+    "XLReleaseIntegration": {
+      "type": "object",
+      "x-discriminator-value": "XLRelease",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "XmppIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Xmpp",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
+    "XPackAlertingIntegration": {
+      "type": "object",
+      "x-discriminator-value": "ESWatcher",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/XPackAlertingCallback"
         }
       ]
     },
@@ -16411,6 +18085,18 @@
         },
         {
           "$ref": "#/definitions/MaridCallback"
+        }
+      ]
+    },
+    "ZyrionIntegration": {
+      "type": "object",
+      "x-discriminator-value": "ZyrionEmail",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
         }
       ]
     },
@@ -16520,8 +18206,7 @@
       "type": "object",
       "required": [
         "field",
-        "operation",
-        "expectedValue"
+        "operation"
       ],
       "properties": {
         "field": {
@@ -16548,6 +18233,10 @@
         },
         "expectedValue": {
           "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -16555,7 +18244,8 @@
       "type": "object",
       "discriminator": "type",
       "required": [
-        "type"
+        "type",
+        "name"
       ],
       "properties": {
         "name": {
@@ -16563,7 +18253,8 @@
         },
         "order": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "minimum": 0
         },
         "filter": {
           "$ref": "#/definitions/IntegrationActionFilter"
@@ -16571,28 +18262,40 @@
         "type": {
           "type": "string",
           "enum": [
-            "ignore",
             "acknowledge",
             "addNote",
             "close",
-            "create"
+            "create",
+            "ignore"
           ]
         }
       }
     },
     "CommonIntegrationAction": {
       "type": "object",
-      "properties": {
-        "user": {
-          "type": "string"
+      "required": [
+        "user",
+        "note",
+        "alias"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseIntegrationAction"
         },
-        "note": {
-          "type": "string"
-        },
-        "alias": {
-          "type": "string"
+        {
+          "properties": {
+            "user": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            },
+            "alias": {
+              "type": "string"
+            }
+          }
         }
-      }
+      ]
     },
     "IgnoreIntegrationAction": {
       "type": "object",
@@ -16607,9 +18310,6 @@
       "type": "object",
       "x-discriminator-value": "create",
       "allOf": [
-        {
-          "$ref": "#/definitions/BaseIntegrationAction"
-        },
         {
           "$ref": "#/definitions/CommonIntegrationAction"
         },
@@ -16636,6 +18336,9 @@
                 "P4",
                 "P5"
               ]
+            },
+            "customPriority": {
+              "type": "string"
             },
             "appendAttachments": {
               "type": "boolean"
@@ -16688,9 +18391,6 @@
       "x-discriminator-value": "close",
       "allOf": [
         {
-          "$ref": "#/definitions/BaseIntegrationAction"
-        },
-        {
           "$ref": "#/definitions/CommonIntegrationAction"
         }
       ]
@@ -16700,9 +18400,6 @@
       "x-discriminator-value": "acknowledge",
       "allOf": [
         {
-          "$ref": "#/definitions/BaseIntegrationAction"
-        },
-        {
           "$ref": "#/definitions/CommonIntegrationAction"
         }
       ]
@@ -16711,9 +18408,6 @@
       "type": "object",
       "x-discriminator-value": "addNote",
       "allOf": [
-        {
-          "$ref": "#/definitions/BaseIntegrationAction"
-        },
         {
           "$ref": "#/definitions/CommonIntegrationAction"
         }
