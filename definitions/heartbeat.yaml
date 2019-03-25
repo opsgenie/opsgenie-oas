@@ -33,6 +33,34 @@ CreateHeartbeatPayload:
       enabled:
         type: boolean
         description: Enable/disable heartbeat monitoring
+      ownerTeam:
+        type: object
+        description: Owner team of the heartbeat, consisting id and/or name of the owner team
+        properties:
+          name:
+            type: string
+          id:
+            type: string
+      alertMessage:
+        type: string
+        description: Specifies the alert message for heartbeat expiration alert. If this is not provided, default alert message is 'HeartbeatName is expired'
+        maxLength: 130
+      alertTags:
+        type: array
+        description: Specifies the alert tags for heartbeat expiration alert
+        items:
+          type: string
+          maxLength: 50
+        maxLength: 20
+      alertPriority:
+        type: string
+        description: Specifies the alert priority for heartbeat expiration alert. If this is not provided, default priority is P3
+        enum:
+          - P1
+          - P2
+          - P3
+          - P4
+          - P5
 
 UpdateHeartbeatPayload:
   type: object
@@ -99,6 +127,19 @@ DisableHeartbeatResponse:
     - properties:
         data:
           $ref: '#/definitions/HeartbeatMeta'
+
+ListHeartbeatResponse:
+  type: object
+  allOf:
+    - $ref: "#/definitions/BaseResponse"
+    - properties:
+        data:
+          type: object
+          properties:
+            heartbeats:
+              type: array
+              items:
+                $ref: "#/definitions/Heartbeat"
 
 ##################
 #      MODEL     #
