@@ -30,11 +30,6 @@ CreateAlertPayload:
         description:
           type: string
           description: Description field of the alert that is generally used to provide a detailed information about the alert.
-        teams:
-          type: array
-          description: Teams that the alert will be routed to send notifications
-          items:
-            $ref: '#/definitions/TeamRecipient'
         responders:
           type: array
           description: Responders that the alert will be routed to send notifications
@@ -202,6 +197,64 @@ CreateSavedSearchPayload:
       items:
         $ref: '#/definitions/TeamRecipient'
 
+UpdateSavedSearchPayload:
+  type: object
+  required:
+    - name
+    - query
+    - owner
+  properties:
+    name:
+      type: string
+      maxLength: 100
+    description:
+      type: string
+      maxLength: 15000
+    query:
+      type: string
+      maxLength: 1000
+    owner:
+      $ref: "#/definitions/UserRecipient"
+    teams:
+      type: array
+      maxItems: 20
+      description: Teams that the alert will be routed to send notifications
+      items:
+        $ref: "#/definitions/TeamRecipient"
+
+UpdateAlertPriorityPayload:
+  type: object
+  required:
+    - priority
+  properties:
+    priority:
+      type: string
+      description: Priority level of the alert
+      enum:
+        - P1
+        - P2
+        - P3
+        - P4
+        - P5
+
+UpdateAlertMessagePayload:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      description: Message of the alert
+
+UpdateAlertDescriptionPayload:
+  type: object
+  required:
+    - description
+  properties:
+    description:
+      type: string
+      description: Description of the alert
+
 ##################
 #    RESPONSE    #
 ##################
@@ -311,6 +364,18 @@ GetAlertAttachmentResponse:
         data:
           $ref: '#/definitions/AlertAttachment'
 
+GetCountAlertsResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int32
+
 ##################
 #      MODEL     #
 ##################
@@ -379,10 +444,6 @@ BaseAlert:
       type: string
     priority:
       type: string
-    teams:
-      type: array
-      items:
-        $ref: '#/definitions/AlertTeamMeta'
     responders:
       type: array
       items:

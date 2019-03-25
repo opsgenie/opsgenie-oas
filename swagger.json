@@ -1329,7 +1329,20 @@
             }
           },
           "400": {
-            "$ref": "#/responses/BadRequest"
+            "description": "Corrupted file",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              }
+            }
           },
           "401": {
             "$ref": "#/responses/Unauthorized"
@@ -2175,6 +2188,369 @@
         "responses": {
           "200": {
             "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "alert"
+        ],
+        "summary": "Update Saved Search",
+        "description": "Update saved search for the given search identifier",
+        "operationId": "updateSavedSearch",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-api-continued#section-update-saved-search"
+        },
+        "x-collapse-params": "UpdateSavedSearchRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SearchIdentifier"
+          },
+          {
+            "$ref": "#/parameters/SearchIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of updating saved search",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateSavedSearchPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns saved search for given identifier",
+            "schema": {
+              "$ref": "#/definitions/GetSavedSearchResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/alerts/count": {
+      "get": {
+        "tags": [
+          "alert"
+        ],
+        "summary": "Count Alerts",
+        "description": "Count alerts in Opsgenie",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-api#section-count-alerts"
+        },
+        "operationId": "countAlerts",
+        "x-collapse-params": "GetCountAlertsRequest",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query to apply while filtering the alerts",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchIdentifier",
+            "in": "query",
+            "description": "Identifier of the saved search query to apply while filtering the alerts",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchIdentifierType",
+            "in": "query",
+            "description": "Identifier type of the saved search query. Possible values are id and name. Default value is id. If searchIdentifier is not provided, this value is ignored.",
+            "type": "string",
+            "default": "id",
+            "enum": [
+              "id",
+              "name"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns saved search for given identifier",
+            "schema": {
+              "$ref": "#/definitions/GetCountAlertsResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/alerts/{identifier}/message": {
+      "put": {
+        "tags": [
+          "alert"
+        ],
+        "summary": "Update Alert Message",
+        "description": "Update the message of the alert with given identifier",
+        "operationId": "updateAlertMessage",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-api-continued#section-update-alert-message"
+        },
+        "x-collapse-params": "UpdateAlertMessageRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertIdentifier"
+          },
+          {
+            "$ref": "#/parameters/AlertIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update alert message",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAlertMessagePayload"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/alerts/{identifier}/description": {
+      "put": {
+        "tags": [
+          "alert"
+        ],
+        "summary": "Update Alert Description",
+        "description": "Update the description of the alert with given identifier",
+        "operationId": "updateAlertDescription",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-api-continued#section-update-alert-description"
+        },
+        "x-collapse-params": "UpdateAlertDescriptionRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertIdentifier"
+          },
+          {
+            "$ref": "#/parameters/AlertIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update alert description",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAlertDescriptionPayload"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v2/alerts/{identifier}/priority": {
+      "put": {
+        "tags": [
+          "alert"
+        ],
+        "summary": "Update Alert Priority",
+        "description": "Update the priority of the alert with given identifier",
+        "operationId": "updateAlertPriority",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/alert-api-continued#section-update-alert-priority"
+        },
+        "x-collapse-params": "UpdateAlertPriorityRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertIdentifier"
+          },
+          {
+            "$ref": "#/parameters/AlertIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update alert priority",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAlertPriorityPayload"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/responses/Accepted"
           },
           "400": {
             "$ref": "#/responses/BadRequest"
@@ -12665,13 +13041,6 @@
               "type": "string",
               "description": "Description field of the alert that is generally used to provide a detailed information about the alert."
             },
-            "teams": {
-              "type": "array",
-              "description": "Teams that the alert will be routed to send notifications",
-              "items": {
-                "$ref": "#/definitions/TeamRecipient"
-              }
-            },
             "responders": {
               "type": "array",
               "description": "Responders that the alert will be routed to send notifications",
@@ -12937,6 +13306,82 @@
         }
       }
     },
+    "UpdateSavedSearchPayload": {
+      "type": "object",
+      "required": [
+        "name",
+        "query",
+        "owner"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 15000
+        },
+        "query": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "owner": {
+          "$ref": "#/definitions/UserRecipient"
+        },
+        "teams": {
+          "type": "array",
+          "maxItems": 20,
+          "description": "Teams that the alert will be routed to send notifications",
+          "items": {
+            "$ref": "#/definitions/TeamRecipient"
+          }
+        }
+      }
+    },
+    "UpdateAlertPriorityPayload": {
+      "type": "object",
+      "required": [
+        "priority"
+      ],
+      "properties": {
+        "priority": {
+          "type": "string",
+          "description": "Priority level of the alert",
+          "enum": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5"
+          ]
+        }
+      }
+    },
+    "UpdateAlertMessagePayload": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message of the alert"
+        }
+      }
+    },
+    "UpdateAlertDescriptionPayload": {
+      "type": "object",
+      "required": [
+        "description"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of the alert"
+        }
+      }
+    },
     "GetRequestStatusResponse": {
       "type": "object",
       "allOf": [
@@ -13129,6 +13574,27 @@
         }
       ]
     },
+    "GetCountAlertsResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "AlertRequestStatus": {
       "type": "object",
       "properties": {
@@ -13220,12 +13686,6 @@
         },
         "priority": {
           "type": "string"
-        },
-        "teams": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AlertTeamMeta"
-          }
         },
         "responders": {
           "type": "array",
@@ -19078,7 +19538,7 @@
                 "type": "string",
                 "maxLength": 50
               },
-              "maxLength": 20
+              "maxItems": 20
             },
             "alertPriority": {
               "type": "string",
