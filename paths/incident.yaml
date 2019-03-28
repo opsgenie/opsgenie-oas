@@ -1,0 +1,311 @@
+/v1/incidents/requests/{requestId}:
+  get:
+    tags:
+      - incident
+    summary: Get Request Status of Incident
+    description: Used to track the status and incident details (if any) of the request whose identifier is given
+    operationId: getIncidentRequestStatus
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/incident-api#section-get-request-status
+    parameters:
+      - name: requestId
+        in: path
+        description: Universally unique identifier of the questioned request
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Request status information for given id
+        schema:
+          $ref: "#/definitions/GetIncidentRequestStatusResponse"
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"
+
+/v1/incidents/create:
+  post:
+    tags:
+      - incident
+    summary: Create Incident
+    description: Creates a new incident
+    operationId: createIncident
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/incident-api#section-create-incident
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of created incident
+        required: true
+        schema:
+          $ref: "#/definitions/CreateIncidentPayload"
+    responses:
+      "202":
+        $ref: "#/responses/Accepted"
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"
+
+/v1/incidents/{identifier}:
+  get:
+    tags:
+      - incident
+    summary: Get Incident
+    description: Returns incident with given id, tiny id or alias
+    operationId: getIncident
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/incident-api#section-get-incident
+    x-collapse-params: GetIncidentRequest
+    parameters:
+      - $ref: "#/parameters/IncidentIdentifier"
+      - $ref: "#/parameters/IncidentIdentifierType"
+    responses:
+      "200":
+        description: Incident information for given identifier
+        schema:
+          $ref: "#/definitions/GetIncidentResponse"
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"
+
+  delete:
+    tags:
+      - incident
+    summary: Delete Incident
+    description: Deletes an incident using incident id or the tiny id
+    operationId: deleteIncident
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/incident-api#section-delete-incident
+    x-collapse-params: DeleteIncidentRequest
+    parameters:
+      - $ref: "#/parameters/IncidentIdentifier"
+      - $ref: "#/parameters/IncidentIdentifierType"
+    responses:
+      "202":
+        $ref: "#/responses/Accepted"
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"
+
+/v1/incidents/:
+  get:
+    tags:
+      - incident
+    summary: List incidents
+    description: Return list of incidents
+    operationId: ListIncidents
+    x-collapse-params: ListIncidentsRequest
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/incident-api#section-list-incidents
+    parameters:
+      - name: query
+        in: query
+        description: Search query to apply while filtering the incidents.
+        required: true
+        type: string
+      - name: offset
+        in: query
+        description: Start index of the result set (to apply pagination). Minimum value (and also default value) is 0.
+        required: false
+        type: integer
+        format: int32
+        minimum: 0
+      - name: limit
+        in: query
+        description: Maximum number of items to provide in the result. Must be a positive integer value. Default value is 20 and maximum value is 100
+        required: false
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+      - name: sort
+        in: query
+        description: Name of the field that result set will be sorted by
+        required: false
+        type: string
+        enum:
+          - createdAt
+          - tinyId
+          - message
+          - status
+          - isSeen
+          - owner
+        default: createdAt
+      - name: order
+        in: query
+        description: Sorting order of the result set
+        required: false
+        type: string
+        enum:
+          - asc
+          - desc
+        default: desc
+    responses:
+      "200":
+        description: List of incident informations
+        schema:
+          $ref: "#/definitions/ListIncidentsResponse"
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+          X-Paging-Prev:
+            description: Previous page url
+            type: string
+          X-Paging-Next:
+            description: Next page url
+            type: string
+          X-Paging-First:
+            description: First page url
+            type: string
+          X-Paging-Last:
+            description: Last page url
+            type: string
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"
+
+/v1/incidents/{identifier}/close:
+  post:
+    tags:
+      - incident
+    summary: Close Incident
+    description: Closes incident with given identifier
+    operationId: closeIncident
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/incident-api#section-close-incident
+    x-collapse-params: CloseIncidentRequest
+    parameters:
+      - $ref: "#/parameters/IncidentIdentifier"
+      - $ref: "#/parameters/IncidentIdentifierType"
+      - name: body
+        in: body
+        description: Request payload of closing incident action
+        required: false
+        schema:
+          $ref: "#/definitions/CloseIncidentPayload"
+    responses:
+      "202":
+        $ref: "#/responses/Accepted"
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"

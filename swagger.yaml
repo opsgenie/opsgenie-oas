@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 
 ################################################################################
 #                               API Information                                #
@@ -54,6 +54,7 @@ paths:
   - $ref: ./paths/forwardingRule.yaml
   - $ref: ./paths/customUserRole.yaml
   - $ref: ./paths/policy.yaml
+  - $ref: ./paths/incident.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -81,6 +82,7 @@ parameters:
   - $ref: ./parameters/forwardingRule.yaml
   - $ref: ./parameters/customUserRole.yaml
   - $ref: ./definitions/deprecatedPolicy.yaml
+  - $ref: ./parameters/incident.yaml
 
 ################################################################################
 #                                 RESPONSES                                    #
@@ -116,3 +118,4 @@ definitions:
   - $ref: ./definitions/forwardingRule.yaml
   - $ref: ./definitions/customUserRole.yaml
   - $ref: ./definitions/policy.yaml
+  - $ref: ./definitions/incident.yaml
