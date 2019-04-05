@@ -13416,21 +13416,26 @@
             "Apica",
             "Apimetrics",
             "AppDynamics",
+            "AppOptics",
             "AppSignal",
             "AppSignalV2",
             "Atatus",
+            "AtlassianBambooEmail",
             "AutotaskAEMEmail",
             "AutoTaskEmail",
             "Azure",
             "AzureAutoScale",
             "AzureOMS",
             "AzureServiceHealth",
+            "AzureResourceHealth",
+            "BigPanda",
             "Bitbucket",
             "BlueMatador",
             "BMCFootPrintsV11",
             "BMCFootPrintsV12",
             "BMCRemedy",
             "BMCRemedyForce",
+            "BMCRemedyOnDemand",
             "Boundary",
             "Campfire",
             "Catchpoint",
@@ -13447,6 +13452,7 @@
             "ConnectWise",
             "ConnectWiseManage",
             "ConnectWiseManageV2",
+            "ConnectWiseAutomate",
             "Consul",
             "CopperEgg",
             "Crashlytics",
@@ -13481,6 +13487,7 @@
             "HipChatAddOn",
             "Honeybadger",
             "HostedGraphite",
+            "HPServiceManager",
             "Humio",
             "Icinga",
             "Icinga2",
@@ -13505,12 +13512,14 @@
             "Loom",
             "Magentrix",
             "Marid",
+            "OEC",
             "Mattermost",
             "MongoDBCloud",
             "Monitis",
             "MonitisEmail",
             "Moxtra",
             "MSTeams",
+            "MSTeamsV2",
             "Nagios",
             "NagiosV2",
             "NagiosXI",
@@ -13573,6 +13582,7 @@
             "Splunk",
             "SplunkITSI",
             "Stackdriver",
+            "StackStorm",
             "StatusCake",
             "StatusHub",
             "StatusIO",
@@ -13596,13 +13606,17 @@
             "VCenter",
             "VCSA",
             "Wavefront",
+            "WhatsUpGold",
             "Webhook",
+            "Workato",
             "XLRelease",
             "Xmpp",
             "Zabbix",
+            "Zapier",
             "Zendesk",
             "Zenoss",
-            "ZyrionEmail"
+            "ZyrionEmail",
+            "ManageEngine"
           ]
         }
       }
@@ -13816,7 +13830,9 @@
             "custom-action",
             "assign-ownership",
             "take-ownership",
-            "update-priority"
+            "update-priority",
+            "update-description",
+            "update-message"
           ]
         },
         "extraField": {
@@ -13837,6 +13853,9 @@
             "resolve-ticket",
             "add-work-info",
             "close-incident",
+            "create",
+            "close",
+            "resolve",
             "add-journal",
             "in-progress-incident",
             "resolve-incident",
@@ -13892,6 +13911,7 @@
             "create-incident-and-update-component-statuses",
             "resolve-incident-and-update-component-statuses-back-to-operational",
             "update-component-statuses",
+            "sendData",
             "postToUrl",
             "add-internal-note",
             "public-reply",
@@ -13908,7 +13928,8 @@
           "$ref": "#/definitions/AlertFilter"
         },
         "forwardingEnabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "nullable": true
         },
         "forwardingActionMappings": {
           "type": "array",
@@ -13921,7 +13942,8 @@
           "enum": [
             "amazon-sns-callback",
             "base-webhook-callback",
-            "bidirectional-callback-new"
+            "bidirectional-callback-new",
+            "bmc-remedy-on-demand-callback"
           ]
         }
       }
@@ -13943,7 +13965,8 @@
               }
             },
             "updatesEnabled": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             },
             "bidirectional-callback-type": {
               "type": "string",
@@ -13963,6 +13986,7 @@
                 "libre-nms-callback",
                 "magentrix-callback",
                 "ms-teams-callback",
+                "ms-teams-v2-callback",
                 "op5-callback",
                 "ops-genie-callback",
                 "prtg-callback",
@@ -13973,6 +13997,7 @@
                 "solarwinds-msp-ncentral-callback",
                 "splunk-itsi-callback",
                 "status-page-io-callback",
+                "sumo-logic-callback",
                 "zendesk-callback"
               ]
             }
@@ -14000,10 +14025,12 @@
               }
             },
             "addAlertDetails": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             },
             "addAlertDescription": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             },
             "base-webhook-callback-type": {
               "type": "string",
@@ -14068,14 +14095,25 @@
                 "es-watcher-callback",
                 "hip-chat-add-on-callback",
                 "hip-chat-callback-v2",
+                "icinga2-callback",
+                "icinga-callback",
                 "logic-monitor-callback",
                 "marid-callback",
                 "mattermost-callback",
+                "nagios-based-v1-callback",
+                "nagios-based-v2-callback",
+                "nagios-xiv1-callback",
+                "nagios-xiv2-callback",
                 "slack-app-callback",
                 "slack-callback",
+                "solarwinds-callback",
                 "solar-winds-web-help-desk-callback",
                 "stackdriver-callback",
-                "status-io-callback"
+                "status-io-callback",
+                "track-it-callback",
+                "xmpp-callback",
+                "zabbix-callback",
+                "zenoss-callback"
               ]
             }
           }
@@ -14096,6 +14134,9 @@
             },
             "region": {
               "type": "string"
+            },
+            "newConfType": {
+              "type": "boolean"
             }
           }
         }
@@ -14753,6 +14794,34 @@
         }
       ]
     },
+    "BMCRemedyOnDemandCallback": {
+      "type": "object",
+      "x-discriminator-value": "bmc-remedy-on-demand-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/OutgoingCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "lastname": {
+              "type": "string"
+            },
+            "firstname": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
     "CherwellCallback": {
       "type": "object",
       "x-discriminator-value": "cherwell-callback",
@@ -14934,6 +15003,44 @@
         }
       ]
     },
+    "Icinga2Callback": {
+      "type": "object",
+      "x-discriminator-value": "icinga2-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "IcingaCallback": {
+      "type": "object",
+      "x-discriminator-value": "icinga-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
     "KoreCallback": {
       "type": "object",
       "x-discriminator-value": "kore-callback",
@@ -14990,6 +15097,104 @@
       "allOf": [
         {
           "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
+    "MSTeamsV2Callback": {
+      "type": "object",
+      "x-discriminator-value": "ms-teams-v2-callback",
+      "required": [
+        "conversationId"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "webhookUrl": {
+              "type": "string"
+            },
+            "conversationId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "NagiosBasedV1Callback": {
+      "type": "object",
+      "x-discriminator-value": "nagios-based-v1-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "NagiosBasedV2Callback": {
+      "type": "object",
+      "x-discriminator-value": "nagios-based-v2-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "NagiosXIV1Callback": {
+      "type": "object",
+      "x-discriminator-value": "nagios-xiv1-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "NagiosXIV2Callback": {
+      "type": "object",
+      "x-discriminator-value": "nagios-xiv2-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
         }
       ]
     },
@@ -15084,13 +15289,16 @@
               "type": "string"
             },
             "sendDescription": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             },
             "sendRoutedTeams": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             },
             "sendTags": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         }
@@ -15107,6 +15315,25 @@
           "properties": {
             "url": {
               "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "SolarwindsCallback": {
+      "type": "object",
+      "x-discriminator-value": "solarwinds-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
             }
           }
         }
@@ -15148,6 +15375,9 @@
             },
             "password": {
               "type": "string"
+            },
+            "username": {
+              "type": "string"
             }
           }
         }
@@ -15159,6 +15389,98 @@
       "allOf": [
         {
           "$ref": "#/definitions/BaseWebhookCallback"
+        }
+      ]
+    },
+    "SumoLogicCallback": {
+      "type": "object",
+      "x-discriminator-value": "sumo-logic-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TrackItCallback": {
+      "type": "object",
+      "x-discriminator-value": "track-it-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "XmppCallback": {
+      "type": "object",
+      "x-discriminator-value": "xmpp-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "ZabbixCallback": {
+      "type": "object",
+      "x-discriminator-value": "zabbix-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "ZenossCallback": {
+      "type": "object",
+      "x-discriminator-value": "zenoss-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallback"
+        },
+        {
+          "properties": {
+            "sendViaMarid": {
+              "type": "boolean"
+            },
+            "sendViaOEC": {
+              "type": "boolean"
+            }
+          }
         }
       ]
     },
@@ -15188,21 +15510,26 @@
             "Apica",
             "Apimetrics",
             "AppDynamics",
+            "AppOptics",
             "AppSignal",
             "AppSignalV2",
             "Atatus",
+            "AtlassianBambooEmail",
             "AutotaskAEMEmail",
             "AutoTaskEmail",
             "Azure",
             "AzureAutoScale",
             "AzureOMS",
+            "AzureResourceHealth",
             "AzureServiceHealth",
+            "BigPanda",
             "Bitbucket",
             "BlueMatador",
             "BMCFootPrintsV11",
             "BMCFootPrintsV12",
             "BMCRemedy",
             "BMCRemedyForce",
+            "BMCRemedyOnDemand",
             "Boundary",
             "Campfire",
             "Catchpoint",
@@ -15217,6 +15544,7 @@
             "Codeship",
             "Compose",
             "ConnectWise",
+            "ConnectWiseAutomate",
             "ConnectWiseManage",
             "ConnectWiseManageV2",
             "Consul",
@@ -15252,6 +15580,7 @@
             "HipChatV2",
             "Honeybadger",
             "HostedGraphite",
+            "HPServiceManager",
             "Humio",
             "Icinga",
             "Icinga2",
@@ -15275,6 +15604,7 @@
             "Looker",
             "Loom",
             "Magentrix",
+            "ManageEngine",
             "Marid",
             "Mattermost",
             "MongoDBCloud",
@@ -15282,6 +15612,7 @@
             "MonitisEmail",
             "Moxtra",
             "MSTeams",
+            "MSTeamsV2",
             "Nagios",
             "NagiosV2",
             "NagiosXI",
@@ -15344,6 +15675,7 @@
             "Splunk",
             "SplunkITSI",
             "Stackdriver",
+            "StackStorm",
             "StatusCake",
             "StatusHub",
             "StatusIO",
@@ -15368,9 +15700,12 @@
             "VCSA",
             "Wavefront",
             "Webhook",
+            "WhatsUpGold",
+            "Workato",
             "XLRelease",
             "Xmpp",
             "Zabbix",
+            "Zapier",
             "Zendesk",
             "Zenoss",
             "ZyrionEmail"
@@ -15391,7 +15726,8 @@
           "$ref": "#/definitions/TeamMeta"
         },
         "isGlobal": {
-          "type": "boolean"
+          "type": "boolean",
+          "nullable": true
         },
         "_readOnly": {
           "type": "array",
@@ -15411,11 +15747,13 @@
         },
         "ignoreTeamsFromPayload": {
           "description": "If enabled, the integration will ignore teams sent in request payloads. Defaults to false",
-          "type": "boolean"
+          "type": "boolean",
+          "nullable": true
         },
         "ignoreRecipientsFromPayload": {
           "description": "If enabled, the integration will ignore recipients sent in request payloads. Defaults to false",
-          "type": "boolean"
+          "type": "boolean",
+          "nullable": true
         },
         "recipients": {
           "description": "Optional user, schedule, teams or escalation names to calculate which users will receive the notifications of the alert. Recipients which are exceeding the limit are ignored",
@@ -15428,10 +15766,12 @@
           "type": "boolean"
         },
         "ignoreTagsFromPayload": {
-          "type": "boolean"
+          "type": "boolean",
+          "nullable": true
         },
         "ignoreExtraPropertiesFromPayload": {
-          "type": "boolean"
+          "type": "boolean",
+          "nullable": true
         },
         "priority": {
           "type": "string"
@@ -15499,9 +15839,16 @@
               "description": "This parameter is for allowing or restricting the configuration access. If configuration access is restricted, the integration will be limited to Alert API requests and sending heartbeats. Defaults to false",
               "type": "boolean"
             },
+            "allowReadAccess": {
+              "type": "boolean"
+            },
             "allowWriteAccess": {
               "description": "This parameter is for configuring the read-only access of integration. If the integration is limited to read-only access, the integration will not be authorized to perform any create, update or delete action within any domain. Defaults to true",
               "type": "boolean"
+            },
+            "allowDeleteAccess": {
+              "type": "boolean",
+              "nullable": true
             }
           }
         }
@@ -15682,6 +16029,18 @@
         }
       ]
     },
+    "AppOpticsIntegration": {
+      "type": "object",
+      "x-discriminator-value": "AppOptics",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "AppSignalIntegration": {
       "type": "object",
       "x-discriminator-value": "AppSignal",
@@ -15715,6 +16074,18 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "AtlassianBambooIntegration": {
+      "type": "object",
+      "x-discriminator-value": "AtlassianBambooEmail",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/EmailBasedIncomingFeature"
         }
       ]
     },
@@ -15778,9 +16149,33 @@
         }
       ]
     },
+    "AzureResourceHealthIntegration": {
+      "type": "object",
+      "x-discriminator-value": "AzureResourceHealth",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "AzureServiceHealthIntegration": {
       "type": "object",
       "x-discriminator-value": "AzureServiceHealth",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "BigPandaIntegration": {
+      "type": "object",
+      "x-discriminator-value": "BigPanda",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -15868,6 +16263,18 @@
         },
         {
           "$ref": "#/definitions/BMCRemedyCallback"
+        }
+      ]
+    },
+    "BMCRemedyOnDemandIntegration": {
+      "type": "object",
+      "x-discriminator-value": "BMCRemedyOnDemand",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/BMCRemedyOnDemandCallback"
         }
       ]
     },
@@ -16024,6 +16431,18 @@
     "ComposeIntegration": {
       "type": "object",
       "x-discriminator-value": "Compose",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "ConnectWiseAutomateIntegration": {
+      "type": "object",
+      "x-discriminator-value": "ConnectWiseAutomate",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -16502,6 +16921,18 @@
         }
       ]
     },
+    "HPServiceManagerIntegration": {
+      "type": "object",
+      "x-discriminator-value": "HPServiceManager",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "HumioIntegration": {
       "type": "object",
       "x-discriminator-value": "Humio",
@@ -16525,7 +16956,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/Icinga2Callback"
         }
       ]
     },
@@ -16540,7 +16971,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/IcingaCallback"
         }
       ]
     },
@@ -16799,6 +17230,18 @@
         }
       ]
     },
+    "ManageEngineIntegrationDTO": {
+      "type": "object",
+      "x-discriminator-value": "ManageEngine",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "MaridIntegration": {
       "type": "object",
       "x-discriminator-value": "Marid",
@@ -16905,6 +17348,40 @@
         }
       ]
     },
+    "MSTeamsV2Integration": {
+      "type": "object",
+      "x-discriminator-value": "MSTeamsV2",
+      "required": [
+        "msteamsV2TeamId"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/MSTeamsV2Callback"
+        },
+        {
+          "properties": {
+            "requireMatchingUser": {
+              "type": "boolean"
+            },
+            "executeCommands": {
+              "type": "boolean"
+            },
+            "tenantId": {
+              "type": "string"
+            },
+            "msteamsV2TeamId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
     "NagiosIntegrationV1": {
       "type": "object",
       "x-discriminator-value": "Nagios",
@@ -16916,7 +17393,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/NagiosBasedV1Callback"
         }
       ]
     },
@@ -16931,7 +17408,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/NagiosBasedV2Callback"
         }
       ]
     },
@@ -16946,7 +17423,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/NagiosXIV1Callback"
         }
       ]
     },
@@ -16961,7 +17438,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/NagiosXIV2Callback"
         }
       ]
     },
@@ -17628,7 +18105,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/SolarwindsCallback"
         }
       ]
     },
@@ -17701,6 +18178,18 @@
         },
         {
           "$ref": "#/definitions/StackdriverCallback"
+        }
+      ]
+    },
+    "StackStormIntegration": {
+      "type": "object",
+      "x-discriminator-value": "StackStorm",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
         }
       ]
     },
@@ -17791,6 +18280,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SumoLogicCallback"
         }
       ]
     },
@@ -17865,7 +18357,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/TrackItCallback"
         }
       ]
     },
@@ -18001,6 +18493,30 @@
         }
       ]
     },
+    "WhatsUpGoldIntegration": {
+      "type": "object",
+      "x-discriminator-value": "WhatsUpGold",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "WorkatoIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Workato",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "XLReleaseIntegration": {
       "type": "object",
       "x-discriminator-value": "XLRelease",
@@ -18024,7 +18540,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/XmppCallback"
         }
       ]
     },
@@ -18054,7 +18570,19 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/ZabbixCallback"
+        }
+      ]
+    },
+    "ZapierIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Zapier",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
         }
       ]
     },
@@ -18084,7 +18612,7 @@
           "$ref": "#/definitions/TokenBasedIncomingFeature"
         },
         {
-          "$ref": "#/definitions/MaridCallback"
+          "$ref": "#/definitions/ZenossCallback"
         }
       ]
     },
@@ -18204,10 +18732,6 @@
     },
     "IntegrationCondition": {
       "type": "object",
-      "required": [
-        "field",
-        "operation"
-      ],
       "properties": {
         "field": {
           "type": "string"
@@ -18233,10 +18757,6 @@
         },
         "expectedValue": {
           "type": "string"
-        },
-        "order": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
@@ -18245,7 +18765,8 @@
       "discriminator": "type",
       "required": [
         "type",
-        "name"
+        "name",
+        "filter"
       ],
       "properties": {
         "name": {
@@ -20590,6 +21111,7 @@
         },
         "enabled": {
           "type": "boolean",
+          "nullable": true,
           "description": "Enable/disable state of schedule"
         },
         "ownerTeam": {
@@ -20622,6 +21144,7 @@
         },
         "enabled": {
           "type": "boolean",
+          "nullable": true,
           "description": "Enable/disable state of schedule"
         },
         "ownerTeam": {
@@ -20807,7 +21330,8 @@
         },
         "order": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "nullable": true
         },
         "periods": {
           "type": "array",
@@ -21050,7 +21574,6 @@
     "CreateScheduleOverridePayload": {
       "type": "object",
       "required": [
-        "alias",
         "user",
         "startDate",
         "endDate"
@@ -21079,8 +21602,7 @@
           "items": {
             "$ref": "#/definitions/ScheduleOverrideRotation"
           },
-          "description": "Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden",
-          "minItems": 1
+          "description": "Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden"
         }
       }
     },
@@ -21109,9 +21631,9 @@
         "rotations": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ScheduleOverrideRotation",
-            "description": "Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden"
-          }
+            "$ref": "#/definitions/ScheduleOverrideRotation"
+          },
+          "description": "Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden"
         }
       }
     },

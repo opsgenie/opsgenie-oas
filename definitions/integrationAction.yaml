@@ -70,9 +70,6 @@ IntegrationActionFilter:
 
 IntegrationCondition:
   type: object
-  required:
-    - field
-    - operation
   properties:
     field:
       type: string
@@ -94,9 +91,6 @@ IntegrationCondition:
         - equals-ignore-whitespace
     expectedValue:
       type: string
-    order:
-      type: integer
-      format: int32
 
 BaseIntegrationAction:
   type: object
@@ -104,6 +98,7 @@ BaseIntegrationAction:
   required:
     - type
     - name
+    - filter
   properties:
     name:
       type: string

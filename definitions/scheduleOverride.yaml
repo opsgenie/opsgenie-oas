@@ -1,10 +1,9 @@
-##################
-#     REQUEST    #
-##################
+###################
+#     REQUEST     #
+###################
 CreateScheduleOverridePayload:
   type: object
   required:
-    - alias
     - user
     - startDate
     - endDate
@@ -28,14 +27,13 @@ CreateScheduleOverridePayload:
       items:
         $ref: '#/definitions/ScheduleOverrideRotation'
       description: Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden
-      minItems: 1
 
 UpdateScheduleOverridePayload:
   type: object
   required:
-      - user
-      - startDate
-      - endDate
+    - user
+    - startDate
+    - endDate
   properties:
     user:
       $ref: '#/definitions/Recipient'
@@ -52,11 +50,11 @@ UpdateScheduleOverridePayload:
       type: array
       items:
         $ref: '#/definitions/ScheduleOverrideRotation'
-        description: Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden
+      description: Identifier (id or name) of rotations that override will apply. When it's set, only specified schedule rotations will be overridden
 
-##################
-#    RESPONSE    #
-##################
+####################
+#     RESPONSE     #
+####################
 CreateScheduleOverrideResponse:
   type: object
   allOf:
@@ -91,9 +89,9 @@ ListScheduleOverrideResponse:
           items:
             $ref: '#/definitions/ScheduleOverride'
 
-##################
-#      MODEL     #
-##################
+#################
+#     MODEL     #
+#################
 ScheduleOverride:
   type: object
   properties:
