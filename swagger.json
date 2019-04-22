@@ -3038,6 +3038,86 @@
       }
     },
     "/v2/heartbeats": {
+      "get": {
+        "tags": [
+          "heartbeat"
+        ],
+        "summary": "List Heartbeats",
+        "description": "Returns list of Heartbeats",
+        "operationId": "listHeartBeats",
+        "x-collapse-params": "ListHeartBeatRequest",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/heartbeat-api#section-list-heartbeats"
+        },
+        "responses": {
+          "200": {
+            "description": "List of heartbeat informations",
+            "schema": {
+              "$ref": "#/definitions/ListHeartbeatResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              },
+              "X-Paging-Prev": {
+                "description": "Previous page url",
+                "type": "string"
+              },
+              "X-Paging-Next": {
+                "description": "Next page url",
+                "type": "string"
+              },
+              "X-Paging-First": {
+                "description": "First page url",
+                "type": "string"
+              },
+              "X-Paging-Last": {
+                "description": "Last page url",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
       "post": {
         "tags": [
           "heartbeat"
@@ -18973,6 +19053,43 @@
             "enabled": {
               "type": "boolean",
               "description": "Enable/disable heartbeat monitoring"
+            },
+            "ownerTeam": {
+              "type": "object",
+              "description": "Owner team of the heartbeat, consisting id and/or name of the owner team",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "alertMessage": {
+              "type": "string",
+              "description": "Specifies the alert message for heartbeat expiration alert. If this is not provided, default alert message is 'HeartbeatName is expired'",
+              "maxLength": 130
+            },
+            "alertTags": {
+              "type": "array",
+              "description": "Specifies the alert tags for heartbeat expiration alert",
+              "items": {
+                "type": "string",
+                "maxLength": 50
+              },
+              "maxLength": 20
+            },
+            "alertPriority": {
+              "type": "string",
+              "description": "Specifies the alert priority for heartbeat expiration alert. If this is not provided, default priority is P3",
+              "enum": [
+                "P1",
+                "P2",
+                "P3",
+                "P4",
+                "P5"
+              ]
             }
           }
         }
@@ -19077,6 +19194,29 @@
           "properties": {
             "data": {
               "$ref": "#/definitions/HeartbeatMeta"
+            }
+          }
+        }
+      ]
+    },
+    "ListHeartbeatResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "heartbeats": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Heartbeat"
+                  }
+                }
+              }
             }
           }
         }
