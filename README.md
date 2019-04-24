@@ -1,4 +1,4 @@
-# OpsGenie OpenAPI Specification
+# Opsgenie OpenAPI Specification
 
 This project based on [Swagger version 2.0.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) and [RESTful API of OpsGenie](https://docs.opsgenie.com/docs/alert-api). You can refer to [swagger.json](https://github.com/opsgenie/opsgenie-oas/blob/master/swagger.json) as combined specification.
 
@@ -19,6 +19,18 @@ Now you can generate the single swagger json file.
 cd $PROJECT_ROOT
 node ./multi-file-swagger/index.js -- swagger.yaml > swagger.json
 ```
+
+---
+
+### How To Selectively Combine YAML Files To Single JSON For a Single Domain
+
+You can generate the single swagger json file for a single domain along with the common files.
+```bash
+cd $PROJECT_ROOT
+node ./multi-file-swagger/index.js -- swagger.yaml > swagger.json -- [DomainName]
+```
+
+Some of the Possible DomainName values are: alert, heartbeat, incident
 
 ---
 
