@@ -2,6 +2,7 @@
 #    RESPONSE    #
 ##################
 BaseResponse:
+  x-opsgenie-domain: common
   type: object
   required:
     - requestId
@@ -15,6 +16,7 @@ BaseResponse:
       default: 0.0
 
 BaseResponseWithExpandable:
+  x-opsgenie-domain: common
   type: object
   required:
     - expandable
@@ -27,6 +29,7 @@ BaseResponseWithExpandable:
             type: string
 
 ErrorResponse:
+  x-opsgenie-domain: common
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -44,6 +47,7 @@ ErrorResponse:
               type: string
 
 SuccessResponse:
+  x-opsgenie-domain: common
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -57,6 +61,7 @@ SuccessResponse:
 #      MODEL     #
 ##################
 SuccessData:
+  x-opsgenie-domain: common
   type: object
   properties:
     id:
@@ -65,6 +70,7 @@ SuccessData:
       type: string
 
 PageDetails:
+  x-opsgenie-domain: common
   type: object
   properties:
     prev:
@@ -77,6 +83,7 @@ PageDetails:
       type: string
 
 Recipient:
+  x-opsgenie-domain: common
   type: object
   discriminator: type
   required:
@@ -96,6 +103,7 @@ Recipient:
       type: string
 
 TeamRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: team
   description: Team recipient
   allOf:
@@ -106,6 +114,7 @@ TeamRecipient:
         type: string
 
 GroupRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: group
   description: Group recipient
   allOf:
@@ -116,6 +125,7 @@ GroupRecipient:
         type: string
 
 ScheduleRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: schedule
   description: Schedule recipient
   allOf:
@@ -126,6 +136,7 @@ ScheduleRecipient:
         type: string
 
 EscalationRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: escalation
   description: Escalation recipient
   allOf:
@@ -136,6 +147,7 @@ EscalationRecipient:
         type: string
 
 UserRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: user
   description: User recipient
   allOf:
@@ -146,18 +158,21 @@ UserRecipient:
         type: string
 
 NoRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: none
   description: No recipient
   allOf:
   - $ref: '#/definitions/Recipient'
 
 AllRecipient:
+  x-opsgenie-domain: common
   x-discriminator-value: all
   description: All recipient
   allOf:
   - $ref: '#/definitions/Recipient'
 
 TimeRestrictionInterval:
+  x-opsgenie-domain: common
   type: object
   discriminator: type
   required:
@@ -170,6 +185,7 @@ TimeRestrictionInterval:
         - time-of-day
 
 WeekdayTimeRestrictionInterval:
+  x-opsgenie-domain: common
   type: object
   x-discriminator-value: weekday-and-time-of-day
   description: Weekday time restriction interval
@@ -185,6 +201,7 @@ WeekdayTimeRestrictionInterval:
           maxItems: 15
 
 TimeOfDayRestrictionInterval:
+  x-opsgenie-domain: common
   type: object
   x-discriminator-value: time-of-day
   description: Time of day restriction interval
@@ -196,6 +213,7 @@ TimeOfDayRestrictionInterval:
           $ref: '#/definitions/TimeOfDayRestriction'
 
 WeekdayTimeRestriction:
+  x-opsgenie-domain: common
   type: object
   properties:
     startDay:
@@ -232,6 +250,7 @@ WeekdayTimeRestriction:
       format: int32
 
 TimeOfDayRestriction:
+  x-opsgenie-domain: common
   type: object
   properties:
     startHour:
@@ -248,6 +267,7 @@ TimeOfDayRestriction:
       format: int32
 
 Duration:
+  x-opsgenie-domain: common
   type: object
   required:
     - timeAmount
@@ -268,6 +288,7 @@ Duration:
       default: minutes
 
 Filter:
+  x-opsgenie-domain: common
   type: object
   description: Defines the conditions that will be checked before applying rules and type of the operations that will be applied on conditions
   discriminator: type
@@ -282,6 +303,7 @@ Filter:
         - match-all-conditions
 
 MatchAll:
+  x-opsgenie-domain: common
   x-discriminator-value: match-all
   description: Match all filter
   allOf:
@@ -289,6 +311,7 @@ MatchAll:
     - type: object
 
 MatchAllConditions:
+  x-opsgenie-domain: common
   x-discriminator-value: match-all-conditions
   description: Match all conditions filter
   required:
@@ -304,6 +327,7 @@ MatchAllConditions:
           minItems: 1
 
 MatchAnyCondition:
+  x-opsgenie-domain: common
   x-discriminator-value: match-any-condition
   description: Match any condition filter
   required:
@@ -319,6 +343,7 @@ MatchAnyCondition:
           minItems: 1
 
 Condition:
+  x-opsgenie-domain: common
   type: object
   required:
     - field
@@ -370,6 +395,7 @@ Condition:
       description: Order of the condition in conditions list
 
 Responder:
+  x-opsgenie-domain: common
   type: object
   discriminator: type
   required:
@@ -385,6 +411,7 @@ Responder:
       type: string
 
 UserResponder:
+  x-opsgenie-domain: common
   x-discriminator-value: user
   description: User responder
   allOf:
@@ -395,6 +422,7 @@ UserResponder:
         type: string
 
 TeamResponder:
+  x-opsgenie-domain: common
   x-discriminator-value: team
   description: Team responder
   allOf:

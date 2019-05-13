@@ -2,6 +2,7 @@
 #    RESPONSE    #
 ##################
 GetAccountInfoResponse:
+  x-opsgenie-domain: account
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -13,6 +14,7 @@ GetAccountInfoResponse:
 #      MODEL     #
 ##################
 AccountInfo:
+  x-opsgenie-domain: account
   type: object
   properties:
     name:
@@ -24,6 +26,7 @@ AccountInfo:
       $ref: '#/definitions/AccountPlan'
 
 AccountPlan:
+  x-opsgenie-domain: account
   type: object
   properties:
     maxUserCount:
