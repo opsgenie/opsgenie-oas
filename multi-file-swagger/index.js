@@ -19,14 +19,14 @@ if (!fs.existsSync(file)) {
     process.exit(1);
 }
 
-var domain = program.args[2];
+var domains = program.args.slice(2);
 
-if (domain) {
-    var singleDomain = selectiveDomainGen.extractDomain(file, domain);
+if (domains) {
+    var filteredDomains = selectiveDomainGen.extractDomains(file, domains);
 
-    resolve(singleDomain);
+    resolve(filteredDomains);
 
-    fs.unlink(singleDomain, function (err) {
+    fs.unlink(filteredDomains, function (err) {
         if (err) return console.log(err);
     });
 } else {

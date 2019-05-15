@@ -1,12 +1,12 @@
 var fs = require('fs');
 
 module.exports = {
-    extractDomain: function (file, domain) {
-        var outputFile = "./tempSingleDomain.yaml";
+    extractDomains: function (file, domains) {
+        var outputFile = "./tempDomains.yaml";
 
         fs.readFileSync(file).toString().split('\n').forEach(function (line) {
             if (line.toString().includes("$ref:")) {
-                if (line.toString().includes(domain) || line.toString().includes("common")) {
+                if (lineContainsDomainsCheck(line, domains) || line.toString().includes("common")) {
                     fs.appendFileSync(outputFile, line.toString() + "\n");
                 }
             } else {
@@ -17,3 +17,13 @@ module.exports = {
         return outputFile;
     }
 };
+
+function lineContainsDomainsCheck(line, domains) {
+    for (var i = 0; i < domains.length; i++) {
+        if (line.toString().includes(domains[i])) {
+            return true;
+        }
+    }
+
+    return false;
+}
