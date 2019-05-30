@@ -2,6 +2,7 @@
 #     REQUEST    #
 ##################
 AlertActionPayload:
+  x-opsgenie-domain: alert
   type: object
   properties:
     user:
@@ -15,6 +16,7 @@ AlertActionPayload:
       description: Source field of the alert. Default value is IP address of the incoming request
 
 CreateAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -69,21 +71,25 @@ CreateAlertPayload:
             - P5
 
 AcknowledgeAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
 
 UnAcknowledgeAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
 
 CloseAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
 
 SnoozeAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -96,6 +102,7 @@ SnoozeAlertPayload:
           description: Date and time that snooze will lose effect
 
 EscalateAlertToNextPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -106,6 +113,7 @@ EscalateAlertToNextPayload:
           $ref: '#/definitions/EscalationRecipient'
 
 AssignAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -116,6 +124,7 @@ AssignAlertPayload:
           $ref: '#/definitions/UserRecipient'
 
 AddTeamToAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -126,6 +135,7 @@ AddTeamToAlertPayload:
           $ref: '#/definitions/TeamRecipient'
 
 AddResponderToAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -136,11 +146,13 @@ AddResponderToAlertPayload:
           $ref: '#/definitions/Recipient'
 
 ExecuteCustomAlertActionPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
 
 AddTagsToAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -153,6 +165,7 @@ AddTagsToAlertPayload:
             type: string
 
 AddDetailsToAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/AlertActionPayload'
@@ -160,12 +173,14 @@ AddDetailsToAlertPayload:
         - details
       properties:
         details:
-          type: object
-          additionalProperties:
-            type: string
-          description: Key-value pairs to add as custom property into alert. You can refer here for example values
+          x-opsgenie-domain: alert
+  type: object
+    additionalProperties:
+      type: string
+    description: Key-value pairs to add as custom property into alert. You can refer here for example values
 
 AddNoteToAlertPayload:
+  x-opsgenie-domain: alert
   type: object
   required:
     - note
@@ -173,6 +188,7 @@ AddNoteToAlertPayload:
     - $ref: '#/definitions/AlertActionPayload'
 
 CreateSavedSearchPayload:
+  x-opsgenie-domain: alert
   type: object
   required:
     - name
@@ -198,6 +214,7 @@ CreateSavedSearchPayload:
         $ref: '#/definitions/TeamRecipient'
 
 UpdateSavedSearchPayload:
+  x-opsgenie-domain: alert
   type: object
   required:
     - name
@@ -223,6 +240,7 @@ UpdateSavedSearchPayload:
         $ref: "#/definitions/TeamRecipient"
 
 UpdateAlertPriorityPayload:
+  x-opsgenie-domain: alert
   type: object
   required:
     - priority
@@ -238,6 +256,7 @@ UpdateAlertPriorityPayload:
         - P5
 
 UpdateAlertMessagePayload:
+  x-opsgenie-domain: alert
   type: object
   required:
     - message
@@ -247,6 +266,7 @@ UpdateAlertMessagePayload:
       description: Message of the alert
 
 UpdateAlertDescriptionPayload:
+  x-opsgenie-domain: alert
   type: object
   required:
     - description
@@ -259,6 +279,7 @@ UpdateAlertDescriptionPayload:
 #    RESPONSE    #
 ##################
 GetRequestStatusResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -267,6 +288,7 @@ GetRequestStatusResponse:
           $ref: '#/definitions/AlertRequestStatus'
 
 ListAlertsResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -279,6 +301,7 @@ ListAlertsResponse:
           $ref: '#/definitions/PageDetails'
 
 GetAlertResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -287,6 +310,7 @@ GetAlertResponse:
           $ref: '#/definitions/Alert'
 
 ListAlertRecipientsResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -297,6 +321,7 @@ ListAlertRecipientsResponse:
             $ref: '#/definitions/AlertRecipient'
 
 ListAlertLogsResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -309,6 +334,7 @@ ListAlertLogsResponse:
           $ref: '#/definitions/AlertPaging'
 
 ListAlertNotesResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -321,6 +347,7 @@ ListAlertNotesResponse:
           $ref: '#/definitions/AlertPaging'
 
 ListSavedSearchesResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -331,6 +358,7 @@ ListSavedSearchesResponse:
             $ref: '#/definitions/SavedSearchMeta'
 
 CreateSavedSearchResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -339,6 +367,7 @@ CreateSavedSearchResponse:
           $ref: '#/definitions/SavedSearchMeta'
 
 GetSavedSearchResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -347,6 +376,7 @@ GetSavedSearchResponse:
           $ref: '#/definitions/SavedSearch'
 
 ListAlertAttachmentsResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -357,6 +387,7 @@ ListAlertAttachmentsResponse:
             $ref: '#/definitions/AlertAttachmentMeta'
 
 GetAlertAttachmentResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
@@ -365,21 +396,24 @@ GetAlertAttachmentResponse:
           $ref: '#/definitions/AlertAttachment'
 
 GetCountAlertsResponse:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseResponse'
     - properties:
         data:
-          type: object
-          properties:
-            count:
-              type: integer
-              format: int32
+          x-opsgenie-domain: alert
+  type: object
+    properties:
+      count:
+        type: integer
+        format: int32
 
 ##################
 #      MODEL     #
 ##################
 AlertRequestStatus:
+  x-opsgenie-domain: alert
   type: object
   properties:
     action:
@@ -399,6 +433,7 @@ AlertRequestStatus:
       type: string
 
 BaseAlert:
+  x-opsgenie-domain: alert
   type: object
   required:
     - id
@@ -454,6 +489,7 @@ BaseAlert:
       $ref: '#/definitions/AlertReport'
 
 AlertTeamMeta:
+  x-opsgenie-domain: alert
   type: object
   required:
     - id
@@ -462,6 +498,7 @@ AlertTeamMeta:
       type: string
 
 AlertIntegration:
+  x-opsgenie-domain: alert
   type: object
   properties:
     id:
@@ -472,6 +509,7 @@ AlertIntegration:
       type: string
 
 AlertReport:
+  x-opsgenie-domain: alert
   type: object
   properties:
     ackTime:
@@ -486,6 +524,7 @@ AlertReport:
       type: string
 
 Alert:
+  x-opsgenie-domain: alert
   type: object
   allOf:
     - $ref: '#/definitions/BaseAlert'
@@ -499,11 +538,13 @@ Alert:
         description:
           type: string
         details:
-          type: object
-          additionalProperties:
-            type: string
+          x-opsgenie-domain: alert
+  type: object
+    additionalProperties:
+      type: string
 
 AlertRecipient:
+  x-opsgenie-domain: alert
   type: object
   properties:
     user:
@@ -520,6 +561,7 @@ AlertRecipient:
       format: date-time
 
 AlertUserMeta:
+  x-opsgenie-domain: alert
   type: object
   properties:
     id:
@@ -528,6 +570,7 @@ AlertUserMeta:
       type: string
 
 AlertLog:
+  x-opsgenie-domain: alert
   type: object
   properties:
     log:
@@ -543,6 +586,7 @@ AlertLog:
       type: string
 
 AlertPaging:
+  x-opsgenie-domain: alert
   type: object
   properties:
     first:
@@ -551,6 +595,7 @@ AlertPaging:
       type: string
 
 AlertNote:
+  x-opsgenie-domain: alert
   type: object
   properties:
     note:
@@ -564,6 +609,7 @@ AlertNote:
       type: string
 
 SavedSearchMeta:
+  x-opsgenie-domain: alert
   type: object
   properties:
     id:
@@ -572,12 +618,14 @@ SavedSearchMeta:
       type: string
 
 SavedSearchEntity:
+  x-opsgenie-domain: alert
   type: object
   properties:
     id:
       type: string
 
 SavedSearch:
+  x-opsgenie-domain: alert
   type: object
   properties:
     id:
@@ -602,6 +650,7 @@ SavedSearch:
       type: string
 
 AlertAttachmentMeta:
+  x-opsgenie-domain: alert
   type: object
   properties:
     name:
@@ -610,6 +659,7 @@ AlertAttachmentMeta:
       type: string
 
 AlertAttachment:
+  x-opsgenie-domain: alert
   type: object
   properties:
     name:
