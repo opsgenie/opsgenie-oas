@@ -173,11 +173,10 @@ AddDetailsToAlertPayload:
         - details
       properties:
         details:
-          x-opsgenie-domain: alert
-  type: object
-    additionalProperties:
-      type: string
-    description: Key-value pairs to add as custom property into alert. You can refer here for example values
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs to add as custom property into alert. You can refer here for example values
 
 AddNoteToAlertPayload:
   x-opsgenie-domain: alert
@@ -402,12 +401,11 @@ GetCountAlertsResponse:
     - $ref: '#/definitions/BaseResponse'
     - properties:
         data:
-          x-opsgenie-domain: alert
-  type: object
-    properties:
-      count:
-        type: integer
-        format: int32
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int32
 
 ##################
 #      MODEL     #
@@ -538,10 +536,9 @@ Alert:
         description:
           type: string
         details:
-          x-opsgenie-domain: alert
-  type: object
-    additionalProperties:
-      type: string
+          type: object
+          additionalProperties:
+            type: string
 
 AlertRecipient:
   x-opsgenie-domain: alert
