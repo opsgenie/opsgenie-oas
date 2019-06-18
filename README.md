@@ -1,6 +1,6 @@
 # Opsgenie OpenAPI Specification
 
-This project based on [Swagger version 2.0.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) and [RESTful API of OpsGenie](https://docs.opsgenie.com/docs/alert-api). You can refer to [swagger.json](https://github.com/opsgenie/opsgenie-oas/blob/master/swagger.json) for combined specification.
+This project based on [Swagger version 2.0.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) and [RESTful API of Opsgenie](https://docs.opsgenie.com/docs/alert-api). You can refer to [swagger.json](https://github.com/opsgenie/opsgenie-oas/blob/master/swagger.json) for combined specification.
 
 ---
 

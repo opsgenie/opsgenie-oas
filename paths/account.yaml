@@ -3,7 +3,7 @@
     tags:
       - account
     summary: Get Account Info
-    description: Used to search and retrieve account information in OpsGenie
+    description: Used to search and retrieve account information in Opsgenie
     operationId: getInfo
     externalDocs:
       description: For more information
