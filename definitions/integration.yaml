@@ -19,6 +19,7 @@ AuthenticateIntegrationPayload:
         - AmazonSes
         - AmazonSns
         - AmazonSnsOutgoing
+        - AmazonSecurityHub
         - API
         - Apica
         - Apimetrics
@@ -178,6 +179,7 @@ AuthenticateIntegrationPayload:
         - ServiceNowV2
         - ServiceNowV3
         - Signalfx
+        - SignalFXV2
         - SignalSciences
         - Site24x7
         - Slack
@@ -200,6 +202,7 @@ AuthenticateIntegrationPayload:
         - SysdigCloud
         - ThousandEyes
         - ThreatStack
+        - Thundra
         - Tideways
         - Trace
         - TrackIt
@@ -212,6 +215,7 @@ AuthenticateIntegrationPayload:
         - UptrendsEmail
         - VCenter
         - VCSA
+        - VividCortex
         - Wavefront
         - WhatsUpGold
         - Webhook
@@ -366,8 +370,7 @@ ActionMapping:
         - snooze
         - escalate-to-next
         - add-note
-        - add-recipient
-        - add-team
+        - add-responder
         - add-tags
         - remove-tags
         - close
@@ -413,6 +416,9 @@ ActionMapping:
         # create-incident already exists
         - in-progress-incident
         - resolve-incident
+        # Circonus Integration Mapped Actions
+        - acknowledge
+        - unacknowledge
         # ConnectWiseManage Integration Mapped Actions
         - create-service-ticket
         - add-discussion-note-to-ticket
@@ -425,11 +431,17 @@ ActionMapping:
         # add-discussion-note-to-ticket already exists
         # add-resolution-note-to-ticket already exists
         # add-internal-note-to-ticket already exists
+        - custom-status
+        # Datadog Integration Mapped Actions
+        - add-note
+        # close already exists
+        # create already exists
+        # acknowledge already exists
         # DynatraceAppMon Integration Mapped Actions
         - confirm-incident
         # in-progress-incident already exists
         # Freshdesk Integration Mapped Actions
-        - add-note
+        # add-note already exists
         - set-status-to-closed
         - set-status-to-pending
         - set-status-to-resolved
@@ -441,6 +453,11 @@ ActionMapping:
         # set-status-to-pending already exists
         # set-status-to-resolved already exists
         # set-status-to-closed already exists
+        # HPServiceManager Integration Mapped Actions
+        # create-incident already exists
+        # in-progress-incident already exists
+        # close-incident already exists
+        # resolve-incident already exists
         # Jira Integration Mapped Actions
         - create-issue
         - add-comment-to-issue
@@ -462,6 +479,9 @@ ActionMapping:
         # LibreNMS Integration Mapped Actions
         - ack-alert
         - unmute-alert
+        # LogicMonitor Integration Mapped Actions
+        # add-note already exists
+        # acknowledge already exists
         # MSTeams Integration Mapped Actions
         - send-to-channel
         # MSTeamsV2 Integration Mapped Actions
@@ -471,8 +491,10 @@ ActionMapping:
         - set-case-status-to-active
         - set-case-status-to-close
         - set-case-status-to-close-as-duplicate
+        # OEC Integration Mapped Actions
+        - post-action-to-oec
         # OP5 Integration Mapped Actions
-        - acknowledge
+        # acknowledge already exists
         # OpsGenie Integration Mapped Actions
         - create-alert
         - close-alert
@@ -484,6 +506,7 @@ ActionMapping:
         # Rollbar Integration Mapped Actions
         - setStatusToClosed
         # SalesForceServiceCloud Integration Mapped Actions
+        # create-case already exists
         - set-case-status-to-working
         # set-case-status-to-close already exists
         # update-priority already exists
@@ -498,6 +521,8 @@ ActionMapping:
         - send-to-custom-endpoint
         # SolarwindsMSPNcentral Integration Mapped Actions
         - acknowledge-notification
+        # Splunk Integration Mapped Actions
+        - createEvent
         # SplunkITSI Integration Mapped Actions
         - createTag
         - createComment
@@ -547,6 +572,7 @@ OutgoingCallbackNew:
         - base-webhook-callback
         - bidirectional-callback-new
         - bmc-remedy-on-demand-callback
+        - oec-callback
 
 BidirectionalCallbackNew:
   type: object
@@ -569,15 +595,19 @@ BidirectionalCallbackNew:
             - bmc-foot-prints-v12-callback
             - bmc-remedy-callback
             - cherwell-callback
+            - circonus-callback
             - connect-wise-manage-callback
             - connect-wise-manage-v2-callback
+            - datadog-callback
             - dynatrace-app-mon-callback
             - freshdesk-callback
             - freshservice-callback
+            - hp-service-manager-callback
             - jira-callback
             - jira-service-desk-callback
             - kayako-callback
             - libre-nms-callback
+            - logic-monitor-callback
             - magentrix-callback
             - ms-teams-callback
             - ms-teams-v2-callback
@@ -589,6 +619,7 @@ BidirectionalCallbackNew:
             - service-now-v2-callback
             - service-now-v3-callback
             - solarwinds-msp-ncentral-callback
+            - splunk-callback
             - splunk-itsi-callback
             - status-page-io-callback
             - sumo-logic-callback
@@ -654,16 +685,13 @@ BidirectionalCallback:
         bidirectional-callback-type:
           type: string
           enum:
-            - circonus-callback
             - connect-wise-callback
-            - datadog-callback
             - desk-callback
             - es-watcher-callback
             - hip-chat-add-on-callback
             - hip-chat-callback-v2
             - icinga2-callback
             - icinga-callback
-            - logic-monitor-callback
             - marid-callback
             - mattermost-callback
             - nagios-based-v1-callback
@@ -890,16 +918,18 @@ DatadogCallback:
   type: object
   x-discriminator-value: datadog-callback
   allOf:
-    - $ref: '#/definitions/BidirectionalCallback'
+    - $ref: '#/definitions/BidirectionalCallbackNew'
     - properties:
         token:
           type: string
+        sendToEU:
+          type: boolean
 
 CirconusCallback:
   type: object
   x-discriminator-value: circonus-callback
   allOf:
-    - $ref: '#/definitions/BidirectionalCallback'
+    - $ref: '#/definitions/BidirectionalCallbackNew'
     - properties:
         circonusURL:
           type: string
@@ -977,7 +1007,7 @@ LogicMonitorCallback:
   type: object
   x-discriminator-value: logic-monitor-callback
   allOf:
-    - $ref: '#/definitions/BidirectionalCallback'
+    - $ref: '#/definitions/BidirectionalCallbackNew'
     - properties:
         accountName:
           type: string
@@ -1214,6 +1244,17 @@ HipChatCallbackV2:
         hostUrl:
           type: string
 
+HPServiceManagerCallback:
+  type: object
+  x-discriminator-value: hp-service-manager-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        apiKet:
+          type: string
+        baseDomain:
+          type: string
+
 Icinga2Callback:
   type: object
   x-discriminator-value: icinga2-callback
@@ -1329,6 +1370,12 @@ NagiosXIV2Callback:
         sendViaOEC:
           type: boolean
 
+OECCallback:
+  type: object
+  x-discriminator-value: oec-callback
+  allOf:
+    - $ref: '#/definitions/OutgoingCallbackNew'
+
 PrtgCallback:
   type: object
   x-discriminator-value: prtg-callback
@@ -1427,6 +1474,17 @@ SolarwindsMSPNcentralCallback:
         url:
           type: string
 
+SplunkCallback:
+  type: object
+  x-discriminator-value: splunk-callback
+  allOf:
+    - $ref: '#/definitions/BidirectionalCallbackNew'
+    - properties:
+        url:
+          type: string
+        token:
+          type: string
+
 SplunkITSICallback:
   type: object
   x-discriminator-value: splunk-itsi-callback
@@ -1520,6 +1578,7 @@ Integration:
         - AmazonEc2AutoScaling
         - AmazonRds
         - AmazonRoute53HealthCheck
+        - AmazonSecurityHub
         - AmazonSes
         - AmazonSns
         - AmazonSnsOutgoing
@@ -1641,6 +1700,7 @@ Integration:
         - NodePing
         - Observium
         - ObserviumV2
+        - OEC
         - OEM
         - OEMEmail
         - OP5
@@ -1681,6 +1741,7 @@ Integration:
         - ServiceNowV2
         - ServiceNowV3
         - Signalfx
+        - SignalFXV2
         - SignalSciences
         - Site24x7
         - Slack
@@ -1703,6 +1764,7 @@ Integration:
         - SysdigCloud
         - ThousandEyes
         - ThreatStack
+        - Thundra
         - Tideways
         - Trace
         - TrackIt
@@ -1715,6 +1777,7 @@ Integration:
         - UptrendsEmail
         - VCenter
         - VCSA
+        - VividCortex
         - Wavefront
         - Webhook
         - WhatsUpGold
@@ -1766,12 +1829,19 @@ BaseIncomingFeature:
         $ref: '#/definitions/Recipient'
     isAdvanced:
       type: boolean
+    ignoreRespondersFromPayload:
+      type: boolean
+      nullable: true
     ignoreTagsFromPayload:
       type: boolean
       nullable: true
     ignoreExtraPropertiesFromPayload:
       type: boolean
       nullable: true
+    responders:
+      type: array
+      items:
+        $ref: '#/definitions/Recipient'
     priority:
       type: string
     customPriority:
@@ -1872,6 +1942,13 @@ AmazonRdsIntegration:
 AmazonRoute53HealthCheckIntegration:
   type: object
   x-discriminator-value: AmazonRoute53HealthCheck
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+AmazonSecurityHubIntegration:
+  type: object
+  x-discriminator-value: AmazonSecurityHub
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
@@ -2443,6 +2520,7 @@ HPServiceManagerIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/HPServiceManagerCallback'
 
 HumioIntegration:
   type: object
@@ -2778,6 +2856,14 @@ ObserviumV2Integration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+OECIntegration:
+  type: object
+  x-discriminator-value: OEC
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/OECCallback'
+
 OEMEmailIntegration:
   type: object
   x-discriminator-value: OEMEmail
@@ -3058,6 +3144,13 @@ SignalfxIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+SignalFXV2Integration:
+  type: object
+  x-discriminator-value: SignalFXV2
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 SignalSciencesIntegration:
   type: object
   x-discriminator-value: SignalSciences
@@ -3132,6 +3225,7 @@ SplunkIntegration:
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
+    - $ref: '#/definitions/SplunkCallback'
 
 SplunkITSIIntegration:
   type: object
@@ -3229,6 +3323,13 @@ ThreatStackIntegration:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'
 
+ThundraIntegration:
+  type: object
+  x-discriminator-value: Thundra
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
 TidewaysIntegration:
   type: object
   x-discriminator-value: Tideways
@@ -3310,6 +3411,13 @@ VCenterIntegration:
 VCSAIntegration:
   type: object
   x-discriminator-value: VCSA
+  allOf:
+    - $ref: '#/definitions/Integration'
+    - $ref: '#/definitions/TokenBasedIncomingFeature'
+
+VividCortexIntegration:
+  type: object
+  x-discriminator-value: VividCortex
   allOf:
     - $ref: '#/definitions/Integration'
     - $ref: '#/definitions/TokenBasedIncomingFeature'

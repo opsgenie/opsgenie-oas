@@ -11414,6 +11414,454 @@
           }
         }
       }
+    },
+    "/v1/incidents/requests/{requestId}": {
+      "get": {
+        "tags": [
+          "incident"
+        ],
+        "summary": "Get Request Status of Incident",
+        "description": "Used to track the status and incident details (if any) of the request whose identifier is given",
+        "operationId": "getIncidentRequestStatus",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/incident-api#section-get-request-status"
+        },
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "Universally unique identifier of the questioned request",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request status information for given id",
+            "schema": {
+              "$ref": "#/definitions/GetIncidentRequestStatusResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/incidents/create": {
+      "post": {
+        "tags": [
+          "incident"
+        ],
+        "summary": "Create Incident",
+        "description": "Creates a new incident",
+        "operationId": "createIncident",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/incident-api#section-create-incident"
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of created incident",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateIncidentPayload"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/incidents/{identifier}": {
+      "get": {
+        "tags": [
+          "incident"
+        ],
+        "summary": "Get Incident",
+        "description": "Returns incident with given id, tiny id or alias",
+        "operationId": "getIncident",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/incident-api#section-get-incident"
+        },
+        "x-collapse-params": "GetIncidentRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/IncidentIdentifier"
+          },
+          {
+            "$ref": "#/parameters/IncidentIdentifierType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Incident information for given identifier",
+            "schema": {
+              "$ref": "#/definitions/GetIncidentResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "incident"
+        ],
+        "summary": "Delete Incident",
+        "description": "Deletes an incident using incident id or the tiny id",
+        "operationId": "deleteIncident",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/incident-api#section-delete-incident"
+        },
+        "x-collapse-params": "DeleteIncidentRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/IncidentIdentifier"
+          },
+          {
+            "$ref": "#/parameters/IncidentIdentifierType"
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/incidents/": {
+      "get": {
+        "tags": [
+          "incident"
+        ],
+        "summary": "List incidents",
+        "description": "Return list of incidents",
+        "operationId": "ListIncidents",
+        "x-collapse-params": "ListIncidentsRequest",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/incident-api#section-list-incidents"
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query to apply while filtering the incidents.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Start index of the result set (to apply pagination). Minimum value (and also default value) is 0.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to provide in the result. Must be a positive integer value. Default value is 20 and maximum value is 100",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Name of the field that result set will be sorted by",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "createdAt",
+              "tinyId",
+              "message",
+              "status",
+              "isSeen",
+              "owner"
+            ],
+            "default": "createdAt"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sorting order of the result set",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "default": "desc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of incident informations",
+            "schema": {
+              "$ref": "#/definitions/ListIncidentsResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              },
+              "X-Paging-Prev": {
+                "description": "Previous page url",
+                "type": "string"
+              },
+              "X-Paging-Next": {
+                "description": "Next page url",
+                "type": "string"
+              },
+              "X-Paging-First": {
+                "description": "First page url",
+                "type": "string"
+              },
+              "X-Paging-Last": {
+                "description": "Last page url",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/incidents/{identifier}/close": {
+      "post": {
+        "tags": [
+          "incident"
+        ],
+        "summary": "Close Incident",
+        "description": "Closes incident with given identifier",
+        "operationId": "closeIncident",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/incident-api#section-close-incident"
+        },
+        "x-collapse-params": "CloseIncidentRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/IncidentIdentifier"
+          },
+          {
+            "$ref": "#/parameters/IncidentIdentifierType"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of closing incident action",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CloseIncidentPayload"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -12242,6 +12690,25 @@
           "$ref": "#/definitions/DeprecatedAlertPolicy"
         }
       ]
+    },
+    "IncidentIdentifier": {
+      "name": "identifier",
+      "in": "path",
+      "description": "Identifier of incident which could be incident id or tiny id",
+      "required": true,
+      "type": "string"
+    },
+    "IncidentIdentifierType": {
+      "name": "identifierType",
+      "in": "query",
+      "description": "Type of the identifier that is provided as an in-line parameter. Possible values are 'id' or 'tiny. Default is id'",
+      "required": false,
+      "type": "string",
+      "enum": [
+        "id",
+        "tiny"
+      ],
+      "default": "id"
     }
   },
   "responses": {
@@ -13952,6 +14419,7 @@
             "AmazonSes",
             "AmazonSns",
             "AmazonSnsOutgoing",
+            "AmazonSecurityHub",
             "API",
             "Apica",
             "Apimetrics",
@@ -14111,6 +14579,7 @@
             "ServiceNowV2",
             "ServiceNowV3",
             "Signalfx",
+            "SignalFXV2",
             "SignalSciences",
             "Site24x7",
             "Slack",
@@ -14133,6 +14602,7 @@
             "SysdigCloud",
             "ThousandEyes",
             "ThreatStack",
+            "Thundra",
             "Tideways",
             "Trace",
             "TrackIt",
@@ -14145,6 +14615,7 @@
             "UptrendsEmail",
             "VCenter",
             "VCSA",
+            "VividCortex",
             "Wavefront",
             "WhatsUpGold",
             "Webhook",
@@ -14360,8 +14831,7 @@
             "snooze",
             "escalate-to-next",
             "add-note",
-            "add-recipient",
-            "add-team",
+            "add-responder",
             "add-tags",
             "remove-tags",
             "close",
@@ -14399,14 +14869,17 @@
             "add-journal",
             "in-progress-incident",
             "resolve-incident",
+            "acknowledge",
+            "unacknowledge",
             "create-service-ticket",
             "add-discussion-note-to-ticket",
             "add-resolution-note-to-ticket",
             "add-internal-note-to-ticket",
             "close-service-ticket",
             "in-progress-ticket",
-            "confirm-incident",
+            "custom-status",
             "add-note",
+            "confirm-incident",
             "set-status-to-closed",
             "set-status-to-pending",
             "set-status-to-resolved",
@@ -14429,7 +14902,7 @@
             "set-case-status-to-active",
             "set-case-status-to-close",
             "set-case-status-to-close-as-duplicate",
-            "acknowledge",
+            "post-action-to-oec",
             "create-alert",
             "close-alert",
             "acknowledge-alert",
@@ -14443,6 +14916,7 @@
             "assign-to-owner",
             "send-to-custom-endpoint",
             "acknowledge-notification",
+            "createEvent",
             "createTag",
             "createComment",
             "updateSeverity",
@@ -14483,7 +14957,8 @@
             "amazon-sns-callback",
             "base-webhook-callback",
             "bidirectional-callback-new",
-            "bmc-remedy-on-demand-callback"
+            "bmc-remedy-on-demand-callback",
+            "oec-callback"
           ]
         }
       }
@@ -14515,15 +14990,19 @@
                 "bmc-foot-prints-v12-callback",
                 "bmc-remedy-callback",
                 "cherwell-callback",
+                "circonus-callback",
                 "connect-wise-manage-callback",
                 "connect-wise-manage-v2-callback",
+                "datadog-callback",
                 "dynatrace-app-mon-callback",
                 "freshdesk-callback",
                 "freshservice-callback",
+                "hp-service-manager-callback",
                 "jira-callback",
                 "jira-service-desk-callback",
                 "kayako-callback",
                 "libre-nms-callback",
+                "logic-monitor-callback",
                 "magentrix-callback",
                 "ms-teams-callback",
                 "ms-teams-v2-callback",
@@ -14535,6 +15014,7 @@
                 "service-now-v2-callback",
                 "service-now-v3-callback",
                 "solarwinds-msp-ncentral-callback",
+                "splunk-callback",
                 "splunk-itsi-callback",
                 "status-page-io-callback",
                 "sumo-logic-callback",
@@ -14628,16 +15108,13 @@
             "bidirectional-callback-type": {
               "type": "string",
               "enum": [
-                "circonus-callback",
                 "connect-wise-callback",
-                "datadog-callback",
                 "desk-callback",
                 "es-watcher-callback",
                 "hip-chat-add-on-callback",
                 "hip-chat-callback-v2",
                 "icinga2-callback",
                 "icinga-callback",
-                "logic-monitor-callback",
                 "marid-callback",
                 "mattermost-callback",
                 "nagios-based-v1-callback",
@@ -15005,12 +15482,15 @@
       "x-discriminator-value": "datadog-callback",
       "allOf": [
         {
-          "$ref": "#/definitions/BidirectionalCallback"
+          "$ref": "#/definitions/BidirectionalCallbackNew"
         },
         {
           "properties": {
             "token": {
               "type": "string"
+            },
+            "sendToEU": {
+              "type": "boolean"
             }
           }
         }
@@ -15021,7 +15501,7 @@
       "x-discriminator-value": "circonus-callback",
       "allOf": [
         {
-          "$ref": "#/definitions/BidirectionalCallback"
+          "$ref": "#/definitions/BidirectionalCallbackNew"
         },
         {
           "properties": {
@@ -15153,7 +15633,7 @@
       "x-discriminator-value": "logic-monitor-callback",
       "allOf": [
         {
-          "$ref": "#/definitions/BidirectionalCallback"
+          "$ref": "#/definitions/BidirectionalCallbackNew"
         },
         {
           "properties": {
@@ -15543,6 +16023,25 @@
         }
       ]
     },
+    "HPServiceManagerCallback": {
+      "type": "object",
+      "x-discriminator-value": "hp-service-manager-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "apiKet": {
+              "type": "string"
+            },
+            "baseDomain": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
     "Icinga2Callback": {
       "type": "object",
       "x-discriminator-value": "icinga2-callback",
@@ -15738,6 +16237,15 @@
         }
       ]
     },
+    "OECCallback": {
+      "type": "object",
+      "x-discriminator-value": "oec-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/OutgoingCallbackNew"
+        }
+      ]
+    },
     "PrtgCallback": {
       "type": "object",
       "x-discriminator-value": "prtg-callback",
@@ -15901,6 +16409,25 @@
         }
       ]
     },
+    "SplunkCallback": {
+      "type": "object",
+      "x-discriminator-value": "splunk-callback",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BidirectionalCallbackNew"
+        },
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "token": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
     "SplunkITSICallback": {
       "type": "object",
       "x-discriminator-value": "splunk-itsi-callback",
@@ -16043,6 +16570,7 @@
             "AmazonEc2AutoScaling",
             "AmazonRds",
             "AmazonRoute53HealthCheck",
+            "AmazonSecurityHub",
             "AmazonSes",
             "AmazonSns",
             "AmazonSnsOutgoing",
@@ -16164,6 +16692,7 @@
             "NodePing",
             "Observium",
             "ObserviumV2",
+            "OEC",
             "OEM",
             "OEMEmail",
             "OP5",
@@ -16204,6 +16733,7 @@
             "ServiceNowV2",
             "ServiceNowV3",
             "Signalfx",
+            "SignalFXV2",
             "SignalSciences",
             "Site24x7",
             "Slack",
@@ -16226,6 +16756,7 @@
             "SysdigCloud",
             "ThousandEyes",
             "ThreatStack",
+            "Thundra",
             "Tideways",
             "Trace",
             "TrackIt",
@@ -16238,6 +16769,7 @@
             "UptrendsEmail",
             "VCenter",
             "VCSA",
+            "VividCortex",
             "Wavefront",
             "Webhook",
             "WhatsUpGold",
@@ -16305,6 +16837,10 @@
         "isAdvanced": {
           "type": "boolean"
         },
+        "ignoreRespondersFromPayload": {
+          "type": "boolean",
+          "nullable": true
+        },
         "ignoreTagsFromPayload": {
           "type": "boolean",
           "nullable": true
@@ -16312,6 +16848,12 @@
         "ignoreExtraPropertiesFromPayload": {
           "type": "boolean",
           "nullable": true
+        },
+        "responders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Recipient"
+          }
         },
         "priority": {
           "type": "string"
@@ -16469,6 +17011,18 @@
     "AmazonRoute53HealthCheckIntegration": {
       "type": "object",
       "x-discriminator-value": "AmazonRoute53HealthCheck",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "AmazonSecurityHubIntegration": {
+      "type": "object",
+      "x-discriminator-value": "AmazonSecurityHub",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -17470,6 +18024,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/HPServiceManagerCallback"
         }
       ]
     },
@@ -18066,6 +18623,21 @@
         }
       ]
     },
+    "OECIntegration": {
+      "type": "object",
+      "x-discriminator-value": "OEC",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/OECCallback"
+        }
+      ]
+    },
     "OEMEmailIntegration": {
       "type": "object",
       "x-discriminator-value": "OEMEmail",
@@ -18555,6 +19127,18 @@
         }
       ]
     },
+    "SignalFXV2Integration": {
+      "type": "object",
+      "x-discriminator-value": "SignalFXV2",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "SignalSciencesIntegration": {
       "type": "object",
       "x-discriminator-value": "SignalSciences",
@@ -18688,6 +19272,9 @@
         },
         {
           "$ref": "#/definitions/TokenBasedIncomingFeature"
+        },
+        {
+          "$ref": "#/definitions/SplunkCallback"
         }
       ]
     },
@@ -18862,6 +19449,18 @@
         }
       ]
     },
+    "ThundraIntegration": {
+      "type": "object",
+      "x-discriminator-value": "Thundra",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
     "TidewaysIntegration": {
       "type": "object",
       "x-discriminator-value": "Tideways",
@@ -19000,6 +19599,18 @@
     "VCSAIntegration": {
       "type": "object",
       "x-discriminator-value": "VCSA",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Integration"
+        },
+        {
+          "$ref": "#/definitions/TokenBasedIncomingFeature"
+        }
+      ]
+    },
+    "VividCortexIntegration": {
+      "type": "object",
+      "x-discriminator-value": "VividCortex",
       "allOf": [
         {
           "$ref": "#/definitions/Integration"
@@ -19419,6 +20030,12 @@
                 "$ref": "#/definitions/Recipient"
               }
             },
+            "responders": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
             "ignoreRecipientsFromPayload": {
               "type": "boolean"
             },
@@ -19442,6 +20059,10 @@
             },
             "ignoreExtraPropertiesFromPayload": {
               "type": "boolean"
+            },
+            "ignoreRespondersFromPayload": {
+              "type": "boolean",
+              "nullable": true
             }
           }
         }
@@ -23267,6 +23888,274 @@
         },
         "duration": {
           "$ref": "#/definitions/Duration"
+        }
+      }
+    },
+    "StatusPageEntry": {
+      "type": "object",
+      "allOf": [
+        {
+          "required": [
+            "title"
+          ]
+        },
+        {
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The message to be added using status page into incident"
+            },
+            "details": {
+              "type": "string",
+              "description": "Description of the message being added via stats page into incident"
+            }
+          }
+        }
+      ]
+    },
+    "CreateIncidentPayload": {
+      "type": "object",
+      "allOf": [
+        {
+          "required": [
+            "message",
+            "serviceId"
+          ]
+        },
+        {
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Message of the incident"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description field of the incident that is generally used to provide a detailed information about the incident."
+            },
+            "responders": {
+              "type": "array",
+              "description": "Responders that the incident will be routed to send notifications",
+              "items": {
+                "$ref": "#/definitions/Recipient"
+              }
+            },
+            "tags": {
+              "type": "array",
+              "description": "Tags of the incident.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "details": {
+              "type": "object",
+              "description": "Map of key-value pairs to use as custom properties of the incident",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "priority": {
+              "type": "string",
+              "description": "Priority level of the incident",
+              "enum": [
+                "P1",
+                "P2",
+                "P3",
+                "P4",
+                "P5"
+              ]
+            },
+            "note": {
+              "type": "string",
+              "description": "Additional note that will be added while creating the incident"
+            },
+            "serviceId": {
+              "type": "string",
+              "description": "Service on which incident will be created."
+            },
+            "statusPageEntry": {
+              "type": "object",
+              "description": "Status page entry fields. If this field is leaved blank, message and description of incident will be used for title and detail respectively.",
+              "additionalProperties": {
+                "$ref": "#/definitions/StatusPageEntry"
+              }
+            },
+            "notifyStakeholders": {
+              "type": "boolean",
+              "description": "Indicate whether stakeholders are notified or not. Default value is false."
+            }
+          }
+        }
+      ]
+    },
+    "IncidentActionPayload": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string",
+          "description": "Additional note that will be included with the incident"
+        }
+      }
+    },
+    "CloseIncidentPayload": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/IncidentActionPayload"
+        }
+      ]
+    },
+    "GetIncidentRequestStatusResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/IncidentRequestStatus"
+            }
+          }
+        }
+      ]
+    },
+    "GetIncidentResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/Incident"
+            }
+          }
+        }
+      ]
+    },
+    "ListIncidentsResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BaseIncident"
+              }
+            },
+            "paging": {
+              "$ref": "#/definitions/PageDetails"
+            }
+          }
+        }
+      ]
+    },
+    "IncidentRequestStatus": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "action": {
+          "type": "string"
+        },
+        "processedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "integrationId": {
+          "type": "string"
+        },
+        "isSuccess": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "incidentId": {
+          "type": "string"
+        }
+      }
+    },
+    "Incident": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseIncident"
+        },
+        {
+          "properties": {
+            "requestId": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "BaseIncident": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tinyId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "isSeen": {
+          "type": "boolean"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string"
+        },
+        "responders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Recipient"
+          }
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object",
+          "description": "Map of key-value pairs to use as custom properties of the incident",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     }

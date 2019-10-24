@@ -175,6 +175,10 @@ CreateIntegrationAction:
           type: array
           items:
             $ref: '#/definitions/Recipient'
+        responders:
+          type: array
+          items:
+            $ref: '#/definitions/Recipient'
         ignoreRecipientsFromPayload:
           type: boolean
         ignoreTeamsFromPayload:
@@ -191,6 +195,9 @@ CreateIntegrationAction:
             type: string
         ignoreExtraPropertiesFromPayload:
           type: boolean
+        ignoreRespondersFromPayload:
+          type: boolean
+          nullable: true
 
 CloseIntegrationAction:
   type: object

@@ -17,7 +17,7 @@ npm install
 Now you can generate a single swagger json file:
 ```bash
 cd $PROJECT_ROOT
-node ./multi-file-swagger/index.js -- swagger.yaml > swagger.json
+node ./multi-file-swagger/index.js swagger.yaml > swagger.json
 ```
 
 ---
@@ -27,7 +27,7 @@ node ./multi-file-swagger/index.js -- swagger.yaml > swagger.json
 You can generate a single swagger json file for selective domains along with the common files:
 ```bash
 cd $PROJECT_ROOT
-node ./multi-file-swagger/index.js -- swagger.yaml > swagger.json -- [DomainName1] [DomainName2] [DomainName3]
+node ./multi-file-swagger/index.js swagger.yaml [DomainName1] [DomainName2] [DomainName3] > swagger.json
 ```
 
 Some of the Possible DomainName values are: alert, heartbeat, incident

@@ -4,31 +4,36 @@
 
 var fs = require('fs');
 var program = require('commander');
-var resolve = require('./custom-resolve');
-var selectiveDomainGen = require('./selective-domain-gen');
+var processYamlFile = require('./custom-resolve');
+var domainSelector = require('./selective-domain-gen');
 
 program
     .version('0.0.1')
     .usage('[options] <yaml file ...>')
     .parse(process.argv);
 
-var file = program.args[0];
 
-if (!fs.existsSync(file)) {
-    console.error('File does not exist. (' + file + ')');
+var inputYamlFile = program.args[0];
+
+if (!fs.existsSync(inputYamlFile)) {
+    console.error('YAML file doesn\'t exist. (' + inputYamlFile + ')');
     process.exit(1);
 }
 
-var domains = program.args.slice(2);
 
-if (domains) {
-    var filteredDomains = selectiveDomainGen.extractDomains(file, domains);
+var selectedDomains = program.args.slice(1);
 
-    resolve(filteredDomains);
-
-    fs.unlink(filteredDomains, function (err) {
-        if (err) return console.log(err);
+if (selectedDomains && selectedDomains.length) {
+    console.warn("Combining YAML configurations for following %d domain(s) into a single JSON file: %s", selectedDomains.length, selectedDomains);
+    var temporaryFileForSelectedDomains = domainSelector.extractDomains(inputYamlFile, selectedDomains);
+    processYamlFile(temporaryFileForSelectedDomains);
+    fs.unlink(temporaryFileForSelectedDomains, function (err) {
+        if (err) {
+            console.error(err);
+        }
     });
 } else {
-    resolve(file);
+    console.warn("Combining YAML configurations for all domains into a single JSON file.");
+    processYamlFile(inputYamlFile);
 }
+console.warn("Completed.");
