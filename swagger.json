@@ -14218,7 +14218,7 @@
         "responders": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Recipient"
+            "$ref": "#/definitions/Responder"
           }
         },
         "integration": {
@@ -24242,7 +24242,7 @@
         "responders": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Recipient"
+            "$ref": "#/definitions/Responder"
           }
         },
         "teamId": {

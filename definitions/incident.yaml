@@ -183,7 +183,7 @@ BaseIncident:
     responders:
       type: array
       items:
-        $ref: "#/definitions/Recipient"
+        $ref: "#/definitions/Responder"
     teamId:
       type: string
     details:
