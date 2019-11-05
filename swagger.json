@@ -12889,6 +12889,7 @@
   },
   "definitions": {
     "BaseResponse": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "required": [
         "requestId",
@@ -12906,6 +12907,7 @@
       }
     },
     "BaseResponseWithExpandable": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "required": [
         "expandable"
@@ -12927,6 +12929,7 @@
       ]
     },
     "ErrorResponse": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "allOf": [
         {
@@ -12955,6 +12958,7 @@
       ]
     },
     "SuccessResponse": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "allOf": [
         {
@@ -12973,6 +12977,7 @@
       ]
     },
     "SuccessData": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "properties": {
         "id": {
@@ -12984,6 +12989,7 @@
       }
     },
     "PageDetails": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "properties": {
         "prev": {
@@ -13001,6 +13007,7 @@
       }
     },
     "Recipient": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "discriminator": "type",
       "required": [
@@ -13025,6 +13032,7 @@
       }
     },
     "TeamRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "team",
       "description": "Team recipient",
       "allOf": [
@@ -13042,6 +13050,7 @@
       ]
     },
     "GroupRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "group",
       "description": "Group recipient",
       "allOf": [
@@ -13059,6 +13068,7 @@
       ]
     },
     "ScheduleRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "schedule",
       "description": "Schedule recipient",
       "allOf": [
@@ -13076,6 +13086,7 @@
       ]
     },
     "EscalationRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "escalation",
       "description": "Escalation recipient",
       "allOf": [
@@ -13093,6 +13104,7 @@
       ]
     },
     "UserRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "user",
       "description": "User recipient",
       "allOf": [
@@ -13110,6 +13122,7 @@
       ]
     },
     "NoRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "none",
       "description": "No recipient",
       "allOf": [
@@ -13119,6 +13132,7 @@
       ]
     },
     "AllRecipient": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "all",
       "description": "All recipient",
       "allOf": [
@@ -13128,6 +13142,7 @@
       ]
     },
     "TimeRestrictionInterval": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "discriminator": "type",
       "required": [
@@ -13144,6 +13159,7 @@
       }
     },
     "WeekdayTimeRestrictionInterval": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "x-discriminator-value": "weekday-and-time-of-day",
       "description": "Weekday time restriction interval",
@@ -13167,6 +13183,7 @@
       ]
     },
     "TimeOfDayRestrictionInterval": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "x-discriminator-value": "time-of-day",
       "description": "Time of day restriction interval",
@@ -13185,6 +13202,7 @@
       ]
     },
     "WeekdayTimeRestriction": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "properties": {
         "startDay": {
@@ -13230,6 +13248,7 @@
       }
     },
     "TimeOfDayRestriction": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "properties": {
         "startHour": {
@@ -13251,6 +13270,7 @@
       }
     },
     "Duration": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "required": [
         "timeAmount"
@@ -13276,6 +13296,7 @@
       }
     },
     "Filter": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "description": "Defines the conditions that will be checked before applying rules and type of the operations that will be applied on conditions",
       "discriminator": "type",
@@ -13294,6 +13315,7 @@
       }
     },
     "MatchAll": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "match-all",
       "description": "Match all filter",
       "allOf": [
@@ -13306,6 +13328,7 @@
       ]
     },
     "MatchAllConditions": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "match-all-conditions",
       "description": "Match all conditions filter",
       "required": [
@@ -13330,6 +13353,7 @@
       ]
     },
     "MatchAnyCondition": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "match-any-condition",
       "description": "Match any condition filter",
       "required": [
@@ -13354,6 +13378,7 @@
       ]
     },
     "Condition": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "required": [
         "field",
@@ -13415,6 +13440,7 @@
       }
     },
     "Responder": {
+      "x-opsgenie-domain": "common",
       "type": "object",
       "discriminator": "type",
       "required": [
@@ -13435,6 +13461,7 @@
       }
     },
     "UserResponder": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "user",
       "description": "User responder",
       "allOf": [
@@ -13452,6 +13479,7 @@
       ]
     },
     "TeamResponder": {
+      "x-opsgenie-domain": "common",
       "x-discriminator-value": "team",
       "description": "Team responder",
       "allOf": [
@@ -13469,6 +13497,7 @@
       ]
     },
     "AlertActionPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "user": {
@@ -13486,6 +13515,7 @@
       }
     },
     "CreateAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13563,6 +13593,7 @@
       ]
     },
     "AcknowledgeAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13571,6 +13602,7 @@
       ]
     },
     "UnAcknowledgeAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13579,6 +13611,7 @@
       ]
     },
     "CloseAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13587,6 +13620,7 @@
       ]
     },
     "SnoozeAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13607,6 +13641,7 @@
       ]
     },
     "EscalateAlertToNextPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13625,6 +13660,7 @@
       ]
     },
     "AssignAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13643,6 +13679,7 @@
       ]
     },
     "AddTeamToAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13661,6 +13698,7 @@
       ]
     },
     "AddResponderToAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13679,6 +13717,7 @@
       ]
     },
     "ExecuteCustomAlertActionPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13687,6 +13726,7 @@
       ]
     },
     "AddTagsToAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13708,6 +13748,7 @@
       ]
     },
     "AddDetailsToAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13730,6 +13771,7 @@
       ]
     },
     "AddNoteToAlertPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "note"
@@ -13741,6 +13783,7 @@
       ]
     },
     "CreateSavedSearchPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "name",
@@ -13774,6 +13817,7 @@
       }
     },
     "UpdateSavedSearchPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "name",
@@ -13807,6 +13851,7 @@
       }
     },
     "UpdateAlertPriorityPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "priority"
@@ -13826,6 +13871,7 @@
       }
     },
     "UpdateAlertMessagePayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "message"
@@ -13838,6 +13884,7 @@
       }
     },
     "UpdateAlertDescriptionPayload": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "description"
@@ -13850,6 +13897,7 @@
       }
     },
     "GetRequestStatusResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13865,6 +13913,7 @@
       ]
     },
     "ListAlertsResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13886,6 +13935,7 @@
       ]
     },
     "GetAlertResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13901,6 +13951,7 @@
       ]
     },
     "ListAlertRecipientsResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13919,6 +13970,7 @@
       ]
     },
     "ListAlertLogsResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13940,6 +13992,7 @@
       ]
     },
     "ListAlertNotesResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13961,6 +14014,7 @@
       ]
     },
     "ListSavedSearchesResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13979,6 +14033,7 @@
       ]
     },
     "CreateSavedSearchResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -13994,6 +14049,7 @@
       ]
     },
     "GetSavedSearchResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -14009,6 +14065,7 @@
       ]
     },
     "ListAlertAttachmentsResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -14027,6 +14084,7 @@
       ]
     },
     "GetAlertAttachmentResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -14042,6 +14100,7 @@
       ]
     },
     "GetCountAlertsResponse": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -14063,6 +14122,7 @@
       ]
     },
     "AlertRequestStatus": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "action": {
@@ -14090,6 +14150,7 @@
       }
     },
     "BaseAlert": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "id"
@@ -14169,6 +14230,7 @@
       }
     },
     "AlertTeamMeta": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "required": [
         "id"
@@ -14180,6 +14242,7 @@
       }
     },
     "AlertIntegration": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "id": {
@@ -14194,6 +14257,7 @@
       }
     },
     "AlertReport": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "ackTime": {
@@ -14213,6 +14277,7 @@
       }
     },
     "Alert": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "allOf": [
         {
@@ -14243,6 +14308,7 @@
       ]
     },
     "AlertRecipient": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "user": {
@@ -14265,6 +14331,7 @@
       }
     },
     "AlertUserMeta": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "id": {
@@ -14276,6 +14343,7 @@
       }
     },
     "AlertLog": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "log": {
@@ -14297,6 +14365,7 @@
       }
     },
     "AlertPaging": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "first": {
@@ -14308,6 +14377,7 @@
       }
     },
     "AlertNote": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "note": {
@@ -14326,6 +14396,7 @@
       }
     },
     "SavedSearchMeta": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "id": {
@@ -14337,6 +14408,7 @@
       }
     },
     "SavedSearchEntity": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "id": {
@@ -14345,6 +14417,7 @@
       }
     },
     "SavedSearch": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "id": {
@@ -14379,6 +14452,7 @@
       }
     },
     "AlertAttachmentMeta": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "name": {
@@ -14390,6 +14464,7 @@
       }
     },
     "AlertAttachment": {
+      "x-opsgenie-domain": "alert",
       "type": "object",
       "properties": {
         "name": {
@@ -20096,6 +20171,7 @@
       ]
     },
     "CreateHeartbeatPayload": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20177,6 +20253,7 @@
       ]
     },
     "UpdateHeartbeatPayload": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "properties": {
         "description": {
@@ -20206,6 +20283,7 @@
       }
     },
     "CreateHeartbeatResponse": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20221,6 +20299,7 @@
       ]
     },
     "GetHeartbeatResponse": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20236,6 +20315,7 @@
       ]
     },
     "UpdateHeartbeatResponse": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20251,6 +20331,7 @@
       ]
     },
     "EnableHeartbeatResponse": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20266,6 +20347,7 @@
       ]
     },
     "DisableHeartbeatResponse": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20281,6 +20363,7 @@
       ]
     },
     "ListHeartbeatResponse": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "allOf": [
         {
@@ -20304,6 +20387,7 @@
       ]
     },
     "Heartbeat": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "properties": {
         "name": {
@@ -20337,6 +20421,7 @@
       }
     },
     "HeartbeatMeta": {
+      "x-opsgenie-domain": "heartbeat",
       "type": "object",
       "properties": {
         "name": {
@@ -20964,6 +21049,7 @@
       }
     },
     "GetAccountInfoResponse": {
+      "x-opsgenie-domain": "account",
       "type": "object",
       "allOf": [
         {
@@ -20979,6 +21065,7 @@
       ]
     },
     "AccountInfo": {
+      "x-opsgenie-domain": "account",
       "type": "object",
       "properties": {
         "name": {
@@ -20994,6 +21081,7 @@
       }
     },
     "AccountPlan": {
+      "x-opsgenie-domain": "account",
       "type": "object",
       "properties": {
         "maxUserCount": {
@@ -23892,6 +23980,7 @@
       }
     },
     "StatusPageEntry": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -23914,6 +24003,7 @@
       ]
     },
     "CreateIncidentPayload": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -23988,6 +24078,7 @@
       ]
     },
     "IncidentActionPayload": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "properties": {
         "note": {
@@ -23997,6 +24088,7 @@
       }
     },
     "CloseIncidentPayload": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -24005,6 +24097,7 @@
       ]
     },
     "GetIncidentRequestStatusResponse": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -24020,6 +24113,7 @@
       ]
     },
     "GetIncidentResponse": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -24035,6 +24129,7 @@
       ]
     },
     "ListIncidentsResponse": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -24056,6 +24151,7 @@
       ]
     },
     "IncidentRequestStatus": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "properties": {
         "success": {
@@ -24083,6 +24179,7 @@
       }
     },
     "Incident": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "allOf": [
         {
@@ -24098,6 +24195,7 @@
       ]
     },
     "BaseIncident": {
+      "x-opsgenie-domain": "incident",
       "type": "object",
       "required": [
         "id"
