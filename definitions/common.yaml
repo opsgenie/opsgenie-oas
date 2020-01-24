@@ -407,6 +407,8 @@ Responder:
       enum:
         - user
         - team
+        - escalation
+        - schedule
     id:
       type: string
 

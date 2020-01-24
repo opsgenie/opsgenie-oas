@@ -13452,7 +13452,9 @@
           "type": "string",
           "enum": [
             "user",
-            "team"
+            "team",
+            "escalation",
+            "schedule"
           ]
         },
         "id": {
