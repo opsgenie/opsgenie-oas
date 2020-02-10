@@ -1,0 +1,6 @@
+ServiceIdentifier:
+  name: identifier
+  in: path
+  description: Identifier of the service
+  required: true
+  type: string

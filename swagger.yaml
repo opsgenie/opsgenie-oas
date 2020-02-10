@@ -55,6 +55,7 @@ paths:
   - $ref: ./paths/customUserRole.yaml
   - $ref: ./paths/policy.yaml
   - $ref: ./paths/incident.yaml
+  - $ref: ./paths/service.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -83,6 +84,7 @@ parameters:
   - $ref: ./parameters/customUserRole.yaml
   - $ref: ./definitions/deprecatedPolicy.yaml
   - $ref: ./parameters/incident.yaml
+  - $ref: ./parameters/service.yaml
 
 ################################################################################
 #                                 RESPONSES                                    #
@@ -119,3 +121,4 @@ definitions:
   - $ref: ./definitions/customUserRole.yaml
   - $ref: ./definitions/policy.yaml
   - $ref: ./definitions/incident.yaml
+  - $ref: ./definitions/service.yaml
