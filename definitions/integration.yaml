@@ -298,6 +298,8 @@ IntegrationMeta:
       type: string
     teamId:
       type: string
+    apiKey:
+      type: string
 
 AlertFilter:
   type: object

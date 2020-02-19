@@ -56,6 +56,7 @@ paths:
   - $ref: ./paths/policy.yaml
   - $ref: ./paths/incident.yaml
   - $ref: ./paths/service.yaml
+  - $ref: ./paths/serviceIncidentRule.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -82,9 +83,9 @@ parameters:
   - $ref: ./parameters/escalation.yaml
   - $ref: ./parameters/forwardingRule.yaml
   - $ref: ./parameters/customUserRole.yaml
-  - $ref: ./definitions/deprecatedPolicy.yaml
   - $ref: ./parameters/incident.yaml
   - $ref: ./parameters/service.yaml
+  - $ref: ./parameters/serviceIncidentRule.yaml
 
 ################################################################################
 #                                 RESPONSES                                    #
@@ -118,7 +119,9 @@ definitions:
   - $ref: ./definitions/whoIsOnCall.yaml
   - $ref: ./definitions/escalation.yaml
   - $ref: ./definitions/forwardingRule.yaml
+  - $ref: ./definitions/deprecatedPolicy.yaml
   - $ref: ./definitions/customUserRole.yaml
   - $ref: ./definitions/policy.yaml
   - $ref: ./definitions/incident.yaml
   - $ref: ./definitions/service.yaml
+  - $ref: ./definitions/serviceIncidentRule.yaml

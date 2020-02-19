@@ -1,0 +1,180 @@
+##################
+#     REQUEST    #
+##################
+CreateServiceIncidentRulePayload:
+  type: object
+  required:
+    - incidentProperties
+  properties:
+    conditionMatchType:
+      type: string
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+      default: match-all
+    conditions:
+      type: array
+      items:
+        $ref: '#/definitions/ServiceIncidentCondition'
+    incidentProperties:
+      $ref: '#/definitions/ServiceIncidentProperties'
+
+UpdateServiceIncidentRulePayload:
+  type: object
+  properties:
+    conditionMatchType:
+      type: string
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+      default: match-all
+    conditions:
+      type: array
+      items:
+        $ref: '#/definitions/ServiceIncidentCondition'
+    incidentProperties:
+      $ref: '#/definitions/ServiceIncidentProperties'
+
+##################
+#    RESPONSE    #
+##################
+GetServiceIncidentRuleResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/ServiceIncidentRule'
+
+ListServiceIncidentRulesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/ServiceIncidentRule'
+
+##################
+#      MODEL     #
+##################
+ServiceIncidentRule:
+  type: object
+  required:
+    - id
+  properties:
+    id:
+      type: string
+      description: Id of the incident rule.
+    conditionMatchType:
+      type: string
+      enum:
+        - match-all
+        - match-any-condition
+        - match-all-conditions
+      default: match-all
+    conditions:
+      type: array
+      items:
+        $ref: '#/definitions/ServiceIncidentCondition'
+    incidentProperties:
+      $ref: '#/definitions/ServiceIncidentProperties'
+    order:
+      type: integer
+      description: Order for the rule.
+
+ServiceIncidentCondition:
+  Condition:
+  type: object
+  required:
+    - field
+    - operation
+  properties:
+    field:
+      type: string
+      description: Specifies which alert field will be used in condition. Possible values are message, description, tags, extra-properties, recipients, teams or priority
+      enum:
+        - message
+        - description
+        - tags
+        - extra-properties
+        - recipients
+        - teams
+        - priority
+    key:
+      type: string
+      description: If field is set as extra-properties, key could be used for key-value pair
+    not:
+      type: boolean
+      description: Indicates behaviour of the given operation. Default value is false
+    operation:
+      type: string
+      enum:
+        - matches
+        - contains
+        - starts-with
+        - ends-with
+        - equals
+        - contains-key
+        - contains-value
+        - greater-than
+        - less-than
+        - is-empty
+        - equals-ignore-whitespace
+      description: It is the operation that will be executed for the given field and key.
+    expectedValue:
+      type: string
+      description: User defined value that will be compared with alert field according to the operation. Default value is empty string
+
+ServiceIncidentProperties:
+  type: object
+  required:
+    - message
+    - priority
+    - stakeholderProperties
+  properties:
+    message:
+      type: string
+      description: Message of the related incident rule.
+    tags:
+      type: array
+      items:
+        type: string
+      description: Tags of the alert.
+    details:
+      type: object
+      description: Map of key-value pairs to use as custom properties of the alert.
+      additionalProperties:
+        type: string
+    description:
+      type: string
+      description: Description field of the incident rule.
+    priority:
+      type: string
+      description: Priority level of the alert. Possible values are P1, P2, P3, P4 and P5
+      enum:
+        - P1
+        - P2
+        - P3
+        - P4
+        - P5
+    stakeholderProperties:
+      $ref: '#/definitions/ServiceIncidentStakeholderProperties'
+
+ServiceIncidentStakeholderProperties:
+  type: object
+  required:
+    - message
+  properties:
+    enable:
+      type: boolean
+      description: Option to enable stakeholder notifications.Default value is true.
+    message:
+      type: string
+      description: Message that is to be passed to audience that is generally used to provide a content information about the alert.
+    description:
+      type: string
+      description: Description that is generally used to provide a detailed information about the alert.
