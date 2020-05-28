@@ -104,8 +104,7 @@
         $ref: '#/responses/TooManyRequest'
       default:
         $ref: '#/responses/GeneralError'
-
-/v1/services/{identifier}/routing-rules/{id}:
+/v1/services/{identifier}/incident-rules/{id}:
   put:
     tags:
       - service-incident-rule
@@ -118,7 +117,7 @@
     x-collapse-params: UpdateServiceIncidentRuleRequest
     parameters:
       - $ref: '#/parameters/ServiceIdentifier'
-      - $ref: '#/parameters/ServiceIncidentId'
+      - $ref: '#/parameters/ServiceIncidentRuleId'
       - name: body
         in: body
         description: Request payload of update Service Incident Rule action
@@ -157,7 +156,7 @@
     x-collapse-params: DeleteServiceIncidentRuleRequest
     parameters:
       - $ref: '#/parameters/ServiceIdentifier'
-      - $ref: '#/parameters/ServiceIncidentId'
+      - $ref: '#/parameters/ServiceIncidentRuleId'
     responses:
       '200':
         $ref: '#/responses/Ok'

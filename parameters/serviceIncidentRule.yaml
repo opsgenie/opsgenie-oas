@@ -1,4 +1,4 @@
-ServiceIncidentId:
+ServiceIncidentRuleId:
   name: id
   in: path
   description: Id of the service incident rule

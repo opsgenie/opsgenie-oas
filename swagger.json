@@ -10,7 +10,10 @@
     "https"
   ],
   "produces": [
-    "application/json"
+    "application/json;charset=UTF-8"
+  ],
+  "consumes": [
+    "application/json;charset=UTF-8"
   ],
   "securityDefinitions": {
     "GenieKey": {
@@ -3921,7 +3924,7 @@
         ],
         "summary": "List Alert Policies",
         "description": "Returns list alert policies",
-        "operationId": "listAlertPolicies",
+        "operationId": "listAlertPoliciesV1",
         "externalDocs": {
           "description": "For more information",
           "url": "https://www.opsgenie.com/docs/policy-api#section-list-policies"
@@ -10836,13 +10839,7 @@
             }
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -10912,13 +10909,7 @@
         },
         "parameters": [
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -10985,13 +10976,7 @@
         },
         "parameters": [
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11061,13 +11046,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11116,13 +11095,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11257,13 +11230,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11314,13 +11281,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -12354,7 +12315,7 @@
         }
       }
     },
-    "/v1/services/{identifier}/routing-rules/{id}": {
+    "/v1/services/{identifier}/incident-rules/{id}": {
       "put": {
         "tags": [
           "service-incident-rule"
@@ -12372,7 +12333,7 @@
             "$ref": "#/parameters/ServiceIdentifier"
           },
           {
-            "$ref": "#/parameters/ServiceIncidentId"
+            "$ref": "#/parameters/ServiceIncidentRuleId"
           },
           {
             "name": "body",
@@ -12431,7 +12392,7 @@
             "$ref": "#/parameters/ServiceIdentifier"
           },
           {
-            "$ref": "#/parameters/ServiceIncidentId"
+            "$ref": "#/parameters/ServiceIncidentRuleId"
           }
         ],
         "responses": {
@@ -12948,7 +12909,7 @@
       "required": true,
       "type": "string"
     },
-    "ServiceIncidentId": {
+    "ServiceIncidentRuleId": {
       "name": "id",
       "in": "path",
       "description": "Id of the service incident rule",
@@ -24756,7 +24717,6 @@
       }
     },
     "ServiceIncidentCondition": {
-      "Condition": null,
       "type": "object",
       "required": [
         "field",

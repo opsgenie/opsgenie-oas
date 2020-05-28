@@ -15,5 +15,4 @@ MaintenanceListType:
     - all
     - past
     - non-expired
-  default:
-    - all
+  default: all

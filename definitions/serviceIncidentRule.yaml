@@ -87,7 +87,6 @@ ServiceIncidentRule:
       description: Order for the rule.
 
 ServiceIncidentCondition:
-  Condition:
   type: object
   required:
     - field
