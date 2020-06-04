@@ -1,0 +1,104 @@
+/v1/services/{identifier}/audience-templates:
+  get:
+    tags:
+      - service-audience-template
+    summary: Retrieve the service audience template
+    description: Returns the audience template of a service
+    operationId: getServiceAudienceTemplate
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-audience-template-api#get-audience-template
+    parameters:
+      - $ref: "#/parameters/ServiceIdentifier"
+    responses:
+      "200":
+        description: Requested service audience template
+        schema:
+          $ref: "#/definitions/GetServiceAudienceTemplateResponse"
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"
+  patch:
+    tags:
+      - service-audience-template
+    summary: Partial update service audience template
+    description: Partial update service audience template
+    operationId: partialUpdateServiceAudienceTemplate
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-audience-template-api#update-audience-templatepartial
+    x-collapse-params: PartialUpdateServiceAudienceTemplatePayload
+    parameters:
+      - $ref: "#/parameters/ServiceIdentifier"
+      - name: body
+        in: body
+        description: Request payload of service audience template
+        required: false
+        schema:
+          $ref: "#/definitions/PartialUpdateServiceAudienceTemplatePayload"
+    responses:
+      "200":
+        description: OK response
+        schema:
+          $ref: "#/definitions/PartialUpdateServiceAudienceTemplateResponse"
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
+      default:
+        $ref: "#/responses/GeneralError"

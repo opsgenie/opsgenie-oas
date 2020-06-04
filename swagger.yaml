@@ -59,6 +59,7 @@ paths:
   - $ref: ./paths/incident.yaml
   - $ref: ./paths/service.yaml
   - $ref: ./paths/serviceIncidentRule.yaml
+  - $ref: ./paths/serviceAudienceTemplate.yaml
 
 ################################################################################
 #                                  PARAMETERS                                  #
@@ -127,3 +128,4 @@ definitions:
   - $ref: ./definitions/incident.yaml
   - $ref: ./definitions/service.yaml
   - $ref: ./definitions/serviceIncidentRule.yaml
+  - $ref: ./definitions/serviceAudienceTemplate.yaml
