@@ -300,7 +300,8 @@ IntegrationMeta:
       type: string
     apiKey:
       type: string
-
+    emailAddress:
+      type: string
 AlertFilter:
   type: object
   properties:
