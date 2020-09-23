@@ -13696,9 +13696,6 @@
       "allOf": [
         {
           "$ref": "#/definitions/Filter"
-        },
-        {
-          "type": "object"
         }
       ]
     },
@@ -24368,100 +24365,88 @@
     "StatusPageEntry": {
       "x-opsgenie-domain": "incident",
       "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "title"
-          ]
+      "required": [
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The message to be added using status page into incident"
         },
-        {
-          "properties": {
-            "title": {
-              "type": "string",
-              "description": "The message to be added using status page into incident"
-            },
-            "details": {
-              "type": "string",
-              "description": "Description of the message being added via stats page into incident"
-            }
-          }
+        "details": {
+          "type": "string",
+          "description": "Description of the message being added via stats page into incident"
         }
-      ]
+      }
     },
     "CreateIncidentPayload": {
       "x-opsgenie-domain": "incident",
       "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "message",
-            "serviceId"
+      "required": [
+        "message",
+        "serviceId"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message of the incident"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description field of the incident that is generally used to provide a detailed information about the incident."
+        },
+        "responders": {
+          "type": "array",
+          "description": "Responders that the incident will be routed to send notifications",
+          "items": {
+            "$ref": "#/definitions/Recipient"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags of the incident.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "details": {
+          "type": "object",
+          "description": "Map of key-value pairs to use as custom properties of the incident",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "type": "string",
+          "description": "Priority level of the incident",
+          "enum": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5"
           ]
         },
-        {
-          "properties": {
-            "message": {
-              "type": "string",
-              "description": "Message of the incident"
-            },
-            "description": {
-              "type": "string",
-              "description": "Description field of the incident that is generally used to provide a detailed information about the incident."
-            },
-            "responders": {
-              "type": "array",
-              "description": "Responders that the incident will be routed to send notifications",
-              "items": {
-                "$ref": "#/definitions/Recipient"
-              }
-            },
-            "tags": {
-              "type": "array",
-              "description": "Tags of the incident.",
-              "items": {
-                "type": "string"
-              }
-            },
-            "details": {
-              "type": "object",
-              "description": "Map of key-value pairs to use as custom properties of the incident",
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "priority": {
-              "type": "string",
-              "description": "Priority level of the incident",
-              "enum": [
-                "P1",
-                "P2",
-                "P3",
-                "P4",
-                "P5"
-              ]
-            },
-            "note": {
-              "type": "string",
-              "description": "Additional note that will be added while creating the incident"
-            },
-            "serviceId": {
-              "type": "string",
-              "description": "Service on which incident will be created."
-            },
-            "statusPageEntry": {
-              "type": "object",
-              "description": "Status page entry fields. If this field is leaved blank, message and description of incident will be used for title and detail respectively.",
-              "additionalProperties": {
-                "$ref": "#/definitions/StatusPageEntry"
-              }
-            },
-            "notifyStakeholders": {
-              "type": "boolean",
-              "description": "Indicate whether stakeholders are notified or not. Default value is false."
-            }
+        "note": {
+          "type": "string",
+          "description": "Additional note that will be added while creating the incident"
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Service on which incident will be created."
+        },
+        "statusPageEntry": {
+          "type": "object",
+          "description": "Status page entry fields. If this field is leaved blank, message and description of incident will be used for title and detail respectively.",
+          "additionalProperties": {
+            "$ref": "#/definitions/StatusPageEntry"
           }
+        },
+        "notifyStakeholders": {
+          "type": "boolean",
+          "description": "Indicate whether stakeholders are notified or not. Default value is false."
         }
-      ]
+      }
     },
     "IncidentActionPayload": {
       "x-opsgenie-domain": "incident",
