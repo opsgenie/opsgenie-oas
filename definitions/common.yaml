@@ -351,7 +351,7 @@ Condition:
   properties:
     field:
       type: string
-      description: Specifies which alert field will be used in condition. Possible values are message, alias, description, source, entity, tags, actions, extra-properties, recipients or teams
+      description: Specifies which alert field will be used in condition. Possible values are message, alias, description, source, entity, tags, actions, extra-properties, recipients, responders or teams
       enum:
         - message
         - alias
@@ -365,6 +365,7 @@ Condition:
         - teams
         - priority
         - details
+        - responders
     key:
       type: string
       description: If field is set as extra-properties, key could be used for key-value pair
