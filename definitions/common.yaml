@@ -308,7 +308,6 @@ MatchAll:
   description: Match all filter
   allOf:
     - $ref: '#/definitions/Filter'
-    - type: object
 
 MatchAllConditions:
   x-opsgenie-domain: common

@@ -10,14 +10,14 @@
       url: https://www.opsgenie.com/docs/integration-api#section-list-integrations
     x-collapse-params: ListIntegrationRequest
     parameters:
-      - $ref: '#/parameters/IntegrationType'
-      - $ref: '#/parameters/IntegrationTeamId'
-      - $ref: '#/parameters/IntegrationTeamName'
+      - $ref: "#/parameters/IntegrationType"
+      - $ref: "#/parameters/IntegrationTeamId"
+      - $ref: "#/parameters/IntegrationTeamName"
     responses:
-      '200':
+      "200":
         description: List of integration informations
         schema:
-          $ref: '#/definitions/ListIntegrationsResponse'
+          $ref: "#/definitions/ListIntegrationsResponse"
         headers:
           X-Request-ID:
             description: Id of given request
@@ -34,20 +34,20 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
   post:
     tags:
@@ -64,12 +64,12 @@
         description: Request payload of created integration
         required: true
         schema:
-          $ref: '#/definitions/Integration'
+          $ref: "#/definitions/Integration"
     responses:
-      '201':
+      "201":
         description: Integration meta information for created integration
         schema:
-          $ref: '#/definitions/CreateIntegrationResponse'
+          $ref: "#/definitions/CreateIntegrationResponse"
         headers:
           X-Request-ID:
             description: Id of given request
@@ -86,20 +86,20 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
 /v2/integrations/{id}:
   get:
@@ -112,12 +112,12 @@
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-get-integration
     parameters:
-      - $ref: '#/parameters/IntegrationId'
+      - $ref: "#/parameters/IntegrationId"
     responses:
-      '200':
+      "200":
         description: Integration information for given identifier
         schema:
-          $ref: '#/definitions/GetIntegrationResponse'
+          $ref: "#/definitions/GetIntegrationResponse"
         headers:
           X-Request-ID:
             description: Id of given request
@@ -134,22 +134,22 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
   put:
     tags:
@@ -162,18 +162,18 @@
       url: https://www.opsgenie.com/docs/integration-api#section-update-integration
     x-collapse-params: UpdateIntegrationRequest
     parameters:
-      - $ref: '#/parameters/IntegrationId'
+      - $ref: "#/parameters/IntegrationId"
       - name: body
         in: body
         description: Request payload of update integration action
         required: true
         schema:
-          $ref: '#/definitions/Integration'
+          $ref: "#/definitions/Integration"
     responses:
-      '200':
+      "200":
         description: Integration information for given identifier
         schema:
-          $ref: '#/definitions/UpdateIntegrationResponse'
+          $ref: "#/definitions/UpdateIntegrationResponse"
         headers:
           X-Request-ID:
             description: Id of given request
@@ -190,22 +190,22 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
   delete:
     tags:
@@ -217,26 +217,26 @@
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-delete-integration
     parameters:
-      - $ref: '#/parameters/IntegrationId'
+      - $ref: "#/parameters/IntegrationId"
     responses:
-      '200':
-        $ref: '#/responses/Ok'
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "200":
+        $ref: "#/responses/Ok"
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
 /v2/integrations/{id}/enable:
   post:
@@ -249,12 +249,12 @@
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-enable-integration
     parameters:
-      - $ref: '#/parameters/IntegrationId'
+      - $ref: "#/parameters/IntegrationId"
     responses:
-      '201':
+      "201":
         description: Integration information for given identifier
         schema:
-          $ref: '#/definitions/EnableIntegrationResponse'
+          $ref: "#/definitions/EnableIntegrationResponse"
         headers:
           X-Request-ID:
             description: Id of given request
@@ -271,22 +271,22 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
 /v2/integrations/{id}/disable:
   post:
@@ -299,12 +299,12 @@
       description: For more information
       url: https://www.opsgenie.com/docs/integration-api#section-disable-integration
     parameters:
-      - $ref: '#/parameters/IntegrationId'
+      - $ref: "#/parameters/IntegrationId"
     responses:
-      '201':
+      "201":
         description: Integration information for given identifier
         schema:
-          $ref: '#/definitions/DisableIntegrationResponse'
+          $ref: "#/definitions/DisableIntegrationResponse"
         headers:
           X-Request-ID:
             description: Id of given request
@@ -321,22 +321,22 @@
           X-RateLimit-Period-In-Sec:
             description: Time of throttle in seconds
             type: string
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
 
 /v2/integrations/authenticate:
   post:
@@ -354,23 +354,33 @@
         description: Request payload to authenticate integration
         required: true
         schema:
-          $ref: '#/definitions/AuthenticateIntegrationPayload'
+          $ref: "#/definitions/AuthenticateIntegrationPayload"
     responses:
-      '200':
-        $ref: '#/responses/Ok'
-      '400':
-        $ref: '#/responses/BadRequest'
-      '401':
-        $ref: '#/responses/Unauthorized'
-      '402':
-        $ref: '#/responses/PaymentRequired'
-      '403':
-        $ref: '#/responses/Forbidden'
-      '404':
-        $ref: '#/responses/NotFound'
-      '422':
-        $ref: '#/responses/UnprocessableEntity'
-      '429':
-        $ref: '#/responses/TooManyRequest'
+      "200":
+        $ref: "#/responses/Ok"
+      "400":
+        $ref: "#/responses/BadRequest"
+      "401":
+        $ref: "#/responses/Unauthorized"
+      "402":
+        $ref: "#/responses/PaymentRequired"
+      "403":
+        $ref: "#/responses/Forbidden"
+      "404":
+        $ref: "#/responses/NotFound"
+      "422":
+        $ref: "#/responses/UnprocessableEntity"
+      "429":
+        $ref: "#/responses/TooManyRequest"
       default:
-        $ref: '#/responses/GeneralError'
+        $ref: "#/responses/GeneralError"
+/v1/json/dynatraceappmon:
+  post:
+    operationId: dynaIntegration
+    parameters:
+      - in: query
+        name: apiKey
+        type: string
+    responses:
+      "200":
+        description: Success response

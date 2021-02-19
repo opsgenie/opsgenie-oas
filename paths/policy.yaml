@@ -15,12 +15,7 @@
         required: true
         schema:
           $ref: '#/definitions/Policy'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '201':
         description: Policy meta information for created policy
@@ -68,12 +63,7 @@
       description: For more information
       url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-list-alert-policies
     parameters:
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '200':
         description: List of policies
@@ -119,12 +109,7 @@
       description: For more information
       url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-list-notification-policies
     parameters:
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '200':
         description: List of policies
@@ -170,12 +155,7 @@
       url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-delete-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -206,12 +186,7 @@
       url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-get-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '200':
         description: Policy with given id
@@ -301,12 +276,7 @@
       url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-enable-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '200':
         $ref: '#/responses/Ok'
@@ -339,12 +309,7 @@
       url: https://docs.opsgenie.com/docs/alert-and-notification-policy-api#section-disable-policy
     parameters:
       - $ref: '#/parameters/PolicyId'
-      - name: teamId
-        in: query
-        description: TeamId of policy created if it belongs to a team
-        required: false
-        schema:
-          $ref: '#/parameters/TeamId'
+      - $ref: '#/parameters/TeamId'
     responses:
       '200':
         $ref: '#/responses/Ok'

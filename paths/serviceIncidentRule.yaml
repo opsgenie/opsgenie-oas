@@ -1,0 +1,178 @@
+/v1/services/{identifier}/incident-rules:
+  post:
+    tags:
+      - service-incident-rule
+    summary: Create Service Incident Rule
+    description: Creates a new service incident rule
+    operationId: createServiceIncidentRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-incident-rules-api#section-create-incident-rule
+    x-collapse-params: CreateServiceIncidentRuleRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+      - name: body
+        in: body
+        description: Request payload of CreateServiceIncidentRulePayload
+        required: true
+        schema:
+          $ref: '#/definitions/CreateServiceIncidentRulePayload'
+    responses:
+      '201':
+        description: Information for created service incident rule
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - service-incident-rule
+    summary: List Service Incident Rules
+    description: Returns list of service incident rules
+    operationId: listServiceRoutingRules
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-incident-rules-api#section-get-incident-rules
+    x-collapse-params: ListServiceIncidentRulesRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+    responses:
+      '200':
+        description: List of Service Incident Rule informations
+        schema:
+          $ref: '#/definitions/ListServiceIncidentRulesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+/v1/services/{identifier}/incident-rules/{id}:
+  put:
+    tags:
+      - service-incident-rule
+    summary: Update service incident rule
+    description: Update incident rule of the service
+    operationId: updateServiceIncidentRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-incident-rules-api#section-update-incident-rule
+    x-collapse-params: UpdateServiceIncidentRuleRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+      - $ref: '#/parameters/ServiceIncidentRuleId'
+      - name: body
+        in: body
+        description: Request payload of update Service Incident Rule action
+        required: false
+        schema:
+          $ref: '#/definitions/UpdateServiceIncidentRulePayload'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - service-incident-rule
+    summary: Delete service incident rule
+    description: Delete incident rule of the service
+    operationId: deleteServiceIncidentRule
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-incident-rules-api#section-delete-incident-rule
+    x-collapse-params: DeleteServiceIncidentRuleRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+      - $ref: '#/parameters/ServiceIncidentRuleId'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'

@@ -4,7 +4,7 @@
       - deprecatedPolicy
     summary: List Alert Policies
     description: Returns list alert policies
-    operationId: listAlertPolicies
+    operationId: listAlertPoliciesV1
     externalDocs:
       description: For more information
       url: https://www.opsgenie.com/docs/policy-api#section-list-policies

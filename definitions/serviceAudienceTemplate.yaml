@@ -1,0 +1,91 @@
+##################
+#     REQUEST    #
+##################
+PartialUpdateServiceAudienceTemplatePayload:
+  type: object
+  properties:
+    responder:
+      $ref: "#/definitions/ServiceAudienceTemplateResponder"
+    stakeholder:
+      $ref: "#/definitions/ServiceAudienceTemplateStakeholder"
+
+##################
+#     RESPONSE   #
+##################
+GetServiceAudienceTemplateResponse:
+  type: object
+  allOf:
+    - $ref: "#/definitions/BaseResponse"
+    - properties:
+        data:
+          $ref: "#/definitions/ServiceAudienceTemplate"
+
+PartialUpdateServiceAudienceTemplateResponse:
+  type: object
+  allOf:
+    - $ref: "#/definitions/BaseResponse"
+
+##################
+#     MODEL      #
+##################
+ServiceAudienceTemplate:
+  type: object
+  properties:
+    responder:
+      $ref: "#/definitions/ServiceAudienceTemplateResponder"
+    stakeholder:
+      $ref: "#/definitions/ServiceAudienceTemplateStakeholder"
+
+ServiceAudienceTemplateResponder:
+  type: object
+  properties:
+    teams:
+      type: array
+      items:
+        type: string
+    individuals:
+      type: array
+      items:
+        type: string
+
+ServiceAudienceTemplateStakeholder:
+  type: object
+  properties:
+    individuals:
+      type: array
+      items:
+        type: string
+    conditionMatchType:
+      type: string
+      description: Match type for given conditions. Possible values are [match-all-conditions, match-any-condition]. Default value is [match-any-condition].
+      enum:
+        - match-all-conditions
+        - match-any-condition
+    conditions:
+      type: array
+      items:
+        $ref: "#/definitions/ServiceAudienceTemplateCondition"
+
+ServiceAudienceTemplateCondition:
+  type: object
+  required:
+    - matchField
+    - value
+  properties:
+    matchField:
+      type: string
+      description: Field to be matched for users. Possible values are [country, state, city, zipCode, line, tag, customProperty]. customProperty can be used while actionType is keyValue.
+      enum:
+        - country
+        - state
+        - city
+        - zipCode
+        - line
+        - tag
+        - customProperty
+    key:
+      type: string
+      description: If matchField is customProperty, key must be given.
+    value:
+      type: string
+      description: Value to be check for the match field.

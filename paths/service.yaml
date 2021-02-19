@@ -1,0 +1,226 @@
+/v1/services:
+  post:
+    tags:
+      - service
+    summary: Create Service
+    description: Creates a new service
+    operationId: createService
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-api#create-service
+    parameters:
+      - name: body
+        in: body
+        description: Request payload of created service
+        required: true
+        schema:
+          $ref: '#/definitions/CreateServicePayload'
+    responses:
+      '201':
+        description: Service information for created service
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  get:
+    tags:
+      - service
+    summary: List services
+    description: Return list of services
+    operationId: listServices
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-api#section-list-teamcustomer-services
+    x-collapse-params: "ListServicesRequest"
+    parameters:
+      - $ref: '#/parameters/UserLimitParam'
+      - $ref: '#/parameters/UserOffsetParam'
+      - $ref: '#/parameters/UserSortParam'
+      - $ref: '#/parameters/UserOrderParam'
+      - $ref: '#/parameters/UserQueryParam'
+    responses:
+      '200':
+        description: List of filtered services
+        schema:
+          $ref: '#/definitions/ListServicesResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+/v1/services/{identifier}:
+  get:
+    tags:
+      - service
+    summary: Get Service
+    description: Returns service with given 'id'
+    operationId: getService
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-api#section-get-service
+    x-collapse-params: GetServiceRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+    responses:
+      '200':
+        description: Service information for given identifier
+        schema:
+          $ref: '#/definitions/GetServiceResponse'
+        headers:
+          X-Request-ID:
+            description: Id of given request
+            type: string
+          X-Response-Time:
+            description: Process time of given request
+            type: string
+          X-RateLimit-State:
+            description: Status of rate limit
+            type: string
+          X-RateLimit-Reason:
+            description: Source of the rate limit
+            type: string
+          X-RateLimit-Period-In-Sec:
+            description: Time of throttle in seconds
+            type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  delete:
+    tags:
+      - service
+    summary: Delete Service
+    description: Delete service with given id
+    operationId: deleteService
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-api#section-delete-service
+    x-collapse-params: DeleteServiceRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'
+
+  patch:
+    tags:
+      - service
+    summary: Update Service (Partial)
+    description: Update service with given id
+    operationId: updateService
+    externalDocs:
+      description: For more information
+      url: https://docs.opsgenie.com/docs/service-api#section-update-service
+    x-collapse-params: UpdateServiceRequest
+    parameters:
+      - $ref: '#/parameters/ServiceIdentifier'
+      - name: body
+        in: body
+        description: Request payload of update service action
+        schema:
+          $ref: '#/definitions/UpdateServicePayload'
+    responses:
+      '200':
+        $ref: '#/responses/Ok'
+      '400':
+        $ref: '#/responses/BadRequest'
+      '401':
+        $ref: '#/responses/Unauthorized'
+      '402':
+        $ref: '#/responses/PaymentRequired'
+      '403':
+        $ref: '#/responses/Forbidden'
+      '404':
+        $ref: '#/responses/NotFound'
+      '422':
+        $ref: '#/responses/UnprocessableEntity'
+      '429':
+        $ref: '#/responses/TooManyRequest'
+      default:
+        $ref: '#/responses/GeneralError'

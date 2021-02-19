@@ -298,7 +298,10 @@ IntegrationMeta:
       type: string
     teamId:
       type: string
-
+    apiKey:
+      type: string
+    emailAddress:
+      type: string
 AlertFilter:
   type: object
   properties:
@@ -555,6 +558,7 @@ ActionMapping:
 OutgoingCallbackNew:
   type: object
   discriminator: callback-type
+  x-discriminator-is-enum: true
   properties:
     alertFilter:
       $ref: '#/definitions/AlertFilter'
@@ -657,6 +661,7 @@ BaseWebhookCallback:
 OutgoingCallback:
   type: object
   discriminator: callback-type
+  x-discriminator-is-enum: true
   properties:
     alertFilter:
       $ref: '#/definitions/AlertFilter'
@@ -1810,6 +1815,7 @@ Integration:
 BaseIncomingFeature:
   type: object
   discriminator: feature-type
+  x-discriminator-is-enum: true
   properties:
     suppressNotifications:
       description: If enabled, notifications that come from alerts will be suppressed. Defaults to false

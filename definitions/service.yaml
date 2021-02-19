@@ -1,0 +1,96 @@
+##################
+#     REQUEST    #
+##################
+CreateServicePayload:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      description: Name of the service
+    teamId:
+      type: string
+      description: Team id of the service.
+    description:
+      type: string
+      description: Description field of the service that is generally used to provide a detailed information about the service.
+    visibility:
+      type: string
+      enum:
+        - TEAM_MEMBERS
+        - OPSGENIE_USERS
+    tags:
+      type: array
+      items:
+        type: string
+
+UpdateServicePayload:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      description: Name of the service
+    description:
+      type: string
+      description: Description field of the service that is generally used to provide a detailed information about the service.
+    visibility:
+      type: string
+      enum:
+        - TEAM_MEMBERS
+        - OPSGENIE-USERS
+
+##################
+#     RESPONSE   #
+##################
+GetServiceResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          $ref: '#/definitions/Service'
+
+ListServicesResponse:
+  type: object
+  allOf:
+    - $ref: '#/definitions/BaseResponse'
+    - properties:
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/Service'
+        paging:
+          $ref: '#/definitions/PageDetails'
+
+##################
+#     MODEL      #
+##################
+Service:
+  type: object
+  required:
+    - name
+  properties:
+    id:
+      type: string
+      description: Id of the service
+    name:
+      type: string
+      description: Name of the service
+    teamId:
+      type: string
+      description: Team id of the service.
+    description:
+      type: string
+      description: Description field of the service that is generally used to provide a detailed information about the service.
+    visibility:
+      type: string
+      enum:
+        - TEAM_MEMBERS
+        - OPSGENIE_USERS
+    tags:
+      type: array
+      items:
+        type: string

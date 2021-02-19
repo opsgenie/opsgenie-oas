@@ -10,7 +10,10 @@
     "https"
   ],
   "produces": [
-    "application/json"
+    "application/json;charset=UTF-8"
+  ],
+  "consumes": [
+    "application/json;charset=UTF-8"
   ],
   "securityDefinitions": {
     "GenieKey": {
@@ -3130,6 +3133,23 @@
         }
       }
     },
+    "/v1/json/dynatraceappmon": {
+      "post": {
+        "operationId": "dynaIntegration",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "apiKey",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response"
+          }
+        }
+      }
+    },
     "/v2/integrations/{id}/actions": {
       "get": {
         "tags": [
@@ -3921,7 +3941,7 @@
         ],
         "summary": "List Alert Policies",
         "description": "Returns list alert policies",
-        "operationId": "listAlertPolicies",
+        "operationId": "listAlertPoliciesV1",
         "externalDocs": {
           "description": "For more information",
           "url": "https://www.opsgenie.com/docs/policy-api#section-list-policies"
@@ -10836,13 +10856,7 @@
             }
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -10912,13 +10926,7 @@
         },
         "parameters": [
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -10985,13 +10993,7 @@
         },
         "parameters": [
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11061,13 +11063,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11116,13 +11112,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11257,13 +11247,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11314,13 +11298,7 @@
             "$ref": "#/parameters/PolicyId"
           },
           {
-            "name": "teamId",
-            "in": "query",
-            "description": "TeamId of policy created if it belongs to a team",
-            "required": false,
-            "schema": {
-              "$ref": "#/parameters/TeamId"
-            }
+            "$ref": "#/parameters/TeamId"
           }
         ],
         "responses": {
@@ -11862,6 +11840,762 @@
           }
         }
       }
+    },
+    "/v1/services": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Create Service",
+        "description": "Creates a new service",
+        "operationId": "createService",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-api#create-service"
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of created service",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateServicePayload"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Service information for created service",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "service"
+        ],
+        "summary": "List services",
+        "description": "Return list of services",
+        "operationId": "listServices",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-api#section-list-teamcustomer-services"
+        },
+        "x-collapse-params": "ListServicesRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/UserLimitParam"
+          },
+          {
+            "$ref": "#/parameters/UserOffsetParam"
+          },
+          {
+            "$ref": "#/parameters/UserSortParam"
+          },
+          {
+            "$ref": "#/parameters/UserOrderParam"
+          },
+          {
+            "$ref": "#/parameters/UserQueryParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of filtered services",
+            "schema": {
+              "$ref": "#/definitions/ListServicesResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/services/{identifier}": {
+      "get": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get Service",
+        "description": "Returns service with given 'id'",
+        "operationId": "getService",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-api#section-get-service"
+        },
+        "x-collapse-params": "GetServiceRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service information for given identifier",
+            "schema": {
+              "$ref": "#/definitions/GetServiceResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Delete Service",
+        "description": "Delete service with given id",
+        "operationId": "deleteService",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-api#section-delete-service"
+        },
+        "x-collapse-params": "DeleteServiceRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Update Service (Partial)",
+        "description": "Update service with given id",
+        "operationId": "updateService",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-api#section-update-service"
+        },
+        "x-collapse-params": "UpdateServiceRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update service action",
+            "schema": {
+              "$ref": "#/definitions/UpdateServicePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/services/{identifier}/incident-rules": {
+      "post": {
+        "tags": [
+          "service-incident-rule"
+        ],
+        "summary": "Create Service Incident Rule",
+        "description": "Creates a new service incident rule",
+        "operationId": "createServiceIncidentRule",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-incident-rules-api#section-create-incident-rule"
+        },
+        "x-collapse-params": "CreateServiceIncidentRuleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of CreateServiceIncidentRulePayload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateServiceIncidentRulePayload"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Information for created service incident rule",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "service-incident-rule"
+        ],
+        "summary": "List Service Incident Rules",
+        "description": "Returns list of service incident rules",
+        "operationId": "listServiceRoutingRules",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-incident-rules-api#section-get-incident-rules"
+        },
+        "x-collapse-params": "ListServiceIncidentRulesRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Service Incident Rule informations",
+            "schema": {
+              "$ref": "#/definitions/ListServiceIncidentRulesResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/services/{identifier}/incident-rules/{id}": {
+      "put": {
+        "tags": [
+          "service-incident-rule"
+        ],
+        "summary": "Update service incident rule",
+        "description": "Update incident rule of the service",
+        "operationId": "updateServiceIncidentRule",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-incident-rules-api#section-update-incident-rule"
+        },
+        "x-collapse-params": "UpdateServiceIncidentRuleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          },
+          {
+            "$ref": "#/parameters/ServiceIncidentRuleId"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of update Service Incident Rule action",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateServiceIncidentRulePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "service-incident-rule"
+        ],
+        "summary": "Delete service incident rule",
+        "description": "Delete incident rule of the service",
+        "operationId": "deleteServiceIncidentRule",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-incident-rules-api#section-delete-incident-rule"
+        },
+        "x-collapse-params": "DeleteServiceIncidentRuleRequest",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          },
+          {
+            "$ref": "#/parameters/ServiceIncidentRuleId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Ok"
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
+    },
+    "/v1/services/{identifier}/audience-templates": {
+      "get": {
+        "tags": [
+          "service-audience-template"
+        ],
+        "summary": "Retrieve the service audience template",
+        "description": "Returns the audience template of a service",
+        "operationId": "getServiceAudienceTemplate",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-audience-template-api#get-audience-template"
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested service audience template",
+            "schema": {
+              "$ref": "#/definitions/GetServiceAudienceTemplateResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "service-audience-template"
+        ],
+        "summary": "Partial update service audience template",
+        "description": "Partial update service audience template",
+        "operationId": "partialUpdateServiceAudienceTemplate",
+        "externalDocs": {
+          "description": "For more information",
+          "url": "https://docs.opsgenie.com/docs/service-audience-template-api#update-audience-templatepartial"
+        },
+        "x-collapse-params": "PartialUpdateServiceAudienceTemplatePayload",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ServiceIdentifier"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Request payload of service audience template",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PartialUpdateServiceAudienceTemplatePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK response",
+            "schema": {
+              "$ref": "#/definitions/PartialUpdateServiceAudienceTemplateResponse"
+            },
+            "headers": {
+              "X-Request-ID": {
+                "description": "Id of given request",
+                "type": "string"
+              },
+              "X-Response-Time": {
+                "description": "Process time of given request",
+                "type": "string"
+              },
+              "X-RateLimit-State": {
+                "description": "Status of rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Reason": {
+                "description": "Source of the rate limit",
+                "type": "string"
+              },
+              "X-RateLimit-Period-In-Sec": {
+                "description": "Time of throttle in seconds",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/responses/PaymentRequired"
+          },
+          "403": {
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/responses/UnprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/responses/TooManyRequest"
+          },
+          "default": {
+            "$ref": "#/responses/GeneralError"
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -12046,9 +12780,7 @@
         "past",
         "non-expired"
       ],
-      "default": [
-        "all"
-      ]
+      "default": "all"
     },
     "UserIdentifier": {
       "name": "identifier",
@@ -12320,377 +13052,6 @@
       ],
       "default": "id"
     },
-    "DeprecatedChangeAlertPolicyOrderPayload": {
-      "type": "object",
-      "required": [
-        "targetIndex"
-      ],
-      "properties": {
-        "targetIndex": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Order of the target policy will be changed to this value. Larger values than policy count will put the target policy to last place",
-          "minimum": 0
-        }
-      }
-    },
-    "DeprecatedListAlertPoliciesResponse": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/BaseResponse"
-        },
-        {
-          "properties": {
-            "data": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DeprecatedAlertPolicyMeta"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedCreateAlertPolicyResponse": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/BaseResponse"
-        },
-        {
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/DeprecatedAlertPolicyMeta"
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedGetAlertPolicyResponse": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/BaseResponse"
-        },
-        {
-          "properties": {
-            "data": {
-              "$ref": "#/definitions/DeprecatedAlertPolicy"
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedAlertPolicyMeta": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "modify",
-            "auto-close",
-            "notification-delay",
-            "notification-deduplication",
-            "notification-suppress",
-            "notification-renotify",
-            "auto-restart-notifications"
-          ]
-        },
-        "order": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "enabled": {
-          "type": "boolean"
-        }
-      }
-    },
-    "DeprecatedAlertPolicy": {
-      "type": "object",
-      "discriminator": "type",
-      "required": [
-        "type"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the policy"
-        },
-        "policyDescription": {
-          "type": "string",
-          "description": "Description of the policy"
-        },
-        "filter": {
-          "$ref": "#/definitions/Filter",
-          "description": "Conditions specified in this field must be met for this policy to work"
-        },
-        "timeRestrictions": {
-          "$ref": "#/definitions/TimeRestrictionInterval",
-          "description": "Time restrictions specified in this field must be met for this policy to work"
-        },
-        "enabled": {
-          "type": "boolean",
-          "description": "Activity status of the alert policy"
-        },
-        "type": {
-          "type": "string",
-          "description": "Type of the policy",
-          "enum": [
-            "modify",
-            "auto-close",
-            "notification-delay",
-            "notification-deduplication",
-            "notification-suppress",
-            "notification-renotify",
-            "auto-restart-notifications"
-          ]
-        }
-      }
-    },
-    "DeprecatedModifyAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "modify",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        },
-        {
-          "properties": {
-            "ignoreOriginalAlertActions": {
-              "type": "boolean"
-            },
-            "ignoreOriginalDetails": {
-              "description": "If set to true, policy will ignore the original details of the alert. Default value is false",
-              "type": "boolean"
-            },
-            "ignoreOriginalRecipients": {
-              "description": "If set to true, policy will ignore the original recipients of the alert. Default value is false",
-              "type": "boolean"
-            },
-            "ignoreOriginalTags": {
-              "description": "If set to true, policy will ignore the original tags of the alert. Default value is false",
-              "type": "boolean"
-            },
-            "ignoreOriginalTeams": {
-              "description": "If set to true, policy will ignore the original teams of the alert. Default value is false",
-              "type": "boolean"
-            },
-            "continue": {
-              "description": "Will continue with other modify policies if set to true",
-              "type": "boolean"
-            },
-            "alias": {
-              "description": "Alias of the alert. You can use {{alias}} to refer to the original alias. Default value is {{alias}}",
-              "type": "string"
-            },
-            "description": {
-              "description": "Description of the alert. You can use {{description}} to refer to the original alert description. Default value is {{description}}",
-              "type": "string"
-            },
-            "entity": {
-              "description": "Entity field of the alert. You can use {{entity}} to refer to the original entity. Default value is {{entity}}",
-              "type": "string"
-            },
-            "message": {
-              "description": "Message of the alert",
-              "type": "string"
-            },
-            "source": {
-              "description": "Source field of the alert. You can use {{source}} to refer to the original source. Default value is {{source}}",
-              "type": "string"
-            },
-            "actions": {
-              "description": "Alert actions as a list of strings to add to the alerts original actions value. If ignoreOriginalAlertActions field is set to true, this will replace the original actions.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "recipients": {
-              "description": "Recipients to add to the alerts original recipients value as a list of escalations, schedules, teams, users or the reserved word none or all. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Recipient"
-              }
-            },
-            "tags": {
-              "description": "Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalRecipients field is set to true, this will replace the original recipients.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "details": {
-              "description": "Custom properties to add to the alerts original details value as a list of strings. If ignoreOriginalDetails field is set to true, this will replace the original details.",
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "priority": {
-              "type": "string",
-              "description": "Priority level of the alert",
-              "enum": [
-                "P1",
-                "P2",
-                "P3",
-                "P4",
-                "P5"
-              ]
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedAutoCloseAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "auto-close",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        },
-        {
-          "properties": {
-            "duration": {
-              "description": "Duration to wait before closing the alert",
-              "$ref": "#/definitions/Duration"
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedNotificationDelayAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "notification-delay",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        },
-        {
-          "properties": {
-            "delayOption": {
-              "description": "Delay type",
-              "type": "string",
-              "enum": [
-                "for-duration",
-                "next-time",
-                "next-weekday",
-                "next-monday",
-                "next-tuesday",
-                "next-wednesday",
-                "next-thursday",
-                "next-friday",
-                "next-saturday",
-                "next-sunday"
-              ]
-            },
-            "duration": {
-              "description": "Interval to keep count of alerts for frequency based deduplication",
-              "$ref": "#/definitions/Duration"
-            },
-            "untilHour": {
-              "description": "Should be a number between 0-23",
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0,
-              "maximum": 23
-            },
-            "untilMinute": {
-              "description": "Should be a number between 0-59",
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0,
-              "maximum": 59
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedNotificationDeduplicationAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "notification-deduplication",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        },
-        {
-          "properties": {
-            "deduplicationActionType": {
-              "type": "string",
-              "description": "Deduplication type",
-              "enum": [
-                "value-based",
-                "frequency-based"
-              ]
-            },
-            "count": {
-              "description": "Number of alerts before deduplication",
-              "type": "integer",
-              "format": "int32",
-              "minimum": 2,
-              "maximum": 100
-            },
-            "duration": {
-              "description": "Interval to keep count of alerts for frequency based deduplication",
-              "$ref": "#/definitions/Duration"
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedAutoRestartNotificationsAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "auto-restart-notifications",
-      "required": [
-        "maxRepeatCount"
-      ],
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        },
-        {
-          "properties": {
-            "duration": {
-              "description": "Duration to wait before restarting the notification flow",
-              "$ref": "#/definitions/Duration"
-            },
-            "maxRepeatCount": {
-              "description": "Max restart count of the notification flow",
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        }
-      ]
-    },
-    "DeprecatedNotificationSuppressAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "notification-suppress",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        }
-      ]
-    },
-    "DeprecatedNotificationRenotifyAlertPolicy": {
-      "type": "object",
-      "x-discriminator-value": "notification-renotify",
-      "allOf": [
-        {
-          "$ref": "#/definitions/DeprecatedAlertPolicy"
-        }
-      ]
-    },
     "IncidentIdentifier": {
       "name": "identifier",
       "in": "path",
@@ -12709,6 +13070,20 @@
         "tiny"
       ],
       "default": "id"
+    },
+    "ServiceIdentifier": {
+      "name": "identifier",
+      "in": "path",
+      "description": "Identifier of the service",
+      "required": true,
+      "type": "string"
+    },
+    "ServiceIncidentRuleId": {
+      "name": "id",
+      "in": "path",
+      "description": "Id of the service incident rule",
+      "required": true,
+      "type": "string"
     }
   },
   "responses": {
@@ -13321,9 +13696,6 @@
       "allOf": [
         {
           "$ref": "#/definitions/Filter"
-        },
-        {
-          "type": "object"
         }
       ]
     },
@@ -14820,6 +15192,12 @@
         },
         "teamId": {
           "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
         }
       }
     },
@@ -15015,6 +15393,7 @@
     "OutgoingCallbackNew": {
       "type": "object",
       "discriminator": "callback-type",
+      "x-discriminator-is-enum": true,
       "properties": {
         "alertFilter": {
           "$ref": "#/definitions/AlertFilter"
@@ -15148,6 +15527,7 @@
     "OutgoingCallback": {
       "type": "object",
       "discriminator": "callback-type",
+      "x-discriminator-is-enum": true,
       "properties": {
         "alertFilter": {
           "$ref": "#/definitions/AlertFilter"
@@ -16890,6 +17270,7 @@
     "BaseIncomingFeature": {
       "type": "object",
       "discriminator": "feature-type",
+      "x-discriminator-is-enum": true,
       "properties": {
         "suppressNotifications": {
           "description": "If enabled, notifications that come from alerts will be suppressed. Defaults to false",
@@ -23985,100 +24366,88 @@
     "StatusPageEntry": {
       "x-opsgenie-domain": "incident",
       "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "title"
-          ]
+      "required": [
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The message to be added using status page into incident"
         },
-        {
-          "properties": {
-            "title": {
-              "type": "string",
-              "description": "The message to be added using status page into incident"
-            },
-            "details": {
-              "type": "string",
-              "description": "Description of the message being added via stats page into incident"
-            }
-          }
+        "details": {
+          "type": "string",
+          "description": "Description of the message being added via stats page into incident"
         }
-      ]
+      }
     },
     "CreateIncidentPayload": {
       "x-opsgenie-domain": "incident",
       "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "message",
-            "serviceId"
+      "required": [
+        "message",
+        "serviceId"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message of the incident"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description field of the incident that is generally used to provide a detailed information about the incident."
+        },
+        "responders": {
+          "type": "array",
+          "description": "Responders that the incident will be routed to send notifications",
+          "items": {
+            "$ref": "#/definitions/Recipient"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags of the incident.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "details": {
+          "type": "object",
+          "description": "Map of key-value pairs to use as custom properties of the incident",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "type": "string",
+          "description": "Priority level of the incident",
+          "enum": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5"
           ]
         },
-        {
-          "properties": {
-            "message": {
-              "type": "string",
-              "description": "Message of the incident"
-            },
-            "description": {
-              "type": "string",
-              "description": "Description field of the incident that is generally used to provide a detailed information about the incident."
-            },
-            "responders": {
-              "type": "array",
-              "description": "Responders that the incident will be routed to send notifications",
-              "items": {
-                "$ref": "#/definitions/Recipient"
-              }
-            },
-            "tags": {
-              "type": "array",
-              "description": "Tags of the incident.",
-              "items": {
-                "type": "string"
-              }
-            },
-            "details": {
-              "type": "object",
-              "description": "Map of key-value pairs to use as custom properties of the incident",
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "priority": {
-              "type": "string",
-              "description": "Priority level of the incident",
-              "enum": [
-                "P1",
-                "P2",
-                "P3",
-                "P4",
-                "P5"
-              ]
-            },
-            "note": {
-              "type": "string",
-              "description": "Additional note that will be added while creating the incident"
-            },
-            "serviceId": {
-              "type": "string",
-              "description": "Service on which incident will be created."
-            },
-            "statusPageEntry": {
-              "type": "object",
-              "description": "Status page entry fields. If this field is leaved blank, message and description of incident will be used for title and detail respectively.",
-              "additionalProperties": {
-                "$ref": "#/definitions/StatusPageEntry"
-              }
-            },
-            "notifyStakeholders": {
-              "type": "boolean",
-              "description": "Indicate whether stakeholders are notified or not. Default value is false."
-            }
+        "note": {
+          "type": "string",
+          "description": "Additional note that will be added while creating the incident"
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Service on which incident will be created."
+        },
+        "statusPageEntry": {
+          "type": "object",
+          "description": "Status page entry fields. If this field is leaved blank, message and description of incident will be used for title and detail respectively.",
+          "additionalProperties": {
+            "$ref": "#/definitions/StatusPageEntry"
           }
+        },
+        "notifyStakeholders": {
+          "type": "boolean",
+          "description": "Indicate whether stakeholders are notified or not. Default value is false."
         }
-      ]
+      }
     },
     "IncidentActionPayload": {
       "x-opsgenie-domain": "incident",
@@ -24257,6 +24626,485 @@
           "additionalProperties": {
             "type": "string"
           }
+        }
+      }
+    },
+    "CreateServicePayload": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the service"
+        },
+        "teamId": {
+          "type": "string",
+          "description": "Team id of the service."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description field of the service that is generally used to provide a detailed information about the service."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "TEAM_MEMBERS",
+            "OPSGENIE_USERS"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UpdateServicePayload": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the service"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description field of the service that is generally used to provide a detailed information about the service."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "TEAM_MEMBERS",
+            "OPSGENIE-USERS"
+          ]
+        }
+      }
+    },
+    "GetServiceResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/Service"
+            }
+          }
+        }
+      ]
+    },
+    "ListServicesResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Service"
+              }
+            },
+            "paging": {
+              "$ref": "#/definitions/PageDetails"
+            }
+          }
+        }
+      ]
+    },
+    "Service": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Id of the service"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service"
+        },
+        "teamId": {
+          "type": "string",
+          "description": "Team id of the service."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description field of the service that is generally used to provide a detailed information about the service."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "TEAM_MEMBERS",
+            "OPSGENIE_USERS"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CreateServiceIncidentRulePayload": {
+      "type": "object",
+      "required": [
+        "incidentProperties"
+      ],
+      "properties": {
+        "conditionMatchType": {
+          "type": "string",
+          "enum": [
+            "match-all",
+            "match-any-condition",
+            "match-all-conditions"
+          ],
+          "default": "match-all"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceIncidentCondition"
+          }
+        },
+        "incidentProperties": {
+          "$ref": "#/definitions/ServiceIncidentProperties"
+        }
+      }
+    },
+    "UpdateServiceIncidentRulePayload": {
+      "type": "object",
+      "properties": {
+        "conditionMatchType": {
+          "type": "string",
+          "enum": [
+            "match-all",
+            "match-any-condition",
+            "match-all-conditions"
+          ],
+          "default": "match-all"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceIncidentCondition"
+          }
+        },
+        "incidentProperties": {
+          "$ref": "#/definitions/ServiceIncidentProperties"
+        }
+      }
+    },
+    "GetServiceIncidentRuleResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/ServiceIncidentRule"
+            }
+          }
+        }
+      ]
+    },
+    "ListServiceIncidentRulesResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ServiceIncidentRule"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ServiceIncidentRule": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Id of the incident rule."
+        },
+        "conditionMatchType": {
+          "type": "string",
+          "enum": [
+            "match-all",
+            "match-any-condition",
+            "match-all-conditions"
+          ],
+          "default": "match-all"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceIncidentCondition"
+          }
+        },
+        "incidentProperties": {
+          "$ref": "#/definitions/ServiceIncidentProperties"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Order for the rule."
+        }
+      }
+    },
+    "ServiceIncidentCondition": {
+      "type": "object",
+      "required": [
+        "field",
+        "operation"
+      ],
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Specifies which alert field will be used in condition. Possible values are message, description, tags, extra-properties, recipients, teams or priority",
+          "enum": [
+            "message",
+            "description",
+            "tags",
+            "extra-properties",
+            "recipients",
+            "teams",
+            "priority"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "description": "If field is set as extra-properties, key could be used for key-value pair"
+        },
+        "not": {
+          "type": "boolean",
+          "description": "Indicates behaviour of the given operation. Default value is false"
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "matches",
+            "contains",
+            "starts-with",
+            "ends-with",
+            "equals",
+            "contains-key",
+            "contains-value",
+            "greater-than",
+            "less-than",
+            "is-empty",
+            "equals-ignore-whitespace"
+          ],
+          "description": "It is the operation that will be executed for the given field and key."
+        },
+        "expectedValue": {
+          "type": "string",
+          "description": "User defined value that will be compared with alert field according to the operation. Default value is empty string"
+        }
+      }
+    },
+    "ServiceIncidentProperties": {
+      "type": "object",
+      "required": [
+        "message",
+        "priority",
+        "stakeholderProperties"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message of the related incident rule."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags of the alert."
+        },
+        "details": {
+          "type": "object",
+          "description": "Map of key-value pairs to use as custom properties of the alert.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "Description field of the incident rule."
+        },
+        "priority": {
+          "type": "string",
+          "description": "Priority level of the alert. Possible values are P1, P2, P3, P4 and P5",
+          "enum": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5"
+          ]
+        },
+        "stakeholderProperties": {
+          "$ref": "#/definitions/ServiceIncidentStakeholderProperties"
+        }
+      }
+    },
+    "ServiceIncidentStakeholderProperties": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "description": "Option to enable stakeholder notifications.Default value is true."
+        },
+        "message": {
+          "type": "string",
+          "description": "Message that is to be passed to audience that is generally used to provide a content information about the alert."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description that is generally used to provide a detailed information about the alert."
+        }
+      }
+    },
+    "PartialUpdateServiceAudienceTemplatePayload": {
+      "type": "object",
+      "properties": {
+        "responder": {
+          "$ref": "#/definitions/ServiceAudienceTemplateResponder"
+        },
+        "stakeholder": {
+          "$ref": "#/definitions/ServiceAudienceTemplateStakeholder"
+        }
+      }
+    },
+    "GetServiceAudienceTemplateResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        },
+        {
+          "properties": {
+            "data": {
+              "$ref": "#/definitions/ServiceAudienceTemplate"
+            }
+          }
+        }
+      ]
+    },
+    "PartialUpdateServiceAudienceTemplateResponse": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseResponse"
+        }
+      ]
+    },
+    "ServiceAudienceTemplate": {
+      "type": "object",
+      "properties": {
+        "responder": {
+          "$ref": "#/definitions/ServiceAudienceTemplateResponder"
+        },
+        "stakeholder": {
+          "$ref": "#/definitions/ServiceAudienceTemplateStakeholder"
+        }
+      }
+    },
+    "ServiceAudienceTemplateResponder": {
+      "type": "object",
+      "properties": {
+        "teams": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "individuals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ServiceAudienceTemplateStakeholder": {
+      "type": "object",
+      "properties": {
+        "individuals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditionMatchType": {
+          "type": "string",
+          "description": "Match type for given conditions. Possible values are [match-all-conditions, match-any-condition]. Default value is [match-any-condition].",
+          "enum": [
+            "match-all-conditions",
+            "match-any-condition"
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceAudienceTemplateCondition"
+          }
+        }
+      }
+    },
+    "ServiceAudienceTemplateCondition": {
+      "type": "object",
+      "required": [
+        "matchField",
+        "value"
+      ],
+      "properties": {
+        "matchField": {
+          "type": "string",
+          "description": "Field to be matched for users. Possible values are [country, state, city, zipCode, line, tag, customProperty]. customProperty can be used while actionType is keyValue.",
+          "enum": [
+            "country",
+            "state",
+            "city",
+            "zipCode",
+            "line",
+            "tag",
+            "customProperty"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "description": "If matchField is customProperty, key must be given."
+        },
+        "value": {
+          "type": "string",
+          "description": "Value to be check for the match field."
         }
       }
     }
