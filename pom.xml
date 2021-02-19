@@ -157,5 +157,7 @@
         <base64-version>2.2</base64-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.8.1</junit-version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 </project>
